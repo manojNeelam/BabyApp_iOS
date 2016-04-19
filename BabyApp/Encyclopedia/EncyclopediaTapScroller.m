@@ -342,7 +342,7 @@ int n;
                                          size:18]];
         
         
-        [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
 
         
         

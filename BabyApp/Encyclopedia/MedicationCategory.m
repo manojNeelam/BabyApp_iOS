@@ -47,22 +47,31 @@
         
         
         UILabel *lblName=nil;
-        
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,5, medicationCategoryTable.frame.size.width-30, 30)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,10, medicationCategoryTable.frame.size.width-40, 30)];
         lblName.tag=10;
         [cell.contentView addSubview:lblName];
         
         
         UILabel *lblName2=nil;
-        
-        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(10,30,medicationCategoryTable.frame.size.width-30, 80)];
+        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(20,30,medicationCategoryTable.frame.size.width-60, 60)];
         lblName2.tag=20;
         [cell.contentView addSubview:lblName2];
-        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
-        [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:18]];
+       // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
+       // [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:12]];
+        
+        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                         size:18]];
+        [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
+
+        
+       // [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];AvenirNextLTPro-UltLtCn.otf
+        
+
         
         
-        [lblName2 setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        
+        //[lblName2 setLineBreakMode:NSLineBreakByWordWrapping];
         [lblName2 setNumberOfLines:0];
         
     }
@@ -71,7 +80,7 @@
     
     
     
-    [cell setBackgroundColor:[UIColor whiteColor]];
+   // [cell setBackgroundColor:[UIColor whiteColor]];
     
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
@@ -85,7 +94,22 @@
     
     
     
-    [lblName2 setTextColor:[UIColor grayColor]];
+    [lblName2 setTextColor:[UIColor colorWithRed:141.0/255.0 green:140.0/255.0 blue:146.0/255.0 alpha:1.0]];
+    
+    NSMutableAttributedString *attrString =
+    [[NSMutableAttributedString alloc]
+     initWithAttributedString: lblName2.attributedText];
+    
+    
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:3];
+    [attrString addAttribute:NSParagraphStyleAttributeName
+                       value:style
+                       range:NSMakeRange(0, lblName2.text.length)];
+    lblName2.attributedText = attrString;
+
+  //  [lblName2 setBackgroundColor:[UIColor grayColor]];
+
     
     return cell;
     
@@ -111,7 +135,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 100;
 }
 
 
