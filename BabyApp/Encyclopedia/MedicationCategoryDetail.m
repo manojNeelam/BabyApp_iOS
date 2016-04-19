@@ -49,14 +49,14 @@ NSDictionary *d;
         
         UILabel *lblName=nil;
         
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,15, medicationCategoryDetailTable.frame.size.width-30, 25)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,15, medicationCategoryDetailTable.frame.size.width-40, 25)];
         lblName.tag=10;
         [cell.contentView addSubview:lblName];
         
         
         UILabel *lblName2=nil;
         
-        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(10,35,medicationCategoryDetailTable.frame.size.width-30,40)];
+        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(20,35,medicationCategoryDetailTable.frame.size.width-40,40)];
         lblName2.tag=20;
         [cell.contentView addSubview:lblName2];
         [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]];
@@ -69,7 +69,7 @@ NSDictionary *d;
         
         UILabel *lblName3=nil;
         
-        lblName3=[[UILabel alloc] initWithFrame:CGRectMake(10,30,medicationCategoryDetailTable.frame.size.width-30, 80)];
+        lblName3=[[UILabel alloc] initWithFrame:CGRectMake(20,30,medicationCategoryDetailTable.frame.size.width-30, 80)];
         lblName3.tag=30;
         [cell.contentView addSubview:lblName3];
 
