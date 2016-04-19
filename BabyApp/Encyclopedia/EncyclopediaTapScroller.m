@@ -325,21 +325,21 @@ int n;
         
         UILabel *lblName=nil;
         
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,10, scrollerTable.frame.size.width-30, 35)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,10, scrollerTable.frame.size.width-40, 35)];
         lblName.tag=10;
         [cell.contentView addSubview:lblName];
         
         
         UILabel *lblName2=nil;
         
-        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(10,35,scrollerTable.frame.size.width-30, 35)];
+        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(20,30,scrollerTable.frame.size.width-40, 30)];
         lblName2.tag=20;
         [cell.contentView addSubview:lblName2];
        // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
        // [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:12]];
         
         [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
-                                         size:19]];
+                                         size:18]];
         
         
         [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
@@ -421,7 +421,7 @@ int n;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    return 70;
 }
 
 
