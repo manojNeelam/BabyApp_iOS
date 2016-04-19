@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>JTChartView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PDTSimpleCalendar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-BabyApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>RSDayFlow.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2B0C86F1F8905640462F7DAABC434948</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F634CFAA9D93C2071AD7FAC27140AA8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD76B6308DD72A17009A1E62A6C5255E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D653A59DB64AB2BE4631D99A6C318E21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

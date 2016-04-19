@@ -1,0 +1,16 @@
+PODS:
+  - JTChartView (1.0.0)
+  - PDTSimpleCalendar (0.9.1)
+  - RSDayFlow (1.4.1)
+
+DEPENDENCIES:
+  - JTChartView
+  - PDTSimpleCalendar (~> 0.9.1)
+  - RSDayFlow
+
+SPEC CHECKSUMS:
+  JTChartView: c329db5d9cd15967cf6cbc5d828cc22c9427eea6
+  PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
+  RSDayFlow: 24e9fb2f1f2cdbcb82e33345ae7fcc55309f746c
+
+COCOAPODS: 0.39.0
