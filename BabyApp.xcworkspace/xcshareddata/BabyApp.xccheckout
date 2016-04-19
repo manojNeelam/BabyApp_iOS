@@ -10,31 +10,31 @@
 	<string>BabyApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>38F4E6826661AB1F3407F5990F8B5761BDA473BC</key>
-		<string>https://github.com/charangiri/OurBabyApp.git</string>
+		<key>852AB68FDDA7DB2D9E6FD994E7A0C21D36C7ADAC</key>
+		<string>https://github.com/manojNeelam/BabyApp_iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BabyApp/BabyApp.xcworkspace</string>
+	<string>BabyApp.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>38F4E6826661AB1F3407F5990F8B5761BDA473BC</key>
-		<string>../..</string>
+		<key>852AB68FDDA7DB2D9E6FD994E7A0C21D36C7ADAC</key>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/charangiri/OurBabyApp.git</string>
+	<string>https://github.com/manojNeelam/BabyApp_iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>38F4E6826661AB1F3407F5990F8B5761BDA473BC</string>
+	<string>852AB68FDDA7DB2D9E6FD994E7A0C21D36C7ADAC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>38F4E6826661AB1F3407F5990F8B5761BDA473BC</string>
+			<string>852AB68FDDA7DB2D9E6FD994E7A0C21D36C7ADAC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>OurBabyApp</string>
+			<string>BabyApp</string>
 		</dict>
 	</array>
 </dict>
