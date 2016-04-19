@@ -11,7 +11,9 @@
             <string>AvenirNextLTPro-Bold</string>
             <string>AvenirNextLTPro-Bold</string>
             <string>AvenirNextLTPro-Bold</string>
-            <string>AvenirNextLTPro-Bold</string>
+        </mutableArray>
+        <mutableArray key="AvenirNextLTPro-Demi.otf">
+            <string>AvenirNextLTPro-Demi</string>
         </mutableArray>
         <mutableArray key="AvenirNextLTPro-Regular.otf">
             <string>AvenirNextLTPro-Regular</string>
@@ -513,6 +515,8 @@
                                 <exclude reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Kfs-QT-Exb"/>
+                                <exclude reference="nvS-vU-3tS"/>
                                 <exclude reference="aUL-6j-reV"/>
                                 <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="Aoc-aM-bEh"/>
@@ -528,8 +532,6 @@
                                 <exclude reference="WhD-EK-o4h"/>
                                 <exclude reference="IRy-ic-WT7"/>
                                 <exclude reference="e7c-mG-Pkx"/>
-                                <exclude reference="Kfs-QT-Exb"/>
-                                <exclude reference="nvS-vU-3tS"/>
                                 <exclude reference="6rH-mC-FIP"/>
                                 <exclude reference="Lxr-Sw-vek"/>
                                 <exclude reference="2BS-ae-DLv"/>
@@ -546,6 +548,8 @@
                                 <include reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Kfs-QT-Exb"/>
+                                <include reference="nvS-vU-3tS"/>
                                 <include reference="aUL-6j-reV"/>
                                 <include reference="sXA-Lg-Yg0"/>
                                 <include reference="Aoc-aM-bEh"/>
@@ -561,8 +565,6 @@
                                 <include reference="WhD-EK-o4h"/>
                                 <include reference="IRy-ic-WT7"/>
                                 <include reference="e7c-mG-Pkx"/>
-                                <include reference="Kfs-QT-Exb"/>
-                                <include reference="nvS-vU-3tS"/>
                                 <include reference="6rH-mC-FIP"/>
                                 <include reference="Lxr-Sw-vek"/>
                                 <include reference="2BS-ae-DLv"/>
@@ -3067,7 +3069,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="screenSummary" textLabel="J1Z-z6-M0K" detailTextLabel="jap-FN-shT" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="Z2Q-he-RnF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="screenSummary" textLabel="J1Z-z6-M0K" detailTextLabel="jap-FN-shT" rowHeight="45" style="IBUITableViewCellStyleSubtitle" id="Z2Q-he-RnF">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2Q-he-RnF" id="xm1-Wh-QCk">
@@ -3077,15 +3079,15 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J1Z-z6-M0K">
                                                     <rect key="frame" x="15" y="11" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Bold" family="Avenir Next LT Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Bold" family="Avenir Next LT Pro" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jap-FN-shT">
                                                     <rect key="frame" x="15" y="26" width="46" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Bold" family="Avenir Next LT Pro" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
