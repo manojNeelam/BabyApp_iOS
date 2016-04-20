@@ -16,8 +16,15 @@
             <string>AvenirNextLTPro-Demi</string>
             <string>AvenirNextLTPro-Demi</string>
             <string>AvenirNextLTPro-Demi</string>
+            <string>AvenirNextLTPro-Demi</string>
+            <string>AvenirNextLTPro-Demi</string>
+            <string>AvenirNextLTPro-Demi</string>
         </mutableArray>
         <mutableArray key="AvenirNextLTPro-Regular.otf">
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
@@ -122,15 +129,8 @@
             <string>HelveticaNeueCyr-Light</string>
             <string>HelveticaNeueCyr-Light</string>
             <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
         </mutableArray>
         <mutableArray key="HelveticaNeueCyr-Roman.otf">
-            <string>HelveticaNeueCyr-Roman</string>
-            <string>HelveticaNeueCyr-Roman</string>
-            <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
@@ -516,6 +516,7 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="aUL-6j-reV"/>
+                                <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="Aoc-aM-bEh"/>
                                 <exclude reference="TJy-6p-KIk"/>
                                 <exclude reference="cIu-Ka-cGA"/>
@@ -536,7 +537,6 @@
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
-                                <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
@@ -549,6 +549,7 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="aUL-6j-reV"/>
+                                <include reference="sXA-Lg-Yg0"/>
                                 <include reference="Aoc-aM-bEh"/>
                                 <include reference="TJy-6p-KIk"/>
                                 <include reference="cIu-Ka-cGA"/>
@@ -569,7 +570,6 @@
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
-                                <include reference="sXA-Lg-Yg0"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
@@ -2884,23 +2884,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hepatitid B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuW-kt-adt">
-                                            <rect key="frame" x="15" y="15" width="295" height="20"/>
+                                            <rect key="frame" x="15" y="15" width="295" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="SAf-vo-l4D"/>
+                                                <constraint firstAttribute="height" constant="25" id="SAf-vo-l4D"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="25"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="25"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocq-vU-GK0">
-                                            <rect key="frame" x="15" y="41" width="290" height="73"/>
+                                            <rect key="frame" x="15" y="46" width="290" height="68"/>
                                             <string key="text">Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium, Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium  </string>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="15"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
+                                            <color key="textColor" red="0.43921571969985962" green="0.7882353663444519" blue="0.77647066116333008" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.19229273799999999" green="0.5" blue="0.46748461600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.0039215688593685627" green="0.64705884456634521" blue="0.63137257099151611" alpha="1" colorSpace="deviceRGB"/>
                                     <constraints>
                                         <constraint firstItem="OuW-kt-adt" firstAttribute="leading" secondItem="FMs-lK-rld" secondAttribute="leading" constant="15" id="4lc-3F-tL9"/>
                                         <constraint firstItem="ocq-vU-GK0" firstAttribute="top" secondItem="OuW-kt-adt" secondAttribute="bottom" constant="6" id="57a-hH-sfs"/>
@@ -2925,20 +2925,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-la-Ot2">
-                                            <rect key="frame" x="15" y="5" width="200" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="17"/>
+                                            <rect key="frame" x="15" y="10" width="200" height="21"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivh-Ud-R3M">
-                                            <rect key="frame" x="15" y="36" width="297" height="68"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="15"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivh-Ud-R3M">
+                                            <rect key="frame" x="15" y="31" width="297" height="68"/>
+                                            <string key="text">Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium </string>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90980398654937744" green="0.90980398654937744" blue="0.92941182851791382" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <outlet property="subtitleLabel" destination="Ivh-Ud-R3M" id="hWG-pP-EDr"/>
                                     <outlet property="titleLabel" destination="fWm-la-Ot2" id="HZR-LY-2MY"/>
@@ -2952,22 +2953,24 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OTHER INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45e-GL-yRM">
-                                            <rect key="frame" x="15" y="5" width="297" height="20"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="17"/>
+                                            <rect key="frame" x="15" y="10" width="297" height="21"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPp-6D-7fZ">
-                                            <rect key="frame" x="15" y="33" width="297" height="58"/>
+                                            <rect key="frame" x="15" y="31" width="297" height="58"/>
                                             <string key="text">Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium, Lorem ipsum proin gravida nibh vel velit autor aliquit. Aenean sollitude, lorem quis bibeendium  </string>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqk-Kp-J6f">
                                             <rect key="frame" x="15" y="104" width="80" height="30"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="15"/>
-                                            <state key="normal" title="Learn more"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
+                                            <state key="normal" title="Learn more">
+                                                <color key="titleColor" red="0.0" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="learnMoreAction:" destination="iq8-l9-Lk0" eventType="touchUpInside" id="vi1-J4-SDe"/>
                                             </connections>
@@ -6709,13 +6712,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HR7-I5-Q1j">
-                                <rect key="frame" x="16" y="20" width="288" height="400"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="doM-VF-6di"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ax4-v6-IZi">
                                 <rect key="frame" x="16" y="430" width="288" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6887,6 +6883,13 @@
                                     <outlet property="delegate" destination="ate-cS-UBt" id="5dA-CV-Yy5"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HR7-I5-Q1j">
+                                <rect key="frame" x="16" y="20" width="288" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="doM-VF-6di"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -8446,7 +8449,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-p8-a8P">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-p8-a8P">
                                 <rect key="frame" x="20" y="20" width="560" height="530"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -8491,10 +8494,10 @@
                                     <outlet property="delegate" destination="em6-rX-W1L" id="N3y-ge-Q3p"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uN2-gq-Sh9">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uN2-gq-Sh9">
                                 <rect key="frame" x="20" y="550" width="560" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-7h-UGH">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-7h-UGH">
                                         <rect key="frame" x="280" y="0.0" width="280" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="2-3 years">
@@ -8504,7 +8507,7 @@
                                             <action selector="bottomRightButtonAction:" destination="em6-rX-W1L" eventType="touchUpInside" id="hfD-cV-7ms"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-Pp-tgd">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-Pp-tgd">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="15-18 months">

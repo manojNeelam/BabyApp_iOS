@@ -322,10 +322,7 @@
     weightLabel.textColor=[UIColor whiteColor];
     [percentailOverlayView addSubview:weightLabel];
     
-    
-    
-    
-    
+
     UIButton *bmiButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     [bmiButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
