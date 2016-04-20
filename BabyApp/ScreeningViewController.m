@@ -41,15 +41,25 @@ NSArray *labelArray;
     [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
     
     labelArray=[NSArray arrayWithObjects:@"DEVELOPMENTAL CHECKLIST",@"Personal Social",@"Fine Motor-Adaptive",@"Language",@"Gross Motor",@"GROWTH",@"OTHER SCREENING",@"Physical Examination",@"Outcome", nil];
-    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 50)];
+    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 45)];
     [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
     [self.view addSubview:v];
     
     UILabel *lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(30,10, v.frame.size.width-60, 30)];
     [v addSubview:lblHeading];
     
-    [lblHeading setFont:[UIFont fontWithName:@"AvenirNextLTPro-Bold" size:15.0f]];
+    [lblHeading setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                        size:14]];
     [lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
+    
+    
+  //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
+    
+    
+  //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
+    
+
+    
     
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
