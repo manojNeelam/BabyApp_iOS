@@ -19,7 +19,7 @@
     UIView *percentailOverlayView;
     UIView *oralOverlayView;
     int percentialIndex;
-    AwesomeMenuItem *starMenuItem4 ;
+    AwesomeMenuItem *starMenuItem1 ,*starMenuItem2 ,*starMenuItem3 ,*starMenuItem4 ,*starMenuItem5;
     
 }
 @end
@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self circleViewCreation];
+    [self circleView];
     
     overlayView=[UIView new];
     overlayView.frame=self.view.frame;
@@ -58,76 +58,7 @@
     return NO;
 }
 
--(void)circleViewCreation
-{
-    //    width= 250;
-    //    imageSize=70;
-    //
-    //
-    //
-    //    CAShapeLayer *circleLayer = [CAShapeLayer layer];
-    //    [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(_baseCircleView.frame.origin.x, _baseCircleView.frame.origin.y, width, width)] CGPath]];
-    //    [[_baseCircleView layer] addSublayer:circleLayer];
-    //    [circleLayer setStrokeColor:[[UIColor grayColor] CGColor]];
-    //    [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-    //    [circleLayer setLineWidth:  15.0f];
-    //
-    //    float  centerImageLocation =width/2 -imageSize/2;
-    //
-    //    UIView *circleView=[[UIView alloc] initWithFrame:CGRectMake(centerImageLocation, centerImageLocation, imageSize, imageSize)];
-    //    circleView.backgroundColor = [UIColor blueColor];
-    //    [_baseCircleView addSubview:circleView];
-    
-    /*
-     UIButton *immunisationButton;
-     UIButton *screeningButton;
-     UIButton *percentilesButton;
-     UIButton *oralButton;
-     UIButton *allergyButton;
-     
-     
-     immunisationButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [immunisationButton setTitle:@"Immun" forState:UIControlStateNormal];
-     immunisationButton.frame=CGRectMake(centerImageLocation, -imageSize/2, imageSize, imageSize);
-     [_baseCircleView addSubview:immunisationButton];
-     
-     
-     
-     screeningButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [screeningButton setTitle:@"screeningButton" forState:UIControlStateNormal];
-     screeningButton.frame=CGRectMake(-imageSize/2, imageSize, imageSize, imageSize);
-     [_baseCircleView addSubview:screeningButton];
-     
-     
-     percentilesButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [percentilesButton setTitle:@"percentilesButton" forState:UIControlStateNormal];
-     percentilesButton.frame=CGRectMake(width-imageSize/2, imageSize, imageSize, imageSize);
-     [_baseCircleView addSubview:percentilesButton];
-     
-     
-     allergyButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [allergyButton setTitle:@"allergyButton" forState:UIControlStateNormal];
-     allergyButton.frame=CGRectMake(width/2-imageSize*2, width-imageSize, imageSize, imageSize);
-     [_baseCircleView addSubview:allergyButton];
-     
-     oralButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [oralButton setTitle:@"oralButton" forState:UIControlStateNormal];
-     oralButton.frame=CGRectMake(width/2+imageSize, width-imageSize, imageSize, imageSize);
-     [_baseCircleView addSubview:oralButton];
-     
-     [immunisationButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-     [screeningButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-     [percentilesButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-     [allergyButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-     [oralButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-     
-     
-     [immunisationButton addTarget:self action:@selector(immunisationButtonAction) forControlEvents:UIControlEventTouchUpInside];
-     [screeningButton addTarget:self action:@selector(screeningButtonAction) forControlEvents:UIControlEventTouchUpInside];
-     
-     */
-    [self circleView];
-}
+
 
 -(void)immunisationButtonAction
 {
@@ -157,17 +88,17 @@
     
     // Default Menu
     
-    AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+     starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage1
                                                     highlightedContentImage:nil withTitle:@"Immunisation" color:[UIColor redColor] andPosition:YES];
     
-    AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+     starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage2
                                                     highlightedContentImage:nil withTitle:@"Percentile" color:[UIColor orangeColor] andPosition:YES];
     
-    AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+     starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage3
                                                     highlightedContentImage:nil withTitle:@"Oral Health and Visual" color:[UIColor blueColor] andPosition:YES];
@@ -177,7 +108,7 @@
                                               ContentImage:starImage4
                                    highlightedContentImage:nil withTitle:@"Allergy and Medical Condition" color:[UIColor greenColor] andPosition:YES];
     
-    AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+     starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage5
                                                     highlightedContentImage:nil withTitle:@"Screening" color:[UIColor yellowColor] andPosition:YES];
@@ -186,10 +117,10 @@
     NSArray *menuItems = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];
     
     
-    AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"]
-                                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"]
-                                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"] withTitle:nil color:nil andPosition:NO];
+    AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@""]
+                                                       highlightedImage:[UIImage imageNamed:@""]
+                                                           ContentImage:[UIImage imageNamed:@""]
+                                                highlightedContentImage:[UIImage imageNamed:@"hb_oral.png"] withTitle:nil color:nil andPosition:NO];
     
     AwesomeMenu *menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds startItem:startItem menuItems:menuItems];
     menu.delegate = self;
@@ -243,19 +174,21 @@
     
     [overlayView setHidden:NO];
     
+    
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_back.png"] forState:UIControlStateNormal];
-    backButton.frame=CGRectMake(30, self.view.frame.size.height/2, 70, 70);
+    backButton.frame=CGRectMake(starMenuItem4.frame.origin.x+5, starMenuItem4.frame.origin.y+40, 70, 70);
+    
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
     
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(40, backButton.frame.origin.y-80, 50, 50);
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-100, 50, 50);
     [drugButton addTarget:self action:@selector(drugAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(30, drugButton.frame.origin.y+drugButton.frame.size.height, 70, 30)];
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(backButton.frame.origin.x, drugButton.frame.origin.y+drugButton.frame.size.height, 70, 30)];
     drugLabel.text=@"Allergy";
     drugLabel.textAlignment=NSTextAlignmentCenter;
     drugLabel.textColor=[UIColor whiteColor];
@@ -264,12 +197,12 @@
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
-    medicalButton.frame=CGRectMake(40, backButton.frame.origin.y+100, 50, 50);
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100, 50, 50);
     [medicalButton addTarget:self action:@selector(medicalAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(30, medicalButton.frame.origin.y+medicalButton.frame.size.height, 70, 50)];
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(backButton.frame.origin.x, medicalButton.frame.origin.y+medicalButton.frame.size.height, 70, 50)];
     medicalLabel.text=@"Medical Condition";
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentCenter;
@@ -320,7 +253,7 @@
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_back.png"] forState:UIControlStateNormal];
-    backButton.frame=CGRectMake(self.view.frame.size.width-100, self.view.frame.size.height/4+20, 70, 70);
+    backButton.frame=CGRectMake(starMenuItem2.frame.origin.x+5, starMenuItem2.frame.origin.y+40, 70, 70);
     [backButton addTarget:self action:@selector(overlaybackAction) forControlEvents:UIControlEventTouchUpInside];
     [percentailOverlayView addSubview:backButton];
     [backButton setContentVerticalAlignment:UIControlContentVerticalAlignmentBottom];
@@ -454,16 +387,17 @@
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"hb_back_oralvisual.png"] forState:UIControlStateNormal];
-    backButton.frame=CGRectMake(self.view.frame.size.width-120, self.view.frame.size.height/2, 70, 70);
+    backButton.frame=CGRectMake(starMenuItem3.frame.origin.x+5, starMenuItem3.frame.origin.y+40, 70, 70);
     [backButton addTarget:self action:@selector(oralbackAction) forControlEvents:UIControlEventTouchUpInside];
     [oralOverlayView addSubview:backButton];
     
-    
+    NSLog(@"%f%f%f%f",starMenuItem3.frame.origin.x,starMenuItem3.frame.origin.y,starMenuItem3.frame.size.width,starMenuItem3.frame.size.height);
+    NSLog(@"%f%f%f%f",backButton.frame.origin.x,backButton.frame.origin.y,backButton.frame.size.width,backButton.frame.size.height);
     
     
     UIButton *oralButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [oralButton setBackgroundImage:[UIImage imageNamed:@"hb_teeth.png"] forState:UIControlStateNormal];
-    oralButton.frame=CGRectMake(backButton.frame.origin.x, backButton.frame.origin.y-100, 50, 50);
+    oralButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-100, 50, 50);
     [oralButton addTarget:self action:@selector(oralAction) forControlEvents:UIControlEventTouchUpInside];
     [oralOverlayView addSubview:oralButton];
     

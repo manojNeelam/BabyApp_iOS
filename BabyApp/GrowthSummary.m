@@ -7,7 +7,7 @@
 //
 
 #import "GrowthSummary.h"
-
+#import "PercentialViewController.h"
 @interface GrowthSummary ()
 
 @end
@@ -279,7 +279,76 @@ NSArray *labelArrayGrowthSummary;
     //  [[NSUserDefaults standardUserDefaults] setObject:[labelArray objectAtIndex:indexPath.row] forKey:@"selectedScreenLbl"];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
- //  [self performSegueWithIdentifier:@"screeningsumarysegu" sender:self];
+    //  [self performSegueWithIdentifier:@"screeningsumarysegu" sender:self];
+    //visual
+    
+    if (indexPath.row==5) {
+        
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"visual"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else{
+        
+        
+        
+        PercentialViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"percential"];
+        
+        
+        
+        switch (indexPath.row) {
+            case 0:
+                
+                [vc setTitleString:@"Head"];
+                [vc setSuffix:@"cm"];
+                [vc setYaxisName:@"Cirumference"];
+                [vc setTitleLableString:@"PERCENTILES OF HEAD CIRCUMFERENCE-FOR-AGE"];
+                [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
+                
+                break;
+            case 2:
+                [vc setTitleString:@"Height"];
+                [vc setSuffix:@"cm"];
+                [vc setYaxisName:@"Height"];
+                [vc setTitleLableString:@"PERCENTILES OF HEIGHT-FOR-AGE"];
+                [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
+                break;
+            case 1:
+                [vc setTitleString:@"Weight"];
+                [vc setSuffix:@"kgs"];
+                [vc setYaxisName:@"Weight"];
+                [vc setTitleLableString:@"PERCENTILES OF WEIGHT-FOR-AGE"];
+                [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
+                
+                break;
+            case 3:
+                [vc setTitleString:@"BMI"];
+                [vc setSuffix:@"h/w"];
+                [vc setYaxisName:@"BMI"];
+                [vc setTitleLableString:@"PERCENTILES OF BMI-FOR-AGE"];
+                [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
+                
+                break;
+            case 4:
+                [vc setTitleString:@"Hearing"];
+                [vc setSuffix:@"db"];
+                [vc setYaxisName:@"Hearing"];
+                [vc setTitleLableString:@"PERCENTILES OF Hearing-FOR-AGE"];
+                [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
+                
+                break;
+                
+                
+                
+                
+            default:
+                break;
+        }
+        
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     
 }
 

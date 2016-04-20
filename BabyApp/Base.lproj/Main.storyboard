@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -516,7 +517,6 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="aUL-6j-reV"/>
-                                <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="Aoc-aM-bEh"/>
                                 <exclude reference="TJy-6p-KIk"/>
                                 <exclude reference="cIu-Ka-cGA"/>
@@ -537,6 +537,7 @@
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
+                                <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
@@ -549,7 +550,6 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="aUL-6j-reV"/>
-                                <include reference="sXA-Lg-Yg0"/>
                                 <include reference="Aoc-aM-bEh"/>
                                 <include reference="TJy-6p-KIk"/>
                                 <include reference="cIu-Ka-cGA"/>
@@ -570,6 +570,7 @@
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
+                                <include reference="sXA-Lg-Yg0"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
@@ -3073,21 +3074,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="screenSummary" textLabel="J1Z-z6-M0K" detailTextLabel="jap-FN-shT" rowHeight="45" style="IBUITableViewCellStyleSubtitle" id="Z2Q-he-RnF">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2Q-he-RnF" id="xm1-Wh-QCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J1Z-z6-M0K">
-                                                    <rect key="frame" x="15" y="11" width="32" height="15"/>
+                                                    <rect key="frame" x="15" y="9" width="30" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNextLTPro-Bold" family="Avenir Next LT Pro" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jap-FN-shT">
-                                                    <rect key="frame" x="15" y="26" width="46" height="12"/>
+                                                    <rect key="frame" x="15" y="23" width="43" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -6558,7 +6559,7 @@
         <!--Visiual Activity View Controller-->
         <scene sceneID="weE-wu-y7N">
             <objects>
-                <viewController id="oQP-w9-OPY" customClass="VisiualActivityViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="visual" id="oQP-w9-OPY" customClass="VisiualActivityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bEQ-3j-sFk"/>
                         <viewControllerLayoutGuide type="bottom" id="el9-QA-oO4"/>
@@ -7266,7 +7267,7 @@
         <!--Percential View Controller-->
         <scene sceneID="jGA-5p-raf">
             <objects>
-                <viewController id="dli-kP-ujQ" customClass="PercentialViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="percential" id="dli-kP-ujQ" customClass="PercentialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="004-2R-uow"/>
                         <viewControllerLayoutGuide type="bottom" id="xSR-gw-Xas"/>
@@ -8446,7 +8447,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-p8-a8P">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-p8-a8P">
                                 <rect key="frame" x="20" y="20" width="560" height="530"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -8491,10 +8492,10 @@
                                     <outlet property="delegate" destination="em6-rX-W1L" id="N3y-ge-Q3p"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uN2-gq-Sh9">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uN2-gq-Sh9">
                                 <rect key="frame" x="20" y="550" width="560" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-7h-UGH">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-7h-UGH">
                                         <rect key="frame" x="280" y="0.0" width="280" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="2-3 years">
@@ -8504,7 +8505,7 @@
                                             <action selector="bottomRightButtonAction:" destination="em6-rX-W1L" eventType="touchUpInside" id="hfD-cV-7ms"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-Pp-tgd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-Pp-tgd">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="15-18 months">
