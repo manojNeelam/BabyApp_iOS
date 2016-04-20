@@ -122,7 +122,7 @@
     
     //250/215/113
     
-     starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+    AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage5
                                                     highlightedContentImage:nil withTitle:@"Screening" color:[UIColor colorWithRed:250.0f/255.0f green:215.0f/255.0f blue:113.0f/255.0f alpha:1.0] andPosition:YES];
