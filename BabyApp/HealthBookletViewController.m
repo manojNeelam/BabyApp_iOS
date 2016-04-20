@@ -161,24 +161,30 @@ AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMen
                                                        highlightedImage:storyMenuItemImagePressed
                                                            ContentImage:starImage1
                                                 highlightedContentImage:nil];
+    
 AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                        highlightedImage:storyMenuItemImagePressed
                                                            ContentImage:starImage2
                                                 highlightedContentImage:nil];
+    
 AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                        highlightedImage:storyMenuItemImagePressed
                                                            ContentImage:starImage3
                                                 highlightedContentImage:nil];
+    
  starMenuItem4 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                        highlightedImage:storyMenuItemImagePressed
                                                            ContentImage:starImage4
                                                 highlightedContentImage:nil];
+    
 AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                        highlightedImage:storyMenuItemImagePressed
                                                            ContentImage:starImage5
                                                 highlightedContentImage:nil];
+    
 
 NSArray *menuItems = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];
+    
 
 AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
                                                    highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"]

@@ -23,6 +23,12 @@
 
 @property (nonatomic, strong, readonly) UIImageView *contentImageView;
 
+//Manoj
+@property (nonatomic, strong) UILabel *title;
+@property (nonatomic, assign) BOOL isMultiline;
+@property (nonatomic, assign) BOOL isImmunisation;
+
+
 @property (nonatomic) CGPoint startPoint;
 @property (nonatomic) CGPoint endPoint;
 @property (nonatomic) CGPoint nearPoint;
@@ -30,10 +36,10 @@
 
 @property (nonatomic, weak) id<AwesomeMenuItemDelegate> delegate;
 
-- (id)initWithImage:(UIImage *)img 
+- (id)initWithImage:(UIImage *)img
    highlightedImage:(UIImage *)himg
        ContentImage:(UIImage *)cimg
-highlightedContentImage:(UIImage *)hcimg;
+highlightedContentImage:(UIImage *)hcimg withTitle:(NSString *)title color:(UIColor *)titleColor andPosition:(BOOL)isMultiline;
 
 
 @end

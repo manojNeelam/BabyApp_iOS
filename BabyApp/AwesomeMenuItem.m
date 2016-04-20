@@ -9,8 +9,13 @@
 #import "AwesomeMenuItem.h"
 static inline CGRect ScaleRect(CGRect rect, float n) {return CGRectMake((rect.size.width - rect.size.width * n)/ 2, (rect.size.height - rect.size.height * n) / 2, rect.size.width * n, rect.size.height * n);}
 @implementation AwesomeMenuItem
-
 @synthesize contentImageView = _contentImageView;
+
+//Mamoj
+@synthesize title = _title;
+@synthesize isMultiline = _isMultiline;
+@synthesize isImmunisation = _isImmunisation;
+
 
 @synthesize startPoint = _startPoint;
 @synthesize endPoint = _endPoint;
@@ -19,17 +24,48 @@ static inline CGRect ScaleRect(CGRect rect, float n) {return CGRectMake((rect.si
 @synthesize delegate  = _delegate;
 
 #pragma mark - initialization & cleaning up
-- (id)initWithImage:(UIImage *)img 
+- (id)initWithImage:(UIImage *)img
    highlightedImage:(UIImage *)himg
        ContentImage:(UIImage *)cimg
-highlightedContentImage:(UIImage *)hcimg;
+highlightedContentImage:(UIImage *)hcimg withTitle:(NSString *)title color:(UIColor *)titleColor andPosition:(BOOL)isMultiline;
 {
-    if (self = [super init]) 
+    if (self = [super init])
     {
         self.image = img;
         self.highlightedImage = himg;
         self.userInteractionEnabled = YES;
         _contentImageView = [[UIImageView alloc] initWithImage:cimg];
+        
+        if(title && title != nil)
+        {
+            _title = [[UILabel alloc] init];
+            [_title setTextAlignment:NSTextAlignmentCenter];
+            [_title setTextColor:titleColor];
+            [_title setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14.0f]];
+            
+            if([title isEqualToString:@"Immunisation"])
+            {
+                _isImmunisation = YES;
+            }
+            else
+            {
+                _isImmunisation = NO;
+            }
+            
+            [_title setText:title];
+            if(isMultiline)
+            {
+                _isMultiline = YES;
+                [_title setNumberOfLines:0];
+            }
+            else
+            {
+                _isMultiline = NO;
+            }
+            
+            [self addSubview:_title];
+        }
+        
         _contentImageView.highlightedImage = hcimg;
         [self addSubview:_contentImageView];
     }
@@ -46,6 +82,20 @@ highlightedContentImage:(UIImage *)hcimg;
     float width = _contentImageView.image.size.width;
     float height = _contentImageView.image.size.height;
     _contentImageView.frame = CGRectMake(self.bounds.size.width/4 - width/4, self.bounds.size.height/4 - height/4, width/2, height/2);
+    float heightTitle = 21;
+    if(_isMultiline)
+    {
+        heightTitle = 46;
+    }
+    
+    float yPOSTitle =  _contentImageView.frame.origin.y+_contentImageView.frame.size.height+5;
+    
+    if(_isImmunisation)
+    {
+        yPOSTitle = self.bounds.size.height/4 - height/4+5-31;
+    }
+    
+    _title.frame = CGRectMake(_contentImageView.frame.origin.x-width/4, yPOSTitle, width, heightTitle);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -53,7 +103,7 @@ highlightedContentImage:(UIImage *)hcimg;
     self.highlighted = YES;
     if ([_delegate respondsToSelector:@selector(AwesomeMenuItemTouchesBegan:)])
     {
-       [_delegate AwesomeMenuItemTouchesBegan:self];
+        [_delegate AwesomeMenuItemTouchesBegan:self];
     }
     
 }
