@@ -145,7 +145,7 @@
     //if(section == ...)
     //{
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
-    UIFont *myFont = [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14];
+    UIFont *myFont = [UIFont fontWithName:@"AvenirNextLTPro-Demi" size:15];
     [headerView.textLabel setFont:myFont];
     
     //}
