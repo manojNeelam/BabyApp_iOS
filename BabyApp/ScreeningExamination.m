@@ -151,38 +151,69 @@ NSArray *labelArrayExamination;
     return segment;
 }
 
--(void)onClickSegment:(UISegmentedControl*)sender
+-(void)onClickSegment:(UISegmentedControl*)mySegmentedControl
 {
     
+    //[sender setTintColor:[UIColor lightGrayColor]];
     
-    if(sender.selectedSegmentIndex == 0)
+    //    if(sender.selectedSegmentIndex == 0)
+    //    {
+    //        for (int i=0; i<[sender.subviews count]; i++)
+    //        {
+    //            if ([[sender.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[sender.subviews objectAtIndex:i]isSelected])
+    //            {
+    //                //49/191/180
+    //
+    //                [[sender.subviews objectAtIndex:i] setTintColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    //            }
+    //            else
+    //            {
+    //                [sender setTintColor:[UIColor lightGrayColor]];
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i=0; i<[sender.subviews count]; i++)
+    //        {
+    //            if ([[sender.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[sender.subviews objectAtIndex:i]isSelected])
+    //            {
+    //                //187/33/41
+    //
+    //                [[sender.subviews objectAtIndex:i] setTintColor:[UIColor colorWithRed:187.0/255.0f green:33.0f/255.0f blue:41.0f/255.0f alpha:1]];
+    //            }
+    //            else
+    //            {
+    //                [sender setTintColor:[UIColor lightGrayColor]];
+    //            }
+    //        }
+    //    }
+    
+    if(mySegmentedControl.selectedSegmentIndex == 0)
     {
-        for (int i=0; i<[sender.subviews count]; i++)
+        for (int i=0; i<[mySegmentedControl.subviews count]; i++)
         {
-            if ([[sender.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[sender.subviews objectAtIndex:i]isSelected])
+            if ([[mySegmentedControl.subviews objectAtIndex:i]isSelected] )
             {
-                [[sender.subviews objectAtIndex:i] setTintColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
-            }
-            else
-            {
-                [sender setTintColor:[UIColor lightGrayColor]];
+                [[mySegmentedControl.subviews objectAtIndex:i] setTintColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+            }else{
+                [[mySegmentedControl.subviews objectAtIndex:i] setTintColor:[UIColor lightGrayColor]];
             }
         }
     }
     else
     {
-        for (int i=0; i<[sender.subviews count]; i++)
+        for (int i=0; i<[mySegmentedControl.subviews count]; i++)
         {
-            if ([[sender.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[sender.subviews objectAtIndex:i]isSelected])
+            if ([[mySegmentedControl.subviews objectAtIndex:i]isSelected] )
             {
-                [[sender.subviews objectAtIndex:i] setTintColor:[UIColor redColor]];
-            }
-            else
-            {
-                [sender setTintColor:[UIColor lightGrayColor]];
+                [[mySegmentedControl.subviews objectAtIndex:i] setTintColor:[UIColor colorWithRed:187.0/255.0f green:33.0f/255.0f blue:41.0f/255.0f alpha:1]];
+            }else{
+                [[mySegmentedControl.subviews objectAtIndex:i] setTintColor:[UIColor lightGrayColor]];
             }
         }
     }
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
