@@ -92,7 +92,7 @@ highlightedContentImage:(UIImage *)hcimg withTitle:(NSString *)title color:(UICo
     
     if(_isImmunisation)
     {
-        yPOSTitle = self.bounds.size.height/4 - height/4+5-31;
+        yPOSTitle = self.bounds.size.height/4 - height/4+5-36;
     }
     
     _title.frame = CGRectMake(_contentImageView.frame.origin.x-width/4, yPOSTitle, width, heightTitle);

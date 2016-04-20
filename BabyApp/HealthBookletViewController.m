@@ -20,7 +20,7 @@
     UIView *oralOverlayView;
     int percentialIndex;
     AwesomeMenuItem *starMenuItem4 ;
-
+    
 }
 @end
 
@@ -29,13 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self circleViewCreation];
-  
+    
     overlayView=[UIView new];
     overlayView.frame=self.view.frame;
     overlayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [overlayView setHidden:YES];
     [self.view addSubview:overlayView];
-
+    
     
     percentailOverlayView=[UIView new];
     percentailOverlayView.frame=self.view.frame;
@@ -51,7 +51,7 @@
     
     
     
-
+    
 }
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
@@ -60,70 +60,70 @@
 
 -(void)circleViewCreation
 {
-//    width= 250;
-//    imageSize=70;
-//   
-//    
-//    
-//    CAShapeLayer *circleLayer = [CAShapeLayer layer];
-//    [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(_baseCircleView.frame.origin.x, _baseCircleView.frame.origin.y, width, width)] CGPath]];
-//    [[_baseCircleView layer] addSublayer:circleLayer];
-//    [circleLayer setStrokeColor:[[UIColor grayColor] CGColor]];
-//    [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-//    [circleLayer setLineWidth:  15.0f];
-//    
-//    float  centerImageLocation =width/2 -imageSize/2;
-//    
-//    UIView *circleView=[[UIView alloc] initWithFrame:CGRectMake(centerImageLocation, centerImageLocation, imageSize, imageSize)];
-//    circleView.backgroundColor = [UIColor blueColor];
-//    [_baseCircleView addSubview:circleView];
+    //    width= 250;
+    //    imageSize=70;
+    //
+    //
+    //
+    //    CAShapeLayer *circleLayer = [CAShapeLayer layer];
+    //    [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(_baseCircleView.frame.origin.x, _baseCircleView.frame.origin.y, width, width)] CGPath]];
+    //    [[_baseCircleView layer] addSublayer:circleLayer];
+    //    [circleLayer setStrokeColor:[[UIColor grayColor] CGColor]];
+    //    [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
+    //    [circleLayer setLineWidth:  15.0f];
+    //
+    //    float  centerImageLocation =width/2 -imageSize/2;
+    //
+    //    UIView *circleView=[[UIView alloc] initWithFrame:CGRectMake(centerImageLocation, centerImageLocation, imageSize, imageSize)];
+    //    circleView.backgroundColor = [UIColor blueColor];
+    //    [_baseCircleView addSubview:circleView];
     
     /*
-    UIButton *immunisationButton;
-    UIButton *screeningButton;
-    UIButton *percentilesButton;
-    UIButton *oralButton;
-    UIButton *allergyButton;
-    
-    
-    immunisationButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [immunisationButton setTitle:@"Immun" forState:UIControlStateNormal];
-    immunisationButton.frame=CGRectMake(centerImageLocation, -imageSize/2, imageSize, imageSize);
-    [_baseCircleView addSubview:immunisationButton];
-    
-    
-    
-    screeningButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [screeningButton setTitle:@"screeningButton" forState:UIControlStateNormal];
-    screeningButton.frame=CGRectMake(-imageSize/2, imageSize, imageSize, imageSize);
-    [_baseCircleView addSubview:screeningButton];
-    
-    
-    percentilesButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [percentilesButton setTitle:@"percentilesButton" forState:UIControlStateNormal];
-    percentilesButton.frame=CGRectMake(width-imageSize/2, imageSize, imageSize, imageSize);
-    [_baseCircleView addSubview:percentilesButton];
-    
-    
-    allergyButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [allergyButton setTitle:@"allergyButton" forState:UIControlStateNormal];
-    allergyButton.frame=CGRectMake(width/2-imageSize*2, width-imageSize, imageSize, imageSize);
-    [_baseCircleView addSubview:allergyButton];
-    
-    oralButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [oralButton setTitle:@"oralButton" forState:UIControlStateNormal];
-    oralButton.frame=CGRectMake(width/2+imageSize, width-imageSize, imageSize, imageSize);
-    [_baseCircleView addSubview:oralButton];
-    
-    [immunisationButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-    [screeningButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-    [percentilesButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-    [allergyButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-    [oralButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
-    
-    
-    [immunisationButton addTarget:self action:@selector(immunisationButtonAction) forControlEvents:UIControlEventTouchUpInside];
-      [screeningButton addTarget:self action:@selector(screeningButtonAction) forControlEvents:UIControlEventTouchUpInside];
+     UIButton *immunisationButton;
+     UIButton *screeningButton;
+     UIButton *percentilesButton;
+     UIButton *oralButton;
+     UIButton *allergyButton;
+     
+     
+     immunisationButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [immunisationButton setTitle:@"Immun" forState:UIControlStateNormal];
+     immunisationButton.frame=CGRectMake(centerImageLocation, -imageSize/2, imageSize, imageSize);
+     [_baseCircleView addSubview:immunisationButton];
+     
+     
+     
+     screeningButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [screeningButton setTitle:@"screeningButton" forState:UIControlStateNormal];
+     screeningButton.frame=CGRectMake(-imageSize/2, imageSize, imageSize, imageSize);
+     [_baseCircleView addSubview:screeningButton];
+     
+     
+     percentilesButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [percentilesButton setTitle:@"percentilesButton" forState:UIControlStateNormal];
+     percentilesButton.frame=CGRectMake(width-imageSize/2, imageSize, imageSize, imageSize);
+     [_baseCircleView addSubview:percentilesButton];
+     
+     
+     allergyButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [allergyButton setTitle:@"allergyButton" forState:UIControlStateNormal];
+     allergyButton.frame=CGRectMake(width/2-imageSize*2, width-imageSize, imageSize, imageSize);
+     [_baseCircleView addSubview:allergyButton];
+     
+     oralButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+     [oralButton setTitle:@"oralButton" forState:UIControlStateNormal];
+     oralButton.frame=CGRectMake(width/2+imageSize, width-imageSize, imageSize, imageSize);
+     [_baseCircleView addSubview:oralButton];
+     
+     [immunisationButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
+     [screeningButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
+     [percentilesButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
+     [allergyButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
+     [oralButton setBackgroundImage:[UIImage imageNamed:@"needle_icon.png"] forState:UIControlStateNormal];
+     
+     
+     [immunisationButton addTarget:self action:@selector(immunisationButtonAction) forControlEvents:UIControlEventTouchUpInside];
+     [screeningButton addTarget:self action:@selector(screeningButtonAction) forControlEvents:UIControlEventTouchUpInside];
      
      */
     [self circleView];
@@ -132,7 +132,7 @@
 -(void)immunisationButtonAction
 {
     [self performSegueWithIdentifier:@"immunisationTableSegue" sender:self];
-  
+    
     
 }
 
@@ -145,57 +145,57 @@
 
 -(void)circleView
 {
-UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImage.png"];
-UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImage.png"];
-
-UIImage *starImage1 = [UIImage imageNamed:@"hb_immunisation.png"];
+    UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImage.png"];
+    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImage.png"];
+    
+    UIImage *starImage1 = [UIImage imageNamed:@"hb_immunisation.png"];
     UIImage *starImage2 = [UIImage imageNamed:@"hb_percentiles.png"];
     UIImage *starImage3= [UIImage imageNamed:@"hb_oral.png"];
     UIImage *starImage4 = [UIImage imageNamed:@"hb_allergy.png"];
     UIImage *starImage5 = [UIImage imageNamed:@"screening_icon.png"];
-
-
-// Default Menu
-
-AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                       highlightedImage:storyMenuItemImagePressed
-                                                           ContentImage:starImage1
-                                                highlightedContentImage:nil];
     
-AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                       highlightedImage:storyMenuItemImagePressed
-                                                           ContentImage:starImage2
-                                                highlightedContentImage:nil];
     
-AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                       highlightedImage:storyMenuItemImagePressed
-                                                           ContentImage:starImage3
-                                                highlightedContentImage:nil];
+    // Default Menu
     
- starMenuItem4 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                       highlightedImage:storyMenuItemImagePressed
-                                                           ContentImage:starImage4
-                                                highlightedContentImage:nil];
+    AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+                                                           highlightedImage:storyMenuItemImagePressed
+                                                               ContentImage:starImage1
+                                                    highlightedContentImage:nil withTitle:@"Immunisation" color:[UIColor redColor] andPosition:YES];
     
-AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                       highlightedImage:storyMenuItemImagePressed
-                                                           ContentImage:starImage5
-                                                highlightedContentImage:nil];
+    AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+                                                           highlightedImage:storyMenuItemImagePressed
+                                                               ContentImage:starImage2
+                                                    highlightedContentImage:nil withTitle:@"Percentile" color:[UIColor orangeColor] andPosition:YES];
     
-
-NSArray *menuItems = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];
+    AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+                                                           highlightedImage:storyMenuItemImagePressed
+                                                               ContentImage:starImage3
+                                                    highlightedContentImage:nil withTitle:@"Oral Health and Visual" color:[UIColor blueColor] andPosition:YES];
     
-
-AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                                   highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"]
-                                                       ContentImage:[UIImage imageNamed:@"icon-plus.png"]
-                                            highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
-
-AwesomeMenu *menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds startItem:startItem menuItems:menuItems];
-menu.delegate = self;
-[_baseCircleView addSubview:menu];
-
-
+    starMenuItem4 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+                                          highlightedImage:storyMenuItemImagePressed
+                                              ContentImage:starImage4
+                                   highlightedContentImage:nil withTitle:@"Allergy and Medical Condition" color:[UIColor greenColor] andPosition:YES];
+    
+    AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
+                                                           highlightedImage:storyMenuItemImagePressed
+                                                               ContentImage:starImage5
+                                                    highlightedContentImage:nil withTitle:@"Screening" color:[UIColor yellowColor] andPosition:YES];
+    
+    
+    NSArray *menuItems = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];
+    
+    
+    AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
+                                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"]
+                                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"]
+                                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"] withTitle:nil color:nil andPosition:NO];
+    
+    AwesomeMenu *menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds startItem:startItem menuItems:menuItems];
+    menu.delegate = self;
+    [_baseCircleView addSubview:menu];
+    
+    
 }
 - (void)awesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx
 {
@@ -203,7 +203,7 @@ menu.delegate = self;
     
     if (idx ==0) {
         [self performSegueWithIdentifier:@"immunisationTableSegue" sender:self];
-
+        
     }
     else if (idx==2)
     {
@@ -214,7 +214,7 @@ menu.delegate = self;
         UIStoryboard *storyboard = self.navigationController.storyboard;
         
         ScreeningViewController *detailPage = [storyboard
-                                                  instantiateViewControllerWithIdentifier:@"Screening"];
+                                               instantiateViewControllerWithIdentifier:@"Screening"];
         
         [self.navigationController pushViewController:detailPage animated:YES];
         
@@ -228,7 +228,7 @@ menu.delegate = self;
         [self percentailView];
     }
     
-  
+    
     
 }
 - (void)awesomeMenuDidFinishAnimationClose:(AwesomeMenu *)menu {
@@ -242,15 +242,15 @@ menu.delegate = self;
 {
     
     [overlayView setHidden:NO];
-   
+    
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_back.png"] forState:UIControlStateNormal];
     backButton.frame=CGRectMake(30, self.view.frame.size.height/2, 70, 70);
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
-
+    
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [drugButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
     drugButton.frame=CGRectMake(40, backButton.frame.origin.y-80, 50, 50);
     [drugButton addTarget:self action:@selector(drugAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
@@ -285,7 +285,7 @@ menu.delegate = self;
 -(void)backAction
 {
     [overlayView setHidden:YES];
- 
+    
 }
 
 -(void)drugAction
@@ -294,7 +294,7 @@ menu.delegate = self;
     UIStoryboard *storyboard = self.navigationController.storyboard;
     
     DrugAlergyListVC *detailPage = [storyboard
-                                           instantiateViewControllerWithIdentifier:@"DrugAlergyListVC_SB_ID"];
+                                    instantiateViewControllerWithIdentifier:@"DrugAlergyListVC_SB_ID"];
     
     [self.navigationController pushViewController:detailPage animated:YES];
     
@@ -306,10 +306,10 @@ menu.delegate = self;
     UIStoryboard *storyboard = self.navigationController.storyboard;
     
     MedicalConditionVC *detailPage = [storyboard
-                                           instantiateViewControllerWithIdentifier:@"MedicalConditionVC_SB_ID"];
+                                      instantiateViewControllerWithIdentifier:@"MedicalConditionVC_SB_ID"];
     
     [self.navigationController pushViewController:detailPage animated:YES];
-
+    
 }
 
 
@@ -319,13 +319,13 @@ menu.delegate = self;
     [percentailOverlayView setHidden:NO];
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-[backButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_back.png"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_back.png"] forState:UIControlStateNormal];
     backButton.frame=CGRectMake(self.view.frame.size.width-100, self.view.frame.size.height/4+20, 70, 70);
     [backButton addTarget:self action:@selector(overlaybackAction) forControlEvents:UIControlEventTouchUpInside];
     [percentailOverlayView addSubview:backButton];
     [backButton setContentVerticalAlignment:UIControlContentVerticalAlignmentBottom];
-
-  
+    
+    
     
     
     UIButton *headButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -365,7 +365,7 @@ menu.delegate = self;
     weighttButton.frame=CGRectMake(headButton.frame.origin.x, heightButton.frame.origin.y+100, 50, 50);
     [weighttButton addTarget:self action:@selector(weightAction) forControlEvents:UIControlEventTouchUpInside];
     [percentailOverlayView addSubview:weighttButton];
-
+    
     
     
     UILabel *weightLabel =[[UILabel alloc]initWithFrame:CGRectMake(weighttButton.frame.origin.x-10, weighttButton.frame.origin.y+weighttButton.frame.size.height, 70, 50)];
@@ -375,7 +375,7 @@ menu.delegate = self;
     weightLabel.textColor=[UIColor whiteColor];
     [percentailOverlayView addSubview:weightLabel];
     
-
+    
     
     
     
@@ -385,7 +385,7 @@ menu.delegate = self;
     bmiButton.frame=CGRectMake(headButton.frame.origin.x, weighttButton.frame.origin.y+100, 50, 50);
     [bmiButton addTarget:self action:@selector(bmiAction) forControlEvents:UIControlEventTouchUpInside];
     [percentailOverlayView addSubview:bmiButton];
-  
+    
     UILabel *bmiLabel =[[UILabel alloc]initWithFrame:CGRectMake(bmiButton.frame.origin.x-10, bmiButton.frame.origin.y+bmiButton.frame.size.height, 70, 50)];
     bmiLabel.text=@"BMI";
     bmiLabel.numberOfLines=2;
@@ -397,23 +397,23 @@ menu.delegate = self;
     [heightLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
     [weightLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
     [bmiLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
-
+    
     
 }
 
 -(void)overlaybackAction
 {
     [percentailOverlayView setHidden:YES];
-
     
- 
+    
+    
 }
 -(void)headAction
 {
     percentialIndex=1;
     [percentailOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"percentialSegue" sender:self];
-
+    
 }
 
 -(void)heightAction
@@ -421,7 +421,7 @@ menu.delegate = self;
     percentialIndex=2;
     [percentailOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"percentialSegue" sender:self];
-
+    
 }
 
 
@@ -430,7 +430,7 @@ menu.delegate = self;
     percentialIndex=3;
     [percentailOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"percentialSegue" sender:self];
-
+    
 }
 
 
@@ -439,7 +439,7 @@ menu.delegate = self;
     percentialIndex=4;
     [percentailOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"percentialSegue" sender:self];
-
+    
 }
 
 
@@ -490,29 +490,29 @@ menu.delegate = self;
     [oralOverlayView addSubview:visualLabel];
     
     [visualLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
-
+    
     [bmiLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:11]];
-
+    
 }
 
 -(void)oralbackAction
 {
     [oralOverlayView setHidden:YES];
- 
+    
 }
 -(void)oralAction
 {
     [oralOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"activitySegue" sender:self];
-
-
+    
+    
 }
 -(void)visualAction
 {
     [oralOverlayView setHidden:YES];
     [self performSegueWithIdentifier:@"activitySegue" sender:self];
-
-
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -540,7 +540,7 @@ menu.delegate = self;
                 [vc setYaxisName:@"Cirumference"];
                 [vc setTitleLableString:@"PERCENTILES OF HEAD CIRCUMFERENCE-FOR-AGE"];
                 [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
-
+                
                 break;
             case 2:
                 [vc setTitleString:@"Height"];
@@ -555,7 +555,7 @@ menu.delegate = self;
                 [vc setYaxisName:@"Weight"];
                 [vc setTitleLableString:@"PERCENTILES OF WEIGHT-FOR-AGE"];
                 [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
-
+                
                 break;
             case 4:
                 [vc setTitleString:@"BMI"];
@@ -563,23 +563,23 @@ menu.delegate = self;
                 [vc setYaxisName:@"BMI"];
                 [vc setTitleLableString:@"PERCENTILES OF BMI-FOR-AGE"];
                 [vc setSubTitleLableString:@"GIRLS AGED 0 TO 24 MONTHS"];
-
+                
                 break;
             default:
                 break;
         }
     }
-   
+    
 }
 
 
 - (IBAction)screeningAction:(id)sender
 {
-  UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildDevelopementalViewController"];
+    UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildDevelopementalViewController"];
     [self.navigationController pushViewController:dummyVC animated:YES];
     
     
-
+    
     
 }
 
