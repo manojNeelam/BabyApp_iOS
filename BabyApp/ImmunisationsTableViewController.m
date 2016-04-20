@@ -1,18 +1,21 @@
 //
-//  ImmunisationsTableViewController.m
+//  immunisationTableViewController.m
 //  BabyApp
 //
 //  Created by Charan Giri on 28/03/16.
 //  Copyright © 2016 Infinity. All rights reserved.
 //
 
-#import "ImmunisationsTableViewController.h"
+#import "immunisationTableViewController.h"
+#import "immunisationMainTableViewCell.h"
+#import "immunisationSecondaryTableViewCell.h"
+#import "ConnectionsManager.h"
 
-@interface ImmunisationsTableViewController ()
+@interface immunisationTableViewController ()<ServerResponseDelegate>
 
 @end
 
-@implementation ImmunisationsTableViewController
+@implementation immunisationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,9 +24,38 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.rightBarButtonItem = [self addLeftButton];
+    [self callreadAllImmunisation];
+}
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return NO;
 }
 
+-(UIBarButtonItem *)addLeftButton
+{
+    //UIImage *buttonImage = [UIImage imageNamed:@"calender_EvryDay"];
+    
+    //UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    //[aButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    
+    //aButton.frame = CGRectMake(0.0, 0.0, 20,20);
+    
+    UIBarButtonItem *aBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calender_EvryDay"] style:UIBarButtonItemStyleDone target:self action:@selector(showCalender)];
+    
+    return aBarButtonItem;
+}
+
+-(void)showCalender
+{
+    //calenderSegue
+    
+    [self performSegueWithIdentifier:@"calenderSegue" sender:self];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -31,75 +63,149 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==0) {
+        
+        return 90;
+    }
+    return 60;
+}
+/*
+ - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+ {
+ NSString *sectionName;
+ 
+ switch (section)
+ {
+ case 0:
+ sectionName = @"APR 2016";
+ break;
+ case 1:
+ sectionName = @"MAR 2016";
+ break;
+ case 2:
+ sectionName = @"FEB 2016";
+ break;
+ 
+ case 3:
+ sectionName=  @"JAN 2016";
+ break;
+ // ...
+ default:
+ sectionName = @"";
+ break;
+ }
+ return sectionName;
+ }
+ */
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    static NSString *header = @"customHeader";
+    
+    UITableViewHeaderFooterView *vHeader;
+    
+    vHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:header];
+    
+    if (!vHeader) {
+        vHeader = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:header];
+    }
+    
+    NSString *sectionName;
+    
+    switch (section)
+    {
+        case 0:
+            sectionName = @"APR 2016";
+            break;
+        case 1:
+            sectionName = @"MAR 2016";
+            break;
+        case 2:
+            sectionName = @"FEB 2016";
+            break;
+            
+        case 3:
+            sectionName=  @"JAN 2016";
+            break;
+            // ...
+        default:
+            sectionName = @"";
+            break;
+    }
+    
+    
+    vHeader.textLabel.text = sectionName;
+    vHeader.textLabel.textColor=[UIColor lightGrayColor];
+    
+    return vHeader;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    //if(section == ...)
+    //{
+    UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
+    UIFont *myFont = [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14];
+    [headerView.textLabel setFont:myFont];
+    
+    //}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell ;
     
     if (indexPath.row==0) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:@"firstCell" forIndexPath:indexPath];
+        immunisationMainTableViewCell *cell = (immunisationMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"mainCell"];
+        cell.colorLabel.layer.cornerRadius = cell.colorLabel.frame.size.width/2;
+        [cell.colorLabel setClipsToBounds:YES];
         
-        return cell;
-    }
-    else if (indexPath.row==1) {
-        
-        cell = [tableView dequeueReusableCellWithIdentifier:@"secondCell" forIndexPath:indexPath];
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.dateLabel.text=@"30";
+        cell.monthLabel.text=@"Apr";
+        cell.mainLabel.text=@"HepB(D1)";
+        cell.subTitleLabel.text=@"Hepatits B vaccine, first dose";
+        cell.titleLabel.text=@"Birth";
         
         return cell;
     }
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"thirdCell" forIndexPath:indexPath];
+        immunisationSecondaryTableViewCell *cell = (immunisationSecondaryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"secondCell"];
+        cell.colorLabel.layer.cornerRadius = cell.colorLabel.frame.size.width/2;
+        [cell.colorLabel setClipsToBounds:YES];
+        
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.subtitleLabel.text=@"Bacillus calmette-Guerin";
+        cell.titleLabel.text=@"BCG";
+        
         return cell;
         
     }
-    return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"ImmunisationsSegue" sender:self];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+//
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -107,8 +213,30 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
-- (IBAction)learnAction:(id)sender {
+#pragma mark - reade immunisation
+//all_immunisation_read
+-(void)callreadAllImmunisation
+{
+    NSDictionary *params = @{@"user_id":@64,
+                             @"child_id":@10};
+    [[ConnectionsManager sharedManager] readAllImmunisation:params withdelegate:self
+     ];
+    //    [[ConnectionsManager sharedManager] getVaccineType:nil withdelegate:self
+    //     ];
+    //    getVaccineType
 }
+
+#pragma mark - serverreseponse delegate
+-(void)success:(id)response
+{
+    NSLog(@"read immunisation respone : %@",response);
+}
+-(void)failure:(id)response
+{
+    NSLog(@"read immunisation failure respone : %@",response);
+    
+}
+
+
 @end

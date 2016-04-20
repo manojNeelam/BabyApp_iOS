@@ -145,6 +145,16 @@
 
 -(void)circleView
 {
+    
+    /*
+     [20/04/16 10:41:16 pm] Atul Awasthi: Screening=250/215/113
+     [20/04/16 10:42:26 pm] Atul Awasthi: Immunisation=236/103/121
+     [20/04/16 10:42:31 pm] Atul Awasthi: RGB
+     [20/04/16 10:47:26 pm] Atul Awasthi: Percentiles 244/144/50
+     [20/04/16 10:51:26 pm] Atul Awasthi: Allergy =122/182/64
+     [20/04/16 10:52:15 pm] Atul Awasthi: oral=95/150/234
+     */
+    
     UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImage.png"];
     UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImage.png"];
     
@@ -156,31 +166,35 @@
     
     
     // Default Menu
+    //250/215/113
     
     AwesomeMenuItem *starMenuItem1 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage1
-                                                    highlightedContentImage:nil withTitle:@"Immunisation" color:[UIColor redColor] andPosition:YES];
+                                                    highlightedContentImage:nil withTitle:@"Immunisation" color:[UIColor colorWithRed:236.0f/255.0f green:103.0f/255.0f blue:121.0f/255.0f alpha:1.0] andPosition:YES];
     
     AwesomeMenuItem *starMenuItem2 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage2
-                                                    highlightedContentImage:nil withTitle:@"Percentile" color:[UIColor orangeColor] andPosition:YES];
+                                                    highlightedContentImage:nil withTitle:@"Percentile" color:[UIColor colorWithRed:244.0f/255.0f green:144.0f/255.0f blue:50.0f/255.0f alpha:1.0] andPosition:YES];
     
     AwesomeMenuItem *starMenuItem3 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage3
-                                                    highlightedContentImage:nil withTitle:@"Oral Health and Visual" color:[UIColor blueColor] andPosition:YES];
+                                                    highlightedContentImage:nil withTitle:@"Oral Health and Visual" color:[UIColor colorWithRed:95.0f/255.0f green:150.0f/255.0f blue:234.0f/255.0f alpha:1.0] andPosition:YES];
+    //122/182/64
     
     starMenuItem4 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                           highlightedImage:storyMenuItemImagePressed
                                               ContentImage:starImage4
-                                   highlightedContentImage:nil withTitle:@"Allergy and Medical Condition" color:[UIColor greenColor] andPosition:YES];
+                                   highlightedContentImage:nil withTitle:@"Allergy and Medical Condition" color:[UIColor colorWithRed:122.0f/255.0f green:182.0f/255.0f blue:64.0f/255.0f alpha:1.0] andPosition:YES];
+    
+    //250/215/113
     
     AwesomeMenuItem *starMenuItem5 = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
                                                            highlightedImage:storyMenuItemImagePressed
                                                                ContentImage:starImage5
-                                                    highlightedContentImage:nil withTitle:@"Screening" color:[UIColor yellowColor] andPosition:YES];
+                                                    highlightedContentImage:nil withTitle:@"Screening" color:[UIColor colorWithRed:250.0f/255.0f green:215.0f/255.0f blue:113.0f/255.0f alpha:1.0] andPosition:YES];
     
     
     NSArray *menuItems = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, nil];

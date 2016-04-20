@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1712" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -14,8 +14,14 @@
         </mutableArray>
         <mutableArray key="AvenirNextLTPro-Demi.otf">
             <string>AvenirNextLTPro-Demi</string>
+            <string>AvenirNextLTPro-Demi</string>
+            <string>AvenirNextLTPro-Demi</string>
         </mutableArray>
         <mutableArray key="AvenirNextLTPro-Regular.otf">
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
+            <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
             <string>AvenirNextLTPro-Regular</string>
@@ -120,14 +126,8 @@
             <string>HelveticaNeueCyr-Light</string>
             <string>HelveticaNeueCyr-Light</string>
             <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
-            <string>HelveticaNeueCyr-Light</string>
         </mutableArray>
         <mutableArray key="HelveticaNeueCyr-Roman.otf">
-            <string>HelveticaNeueCyr-Roman</string>
-            <string>HelveticaNeueCyr-Roman</string>
-            <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
             <string>HelveticaNeueCyr-Roman</string>
@@ -2429,23 +2429,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECg-ZY-32u">
-                                            <rect key="frame" x="10" y="5" width="30" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECg-ZY-32u">
+                                            <rect key="frame" x="10" y="5" width="30" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="BQn-HP-704"/>
+                                                <constraint firstAttribute="height" constant="22" id="BQn-HP-704"/>
                                                 <constraint firstAttribute="width" constant="30" id="D8T-O5-gWc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McH-G3-yp9">
-                                            <rect key="frame" x="10" y="35" width="40" height="20"/>
+                                            <rect key="frame" x="10" y="27" width="40" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="Y6G-oA-VTF"/>
-                                                <constraint firstAttribute="height" constant="20" id="eN5-v8-Vhs"/>
+                                                <constraint firstAttribute="height" constant="16" id="eN5-v8-Vhs"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2454,7 +2454,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="L68-D4-xSt"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2474,8 +2474,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="yD6-Jo-5ZL"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="16"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hepatitis B vaccine,first dose" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-nk-OYt">
@@ -2483,7 +2483,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="31" id="nsQ-49-bm0"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2549,7 +2549,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="33" id="hQn-RK-h4T"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Light" family="HelveticaNeueCyr" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2558,8 +2558,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="bC1-wk-oAq"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeueCyr-Roman" family="HelveticaNeueCyr" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
