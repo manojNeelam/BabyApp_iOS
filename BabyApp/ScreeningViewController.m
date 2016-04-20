@@ -14,11 +14,16 @@
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
 #import "ScreeningSummaryData.h"
+#import "CustomIOS7AlertView.h"
+#import "DateTimeUtil.h"
 
-@interface ScreeningViewController () <ServerResponseDelegate>
+@interface ScreeningViewController () <ServerResponseDelegate , CustomIOS7AlertViewDelegate>
 {
     NSArray *personalSocialList, *fineMotorList, *languageList, *grossMotorList;
     NSMutableArray *allChildDevList;
+    UIButton *txtDate;
+    CustomIOS7AlertView *dateAlertView;
+    UIDatePicker *datePicker;
     
     NSArray *screeningSummaryList;
 }
@@ -53,12 +58,12 @@ NSArray *labelArray;
     [lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
     
     
-  //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
+    //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
     
     
-  //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
+    //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
     
-
+    
     
     
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
@@ -89,8 +94,16 @@ NSArray *labelArray;
     [hLine setBackgroundColor:[UIColor grayColor]];
     [v2 addSubview:hLine];
     
-    UITextField *txtDate,*txtAge,*txtCare;
-    txtDate=[[UITextField alloc] initWithFrame:CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2)];
+    
+    UITextField *txtAge,*txtCare;
+    
+    txtDate=[UIButton buttonWithType:UIButtonTypeCustom];
+    txtDate.frame = CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2);
+    [txtDate addTarget:self action:@selector(onClickDateOfBirth:) forControlEvents:UIControlEventTouchUpInside];
+    //[txtDate.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    txtDate.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    
+    //initWithFrame:CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2)];
     
     txtAge=[[UITextField alloc] initWithFrame:CGRectMake((v2.frame.size.width*70)/100+8,0,(v2.frame.size.width*30)/100-15,v2.frame.size.height/2)];
     
@@ -100,11 +113,13 @@ NSArray *labelArray;
     [v2 addSubview:txtAge];
     [v2 addSubview:txtCare];
     
-    [txtDate setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+    [txtDate.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     [txtAge setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     [txtCare setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     
-    txtDate.placeholder=@"Date of Screening";
+    [txtDate setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    
+    [txtDate setTitle:@"Date of Screening" forState:UIControlStateNormal];
     txtAge.placeholder=@"Age";
     txtCare.placeholder=@"Main Caregiver";
     
@@ -482,6 +497,43 @@ NSArray *labelArray;
 -(void)failure:(id)response
 {
     
+}
+
+
+-(void)onClickDateOfBirth:(id)sender
+{
+    [self.view endEditing:YES];
+    
+    [self openDate];
+}
+
+-(void)openDate
+{
+    dateAlertView = [[CustomIOS7AlertView alloc] init];
+    [dateAlertView setContainerView:[self createDateView]];
+    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"CLOSE", @"SET", nil]];
+    [dateAlertView setDelegate:self];
+    [dateAlertView setUseMotionEffects:true];
+    
+    [dateAlertView show];
+}
+
+- (UIView *)createDateView
+{
+    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 216)];
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    datePicker.frame = CGRectMake(10, 10, 280, 216);
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [demoView addSubview:datePicker];
+    return demoView;
+}
+
+- (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
+{
+    [dateAlertView close];
+    NSString * dateFromData = [DateTimeUtil stringFromDateTime:datePicker.date withFormat:@"dd-MM-yyyy"];
+    [txtDate setTitle:dateFromData forState:UIControlStateNormal];
 }
 
 @end
