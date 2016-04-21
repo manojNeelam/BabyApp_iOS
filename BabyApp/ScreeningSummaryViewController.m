@@ -45,7 +45,7 @@
                                      DueStatus  : @"Set reminder"
                                      }];
     
-    [self.screeningSummaryTable reloadData];
+       [self.screeningSummaryTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +67,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 70;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -77,15 +77,52 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"screenSummary"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"screenSummary2"];
     if(cell==nil)
     {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"screenSummary"];
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"screenSummary2"];
+        
+        
+        UILabel *lblName=nil;
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,8, self.view.frame.size.width-70, 30)];
+        lblName.tag=10;
+        [cell.contentView addSubview:lblName];
+        
+        
+        UILabel *lblName2=nil;
+        lblName2=[[UILabel alloc] initWithFrame:CGRectMake(20,35,self.view.frame.size.width-70, 30)];
+        lblName2.tag=20;
+        [cell.contentView addSubview:lblName2];
+        
+        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                         size:18]];
+        [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:14]];
+        [lblName2 setTextColor:[UIColor colorWithRed:108.0/255.0 green:107.0/255.0 blue:108.0/255.0 alpha:1.0]];
+
+        
+        cell.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
     }
+    // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
+    // [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:12]];
+    
+  //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
+    
+    
+  //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
+    
+
+    
     
     NSDictionary *info = [self.screeningSummaryArray objectAtIndex:[indexPath row]];
-    [cell.textLabel setText:[info objectForKey:Period]];
-    [cell.detailTextLabel setText:[info objectForKey:DueStatus]];
+    //[cell.textLabel setText:[info objectForKey:Period]];
+   // [cell.detailTextLabel setText:[info objectForKey:DueStatus]];
+    
+    UILabel *lblName=[cell.contentView viewWithTag:10];
+    UILabel *lblName2=[cell.contentView viewWithTag:20];
+
+    [lblName setText:[info objectForKey:Period]];
+    [lblName2 setText:[info objectForKey:DueStatus]];
+    
     
     return cell;
 }
