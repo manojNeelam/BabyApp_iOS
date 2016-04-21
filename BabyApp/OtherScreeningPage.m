@@ -28,8 +28,11 @@
     lblName=[[UITextField alloc] initWithFrame:CGRectMake(20, v.frame.origin.y+v.frame.size.height+5, self.view.frame.size.width-40, 40)];
     lblName.tag=10;
     [self.view addSubview:lblName];
-    [lblName setPlaceholder:@"Other Screening(e.g. Hearing Screening)"];
+    [lblName setPlaceholder:@"Other Screening (e.g. Hearing Screening)"];
     
+    
+   // [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-DemiCn" size:20]];
+
     
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];

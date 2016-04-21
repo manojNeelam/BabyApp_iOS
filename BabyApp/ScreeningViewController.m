@@ -34,6 +34,17 @@
 NSArray *labelArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
+    
     // Do any additional setup after loading the view.
     
     allChildDevList = [NSMutableArray array];
@@ -114,7 +125,7 @@ NSArray *labelArray;
     [v2 addSubview:txtAge];
     [v2 addSubview:txtCare];
     
-    [txtDate.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+    [txtDate.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Neue-LT" size:10]];
     txtDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [txtAge setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     [txtCare setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
@@ -127,7 +138,7 @@ NSArray *labelArray;
     txtCare.placeholder=@"  Main Caregiver";
     
     txtCare.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@" Main Caregiver"
+    [[NSAttributedString alloc] initWithString:@"  Main Caregiver"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: [UIColor blackColor],
                                                  NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
@@ -222,15 +233,15 @@ NSArray *labelArray;
         [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
         [lblName setTextColor:[UIColor whiteColor]];
         [ivIcon setHidden:NO];
-        lblName.frame=CGRectMake(50,10, screeningTable.frame.size.width-100, 30);
+        lblName.frame=CGRectMake(50,15, screeningTable.frame.size.width-100, 30);
     }
     else
     {
-        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [lblName setFont:[UIFont fontWithName:@"Helvetica-Neue-LT" size:10]];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [lblName setTextColor:[UIColor grayColor]];
         [ivIcon setHidden:YES];
-        lblName.frame=CGRectMake(10,10, screeningTable.frame.size.width-50, 30);
+        lblName.frame=CGRectMake(15,10, screeningTable.frame.size.width-50, 30);
         
     }
     
