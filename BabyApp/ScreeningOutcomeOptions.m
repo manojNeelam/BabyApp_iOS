@@ -35,10 +35,12 @@ UIButton *refBtn;
     for(NSString *s in ar)
     {
         UIButton *lblName1=nil;
-        lblName1=[[UIButton alloc] initWithFrame:CGRectMake(10,k*40, v2.frame.size.width-20, 40)];
+        lblName1=[[UIButton alloc] initWithFrame:CGRectMake(10,k*40, v2.frame.size.width-10, 40)];
         [v2 addSubview:lblName1];
         [lblName1 setTitle:s forState:UIControlStateNormal];
         [lblName1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [[lblName1 titleLabel] setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:18]];
+        
         lblName1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [lblName1 addTarget:self action:@selector(onPopViewClicked:) forControlEvents:UIControlEventTouchUpInside];
         k++;
@@ -119,45 +121,45 @@ UIButton *refBtn;
     self.view.backgroundColor=[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0];
     
     self.navigationItem.title = [[[NSUserDefaults standardUserDefaults] objectForKey:@"selectedScreenLbl"] capitalizedString];
-    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 90, self.view.frame.size.width, 60)];
+    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 90, self.view.frame.size.width, 50)];
     [v setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:v];
     v.tag=100;
     
     
     UILabel *lblHeading1=nil;
-    lblHeading1=[[UILabel alloc] initWithFrame:CGRectMake(20,15,90, 30)];
+    lblHeading1=[[UILabel alloc] initWithFrame:CGRectMake(20,10,90, 30)];
     lblHeading1.tag=10;
     [v addSubview:lblHeading1];
     
-    UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(v.frame.size.width-30, 20, 15, 15)];
+    UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(v.frame.size.width-30, 15, 15, 15)];
     iv.image=[UIImage imageNamed:@"right_arrow.png"];
     [v addSubview:iv];
     
     UIButton *lblName1=nil;
-    lblName1=[[UIButton alloc] initWithFrame:CGRectMake(120,15, v.frame.size.width-155, 30)];
+    lblName1=[[UIButton alloc] initWithFrame:CGRectMake(120,10, v.frame.size.width-155, 30)];
     lblName1.tag=120;
     [v addSubview:lblName1];
-    [lblName1.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+    [lblName1.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:18]];
     [lblName1 setTitle:@"Needs follow up" forState:UIControlStateNormal];
     [lblName1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     lblName1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     
     [lblName1 addTarget:self action:@selector(showPopView:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height+25, self.view.frame.size.width, 60)];
+    UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height+25, self.view.frame.size.width, 50)];
     v.tag=200;
     
     [v2 setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:v2];
     
     UILabel *lblHeading2=nil;
-    lblHeading2=[[UILabel alloc] initWithFrame:CGRectMake(20,15,165, 30)];
+    lblHeading2=[[UILabel alloc] initWithFrame:CGRectMake(20,10,165, 30)];
     lblHeading2.tag=101;
     [v2 addSubview:lblHeading2];
     
     UITextField *lblName2=nil;
-    lblName2=[[UITextField alloc] initWithFrame:CGRectMake(190,15, v2.frame.size.width-195, 30)];
+    lblName2=[[UITextField alloc] initWithFrame:CGRectMake(190,10, v2.frame.size.width-195, 30)];
     lblName2.tag=201;
     [v2 addSubview:lblName2];
     
@@ -236,7 +238,7 @@ UIButton *refBtn;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
