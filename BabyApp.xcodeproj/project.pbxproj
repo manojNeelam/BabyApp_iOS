@@ -64,6 +64,7 @@
 		96A9696E1CB8D8D700D1212B /* ImmunisationBaseDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969671CB8D8D700D1212B /* ImmunisationBaseDate.m */; };
 		96A9696F1CB8D8D700D1212B /* ImmunisationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969691CB8D8D700D1212B /* ImmunisationData.m */; };
 		96A969701CB8D8D700D1212B /* ImmunisationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */; };
+		96E5A03E1CC94F8100C8BB75 /* StoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */; };
 		96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EC1CC23131009F4932 /* JMImageCache.m */; };
 		96EE83F21CC23131009F4932 /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EE1CC23131009F4932 /* UIImageView+JMImageCache.m */; };
 		96EE83F31CC23131009F4932 /* NSUserDefaults+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83F01CC23131009F4932 /* NSUserDefaults+Helpers.m */; };
@@ -345,6 +346,8 @@
 		96A969691CB8D8D700D1212B /* ImmunisationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationData.m; sourceTree = "<group>"; };
 		96A9696A1CB8D8D700D1212B /* ImmunisationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmunisationsVC.h; sourceTree = "<group>"; };
 		96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationsVC.m; sourceTree = "<group>"; };
+		96E5A03C1CC94F8100C8BB75 /* StoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresTableViewCell.h; sourceTree = "<group>"; };
+		96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresTableViewCell.m; sourceTree = "<group>"; };
 		96EE83EB1CC23131009F4932 /* JMImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMImageCache.h; sourceTree = "<group>"; };
 		96EE83EC1CC23131009F4932 /* JMImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMImageCache.m; sourceTree = "<group>"; };
 		96EE83ED1CC23131009F4932 /* UIImageView+JMImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JMImageCache.h"; sourceTree = "<group>"; };
@@ -1041,6 +1044,8 @@
 				A13FC7E61C7748AC00362A32 /* Supporting Files */,
 				90F165911CB5A3BD006B5DD6 /* NewImmunisationVC.h */,
 				90F165921CB5A3BD006B5DD6 /* NewImmunisationVC.m */,
+				96E5A03C1CC94F8100C8BB75 /* StoresTableViewCell.h */,
+				96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */,
 			);
 			path = BabyApp;
 			sourceTree = "<group>";
@@ -1550,6 +1555,7 @@
 				90FC54671CB1A83400ED0E34 /* InvestigationOptionsData.m in Sources */,
 				96A9696F1CB8D8D700D1212B /* ImmunisationData.m in Sources */,
 				90FC54691CB1A83400ED0E34 /* InvestOtherTestCell.m in Sources */,
+				96E5A03E1CC94F8100C8BB75 /* StoresTableViewCell.m in Sources */,
 				90000F531CB3528000BC9BFC /* AllergyConditionVC.m in Sources */,
 				A10EB5FB1C786B9A002EBC59 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				5228659F1CBF62900025F8C7 /* ConditionViewController.m in Sources */,

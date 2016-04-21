@@ -7,10 +7,19 @@
 //
 
 #import "ScreeningOutcomeOptions.h"
+#import "CustomIOS7AlertView.h"
+#import "DateTimeUtil.h"
+#import "StoresTableViewCell.h"
+
 #define kOFFSET_FOR_KEYBOARD 100.0
 
-@interface ScreeningOutcomeOptions ()
-
+@interface ScreeningOutcomeOptions () <UITextFieldDelegate, CustomIOS7AlertViewDelegate>
+{
+    CustomIOS7AlertView *dateAlertView;
+    UIDatePicker *datePicker;
+    
+    NSString *selectedDate;
+}
 @end
 
 @implementation ScreeningOutcomeOptions
@@ -84,6 +93,7 @@ UIButton *refBtn;
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
+    
     //move the main view, so that the keyboard does not hide it.
     if  (self.view.frame.origin.y >= 0)
     {
@@ -91,6 +101,53 @@ UIButton *refBtn;
     }
     
     
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(textField.tag == 3)
+    {
+        [textField resignFirstResponder];
+        [self openDate];
+        
+        return NO;
+    }
+    return YES;
+}
+
+-(void)openDate
+{
+    
+    [self.view endEditing:YES];
+    
+    dateAlertView = [[CustomIOS7AlertView alloc] init];
+    [dateAlertView setContainerView:[self createDateView]];
+    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"CLOSE", @"SET", nil]];
+    [dateAlertView setDelegate:self];
+    [dateAlertView setUseMotionEffects:true];
+    
+    [dateAlertView show];
+}
+
+- (UIView *)createDateView
+{
+    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 216)];
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    datePicker.frame = CGRectMake(10, 10, 280, 216);
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [demoView addSubview:datePicker];
+    return demoView;
+}
+
+- (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
+{
+    [dateAlertView close];
+    NSString * dateFromData = [DateTimeUtil stringFromDateTime:datePicker.date withFormat:@"dd-MM-yyyy"];
+    selectedDate = dateFromData;
+    
+    StoresTableViewCell *cell = (StoresTableViewCell *)[screeningOutcomeOptionTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    [cell.lblName setText:dateFromData];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -186,36 +243,28 @@ UIButton *refBtn;
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Stores"];
+    StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Stores"];
     if(cell==nil)
     {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Stores"];
+        cell=(StoresTableViewCell *)[[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Stores"];
+        [cell.lblHeading setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15]];
+        cell.lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(20,15,110, 30)];
+        cell.lblHeading.tag=10;
         
-        UILabel *lblHeading=nil;
-        [lblHeading setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15]];
-        lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(20,15,110, 30)];
-        lblHeading.tag=10;
+        [cell addSubview:cell.lblHeading];
         
-        [cell.contentView addSubview:lblHeading];
-        
-        UITextField *lblName=nil;
-        lblName=[[UITextField alloc] initWithFrame:CGRectMake(140,15, screeningOutcomeOptionTable.frame.size.width-145, 30)];
-        lblName.tag=20;
-        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
-        [cell.contentView addSubview:lblName];
-        
-        lblName.delegate=self;
-        
+        cell.lblName=[[UITextField alloc] initWithFrame:CGRectMake(140,15, tableView.frame.size.width-145, 30)];
+        [cell.lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [cell.contentView addSubview:cell.lblName];
         
     }
-    // UITextField *lblName=[cell.contentView viewWithTag:20];
-    UILabel *lblHeading=[cell.contentView viewWithTag:10];
-    
     
     [cell setBackgroundColor:[UIColor whiteColor]];
     // [lblHeading setTextColor:[UIColor grayColor]];
+    [cell.lblName setDelegate:self];
+    [cell.lblName setTag:indexPath.row];
     
-    [lblHeading setText:[labelArrayOutcomeOption objectAtIndex:indexPath.row]];
+    [cell.lblHeading setText:[labelArrayOutcomeOption objectAtIndex:indexPath.row]];
     
     return cell;
     
@@ -225,9 +274,6 @@ UIButton *refBtn;
     [[NSUserDefaults standardUserDefaults] setObject:[labelArrayOutcomeOption objectAtIndex:indexPath.row] forKey:@"selectedScreenLbl"];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
-    
-    
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -259,5 +305,6 @@ UIButton *refBtn;
  // Pass the selected object to the new view controller.
  }
  */
+
 
 @end
