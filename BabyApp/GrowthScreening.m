@@ -29,7 +29,7 @@ NSArray *labelArrayGrowth;
     self.navigationItem.title = [[[NSUserDefaults standardUserDefaults] objectForKey:@"selectedScreenLbl"] capitalizedString];
     
     UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 50)];
-    [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
+    [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:242.0/255.0 alpha:1.0]];
     [self.view addSubview:v];
     
     screeningGrowthTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height+10, self.view.frame.size.width, 180)];
@@ -55,16 +55,16 @@ NSArray *labelArrayGrowth;
         
         UILabel *lblName=nil;
         
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,15, 210, 30)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,10, 250, 30)];
         lblName.tag=10;
-        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15.0f]];
+        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue" size:17.0f]];
         [cell.contentView addSubview:lblName];
         
         UITextField *lblMesure=nil;
-        lblMesure=[[UITextField alloc] initWithFrame:CGRectMake(230,15, screeningGrowthTable.frame.size.width-250, 30)];
+        lblMesure=[[UITextField alloc] initWithFrame:CGRectMake(250,10, screeningGrowthTable.frame.size.width-280, 30)];
         lblMesure.tag=20;
         [lblMesure setTextAlignment:NSTextAlignmentRight];
-        [lblMesure setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15.0f]];
+        [lblMesure setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:16.0f]];
         [cell.contentView addSubview:lblMesure];
         
         
@@ -99,7 +99,7 @@ NSArray *labelArrayGrowth;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {

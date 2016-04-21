@@ -28,15 +28,12 @@ NSArray *labelArrayExamination;
     [self.view addSubview:v];
     
     
-    
-    UILabel *lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(30,10, v.frame.size.width-60, 30)];
+    UILabel *lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(20,10, v.frame.size.width-60, 30)];
     [v addSubview:lblHeading];
     [lblHeading setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15.0f]];
     
-    [lblHeading setTextColor:[UIColor darkGrayColor]];
+    [lblHeading setTextColor:[UIColor colorWithRed:87.0/255.0 green:87.0/255.0 blue:88.0/255.0 alpha:1.0]];
     [lblHeading setText:@"EYE EXAMINATION:"];
-    // [lblHeading setTextColor:[UIColor blackColor]];
-    //[lblHeading setTextAlignment:NSTextAlignmentCenter];
     
     
     screeningExaminationTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height+10, self.view.frame.size.width, self.view.frame.size.height-(v.frame.origin.y+v.frame.size.height+10))];
@@ -73,7 +70,10 @@ NSArray *labelArrayExamination;
         
         lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,15, screeningExaminationTable.frame.size.width-80, 30)];
         lblName.tag=10;
-        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+       [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:17]];
+       // [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:14.0f]];
+
+        
         
         [cell.contentView addSubview:lblName];
         
@@ -85,7 +85,7 @@ NSArray *labelArrayExamination;
         
         if(indexPath.row>0||indexPath.section==1)
         {
-            UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningExaminationTable.frame.size.width-40,10,30,30)];
+            UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningExaminationTable.frame.size.width-40,10,25,25)];
             btIcon.tag=20;
             [cell.contentView addSubview:btIcon];
             [btIcon setContentMode:UIViewContentModeScaleAspectFill];
@@ -104,6 +104,8 @@ NSArray *labelArrayExamination;
             
         }
     }
+    
+    
     UIButton *btIcon=[cell.contentView viewWithTag:20];
     
     if((indexPath.section==0&&(indexPath.row>=1&&indexPath.row<=5))||(indexPath.section==1&&indexPath.row==0))
@@ -113,7 +115,7 @@ NSArray *labelArrayExamination;
             [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
         
         else
-            [btIcon setBackgroundImage:[UIImage imageNamed:@"checkBox"] forState:UIControlStateNormal];
+            [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
     }
     else
         [btIcon setHidden:YES];
@@ -221,6 +223,25 @@ NSArray *labelArrayExamination;
     [[NSUserDefaults standardUserDefaults] setObject:[labelArrayExamination objectAtIndex:indexPath.row] forKey:@"selectedScreenLbl"];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
+    
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    UIButton *btIcon=[cell.contentView viewWithTag:20];
+    
+    if((indexPath.section==0&&(indexPath.row>=1&&indexPath.row<=5))||(indexPath.section==1&&indexPath.row==0))
+    {
+        if(![btIcon isHidden])
+        {
+    if([[btIcon backgroundImageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"unCheck"]])
+     {
+     [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+     }
+     else
+     {
+     [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
+     }
+        }
+     }
+     
     
     
     

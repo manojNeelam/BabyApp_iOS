@@ -61,14 +61,16 @@ NSArray *labelArray2;
         
         UILabel *lblName=nil;
         
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,20, screeningConcernTable.frame.size.width-40, 30)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,15, screeningConcernTable.frame.size.width-40, 30)];
         lblName.tag=10;
         [cell.contentView addSubview:lblName];
         
-        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:17]];
         
+        [lblName setTextColor:[UIColor colorWithRed:143.0/255.0 green:143.0/255.0 blue:149.0/255.0 alpha:1.0]];
+
         
-        UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningConcernTable.frame.size.width-40,10,30,30)];
+        UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningConcernTable.frame.size.width-40,10,25,25)];
         btIcon.tag=20;
         [cell.contentView addSubview:btIcon];
         [btIcon setContentMode:UIViewContentModeScaleAspectFill];
@@ -91,13 +93,13 @@ NSArray *labelArray2;
         lblage.tag=40;
         [cell.contentView addSubview:lblage];
         
-        [lblage setTextColor:[UIColor lightGrayColor]];
-        [lblage setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:14]];
+        [lblage setTextColor:[UIColor colorWithRed:143.0/255.0 green:143.0/255.0 blue:143.0/255.0 alpha:1.0]];
+        [lblage setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                        size:14]];
         
     }
     //Screenings-checked_03.png
     UILabel *lblName=[cell.contentView viewWithTag:10];
-    UIButton *btIcon=[cell.contentView viewWithTag:20];
     UILabel *lblage=[cell.contentView viewWithTag:40];
     UIImageView *ivIcon=[cell.contentView viewWithTag:30];
     [lblName setTextColor:[UIColor grayColor]];
@@ -115,13 +117,14 @@ NSArray *labelArray2;
     [lblName setLineBreakMode:NSLineBreakByWordWrapping];
     
     lblage.frame=CGRectMake(40,lblName.frame.size.height, screeningConcernTable.frame.size.width-70, 30);
-    ivIcon.frame=CGRectMake(10,lblName.frame.size.height+5,20,20);
-    
+    ivIcon.frame=CGRectMake(15,lblName.frame.size.height+5,20,20);
     
     [lblName setText:s];
     [lblage setText:screenDevCheckList.age];
     
     NSString *status = screenDevCheckList.status;
+    UIButton *btIcon=[cell.contentView viewWithTag:20];
+
     if([status boolValue])
     {
         [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
@@ -140,6 +143,20 @@ NSArray *labelArray2;
     // [[NSUserDefaults standardUserDefaults] setObject:[labelArray objectAtIndex:indexPath.row] forKey:@"selectedScreenLbl"];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
+    
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    UIButton *btIcon=[cell.contentView viewWithTag:20];
+    
+    if([[btIcon backgroundImageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"unCheck"]])
+    {
+        [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
+    }
+
+    
     
     //    [self performSegueWithIdentifier:@"parentalconcernsegu" sender:self];
     

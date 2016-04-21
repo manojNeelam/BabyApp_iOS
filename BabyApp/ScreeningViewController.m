@@ -34,6 +34,17 @@
 NSArray *labelArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
+    
     // Do any additional setup after loading the view.
     
     allChildDevList = [NSMutableArray array];
@@ -54,7 +65,7 @@ NSArray *labelArray;
     [v addSubview:lblHeading];
     
     [lblHeading setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
-                                        size:14]];
+                                        size:15]];
     [lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
     
     
@@ -70,12 +81,12 @@ NSArray *labelArray;
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
     
     UIImageView *imgNext = [[UIImageView alloc] init];
-    [imgNext setFrame:CGRectMake(10, 15, 15, 15)];
+    [imgNext setFrame:CGRectMake(10, 15, 10, 10)];
     [imgNext setImage:[UIImage imageNamed:@"previousAppBg"]];
     [v addSubview:imgNext];
     
     UIImageView *imgPrevious = [[UIImageView alloc] init];
-    [imgPrevious setFrame:CGRectMake(v.frame.size.width-25, 15, 15, 15)];
+    [imgPrevious setFrame:CGRectMake(v.frame.size.width-25, 15, 10, 10)];
     [imgPrevious setImage:[UIImage imageNamed:@"nextAppColor"]];
     [v addSubview:imgPrevious];
     
@@ -86,9 +97,10 @@ NSArray *labelArray;
     [[v2 layer] setCornerRadius:5];
     
     
-    UIView *vLine=[[UIView alloc] initWithFrame:CGRectMake(0, v2.frame.size.height/2-0.3, v2.frame.size.width,0.6)];
+    UIView *vLine=[[UIView alloc] initWithFrame:CGRectMake(0, v2.frame.size.height/2-0.3, v2.frame.size.width,.25)];
     [vLine setBackgroundColor:[UIColor grayColor]];
     [v2 addSubview:vLine];
+    [v2 setAlpha:0.5];
     
     UIView *hLine=[[UIView alloc] initWithFrame:CGRectMake((v2.frame.size.width*70)/100,0,0.6,v2.frame.size.height/2)];
     [hLine setBackgroundColor:[UIColor grayColor]];
@@ -113,15 +125,38 @@ NSArray *labelArray;
     [v2 addSubview:txtAge];
     [v2 addSubview:txtCare];
     
-    [txtDate.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+    [txtDate.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Neue-LT" size:10]];
+    txtDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [txtAge setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     [txtCare setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     
-    [txtDate setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [txtDate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+   // [txtAge setTextColor:[UIColor blackColor]];
     
     [txtDate setTitle:@"Date of Screening" forState:UIControlStateNormal];
     txtAge.placeholder=@"Age";
-    txtCare.placeholder=@"Main Caregiver";
+    txtCare.placeholder=@"  Main Caregiver";
+    
+    txtCare.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"  Main Caregiver"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: [UIColor blackColor],
+                                                 NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
+                                                 }
+     ];
+    
+    
+    txtAge.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Age"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: [UIColor blackColor],
+                                                 NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
+                                                 }
+     ];
+
+    
+
+    
     
     UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-180, v2.frame.origin.y+v2.frame.size.height+10, 150, 30)];
     [self.view addSubview:lbl];
@@ -173,14 +208,14 @@ NSArray *labelArray;
         
         UILabel *lblName=nil;
         
-        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,20, screeningTable.frame.size.width-50, 30)];
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(10,00, screeningTable.frame.size.width-50, 30)];
         lblName.tag=10;
         [cell.contentView addSubview:lblName];
         //AvenirNextLTPro-MediumCn
         //HelveticaNeueCyr-Light
         
         
-        UIImageView *ivIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10,20,25,25)];
+        UIImageView *ivIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10,12.5,25,25)];
         ivIcon.image=[UIImage imageNamed:@"notepad_white"];
         ivIcon.tag=20;
         [cell.contentView addSubview:ivIcon];
@@ -198,15 +233,15 @@ NSArray *labelArray;
         [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
         [lblName setTextColor:[UIColor whiteColor]];
         [ivIcon setHidden:NO];
-        lblName.frame=CGRectMake(50,20, screeningTable.frame.size.width-100, 30);
+        lblName.frame=CGRectMake(50,15, screeningTable.frame.size.width-100, 30);
     }
     else
     {
-        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [lblName setFont:[UIFont fontWithName:@"Helvetica-Neue-LT" size:10]];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [lblName setTextColor:[UIColor grayColor]];
         [ivIcon setHidden:YES];
-        lblName.frame=CGRectMake(10,20, screeningTable.frame.size.width-50, 30);
+        lblName.frame=CGRectMake(15,10, screeningTable.frame.size.width-50, 30);
         
     }
     
@@ -248,7 +283,7 @@ NSArray *labelArray;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 50;
 }
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
