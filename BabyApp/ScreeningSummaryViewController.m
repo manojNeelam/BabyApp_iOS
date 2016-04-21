@@ -98,8 +98,16 @@
                                          size:18]];
         [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:14]];
         [lblName2 setTextColor:[UIColor colorWithRed:108.0/255.0 green:107.0/255.0 blue:108.0/255.0 alpha:1.0]];
-
         
+        
+        UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40,10,25,25)];
+        btIcon.tag=30;
+        [cell.contentView addSubview:btIcon];
+        [btIcon setContentMode:UIViewContentModeScaleAspectFill];
+        [btIcon setClipsToBounds:YES];
+
+
+        [btIcon setUserInteractionEnabled:NO];
         cell.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
     }
     // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
@@ -123,13 +131,26 @@
     [lblName setText:[info objectForKey:Period]];
     [lblName2 setText:[info objectForKey:DueStatus]];
     
+    UIButton *btIcon=[cell.contentView viewWithTag:30];
     
+    [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    UIButton *btIcon=[cell.contentView viewWithTag:30];
+    
+    if([[btIcon backgroundImageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"unCheck"]])
+    {
+        [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
+    }
     
     //   [self performSegueWithIdentifier:@"screeningsummarydetailsegu" sender:self];
 }
