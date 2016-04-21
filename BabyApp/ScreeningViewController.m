@@ -125,7 +125,7 @@ NSArray *labelArray;
     [v2 addSubview:txtAge];
     [v2 addSubview:txtCare];
     
-    [txtDate.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Neue-LT" size:10]];
+    [txtDate.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     txtDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [txtAge setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     [txtCare setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
@@ -134,18 +134,21 @@ NSArray *labelArray;
    // [txtAge setTextColor:[UIColor blackColor]];
     
     [txtDate setTitle:@"Date of Screening" forState:UIControlStateNormal];
-    txtAge.placeholder=@"Age";
-    txtCare.placeholder=@"  Main Caregiver";
+   // txtAge.placeholder=@"Age";
+   // txtCare.placeholder=@"  Main Caregiver";
     
-    txtCare.attributedPlaceholder =
+  /*  txtCare.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"  Main Caregiver"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: [UIColor blackColor],
                                                  NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
                                                  }
-     ];
-    
-    
+     ];*/
+    NSAttributedString *str=[[NSAttributedString alloc] initWithString:@"  Main Caregiver" attributes:@{
+                                                                                                      NSForegroundColorAttributeName: [UIColor blackColor],
+                                                                                                      NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
+                                                                                                      }];
+    txtCare.attributedPlaceholder=str;
     txtAge.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"Age"
                                     attributes:@{
