@@ -307,9 +307,12 @@
         bioDataObj.name = userName;
         bioDataObj.dob = dob;
         
-        
         NSString *childID = [datDict objectForKey:@"child_id"];
         [NSUserDefaults saveObject:childID forKey:CURRENT_CHILD_ID];
+        
+        [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+        [NSUserDefaults saveBool:NO forKey:IS_FROM_SIGNUP];
+        
         userProfilePic = nil;
         
         [self.tableView reloadData];

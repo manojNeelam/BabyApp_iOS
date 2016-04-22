@@ -89,7 +89,6 @@
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 
-
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
