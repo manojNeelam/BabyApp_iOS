@@ -15,3 +15,7 @@
 #define BaseUrl @"http://babyappdev.azurewebsites.net/apiv1/service/"
 #define USERID  @"application_user_id"
 #define CURRENT_CHILD_ID    @"application_current_child_id"
+#define IS_FROM_SIGNUP      @"application_is_from_signup"
+
+#define IS_CHILD_NOT_AVAILABLE  @"application_is_CHILD_Not_AVALIBALE"
+

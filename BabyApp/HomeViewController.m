@@ -12,6 +12,11 @@
 #import "ImmunisationsVC.h"
 #import "ScreeningSummaryViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
+#import "AppDelegate.h"
+#import "UIImageView+JMImageCache.h"
+#import "ChildDetailsData.h"
 
 @implementation HomeViewController
 {
@@ -43,6 +48,47 @@
 
 
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    BOOL isFromSignUp = [NSUserDefaults retrieveBoolForKey:IS_FROM_SIGNUP];
+    if(isFromSignUp)
+    {
+        //
+        [self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+        [NSUserDefaults saveBool:NO forKey:IS_FROM_SIGNUP];
+    }
+    else
+    {
+        [self loadChild];
+    }
+}
+
+-(void)loadChild
+{
+    //
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSArray *list = [appdelegate listOfChildrens];
+    if(list.count)
+    {
+        ChildDetailsData *child = [list objectAtIndex:2];
+        [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+        [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+    }
+    else
+    {
+        [self getAllChildrans];
+    }
+}
+
+-(void)getAllChildrans
+{
+    NSDictionary *params = @{@"user_id" : USERID};
+    [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
+}
+
 
 #pragma mark - SlideNavigationController Methods -
 
@@ -167,5 +213,90 @@
 }
 #pragma mark - IBActions -
 
+-(void)success:(id)response
+{
+    
+    /*
+     {
+     message = "Your new password has been sent to you email";
+     status = 1;
+     }
+     */
+    
+    NSDictionary *params;
+    
+    if([response isKindOfClass:[NSString class]])
+    {
+        NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
+        params = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    }
+    else if ([response isKindOfClass:[NSDictionary class]])
+    {
+        params = response;
+    }
+    
+    id statusStr_ = [params objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+        statusStr = statusStr_;
+    
+    if([statusStr isEqualToString:@"1"])
+    {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSDictionary *responseDict = (NSDictionary *)response
+            ;
+            if ([responseDict[@"status"] boolValue]) {
+                
+                //            children
+                NSArray *childrenList = responseDict[@"data"][@"children"];
+                if(childrenList.count)
+                {
+                    NSMutableArray *temp = [NSMutableArray array];
+                    
+                    for(NSDictionary *dict in childrenList)
+                    {
+                        ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
+                        [temp addObject:child];
+                    }
+                    
+                    NSArray *childHolder = temp;
+                    
+                    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+                    [appdelegate setListOfChildrens:childHolder];
+                    
+                    [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+                    [self loadChild];
+                    
+                }
+                else
+                {
+                    [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+                    [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+                    
+                }
+            }
+            else{
+                
+            }
+        });
+    }
+    else if([statusStr isEqualToString:@"0"])
+    {
+        
+    }
+}
+
+
+-(void)failure:(id)response
+{
+    
+}
 
 @end

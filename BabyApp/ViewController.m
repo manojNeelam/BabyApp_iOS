@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
+#import "ChildDetailsData.h"
 
 #define kOFFSET_FOR_KEYBOARD 100.0
 
@@ -288,11 +289,18 @@ UIActivityIndicatorView *act1;
         // [[NSUserDefaults standardUserDefaults] setObject:json forKey:@"userData"];
         //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
         
+//        NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
+//        
+//        [NSUserDefaults saveObject:userId forKey:USERID];
+//        
+//        [self openHomeVC];
+        
+        
         NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
         
         [NSUserDefaults saveObject:userId forKey:USERID];
+        [self getAllChildrans];
         
-        [self openHomeVC];
     }
     else
     {
@@ -303,7 +311,11 @@ UIActivityIndicatorView *act1;
 }
 
 
-
+-(void)getAllChildrans
+{
+    NSDictionary *params = @{@"user_id" : USERID};
+    [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
+}
 
 
 - (IBAction)facebookSigninAction:(id)sender {
@@ -548,13 +560,60 @@ UIActivityIndicatorView *act1;
     }
     
     id statusStr_ = [params objectForKey:@"status"];
-    
     NSString *statusStr;
     
-    statusStr = statusStr_;
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+        statusStr = statusStr_;
     
     if([statusStr isEqualToString:@"1"])
     {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSDictionary *responseDict = (NSDictionary *)response
+            ;
+            if ([responseDict[@"status"] boolValue]) {
+                
+                //            children
+                NSArray *childrenList = responseDict[@"data"][@"children"];
+                if(childrenList.count)
+                {
+                    NSMutableArray *temp = [NSMutableArray array];
+                    
+                    for(NSDictionary *dict in childrenList)
+                    {
+                        ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
+                        [temp addObject:child];
+                    }
+                    
+                    NSArray *childHolder = temp;
+                    
+                    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+                    [appdelegate setListOfChildrens:childHolder];
+                    
+                    [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+                    
+                    
+                    [self openHomeVC];
+                }
+                else
+                {
+                    [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+                    [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+                    
+                    [self openHomeVC];
+                }
+            }
+            else{
+                [Constants showOKAlertWithTitle:@"Error" message:@"Unagle to load your childrans list, Please try again after some time" presentingVC:self];
+            }
+        });
+        
+        
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -571,6 +630,7 @@ UIActivityIndicatorView *act1;
     [act1 stopAnimating];
     [act1 removeFromSuperview];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

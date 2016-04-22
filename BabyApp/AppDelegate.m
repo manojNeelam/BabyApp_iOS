@@ -16,7 +16,7 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize listOfChildrens;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application

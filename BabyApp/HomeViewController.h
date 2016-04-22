@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "ConnectionsManager.h"
 
-@interface HomeViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface HomeViewController : UIViewController <SlideNavigationControllerDelegate, ServerResponseDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *addBioButton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *childPic;
 
 
 

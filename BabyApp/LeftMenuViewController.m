@@ -297,6 +297,10 @@
             else
             {
                 [NSUserDefaults deleteObjectForKey:USERID];
+                [NSUserDefaults deleteObjectForKey:CURRENT_CHILD_ID];
+                [NSUserDefaults deleteObjectForKey:IS_FROM_SIGNUP];
+                [NSUserDefaults deleteObjectForKey:IS_CHILD_NOT_AVAILABLE];
+                
                 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
                 [delegate checkValidUser];
                 
