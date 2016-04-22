@@ -174,7 +174,6 @@
     cell.titleLabel.textColor=[ self colorWithHexString:colorArray[indexPath.row]];
     cell.subtitleLabel.text=@"No entry yet";
     cell.subtitleLabel.textColor=[UIColor grayColor];
-    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

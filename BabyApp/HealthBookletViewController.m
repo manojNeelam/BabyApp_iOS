@@ -86,8 +86,12 @@
      [20/04/16 10:52:15 pm] Atul Awasthi: oral=95/150/234
      */
     
-    UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImage.png"];
-    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImage.png"];
+   // UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImage.png"];
+   // UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImage.png"];
+  
+    UIImage *storyMenuItemImage = [UIImage imageNamed:@"centerImagetemp.png"];
+    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"centerImagetemp.png"];
+
     
     UIImage *starImage1 = [UIImage imageNamed:@"hb_immunisation.png"];
     UIImage *starImage2 = [UIImage imageNamed:@"hb_percentiles.png"];

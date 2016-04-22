@@ -206,6 +206,7 @@
 		D8B138161C90CF6F007B412D /* HelveticaNeueCyr-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8B138011C90CF6F007B412D /* HelveticaNeueCyr-Roman.otf */; };
 		D8B138171C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8B138021C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf */; };
 		D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C60B1F1CBEDD3B00B74D77 /* background_image.png */; };
+		D8DAA4591CCACA04004E83FD /* centerImagetemp.png in Resources */ = {isa = PBXBuildFile; fileRef = D8DAA4581CCACA04004E83FD /* centerImagetemp.png */; };
 		D8F0AEF41CAF166300EE9BE5 /* ScreeningSummaeryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEEF1CAF166300EE9BE5 /* ScreeningSummaeryDetail.m */; };
 		D8F0AEF51CAF166300EE9BE5 /* ScreeningSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEF11CAF166300EE9BE5 /* ScreeningSummaryViewController.m */; };
 		D8F0AEF61CAF166300EE9BE5 /* ScreenSumaryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEF31CAF166300EE9BE5 /* ScreenSumaryDetailCell.m */; };
@@ -562,6 +563,7 @@
 		D8B138011C90CF6F007B412D /* HelveticaNeueCyr-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueCyr-Roman.otf"; sourceTree = "<group>"; };
 		D8B138021C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueCyr-UltraLight.otf"; sourceTree = "<group>"; };
 		D8C60B1F1CBEDD3B00B74D77 /* background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_image.png; sourceTree = "<group>"; };
+		D8DAA4581CCACA04004E83FD /* centerImagetemp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = centerImagetemp.png; sourceTree = "<group>"; };
 		D8F0AEEE1CAF166300EE9BE5 /* ScreeningSummaeryDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningSummaeryDetail.h; sourceTree = "<group>"; };
 		D8F0AEEF1CAF166300EE9BE5 /* ScreeningSummaeryDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningSummaeryDetail.m; sourceTree = "<group>"; };
 		D8F0AEF01CAF166300EE9BE5 /* ScreeningSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningSummaryViewController.h; sourceTree = "<group>"; };
@@ -1100,6 +1102,7 @@
 		A1A46A0C1CBD8855009F65BB /* CircleView */ = {
 			isa = PBXGroup;
 			children = (
+				D8DAA4581CCACA04004E83FD /* centerImagetemp.png */,
 				A1C384DB1CC35F980085C812 /* hb_back_oralvisual.png */,
 				A1C384DC1CC35F980085C812 /* hb_teeth.png */,
 				A1C384DD1CC35F980085C812 /* hb_visual_option.png */,
@@ -1404,6 +1407,7 @@
 				D8B138121C90CF6F007B412D /* AvenirNextLTPro-UltLtCn.otf in Resources */,
 				D8B138111C90CF6F007B412D /* AvenirNextLTPro-Regular.otf in Resources */,
 				A1C384D71CC220AC0085C812 /* hb_Alergy_option.png in Resources */,
+				D8DAA4591CCACA04004E83FD /* centerImagetemp.png in Resources */,
 				A13FC7F61C7748AC00362A32 /* Assets.xcassets in Resources */,
 				A1C384CD1CC21E940085C812 /* hb_allergy.png in Resources */,
 				CDC84ABC1CBE084F00D9A3DC /* SVProgressHUD.bundle in Resources */,
