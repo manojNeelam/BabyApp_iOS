@@ -73,7 +73,7 @@
     NSArray *list = [appdelegate listOfChildrens];
     if(list.count)
     {
-        ChildDetailsData *child = [list objectAtIndex:2];
+        ChildDetailsData *child = [list objectAtIndex:0];
         [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
         [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
     }
