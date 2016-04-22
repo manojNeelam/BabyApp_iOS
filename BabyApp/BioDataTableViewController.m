@@ -20,7 +20,9 @@
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
 
-@interface BioDataTableViewController () <ServerResponseDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomIOS7AlertViewDelegate, UITextFieldDelegate>
+#import "AppDelegate.h"
+
+@interface BioDataTableViewController () <ServerResponseDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomIOS7AlertViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 {
     NSArray *titleArray;
     
@@ -43,6 +45,21 @@
 
 - (IBAction)onClickDoneButton:(id)sender {
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save changes" message:@"All your entry and changes will be saved. Or cancel to edit more." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        [self saveChild];
+    }
+    
+}
+
+-(void)saveChild
+{
     ProfilePicTableViewCell *cell = (ProfilePicTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     NSData *data;
@@ -87,10 +104,6 @@
     
     profilePicGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                 action:@selector(onClickOpenImageVC:)];
-    
-    
-    
-    
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -299,7 +312,6 @@
     if([statusStr isEqualToString:@"1"])
     {
         
-        
         NSDictionary *datDict = [dict objectForKey:@"data"];
         userName = [datDict objectForKey:@"name"];
         dob = [datDict objectForKey:@"dob"];
@@ -316,6 +328,9 @@
         userProfilePic = nil;
         
         [self.tableView reloadData];
+        
+        AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        [delegate setListOfChildrens:nil];
     }
 }
 
