@@ -13,6 +13,9 @@
 #import "ConnectionsManager.h"
 #import "NSUserDefaults+Helpers.h"
 
+#import "ChildDevData.h"
+#import "ChildDevelopmentData.h"
+
 @interface ChildDevelopementalViewController ()<ASValueTrackingSliderDataSource,UITableViewDataSource,UITableViewDelegate,ServerResponseDelegate>
 {
     NSArray *childDevelopemntalScreeningArray;
@@ -31,6 +34,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    [self.slider setThumbImage:[UIImage imageNamed:@"thumImage"] forState:UIControlStateNormal];
+    
     // Do any additional setup after loading the view.
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -39,7 +47,7 @@
     
     _slider.minimumValue = 1;
     _slider.maximumValue = 12;
-    _slider.popUpViewCornerRadius = 12.0;
+    _slider.popUpViewCornerRadius = 0.0;
     [_slider setMaxFractionDigitsDisplayed:0];
     //    slider.popUpViewColor = [UIColor colorWithHue:0.55 saturation:0.8 brightness:0.9 alpha:0.7];
     _slider.popUpViewColor = [UIColor darkGrayColor];
@@ -49,28 +57,76 @@
     _slider.dataSource = self;
     self.title = @"Child Developemental Screening";
     
-    /*childDevelopemntalScreeningArray = @[
-     @{@"title":@"type of screening",
-     @"items":@[@"ajsdhgasdgajshgd ajsdhgas dahjgd",
-     @"jahgd asjdhgas dajsgd adasjgd ajdgasd ajghsd ajdgasj dasdgas dajshgd asjdghas dajshgdas dgasd asjhgdas dgas dasjghd",
-     @"dkajdhgasd a ajgsd asdg"
-     
-     ]
-     },
-     @{@"title":@"type of screening",
-     @"items":@[@"ajsdhgasdgajshgd ajsdhgas dahjgd",
-     @"jahgd asjdhgas dajsgd adasjgd ajdgasd ajghsd ajdgasj dasdgas dajshgd asjdghas dajshgdas dgasd asjhgdas dgas dasjghd",
-     @"dkajdhgasd a ajgsd asdg hsdgf sdhfgsd fgs fsdhjgf sd"
-     
-     ]
-     }
-     
-     
-     ];*/
-    [self getChildDevevelopementals];
+    //    childDevelopemntalScreeningArray = @[
+    //     @{@"title":@"type of screening",
+    //     @"items":@[@"ajsdhgasdgajshgd ajsdhgas dahjgd",
+    //     @"jahgd asjdhgas dajsgd adasjgd ajdgasd ajghsd ajdgasj dasdgas dajshgd asjdghas dajshgdas dgasd asjhgdas dgas dasjghd",
+    //     @"dkajdhgasd a ajgsd asdg"
+    //     ]
+    //     },
+    //     @{@"title":@"type of screening",
+    //     @"items":@[@"ajsdhgasdgajshgd ajsdhgas dahjgd",
+    //     @"jahgd asjdhgas dajsgd adasjgd ajdgasd ajghsd ajdgasj dasdgas dajshgd asjdghas dajshgdas dgasd asjhgdas dgas dasjghd",
+    //     @"dkajdhgasd a ajgsd asdg hsdgf sdhfgsd fgs fsdhjgf sd"
+    //     ]
+    //     }
+    //     ];
+    
+    
+    //[self.tableView reloadData];
+    
+    //[self getChildDevevelopementals];
+    
+    [self loadData];
     
 }
 
+-(void)loadData
+{
+    NSMutableArray *tempHolder = [NSMutableArray array];
+    
+    ChildDevelopmentData *childDetailsData = [[ChildDevelopmentData alloc] init];
+    childDetailsData.headerTitle = @"TYPE OF SCREENING";
+    
+    NSMutableArray *temp = [NSMutableArray array];
+    
+    ChildDevData *childDevData = [[ChildDevData alloc] init];
+    childDevData.title = @"1. Growth monitoring: weight, length, OFC";
+    [temp addObject:childDevData];
+    
+    ChildDevData *childDevData1 = [[ChildDevData alloc] init];
+    childDevData1.title = @"2. Feeding history";
+    [temp addObject:childDevData1];
+    
+    ChildDevData *childDevData2 = [[ChildDevData alloc] init];
+    childDevData2.title = @"3. Hearing Screenig if not done at birth";
+    [temp addObject:childDevData2];
+    
+    ChildDevData *childDevData3 = [[ChildDevData alloc] init];
+    childDevData3.title = @"4. Physical examination and Development check";
+    [temp addObject:childDevData3];
+    
+    childDetailsData.listChildDev = temp;
+    
+    [tempHolder addObject:childDetailsData];
+    
+    ChildDevelopmentData *childDetailsData1 = [[ChildDevelopmentData alloc] init];
+    childDetailsData1.headerTitle = @"IMMUNISATION";
+    
+    NSMutableArray *temp1 = [NSMutableArray array];
+    
+    ChildDevData *childDevData4 = [[ChildDevData alloc] init];
+    childDevData4.title = @"BCG, Hep B-1 at birth. Hep B-2 month after Hep-b1";
+    [temp1 addObject:childDevData4];
+    
+    childDetailsData1.listChildDev = temp1;
+    
+    [tempHolder addObject:childDetailsData1];
+    
+    
+    childDevelopemntalScreeningArray = tempHolder;
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -102,7 +158,7 @@
     //    } else if (value >= 50.0) {
     //        s = @"I’m Melting!";
     //    }
-    [self sortDataWithAge:value];
+    //[self sortDataWithAge:value];
     return s;
 }
 
@@ -110,16 +166,13 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return childDevelopemntalScreeningArray.count;
-    
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary *childDevelopmentalDict = childDevelopemntalScreeningArray[section];
-    return  [childDevelopmentalDict[@"items"] count];
+    ChildDevelopmentData *childDevelopmentalDict = childDevelopemntalScreeningArray[section];
+    return  childDevelopmentalDict.listChildDev.count;
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,11 +182,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    NSDictionary *childDevelopmentalDict = childDevelopemntalScreeningArray[indexPath.section];
-    NSString *screeningText =  childDevelopmentalDict[@"items"][indexPath.row];
+    ChildDevelopmentData *childDevelopmentalDict = childDevelopemntalScreeningArray[indexPath.section];
+    
+    ChildDevData *childDev = [childDevelopmentalDict.listChildDev objectAtIndex:indexPath.row];
+    
+    NSString *screeningText =  childDev.title;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+    [cell.textLabel setTextColor:[UIColor colorWithRed:141.0/255.0 green:140.0/255.0 blue:146.0/255.0 alpha:1.0]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     //
     //    NSString *cellText = @"Go get some text for your cell.";
     //    UIFont *cellFont = cell.textLabel.font;
@@ -157,59 +214,80 @@
 {
     return UITableViewAutomaticDimension;
 }
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSDictionary *childDevelopmentalDict = childDevelopemntalScreeningArray[section];
-    NSString *sectionTitle =  childDevelopmentalDict[@"title"];
-    return sectionTitle;
-}
-
-
-#pragma  mark - get child developemenatal screening
-
--(void)getChildDevevelopementals
-{
-    //    NSString *screeningID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     
-    NSString *screeningID = @"1";
+    ChildDevelopmentData *childDevelopmentalDict = childDevelopemntalScreeningArray[section];
+    NSString *sectionTitle =  childDevelopmentalDict.headerTitle;
     
-    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
-    NSString *userId  = [NSUserDefaults retrieveObjectForKey:USERID];
-    childID = @"1";
-    NSDictionary *params = @{@"child_id" : childID,@"screening_id" : screeningID };
-    [[ConnectionsManager sharedManager] getDevelopmentCheckList:params withdelegate:self];
-}
-
-
-#pragma mark - ServerResponseDelegate
--(void)success:(id)response
-{
-    NSLog(@"Response of get child dev screening : %@",response);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSDictionary *responseDict = (NSDictionary *)response;
-        if ([responseDict[@"status"] boolValue]) {
-            
-            if ([responseDict[@"data"] count] > 0) {
-                allChildArray = responseDict[@"data"];
-                [self sortDataWithAge:12.0];
-                
-                
-            }
-        }
-        else
-        {
-            [Constants showOKAlertWithTitle:@"Error" message:@"Unable to get the list of child developemental, Please try after some time" presentingVC:self];
-        }
-        
-    });
-}
-
--(void)failure:(id)response
-{
-    NSLog(@"Error of get child dev screening : %@",response);
     
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 45)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    
+    UILabel *headerLblSep = [[UILabel alloc] initWithFrame:CGRectMake(20, 44, tableView.frame.size.width-40, 1)];
+    [headerLblSep setBackgroundColor:[UIColor colorWithRed:141.0/255.0 green:140.0/255.0 blue:146.0/255.0 alpha:1.0]];
+    [headerView addSubview:headerLblSep];
+    
+    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, tableView.frame.size.width-40, 21)];
+    [headerLbl setText:sectionTitle];
+    [headerLbl setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:15]];
+    [headerLbl setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [headerView addSubview:headerLbl];
+    
+    return headerView;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 45.0f;
+}
+
+//#pragma  mark - get child developemenatal screening
+//
+//-(void)getChildDevevelopementals
+//{
+//    //    NSString *screeningID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+//
+//    NSString *screeningID = @"1";
+//
+//    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+//    NSString *userId  = [NSUserDefaults retrieveObjectForKey:USERID];
+//    childID = @"1";
+//    NSDictionary *params = @{@"child_id" : childID,@"screening_id" : screeningID };
+//    [[ConnectionsManager sharedManager] getDevelopmentCheckList:params withdelegate:self];
+//}
+//
+//
+//#pragma mark - ServerResponseDelegate
+//-(void)success:(id)response
+//{
+//    NSLog(@"Response of get child dev screening : %@",response);
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        NSDictionary *responseDict = (NSDictionary *)response;
+//        if ([responseDict[@"status"] boolValue]) {
+//
+//            if ([responseDict[@"data"] count] > 0) {
+//                allChildArray = responseDict[@"data"];
+//                [self sortDataWithAge:12.0];
+//
+//
+//            }
+//        }
+//        else
+//        {
+//            [Constants showOKAlertWithTitle:@"Error" message:@"Unable to get the list of child developemental, Please try after some time" presentingVC:self];
+//        }
+//
+//    });
+//}
+//
+//-(void)failure:(id)response
+//{
+//    NSLog(@"Error of get child dev screening : %@",response);
+//
+//}
 
 #pragma mark - sorting data by Age
 
@@ -257,16 +335,5 @@
     childDevelopemntalScreeningArray = sortedList;
     [self.tableView reloadData];
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @end

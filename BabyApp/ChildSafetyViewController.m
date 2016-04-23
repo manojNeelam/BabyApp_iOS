@@ -36,29 +36,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    [self.childSafetyTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
     self.navigationItem.title =@"15-18 Months";
     
-    //    self.screeningSummaryDetailArray = @[@{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
-    //                                           DetailStatus  : @"YES"
-    //                                           },
-    //                                         @{lbl     : @"I do not use a sarong cradle for my child nor allow him/her  to the same bed as me to avoid rolling onto and suffocating him/her.My baby ",
-    //                                           DetailStatus  : @"Next due: 15/02/2016"
-    //                                           },
-    //                                         @{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
-    //                                           DetailStatus  : @"Set reminder"
-    //                                           },
-    //                                         @{lbl     : @"15-18 months",
-    //                                           DetailStatus  : @"Set reminder"
-    //                                           },
-    //                                         @{lbl     : @"2-3 years",
-    //                                           DetailStatus  : @"Set reminder"
-    //                                           },
-    //                                         ];
+    self.screeningSummaryDetailArray = @[@{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
+                                           DetailStatus  : @"YES"
+                                           },
+                                         @{lbl     : @"I do not use a sarong cradle for my child nor allow him/her  to the same bed as me to avoid rolling onto and suffocating him/her.My baby ",
+                                           DetailStatus  : @"Next due: 15/02/2016"
+                                           },
+                                         @{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
+                                           DetailStatus  : @"Set reminder"
+                                           },
+                                         @{lbl     : @"15-18 months",
+                                           DetailStatus  : @"Set reminder"
+                                           },
+                                         @{lbl     : @"2-3 years",
+                                           DetailStatus  : @"Set reminder"
+                                           },
+                                         ];
     
     
     [_bottomLeftButton setTitle:@"" forState:UIControlStateNormal];
     [_bottomRightButton setTitle:@"" forState:UIControlStateNormal];
-    [self getSafetyCheckList];
+    //[self getSafetyCheckList];
     
 }
 
@@ -88,10 +93,14 @@
     NSDictionary *info = [self.screeningSummaryDetailArray objectAtIndex:[indexPath row]];
     NSLog(@"info=%@",info);
     [cell.detailLabel setText:[info objectForKey:lbl]];
-    [cell.statusBtn setBackgroundColor:[UIColor redColor]];
+    [cell.detailLabel setTextColor:[UIColor colorWithRed:141.0/255.0 green:140.0/255.0 blue:146.0/255.0 alpha:1.0]];
+    
+    //®[cell.statusBtn setBackgroundColor:[UIColor redColor]];
+    
+    [cell.imgStatus setImage:[UIImage imageNamed:@"checkBox"]];
     
     if ([info[DetailStatus] boolValue]) {
-        [cell.statusBtn setBackgroundColor:[UIColor blueColor]];
+        //[cell.statusBtn setBackgroundColor:[UIColor blueColor]];
         //        cell.statusBtn.tag= indexPath.row+100;
     }
     
@@ -103,7 +112,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -198,14 +207,7 @@
             if (allcheckListArray.count == 0) {
                 
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:@"safety checklist is empty for your current child." preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.navigationController popViewControllerAnimated:YES];
-                    });
-                }];
-                [alert addAction:okAction];
                 
-                [self presentViewController:alert animated:YES completion:nil];
                 
                 return;
             }
@@ -237,15 +239,6 @@
         }
         else
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unalbe to load child safety checklist, please try again after some time." preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                });
-            }];
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:nil];
             //            [Constants showOKAlertWithTitle:@"Error" message:@"Unalbe to load child safety checklist, please try again after some time" presentingVC:self];
         }
         

@@ -2,7 +2,7 @@ how to create
 
  CustomIOS7AlertView *dateAlertView = [[CustomIOS7AlertView alloc] init];
     [dateAlertView setContainerView:[self createDateView]];
-    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Close",@"Set", nil]];
+    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Close", @"Set", nil]];
     [dateAlertView setDelegate:self];
     [dateAlertView setUseMotionEffects:true];
 

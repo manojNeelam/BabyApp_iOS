@@ -169,7 +169,7 @@
 {
     dateAlertView = [[CustomIOS7AlertView alloc] init];
     [dateAlertView setContainerView:[self createDateView]];
-    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"CLOSE", @"SET", nil]];
+    [dateAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Close", @"Set", nil]];
     [dateAlertView setDelegate:self];
     [dateAlertView setUseMotionEffects:true];
     

@@ -57,6 +57,8 @@
 		90FC54691CB1A83400ED0E34 /* InvestOtherTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC545A1CB1A83400ED0E34 /* InvestOtherTestCell.m */; };
 		90FC546A1CB1A83400ED0E34 /* NewbornScreeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC545D1CB1A83400ED0E34 /* NewbornScreeningVC.m */; };
 		90FC546B1CB1A83400ED0E34 /* ParticularsOfParentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC54601CB1A83400ED0E34 /* ParticularsOfParentsVC.m */; };
+		962683F91CCC0CA500A6159B /* ChildDevData.m in Sources */ = {isa = PBXBuildFile; fileRef = 962683F61CCC0CA500A6159B /* ChildDevData.m */; };
+		962683FA1CCC0CA500A6159B /* ChildDevelopmentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 962683F81CCC0CA500A6159B /* ChildDevelopmentData.m */; };
 		96957B4B1CBAC50E00578E90 /* BioDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 96957B4A1CBAC50E00578E90 /* BioDataObj.m */; };
 		9695B4F51CC2D32100815220 /* ScreeningDevCheckListObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 9695B4F41CC2D32100815220 /* ScreeningDevCheckListObj.m */; };
 		96A342481CCAB07E00888E55 /* ChildDetailsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A342471CCAB07E00888E55 /* ChildDetailsData.m */; };
@@ -334,6 +336,10 @@
 		90FC545F1CB1A83400ED0E34 /* ParticularsOfParentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticularsOfParentsVC.h; sourceTree = "<group>"; };
 		90FC54601CB1A83400ED0E34 /* ParticularsOfParentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticularsOfParentsVC.m; sourceTree = "<group>"; };
 		90FC546D1CB1A8A500ED0E34 /* KeyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyConstants.h; sourceTree = "<group>"; };
+		962683F51CCC0CA500A6159B /* ChildDevData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildDevData.h; sourceTree = "<group>"; };
+		962683F61CCC0CA500A6159B /* ChildDevData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildDevData.m; sourceTree = "<group>"; };
+		962683F71CCC0CA500A6159B /* ChildDevelopmentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildDevelopmentData.h; sourceTree = "<group>"; };
+		962683F81CCC0CA500A6159B /* ChildDevelopmentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildDevelopmentData.m; sourceTree = "<group>"; };
 		96957B491CBAC50E00578E90 /* BioDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BioDataObj.h; sourceTree = "<group>"; };
 		96957B4A1CBAC50E00578E90 /* BioDataObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BioDataObj.m; sourceTree = "<group>"; };
 		9695B4F31CC2D32100815220 /* ScreeningDevCheckListObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningDevCheckListObj.h; sourceTree = "<group>"; };
@@ -1158,6 +1164,10 @@
 		CD6754F31CC0B061002BA5CA /* Child Developement */ = {
 			isa = PBXGroup;
 			children = (
+				962683F51CCC0CA500A6159B /* ChildDevData.h */,
+				962683F61CCC0CA500A6159B /* ChildDevData.m */,
+				962683F71CCC0CA500A6159B /* ChildDevelopmentData.h */,
+				962683F81CCC0CA500A6159B /* ChildDevelopmentData.m */,
 				CD6754F41CC0B5F8002BA5CA /* ChildDevelopementalViewController.h */,
 				CD6754F51CC0B5F8002BA5CA /* ChildDevelopementalViewController.m */,
 			);
@@ -1581,8 +1591,10 @@
 				90F165CF1CB5A4DA006B5DD6 /* ConnectionsManager.m in Sources */,
 				90000F561CB352A000BC9BFC /* MedicalConditionVC.m in Sources */,
 				A10EB5FA1C786B9A002EBC59 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
+				962683F91CCC0CA500A6159B /* ChildDevData.m in Sources */,
 				A1EAD2C51CA96AB8008D2B37 /* immunisationTableViewController.m in Sources */,
 				9695B4F51CC2D32100815220 /* ScreeningDevCheckListObj.m in Sources */,
+				962683FA1CCC0CA500A6159B /* ChildDevelopmentData.m in Sources */,
 				CDC84ABB1CBE084F00D9A3DC /* SVProgressAnimatedView.m in Sources */,
 				A1EAD2DA1CA98D08008D2B37 /* ImmunationsWhiteTableViewCell.m in Sources */,
 				90F165CA1CB5A4A0006B5DD6 /* UIRefreshControl+AFNetworking.m in Sources */,
