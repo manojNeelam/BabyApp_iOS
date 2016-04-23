@@ -11,5 +11,6 @@
 @interface ScreenSumaryDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *statusBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *imgStatus;
 
 @end
