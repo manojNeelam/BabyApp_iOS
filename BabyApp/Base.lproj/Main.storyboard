@@ -593,15 +593,12 @@
                                 <exclude reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="nvS-vU-3tS"/>
                                 <exclude reference="aUL-6j-reV"/>
                                 <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="Aoc-aM-bEh"/>
                                 <exclude reference="TJy-6p-KIk"/>
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
-                                <exclude reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="200-7a-VQC"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
@@ -611,13 +608,16 @@
                                 <exclude reference="IRy-ic-WT7"/>
                                 <exclude reference="e7c-mG-Pkx"/>
                                 <exclude reference="Kfs-QT-Exb"/>
+                                <exclude reference="nvS-vU-3tS"/>
                                 <exclude reference="6rH-mC-FIP"/>
                                 <exclude reference="Lxr-Sw-vek"/>
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
+                                <exclude reference="pn5-kM-htF"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
+                                <exclude reference="k41-Qr-NG8"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -626,15 +626,12 @@
                                 <include reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="nvS-vU-3tS"/>
                                 <include reference="aUL-6j-reV"/>
                                 <include reference="sXA-Lg-Yg0"/>
                                 <include reference="Aoc-aM-bEh"/>
                                 <include reference="TJy-6p-KIk"/>
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
-                                <include reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="200-7a-VQC"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
@@ -644,13 +641,16 @@
                                 <include reference="IRy-ic-WT7"/>
                                 <include reference="e7c-mG-Pkx"/>
                                 <include reference="Kfs-QT-Exb"/>
+                                <include reference="nvS-vU-3tS"/>
                                 <include reference="6rH-mC-FIP"/>
                                 <include reference="Lxr-Sw-vek"/>
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
+                                <include reference="pn5-kM-htF"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
+                                <exclude reference="k41-Qr-NG8"/>
                             </mask>
                         </variation>
                     </view>
@@ -8381,9 +8381,9 @@
                                     <outlet property="delegate" destination="zge-TU-1rp" id="SpD-px-uDp"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lab-O3-uNv">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lab-O3-uNv">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-vs-Vkg">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-vs-Vkg">
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="2-3 years">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -8392,7 +8392,7 @@
                                             <action selector="bottomRightButtonAction:" destination="zge-TU-1rp" eventType="touchUpInside" id="cuf-vq-uMt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-AU-OxV">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-AU-OxV">
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
                                         <state key="normal" title="15-18 months">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
