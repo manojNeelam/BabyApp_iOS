@@ -19,6 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIFont *font = [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [self.segmentImu setTitleTextAttributes:attributes
+                                   forState:UIControlStateNormal];
+    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
     self.imuNavigationItem.rightBarButtonItem = rightButton;
     
@@ -115,7 +121,7 @@
             [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
             [cell.lblLine setHidden:NO];
             [cell.lblDate setText:@"10/04/13"];
-            [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
             [cell.lblNext setHidden:YES];
             [cell.imgNotePad setHidden:NO];
             
@@ -127,7 +133,7 @@
                 [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
                 [cell.lblLine setHidden:YES];
                 [cell.lblDate setText:@"12/04/13"];
-                [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
                 [cell.lblNext setHidden:YES];
             }
             else
@@ -135,7 +141,7 @@
                 [cell.indicatorView setBackgroundColor:cell.lblNext.backgroundColor];
                 [cell.lblLine setHidden:YES];
                 [cell.lblDate setText:@"15/04/13"];
-                [cell.lblDate setTextColor:[UIColor redColor]];
+                [cell.lblDate setTextColor:cell.lblNext.backgroundColor];
                 [cell.lblNext setHidden:NO];
                 [cell.imgNotePad setHidden:YES];
             }
@@ -155,7 +161,7 @@
             [cell.lblLine setHidden:YES];
             [cell.lblTitle setText:@"First Dose"];
             [cell.lblDate setText:@"10/04/13"];
-            [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
             [cell.lblNext setHidden:YES];
             [cell.imgNotePad setHidden:NO];
         }
@@ -165,7 +171,7 @@
             [cell.lblLine setHidden:YES];
             [cell.lblTitle setText:@"First Dose"];
             [cell.lblDate setText:@"12/04/13"];
-            [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
             [cell.lblNext setHidden:YES];
             [cell.imgNotePad setHidden:NO];
         }
@@ -177,7 +183,7 @@
                 [cell.lblLine setHidden:YES];
                 [cell.lblTitle setText:@"First Dose"];
                 [cell.lblDate setText:@"12/08/13"];
-                [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
                 [cell.lblNext setHidden:YES];
                 [cell.imgNotePad setHidden:NO];
             }
@@ -187,7 +193,7 @@
                 [cell.lblLine setHidden:YES];
                 [cell.lblTitle setText:@"Second Dose"];
                 [cell.lblDate setText:@"03/02/13"];
-                [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
                 [cell.lblNext setHidden:YES];
                 [cell.imgNotePad setHidden:YES];
             }
@@ -202,31 +208,28 @@
         
         if(indexPath.section == 0)
         {
-            [cell.indicatorView setBackgroundColor:[UIColor redColor]];
+            [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
             [cell.lblTitle setText:@"HepB"];
             [cell.lblDate setText:@"15/04/13"];
-            [cell.lblTitle setFont:[UIFont boldSystemFontOfSize:15]];
-            [cell.lblDate setTextColor:[UIColor redColor]];
+            [cell.lblDate setTextColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
             [cell.lblDose setText:@"Second Dose"];
         }
         else if(indexPath.section == 1)
         {
             if(indexPath == 0)
             {
-                [cell.indicatorView setBackgroundColor:[UIColor redColor]];
+                [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
                 [cell.lblTitle setText:@"Dpat Dose"];
-                [cell.lblTitle setFont:[UIFont boldSystemFontOfSize:15]];
                 [cell.lblDate setText:@"10/09/13"];
-                [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
                 [cell.lblDose setText:@"Third Dose"];
             }
             else
             {
-                [cell.indicatorView setBackgroundColor:[UIColor redColor]];
+                [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
                 [cell.lblTitle setText:@"Polio"];
-                [cell.lblTitle setFont:[UIFont boldSystemFontOfSize:15]];
                 [cell.lblDate setText:@"10/04/13"];
-                [cell.lblDate setTextColor:[UIColor lightGrayColor]];
+                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
                 [cell.lblDose setText:@"Second Dose"];
             }
         }
@@ -240,8 +243,11 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 41)];
     [headerView setBackgroundColor:[UIColor colorWithRed:231.0f/255.0f green:231.0/255.0f blue:235.0f/255.0f alpha:1.0]];
     
-    UILabel *lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, frame.size.width-40, 21)];
+    UILabel *lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, frame.size.width-40, 21)];
     [lblHeader setText:@"Section title"];
+    [lblHeader setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:15]];
+    [lblHeader setTextColor:[UIColor colorWithRed:143.0f/255.0f green:143.0f/255.0f blue:149.0f/255.0f alpha:1.0f]];
+    
     [headerView addSubview:lblHeader];
     
     if (self.segmentImu.selectedSegmentIndex == 0)
