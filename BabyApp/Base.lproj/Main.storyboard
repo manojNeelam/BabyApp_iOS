@@ -599,7 +599,7 @@
                                 <exclude reference="TJy-6p-KIk"/>
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
-                                <exclude reference="200-7a-VQC"/>
+                                <exclude reference="pn5-kM-htF"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
                                 <exclude reference="oH9-Mx-E0N"/>
@@ -614,10 +614,10 @@
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
-                                <exclude reference="pn5-kM-htF"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
+                                <exclude reference="200-7a-VQC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -632,7 +632,7 @@
                                 <include reference="TJy-6p-KIk"/>
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
-                                <include reference="200-7a-VQC"/>
+                                <include reference="pn5-kM-htF"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
                                 <include reference="oH9-Mx-E0N"/>
@@ -647,10 +647,10 @@
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
-                                <include reference="pn5-kM-htF"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
                                 <exclude reference="k41-Qr-NG8"/>
+                                <include reference="200-7a-VQC"/>
                             </mask>
                         </variation>
                     </view>
@@ -8351,10 +8351,10 @@
                                                     </constraints>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zUj-tw-3cj">
-                                                    <rect key="frame" x="533" y="52" width="15" height="15"/>
+                                                    <rect key="frame" x="523" y="47" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="KlR-x9-7O2"/>
-                                                        <constraint firstAttribute="height" constant="15" id="Qeb-2E-pDB"/>
+                                                        <constraint firstAttribute="width" constant="25" id="KlR-x9-7O2"/>
+                                                        <constraint firstAttribute="height" constant="25" id="Qeb-2E-pDB"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -9143,19 +9143,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Small description for this screen Small description for this screen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05K-wP-ijj">
-                                                    <rect key="frame" x="20" y="31" width="220" height="72"/>
+                                                    <rect key="frame" x="20" y="31" width="215" height="72"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="MXJ-bS-233"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ua1-Mw-I4m">
-                                                    <rect key="frame" x="245" y="72" width="55" height="30"/>
+                                                    <rect key="frame" x="240" y="72" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.0" green="0.79607850309999995" blue="0.75686281919999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="55" id="5Wr-yc-6QT"/>
+                                                        <constraint firstAttribute="width" constant="60" id="5Wr-yc-6QT"/>
                                                         <constraint firstAttribute="height" constant="30" id="eIG-XW-HfH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNextLTPro-Demi" family="Avenir Next LT Pro" pointSize="15"/>
