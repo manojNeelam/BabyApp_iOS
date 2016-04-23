@@ -173,6 +173,7 @@
 		D82C28EB1C8F6FDC005798EA /* ScreeningExamination.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28EA1C8F6FDC005798EA /* ScreeningExamination.m */; };
 		D82C28EE1C8F7012005798EA /* ScreeningOutcomeOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28ED1C8F7012005798EA /* ScreeningOutcomeOptions.m */; };
 		D82C28F11C8F7041005798EA /* ScreeningsOutcome.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28F01C8F7041005798EA /* ScreeningsOutcome.m */; };
+		D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */ = {isa = PBXBuildFile; fileRef = D86275D91CCC1D7900BFCF03 /* background_image_plane.png */; };
 		D86EC0531C99EF0E00E3B176 /* MedicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0521C99EF0E00E3B176 /* MedicationCategory.m */; };
 		D86EC0561C99EF4B00E3B176 /* ImmunisationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0551C99EF4B00E3B176 /* ImmunisationType.m */; };
 		D86EC0591C99FD7C00E3B176 /* GrowthSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */; };
@@ -526,6 +527,7 @@
 		D82C28ED1C8F7012005798EA /* ScreeningOutcomeOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningOutcomeOptions.m; sourceTree = "<group>"; };
 		D82C28EF1C8F7041005798EA /* ScreeningsOutcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningsOutcome.h; sourceTree = "<group>"; };
 		D82C28F01C8F7041005798EA /* ScreeningsOutcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningsOutcome.m; sourceTree = "<group>"; };
+		D86275D91CCC1D7900BFCF03 /* background_image_plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_image_plane.png; sourceTree = "<group>"; };
 		D86EC0511C99EF0E00E3B176 /* MedicationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationCategory.h; sourceTree = "<group>"; };
 		D86EC0521C99EF0E00E3B176 /* MedicationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationCategory.m; sourceTree = "<group>"; };
 		D86EC0541C99EF4B00E3B176 /* ImmunisationType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmunisationType.h; sourceTree = "<group>"; };
@@ -927,6 +929,7 @@
 				A10EB63E1C797A46002EBC59 /* signin.png */,
 				A10EB63F1C797A46002EBC59 /* signup.png */,
 				A10EB6381C78C5FE002EBC59 /* blue_background_small.png */,
+				D86275D91CCC1D7900BFCF03 /* background_image_plane.png */,
 				D8C60B1F1CBEDD3B00B74D77 /* background_image.png */,
 				A10EB6391C78C5FE002EBC59 /* blue_line.png */,
 				A10EB6271C78B455002EBC59 /* growth_icon.png */,
@@ -1408,6 +1411,7 @@
 				A10EB6421C797A46002EBC59 /* signin.png in Resources */,
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
+				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
 				D8B138171C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf in Resources */,
 				D8B138061C90CF6F007B412D /* AvenirNextLTPro-Cn.otf in Resources */,
 				A10EB6541C7A35A1002EBC59 /* downarray.png in Resources */,

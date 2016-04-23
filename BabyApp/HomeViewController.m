@@ -71,11 +71,19 @@
     //
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     NSArray *list = [appdelegate listOfChildrens];
+    
+    NSLog(@"calling of load child at home page list=%@",list);
+
     if(list.count)
     {
-        ChildDetailsData *child = [list objectAtIndex:0];
+        ChildDetailsData *child = [list objectAtIndex:2];
         [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+        
+        NSLog(@"child photo url at home page=%@",child.baby_image);
+
         [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+        [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
+        [self.childPic setClipsToBounds:YES];
     }
     else
     {
@@ -85,6 +93,8 @@
 
 -(void)getAllChildrans
 {
+    NSLog(@"calling of getAllChildrans at home page");
+
     NSDictionary *params = @{@"user_id" : USERID};
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
