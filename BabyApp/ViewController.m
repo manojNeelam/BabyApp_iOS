@@ -334,9 +334,7 @@ UIActivityIndicatorView *act1;
                 
                 [self openHomeVC];
             }
-                //
-        
-        
+            //
         //[self getAllChildrans];
         
     }

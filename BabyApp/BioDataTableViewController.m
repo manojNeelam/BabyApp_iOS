@@ -74,8 +74,17 @@
     }
     //[self UIImageToByteArray:userProfilePic]
     //[params setObject:imgStr forKey:@"baby_image"];
-    [params setObject:cell.btnDateOfBirth.titleLabel.text forKey:@"dob"];
-    [params setObject:cell.txtFldName.text forKey:@"name"];
+    if(cell.btnDateOfBirth.titleLabel.text)
+    {
+        [params setObject:cell.btnDateOfBirth.titleLabel.text forKey:@"dob"];
+    }
+    if(cell.txtFldName.text)
+    {
+       [params setObject:cell.txtFldName.text forKey:@"name"];
+    }
+    
+    
+    
     [params setObject:[NSUserDefaults retrieveObjectForKey:USERID] forKey:@"user_id"];
     [params setObject:SAFE_DEF([NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID], @"") forKey:@"child_id"];
     
