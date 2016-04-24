@@ -94,9 +94,12 @@
 
 -(void)getAllChildrans
 {
-    NSLog(@"calling of getAllChildrans at home page");
+    
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    NSDictionary *params = @{@"user_id" : s};
 
-    NSDictionary *params = @{@"user_id" : USERID};
+    NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
+
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 
