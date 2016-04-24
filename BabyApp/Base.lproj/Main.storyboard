@@ -3041,6 +3041,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="screeningSummaryTable" destination="Dn2-Oo-Q1y" id="3nI-nx-d3O"/>
                         <segue destination="0lY-zk-XUx" kind="show" identifier="screeningsummarydetailsegu" id="hvp-u1-0mG"/>
                     </connections>
                 </viewController>

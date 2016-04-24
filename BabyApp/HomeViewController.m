@@ -85,6 +85,7 @@
         [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
         [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
         [self.childPic setClipsToBounds:YES];
+        
     }
     else
     {
@@ -201,7 +202,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    HomeTableViewCell *cell = (HomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+   /* HomeTableViewCell *cell = (HomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     if([cell.subtitleLabel.text isEqualToString:@"No entry yet"])
     {
@@ -212,7 +213,7 @@
 
     }
     else
-    {
+    {*/
     //ImmunisationsVC_SB_ID
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
@@ -234,13 +235,12 @@
         
         [self.navigationController pushViewController:summaryVC animated:YES];
         
-        // [self performSegueWithIdentifier:@"screenpagesegu" sender:self];
     }
     else if(indexPath.row==2)
     {
         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
-    }
+  //  }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

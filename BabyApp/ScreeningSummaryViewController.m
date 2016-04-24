@@ -8,11 +8,13 @@
 
 #import "ScreeningSummaryViewController.h"
 #import "HealthBookletViewController.h"
-
+#import "ConnectionsManager.h"
+#import "KeyConstants.h"
+#import "WSConstant.h"
 #define Period @"period"
 #define DueStatus @"dueStatus"
 
-@interface ScreeningSummaryViewController ()
+@interface ScreeningSummaryViewController ()<ServerResponseDelegate>
 
 - (IBAction)openHealthBook:(id)sender;
 @property (strong, nonatomic) NSArray *screeningSummaryArray;
@@ -20,6 +22,50 @@
 @end
 
 @implementation ScreeningSummaryViewController
+
+-(void)success:(id)response
+{
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {
+        NSDictionary *dataDict = [dict objectForKey:@"data"];
+        self.screeningSummaryArray =[dataDict objectForKey:@"summary"];
+
+        NSLog(@"ScreeningSummaryViewController result self.screeningSummaryArray=%@",self.screeningSummaryArray);
+        if(self.screeningSummaryTable!=nil)
+            NSLog(@"table is not nil");
+        else
+            NSLog(@"table is nil");
+
+        [self.screeningSummaryTable reloadData];
+
+    }
+    else
+    {
+        NSLog(@"ScreeningSummaryViewController result some proble");
+        NSString *messageStr = [dict objectForKey:@"message"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:messageStr delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+
+    }
+
+-(void)failure:(id)response
+{
+    NSLog(@"failure");
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,15 +89,40 @@
                                      },
                                    @{Period     : @"4-6 years",
                                      DueStatus  : @"Set reminder"
+       
                                      }];
+  /*  NSString *str=nil;
+    str=(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CHILD_ID];
     
+    if(str!=nil)
+    {
+        [self loadScreeningData:str];
+    }
+    else
+    {
+        NSLog(@"No Child sorry");
+    }
+    */
        [self.screeningSummaryTable reloadData];
 }
+
+
+-(void)loadScreeningData:(NSString*)childStr
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+
+    [dict setObject:childStr forKey:@"child_id"];
+
+    [[ConnectionsManager sharedManager] getScreeningSummary:dict withdelegate:self];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
  #pragma mark - Navigation
@@ -128,12 +199,20 @@
     UILabel *lblName=[cell.contentView viewWithTag:10];
     UILabel *lblName2=[cell.contentView viewWithTag:20];
 
+    NSLog(@"info=%@",info);
     [lblName setText:[info objectForKey:Period]];
     [lblName2 setText:[info objectForKey:DueStatus]];
     
-    UIButton *btIcon=[cell.contentView viewWithTag:30];
+   // [lblName setText:[info objectForKey:@"title"]];
+    //[lblName2 setText:[info objectForKey:@"due_date"]];
+
     
+    UIButton *btIcon=[cell.contentView viewWithTag:30];
+    if([[info objectForKey:@"status"] intValue]==0)
     [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+    else
+    [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
+    
     return cell;
 }
 

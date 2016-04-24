@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"ScreeningSummaeryDetail");
+    
     self.navigationItem.title =@"Screening Summary";
 
     self.screeningSummaryDetailArray = @[@{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
