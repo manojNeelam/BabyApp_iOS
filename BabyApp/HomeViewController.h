@@ -10,7 +10,7 @@
 #import "SlideNavigationController.h"
 #import "ConnectionsManager.h"
 
-@interface HomeViewController : UIViewController <SlideNavigationControllerDelegate, ServerResponseDelegate>
+@interface HomeViewController : UIViewController <SlideNavigationControllerDelegate, ServerResponseDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *addBioButton;
 

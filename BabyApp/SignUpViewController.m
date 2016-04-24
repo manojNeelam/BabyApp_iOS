@@ -29,11 +29,15 @@ UIActivityIndicatorView *act2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden=NO;
     NSLog(@"SignUpViewController");
     // Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+  //  self.navigationController.navigationBarHidden=NO;
+    [[self.navigationController navigationBar] setHidden:NO];
+}
 -(void)setViewMovedUp:(BOOL)movedUp
 {
     [UIView beginAnimations:nil context:NULL];
@@ -212,4 +216,7 @@ UIActivityIndicatorView *act2;
     [delegate checkValidUser];
 }
 
+- (IBAction)btnCancelClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

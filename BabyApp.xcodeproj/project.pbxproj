@@ -173,11 +173,13 @@
 		D82C28EB1C8F6FDC005798EA /* ScreeningExamination.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28EA1C8F6FDC005798EA /* ScreeningExamination.m */; };
 		D82C28EE1C8F7012005798EA /* ScreeningOutcomeOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28ED1C8F7012005798EA /* ScreeningOutcomeOptions.m */; };
 		D82C28F11C8F7041005798EA /* ScreeningsOutcome.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28F01C8F7041005798EA /* ScreeningsOutcome.m */; };
+		D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */ = {isa = PBXBuildFile; fileRef = D86275D91CCC1D7900BFCF03 /* background_image_plane.png */; };
 		D86EC0531C99EF0E00E3B176 /* MedicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0521C99EF0E00E3B176 /* MedicationCategory.m */; };
 		D86EC0561C99EF4B00E3B176 /* ImmunisationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0551C99EF4B00E3B176 /* ImmunisationType.m */; };
 		D86EC0591C99FD7C00E3B176 /* GrowthSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */; };
 		D87C07971C8788A100C118FC /* menu-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C07961C8788A100C118FC /* menu-button@2x.png */; };
 		D8970FB81C98A6FC009C752B /* EncyclopediaTapScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */; };
+		D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */; };
 		D8AB15B81C8DDAE30062DAFE /* ScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB15B71C8DDAE30062DAFE /* ScreeningViewController.m */; };
 		D8AB15BA1C8DEEF10062DAFE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB15B91C8DEEF10062DAFE /* QuartzCore.framework */; };
 		D8AB15C01C8E1AD80062DAFE /* ScreeningParentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB15BF1C8E1AD80062DAFE /* ScreeningParentalViewController.m */; };
@@ -526,6 +528,7 @@
 		D82C28ED1C8F7012005798EA /* ScreeningOutcomeOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningOutcomeOptions.m; sourceTree = "<group>"; };
 		D82C28EF1C8F7041005798EA /* ScreeningsOutcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningsOutcome.h; sourceTree = "<group>"; };
 		D82C28F01C8F7041005798EA /* ScreeningsOutcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningsOutcome.m; sourceTree = "<group>"; };
+		D86275D91CCC1D7900BFCF03 /* background_image_plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_image_plane.png; sourceTree = "<group>"; };
 		D86EC0511C99EF0E00E3B176 /* MedicationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationCategory.h; sourceTree = "<group>"; };
 		D86EC0521C99EF0E00E3B176 /* MedicationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationCategory.m; sourceTree = "<group>"; };
 		D86EC0541C99EF4B00E3B176 /* ImmunisationType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmunisationType.h; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 		D87C07961C8788A100C118FC /* menu-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button@2x.png"; sourceTree = "<group>"; };
 		D8970FB61C98A6FC009C752B /* EncyclopediaTapScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncyclopediaTapScroller.h; sourceTree = "<group>"; };
 		D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncyclopediaTapScroller.m; sourceTree = "<group>"; };
+		D8A7C4B11CCCB3C5005B09B5 /* AppConstent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstent.h; sourceTree = "<group>"; };
+		D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstent.m; sourceTree = "<group>"; };
 		D8AB15B61C8DDAE30062DAFE /* ScreeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningViewController.h; sourceTree = "<group>"; };
 		D8AB15B71C8DDAE30062DAFE /* ScreeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningViewController.m; sourceTree = "<group>"; };
 		D8AB15B91C8DEEF10062DAFE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -927,6 +932,7 @@
 				A10EB63E1C797A46002EBC59 /* signin.png */,
 				A10EB63F1C797A46002EBC59 /* signup.png */,
 				A10EB6381C78C5FE002EBC59 /* blue_background_small.png */,
+				D86275D91CCC1D7900BFCF03 /* background_image_plane.png */,
 				D8C60B1F1CBEDD3B00B74D77 /* background_image.png */,
 				A10EB6391C78C5FE002EBC59 /* blue_line.png */,
 				A10EB6271C78B455002EBC59 /* growth_icon.png */,
@@ -991,6 +997,8 @@
 				A10EB6141C786F83002EBC59 /* Slide Supporters */,
 				A10EB6041C786BBF002EBC59 /* HomeViewController.h */,
 				A10EB6051C786BBF002EBC59 /* HomeViewController.m */,
+				D8A7C4B11CCCB3C5005B09B5 /* AppConstent.h */,
+				D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */,
 				A10EB6061C786BBF002EBC59 /* LeftMenuViewController.h */,
 				A10EB6071C786BBF002EBC59 /* LeftMenuViewController.m */,
 				A10EB62F1C78BC3B002EBC59 /* BioDataTableViewController.h */,
@@ -1408,6 +1416,7 @@
 				A10EB6421C797A46002EBC59 /* signin.png in Resources */,
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
+				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
 				D8B138171C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf in Resources */,
 				D8B138061C90CF6F007B412D /* AvenirNextLTPro-Cn.otf in Resources */,
 				A10EB6541C7A35A1002EBC59 /* downarray.png in Resources */,
@@ -1550,6 +1559,7 @@
 				A10EB5F91C786B9A002EBC59 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */,
 				A10EB6371C78BD83002EBC59 /* ProfilePicTableViewCell.m in Sources */,
+				D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */,
 				90F165931CB5A3BD006B5DD6 /* NewImmunisationVC.m in Sources */,
 				A1EAD2D41CA98CED008D2B37 /* ImmunationsBlueTableViewCell.m in Sources */,
 				90FC54631CB1A83400ED0E34 /* CommonSelectionListVC.m in Sources */,
