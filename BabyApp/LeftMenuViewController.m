@@ -345,7 +345,10 @@
 
 -(void)getAllChildrans
 {
-    NSDictionary *params = @{@"user_id" : USERID};
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    NSDictionary *params = @{@"user_id" : s};
+    
+   // NSDictionary *params = @{@"user_id" : USERID};
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 
