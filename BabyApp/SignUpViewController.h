@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 - (IBAction)createAccount:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
+- (IBAction)btnCancelClicked:(id)sender;
 
 @end

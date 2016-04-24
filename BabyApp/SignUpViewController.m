@@ -216,4 +216,7 @@ UIActivityIndicatorView *act2;
     [delegate checkValidUser];
 }
 
+- (IBAction)btnCancelClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

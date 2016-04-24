@@ -529,6 +529,8 @@ UIActivityIndicatorView *act1;
 - (IBAction)signupAction:(id)sender {
     
     NSLog(@"signupAction");
+    
+    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

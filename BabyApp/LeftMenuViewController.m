@@ -207,14 +207,14 @@
     
     UIViewController *vc ;
     
-    if ( indexPath.section==0) {
+    if (indexPath.section == 0) {
         
         if (indexPath.row==0 ) {
             
             
             if (dropdownSelected) {
                 dropdownSelected=NO;
-                noofSections=4;
+                noofSections=3;
             }
             else
             {
@@ -226,7 +226,7 @@
         else
         {
             dropdownSelected=NO;
-            noofSections=4;
+            noofSections=3;
             [self.tableView reloadData];
             
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
@@ -331,7 +331,7 @@
 - (IBAction)kidDropdownAction:(id)sender {
     if (dropdownSelected) {
         dropdownSelected=NO;
-        noofSections=4;
+        noofSections=3;
     }
     else
     {
