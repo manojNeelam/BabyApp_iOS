@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtFldDateOAE;
 
 @property (weak, nonatomic) IBOutlet UIView *baseLeftPassView;
-@property (weak, nonatomic) IBOutlet UILabel *txtFldLeftPass;
+@property (weak, nonatomic) IBOutlet UITextField *txtFldLeftPass;
 
 
 @property (weak, nonatomic) IBOutlet UIView *baseRightPassView;

@@ -9,6 +9,8 @@
 #import "ParticularsOfParentsVC.h"
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
 
 @interface ParticularsOfParentsVC () <ServerResponseDelegate>
 {
@@ -22,10 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.txtFldFatherTelHp setText:@"165413"];
-    [self.txtFldFatherTelOff setText:@"16556413"];
-    [self.txtFldFatherTelRes setText:@"165453513"];
-    [self.txtFldFatherOccupation setText:@"software de"];
+    //    [self.txtFldFatherTelHp setText:@"165413"];
+    //    [self.txtFldFatherTelOff setText:@"16556413"];
+    //    [self.txtFldFatherTelRes setText:@"165453513"];
+    //    [self.txtFldFatherOccupation setText:@"software de"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -46,7 +48,7 @@
     if([self isValidData])
     {
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        [params setObject:@"10" forKey:@"child_id"];
+        [params setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
         [params setObject:self.txtFldName.text forKey:@"mother_name"];
         [params setObject:self.txtFldPassportNo.text forKey:@"mother_passport_no"];
         [params setObject:self.txtFldOccupation.text forKey:@"mother_occupation"];
@@ -72,16 +74,26 @@
     }
 }
 
+-(NSNumber *)numfromString:(NSString *)aStr
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:aStr];
+    
+    return myNumber;
+    
+}
+
 -(void)loadBioData
 {
-    NSNumber *childID = [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    ///if(childID && childID != nil)
-    // {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"10" forKey:@"child_id"];
-    
-    [[ConnectionsManager sharedManager] readParticular:dict withdelegate:self];
-    //}
+    NSNumber *childID = [self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]];
+    if(childID && childID != nil)
+    {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:childID forKey:@"child_id"];
+        
+        [[ConnectionsManager sharedManager] readParticular:dict withdelegate:self];
+    }
 }
 
 

@@ -13,6 +13,9 @@
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
 
+#import "WSConstant.h"
+#import "NSUserDefaults+Helpers.h"
+
 @interface NewbornScreeningVC () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate>
 {
     UITapGestureRecognizer *DeficiencyTapGesture, *dateTSHTapGesture, *IEMTapGesture, *DateIEMTapGesture, *OAETapGesture, *DateOAETapGesture, *LeftTapGesture, *RightTapGesture, *evaluationTapGesture;
@@ -32,6 +35,8 @@
 {
     [super viewDidLoad];
     [self addTapGestures];
+    
+    [self loadData];
 }
 
 -(void)addTapGestures
@@ -236,20 +241,29 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadData];
     
 }
 
 -(void)loadData
 {
-    NSNumber *childID = [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    ///if(childID && childID != nil)
-    // {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"10" forKey:@"child_id"];
+    NSNumber *childID = [self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]];
+    if(childID && childID != nil)
+    {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:childID forKey:@"child_id"];
+        
+        [[ConnectionsManager sharedManager] readnewborn_screening:dict withdelegate:self];
+    }
+}
+
+-(NSNumber *)numfromString:(NSString *)aStr
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:aStr];
     
-    [[ConnectionsManager sharedManager] readnewborn_screening:dict withdelegate:self];
-    //}
+    return myNumber;
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -278,12 +292,12 @@
         [params setObject:self.txtFldIEMScreeming.text forKey:@"iem_screening_done"];
         [params setObject:self.txtFldDateIEMScreeming.text forKey:@"date_iem_screening"];
         [params setObject:self.txtFldOAE.text forKey:@"qae_abaer"];
-        
-        [params setObject:self.txtFldTF4Date.text forKey:@"date"];
+        [params setObject:self.txtFldTF4Date.text forKey:@"date_tsh_ft4"];
+        [params setObject:self.txtFldDateOAE.text forKey:@"date"];
         [params setObject:self.txtFldLeftPass.text forKey:@"left_pass"];
         [params setObject:self.txtFldBaseRight.text forKey:@"right_pass"];
         [params setObject:self.txtFldNeedFurthur.text forKey:@"needs_further_evaluation"];
-        [params setObject:[NSNumber numberWithInt:10] forKey:@"child_id"];
+        [params setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
         
         if(isUpdate)
         {
@@ -406,7 +420,7 @@
         isUpdate = YES;
         
         
-        [self.txtFldDateOAE setText:[dataDict objectForKey:@"g6fd_deficiency"]];
+        [self.txtFldG6PD setText:[dataDict objectForKey:@"g6pd_deficiency"]];
         [self.txtFldTSH setText:[dataDict objectForKey:@"tsh"]];
         [self.txtFldTF4 setText:[dataDict objectForKey:@"ft4"]];
         

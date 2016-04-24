@@ -13,6 +13,9 @@
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
 
+#import "WSConstant.h"
+#import "NSUserDefaults+Helpers.h"
+
 @interface BirthRecordTableViewController () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate>
 {
     NSArray *identifierNames;
@@ -35,6 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.txtFldWeightAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
+    [self.txtFldLengthAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
+    [self.txtFldHeadCircunference setKeyboardType:UIKeyboardTypeNumberPad];
+    
     self.maxDurationView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.maxDurationView.layer.borderWidth = 1.0f;
     
@@ -55,7 +62,7 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 20)];
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 60)];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -74,7 +81,7 @@
 -(void)loadData
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInt:10] forKey:@"child_id"];
+    [dict setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
     
     [[ConnectionsManager sharedManager] readBirthRecord:dict withdelegate:self];
 }
@@ -249,11 +256,15 @@
         [dict setObject:self.txtFldModeofDelivery.text forKey:@"mode_of_delivery"];
         [dict setObject:self.lblMinDuration.text forKey:@"apgar_score1"];
         [dict setObject:self.lblMaxDuration.text forKey:@"apgar_score2"];
-        [dict setObject:self.txtFldWeightAtBirth.text forKey:@"weight_at_birth"];
-        [dict setObject:self.txtFldLengthAtBirth.text forKey:@"length_at_birth"];
-        [dict setObject:self.txtFldHeadCircunference.text forKey:@"head_circumference"];
         
-        [dict setObject:@"10" forKey:@"child_id"];
+        
+        [dict setObject:[self numfromString:self.txtFldWeightAtBirth.text] forKey:@"weight_at_birth"];
+        [dict setObject:[self numfromString:self.txtFldLengthAtBirth.text] forKey:@"length_at_birth"];
+        [dict setObject:[self numfromString:self.txtFldHeadCircunference.text] forKey:@"head_circumference"];
+        
+        
+        
+        [dict setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
         [dict setObject:selectedBioData.name forKey:@"name"];
         [dict setObject:selectedBioData.dob forKey:@"dob"];
         
@@ -266,6 +277,16 @@
             [[ConnectionsManager sharedManager] addBirthRecord:dict withdelegate:self];
         }
     }
+}
+
+-(NSNumber *)numfromString:(NSString *)aStr
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:aStr];
+    
+    return myNumber;
+    
 }
 
 -(BOOL)isValidData
