@@ -299,6 +299,9 @@ UIActivityIndicatorView *act1;
         NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
         
         [NSUserDefaults saveObject:userId forKey:USERID];
+        NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
+        NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
+        
         [self getAllChildrans];
         
     }
@@ -313,7 +316,10 @@ UIActivityIndicatorView *act1;
 
 -(void)getAllChildrans
 {
-    NSDictionary *params = @{@"user_id" : USERID};
+   // NSDictionary *params = @{@"user_id" : USERID};
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    NSDictionary *params = @{@"user_id" : s};
+
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 
