@@ -299,10 +299,45 @@ UIActivityIndicatorView *act1;
         NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
         
         [NSUserDefaults saveObject:userId forKey:USERID];
-        NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
-        NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
+       // NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
+       // NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
         
-        [self getAllChildrans];
+        
+        //
+        
+        //            children
+        NSArray *childrenList = json[@"data"][@"children"];
+            if(childrenList.count)
+            {
+                NSMutableArray *temp = [NSMutableArray array];
+                
+                for(NSDictionary *dict in childrenList)
+                {
+                    ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
+                    [temp addObject:child];
+                }
+                
+                NSArray *childHolder = temp;
+                
+                AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+                [appdelegate setListOfChildrens:childHolder];
+                
+                [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+                
+                
+                [self openHomeVC];
+            }
+            else
+            {
+                [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+                [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+                
+                [self openHomeVC];
+            }
+                //
+        
+        
+        //[self getAllChildrans];
         
     }
     else
@@ -566,6 +601,7 @@ UIActivityIndicatorView *act1;
     {
         params = response;
     }
+    
     
     id statusStr_ = [params objectForKey:@"status"];
     NSString *statusStr;
