@@ -11,6 +11,7 @@
 #import "DrugAlergyListVC.h"
 #import "MedicalConditionVC.h"
 #import "PercentialViewController.h"
+#import "DevelopmetalScreenViewController.h"
 @interface HealthBookletViewController ()
 {
     float width;
@@ -527,6 +528,8 @@
    /* UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildDevelopementalViewController"];
     [self.navigationController pushViewController:dummyVC animated:YES];*/
     
+    DevelopmetalScreenViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DevelopmetalScreenViewController"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
     
     
     
