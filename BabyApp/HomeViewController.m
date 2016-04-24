@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "UIImageView+JMImageCache.h"
 #import "ChildDetailsData.h"
+#import "AppConstent.h"
 
 @implementation HomeViewController
 {
@@ -76,7 +77,7 @@
 
     if(list.count)
     {
-        ChildDetailsData *child = [list objectAtIndex:2];
+        ChildDetailsData *child = [list objectAtIndex:0];
         [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
         
         NSLog(@"child photo url at home page=%@",child.baby_image);
@@ -182,17 +183,36 @@
     cell.imageViewContent.image=[UIImage imageNamed:imagesNames[indexPath.row]];
     cell.titleLabel.text=titlesArray[indexPath.row];
     cell.titleLabel.textColor=[ self colorWithHexString:colorArray[indexPath.row]];
+    
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSArray *list = [appdelegate listOfChildrens];
+   if(list.count<1)
     cell.subtitleLabel.text=@"No entry yet";
+    else
+    cell.subtitleLabel.text=@"Click Here to Show Detail";
+
     cell.subtitleLabel.textColor=[UIColor grayColor];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    HomeTableViewCell *cell = (HomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    if([cell.subtitleLabel.text isEqualToString:@"No entry yet"])
+    {
+        
+        UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOENTRYTITLE message:(NSString*)NOENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+        [alt show];
+        
+
+    }
+    else
+    {
     //ImmunisationsVC_SB_ID
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
-    
     
     if(indexPath.row==0)
     {
@@ -217,8 +237,29 @@
     {
         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
+    }
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+   
+    NSLog(@"alert view clicked with MESSAGE=%@ at index=%ld",[alertView message],(long)buttonIndex);
+    
+    if([[alertView message] isEqualToString:NOENTRYMESSAGE])
+    {
+        if(buttonIndex==0)
+        {
+            [NSUserDefaults saveBool:NO forKey:IS_FROM_SIGNUP];
+            [self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+        }
+        else
+        {
+            NSLog(@"Cancel clicked");
+        }
+    }
+    
     
 }
+
 #pragma mark - IBActions -
 
 -(void)success:(id)response

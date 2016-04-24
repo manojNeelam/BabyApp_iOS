@@ -179,6 +179,7 @@
 		D86EC0591C99FD7C00E3B176 /* GrowthSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */; };
 		D87C07971C8788A100C118FC /* menu-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C07961C8788A100C118FC /* menu-button@2x.png */; };
 		D8970FB81C98A6FC009C752B /* EncyclopediaTapScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */; };
+		D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */; };
 		D8AB15B81C8DDAE30062DAFE /* ScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB15B71C8DDAE30062DAFE /* ScreeningViewController.m */; };
 		D8AB15BA1C8DEEF10062DAFE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB15B91C8DEEF10062DAFE /* QuartzCore.framework */; };
 		D8AB15C01C8E1AD80062DAFE /* ScreeningParentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB15BF1C8E1AD80062DAFE /* ScreeningParentalViewController.m */; };
@@ -537,6 +538,8 @@
 		D87C07961C8788A100C118FC /* menu-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button@2x.png"; sourceTree = "<group>"; };
 		D8970FB61C98A6FC009C752B /* EncyclopediaTapScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncyclopediaTapScroller.h; sourceTree = "<group>"; };
 		D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncyclopediaTapScroller.m; sourceTree = "<group>"; };
+		D8A7C4B11CCCB3C5005B09B5 /* AppConstent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstent.h; sourceTree = "<group>"; };
+		D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstent.m; sourceTree = "<group>"; };
 		D8AB15B61C8DDAE30062DAFE /* ScreeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningViewController.h; sourceTree = "<group>"; };
 		D8AB15B71C8DDAE30062DAFE /* ScreeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningViewController.m; sourceTree = "<group>"; };
 		D8AB15B91C8DEEF10062DAFE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -994,6 +997,8 @@
 				A10EB6141C786F83002EBC59 /* Slide Supporters */,
 				A10EB6041C786BBF002EBC59 /* HomeViewController.h */,
 				A10EB6051C786BBF002EBC59 /* HomeViewController.m */,
+				D8A7C4B11CCCB3C5005B09B5 /* AppConstent.h */,
+				D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */,
 				A10EB6061C786BBF002EBC59 /* LeftMenuViewController.h */,
 				A10EB6071C786BBF002EBC59 /* LeftMenuViewController.m */,
 				A10EB62F1C78BC3B002EBC59 /* BioDataTableViewController.h */,
@@ -1554,6 +1559,7 @@
 				A10EB5F91C786B9A002EBC59 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */,
 				A10EB6371C78BD83002EBC59 /* ProfilePicTableViewCell.m in Sources */,
+				D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */,
 				90F165931CB5A3BD006B5DD6 /* NewImmunisationVC.m in Sources */,
 				A1EAD2D41CA98CED008D2B37 /* ImmunationsBlueTableViewCell.m in Sources */,
 				90FC54631CB1A83400ED0E34 /* CommonSelectionListVC.m in Sources */,
