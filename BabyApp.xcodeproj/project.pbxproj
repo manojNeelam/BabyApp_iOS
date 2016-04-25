@@ -189,6 +189,8 @@
 		D86EC0561C99EF4B00E3B176 /* ImmunisationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0551C99EF4B00E3B176 /* ImmunisationType.m */; };
 		D86EC0591C99FD7C00E3B176 /* GrowthSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */; };
 		D8750D041CCDD94100821BCF /* OralHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750D031CCDD94100821BCF /* OralHealth.m */; };
+		D8750D061CCDDC7100821BCF /* Oral health.png in Resources */ = {isa = PBXBuildFile; fileRef = D8750D051CCDDC7100821BCF /* Oral health.png */; };
+		D8750D081CCDDF9300821BCF /* visualcheck.png in Resources */ = {isa = PBXBuildFile; fileRef = D8750D071CCDDF9300821BCF /* visualcheck.png */; };
 		D87C07971C8788A100C118FC /* menu-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C07961C8788A100C118FC /* menu-button@2x.png */; };
 		D8970FB81C98A6FC009C752B /* EncyclopediaTapScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */; };
 		D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7C4B21CCCB3C5005B09B5 /* AppConstent.m */; };
@@ -562,6 +564,8 @@
 		D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowthSummary.m; sourceTree = "<group>"; };
 		D8750D021CCDD94100821BCF /* OralHealth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OralHealth.h; sourceTree = "<group>"; };
 		D8750D031CCDD94100821BCF /* OralHealth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OralHealth.m; sourceTree = "<group>"; };
+		D8750D051CCDDC7100821BCF /* Oral health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oral health.png"; sourceTree = "<group>"; };
+		D8750D071CCDDF9300821BCF /* visualcheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visualcheck.png; sourceTree = "<group>"; };
 		D87C07961C8788A100C118FC /* menu-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button@2x.png"; sourceTree = "<group>"; };
 		D8970FB61C98A6FC009C752B /* EncyclopediaTapScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncyclopediaTapScroller.h; sourceTree = "<group>"; };
 		D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncyclopediaTapScroller.m; sourceTree = "<group>"; };
@@ -941,6 +945,8 @@
 		A10EB62B1C78B4A9002EBC59 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D8750D071CCDDF9300821BCF /* visualcheck.png */,
+				D8750D051CCDDC7100821BCF /* Oral health.png */,
 				6C9A600C1CCDD56800BF8E25 /* e1.png */,
 				6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */,
 				6C9A5FFB1CCDD40700BF8E25 /* Encyclopedianew.png */,
@@ -1483,6 +1489,7 @@
 				D8B138041C90CF6F007B412D /* AvenirNextLTPro-BoldCn.otf in Resources */,
 				A1C384CF1CC21E940085C812 /* hb_oral.png in Resources */,
 				A10EB6521C7A3599002EBC59 /* right_arrow.png in Resources */,
+				D8750D081CCDDF9300821BCF /* visualcheck.png in Resources */,
 				A1C384D81CC220AC0085C812 /* hb_medical_option.png in Resources */,
 				D8B138081C90CF6F007B412D /* AvenirNextLTPro-Demi.otf in Resources */,
 				A10EB6501C7A264C002EBC59 /* pic.png in Resources */,
@@ -1511,6 +1518,7 @@
 				6C9A60041CCDD40700BF8E25 /* myGrowth.png in Resources */,
 				A10EB6431C797A46002EBC59 /* signup.png in Resources */,
 				6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */,
+				D8750D061CCDDC7100821BCF /* Oral health.png in Resources */,
 				A10EB6461C79D394002EBC59 /* lock.png in Resources */,
 				A10EB6571C7B7701002EBC59 /* Encyclopedia.png in Resources */,
 			);

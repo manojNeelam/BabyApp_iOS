@@ -17,6 +17,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // _bhImage.image=[UIImage imageNamed:@"Oral health.png"];
+    
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"forOral"])
+    {
+        _bhImage.image=[UIImage imageNamed:@"Oral health.png"];
+        self.navigationItem.title = @"ORAL HEALTH";
+ 
+    }
+    else
+        {
+            _bhImage.image=[UIImage imageNamed:@"visualcheck.png"];
+        self.navigationItem.title = @"ORAL HEALTH";
+
+       }
+
+    
+    
+    
+    [_bhImage setContentMode:UIViewContentModeScaleAspectFit];
+    [_bhImage setClipsToBounds:YES];
+    
+    
     // Do any additional setup after loading the view.
 }
 
