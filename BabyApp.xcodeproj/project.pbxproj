@@ -1828,7 +1828,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Infinity.BabyApp.BabyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7560674a-04df-447a-add2-cface8beea77";
+				PROVISIONING_PROFILE = "f5f36928-55d6-4316-a87c-719e81bd3198";
 			};
 			name = Debug;
 		};
@@ -1850,7 +1850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Infinity.BabyApp.BabyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7560674a-04df-447a-add2-cface8beea77";
+				PROVISIONING_PROFILE = "f5f36928-55d6-4316-a87c-719e81bd3198";
 			};
 			name = Release;
 		};
