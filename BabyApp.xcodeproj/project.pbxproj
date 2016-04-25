@@ -11,6 +11,15 @@
 		5228659F1CBF62900025F8C7 /* ConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5228659E1CBF62900025F8C7 /* ConditionViewController.m */; };
 		6C92336A1CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9233691CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m */; };
 		6C92336D1CCCFB7900ECC9E6 /* DevelopmentalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C92336C1CCCFB7900ECC9E6 /* DevelopmentalCell.m */; };
+		6C9A60031CCDD40700BF8E25 /* Encyclopedianew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFB1CCDD40700BF8E25 /* Encyclopedianew.png */; };
+		6C9A60041CCDD40700BF8E25 /* myGrowth.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFC1CCDD40700BF8E25 /* myGrowth.png */; };
+		6C9A60051CCDD40700BF8E25 /* myImmunisattion.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFD1CCDD40700BF8E25 /* myImmunisattion.png */; };
+		6C9A60061CCDD40700BF8E25 /* myScreening.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFE1CCDD40700BF8E25 /* myScreening.png */; };
+		6C9A60071CCDD40700BF8E25 /* newScreening.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFF1CCDD40700BF8E25 /* newScreening.png */; };
+		6C9A60081CCDD40700BF8E25 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A60001CCDD40700BF8E25 /* settings.png */; };
+		6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A60011CCDD40700BF8E25 /* Signout.png */; };
+		6C9A600B1CCDD43F00BF8E25 /* healthBookletnew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */; };
+		6C9A600D1CCDD56800BF8E25 /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600C1CCDD56800BF8E25 /* e1.png */; };
 		8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */; };
 		8C8ABC4D1CC50A71003B3CC8 /* ScreeningSummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8ABC4C1CC50A71003B3CC8 /* ScreeningSummaryData.m */; };
 		90000F501CB3521500BC9BFC /* AddAllergyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90000F4F1CB3521500BC9BFC /* AddAllergyVC.m */; };
@@ -245,6 +254,15 @@
 		6C9233691CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevelopmetalScreenViewController.m; sourceTree = "<group>"; };
 		6C92336B1CCCFB7900ECC9E6 /* DevelopmentalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevelopmentalCell.h; sourceTree = "<group>"; };
 		6C92336C1CCCFB7900ECC9E6 /* DevelopmentalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevelopmentalCell.m; sourceTree = "<group>"; };
+		6C9A5FFB1CCDD40700BF8E25 /* Encyclopedianew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Encyclopedianew.png; sourceTree = "<group>"; };
+		6C9A5FFC1CCDD40700BF8E25 /* myGrowth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myGrowth.png; sourceTree = "<group>"; };
+		6C9A5FFD1CCDD40700BF8E25 /* myImmunisattion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myImmunisattion.png; sourceTree = "<group>"; };
+		6C9A5FFE1CCDD40700BF8E25 /* myScreening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myScreening.png; sourceTree = "<group>"; };
+		6C9A5FFF1CCDD40700BF8E25 /* newScreening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newScreening.png; sourceTree = "<group>"; };
+		6C9A60001CCDD40700BF8E25 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		6C9A60011CCDD40700BF8E25 /* Signout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Signout.png; sourceTree = "<group>"; };
+		6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthBookletnew.png; sourceTree = "<group>"; };
+		6C9A600C1CCDD56800BF8E25 /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
 		8C4957B81CC0FC1400C66B13 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8C8ABC4B1CC50A71003B3CC8 /* ScreeningSummaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningSummaryData.h; sourceTree = "<group>"; };
@@ -920,6 +938,15 @@
 		A10EB62B1C78B4A9002EBC59 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6C9A600C1CCDD56800BF8E25 /* e1.png */,
+				6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */,
+				6C9A5FFB1CCDD40700BF8E25 /* Encyclopedianew.png */,
+				6C9A5FFC1CCDD40700BF8E25 /* myGrowth.png */,
+				6C9A5FFD1CCDD40700BF8E25 /* myImmunisattion.png */,
+				6C9A5FFE1CCDD40700BF8E25 /* myScreening.png */,
+				6C9A5FFF1CCDD40700BF8E25 /* newScreening.png */,
+				6C9A60001CCDD40700BF8E25 /* settings.png */,
+				6C9A60011CCDD40700BF8E25 /* Signout.png */,
 				A1EAD2E41CB57669008D2B37 /* home_kid.png */,
 				A1EAD2CC1CA98235008D2B37 /* teeth.png */,
 				A1EAD2C11CA90855008D2B37 /* back.png */,
@@ -1404,15 +1431,19 @@
 				A10EB6401C797A46002EBC59 /* fbsignin.png in Resources */,
 				A13FC7F91C7748AC00362A32 /* LaunchScreen.storyboard in Resources */,
 				A1C384D61CC220AC0085C812 /* hb_Alergy_back.png in Resources */,
+				6C9A60031CCDD40700BF8E25 /* Encyclopedianew.png in Resources */,
 				A1EAD2C21CA90855008D2B37 /* back.png in Resources */,
 				A10EB63A1C78C5FE002EBC59 /* blue_background_small.png in Resources */,
 				A10EB6491C79D69F002EBC59 /* button_bg.png in Resources */,
+				6C9A600B1CCDD43F00BF8E25 /* healthBookletnew.png in Resources */,
 				90FC54451CB1A7E300ED0E34 /* Readme.txt in Resources */,
 				D8AB15C81C8E375B0062DAFE /* stop_watch_time.png in Resources */,
 				D8B138141C90CF6F007B412D /* Helvetica-Neue-LT.ttf in Resources */,
+				6C9A60071CCDD40700BF8E25 /* newScreening.png in Resources */,
 				A1C384D01CC21E940085C812 /* hb_percentiles.png in Resources */,
 				A1C384CE1CC21E940085C812 /* hb_immunisation.png in Resources */,
 				A10EB6471C79D394002EBC59 /* mail.png in Resources */,
+				6C9A600D1CCDD56800BF8E25 /* e1.png in Resources */,
 				A10EB6411C797A46002EBC59 /* forgetPassword.png in Resources */,
 				A1C384C81CC21D8E0085C812 /* centerImage.png in Resources */,
 				D8B1380A1C90CF6F007B412D /* AvenirNextLTPro-DemiCnIt.otf in Resources */,
@@ -1427,12 +1458,15 @@
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
 				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
+				6C9A60051CCDD40700BF8E25 /* myImmunisattion.png in Resources */,
 				D8B138171C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf in Resources */,
 				D8B138061C90CF6F007B412D /* AvenirNextLTPro-Cn.otf in Resources */,
+				6C9A60061CCDD40700BF8E25 /* myScreening.png in Resources */,
 				A10EB6541C7A35A1002EBC59 /* downarray.png in Resources */,
 				D8B138071C90CF6F007B412D /* AvenirNextLTPro-CnIt.otf in Resources */,
 				A10EB64E1C7A21FE002EBC59 /* down_arrow.png in Resources */,
 				D8B138031C90CF6F007B412D /* AvenirNextLTPro-Bold.otf in Resources */,
+				6C9A60081CCDD40700BF8E25 /* settings.png in Resources */,
 				D8B138121C90CF6F007B412D /* AvenirNextLTPro-UltLtCn.otf in Resources */,
 				D8B138111C90CF6F007B412D /* AvenirNextLTPro-Regular.otf in Resources */,
 				A1C384D71CC220AC0085C812 /* hb_Alergy_option.png in Resources */,
@@ -1469,7 +1503,9 @@
 				D8B138151C90CF6F007B412D /* HelveticaNeueCyr-Light.otf in Resources */,
 				D8B138161C90CF6F007B412D /* HelveticaNeueCyr-Roman.otf in Resources */,
 				A10EB6261C78B3B8002EBC59 /* needle_icon.png in Resources */,
+				6C9A60041CCDD40700BF8E25 /* myGrowth.png in Resources */,
 				A10EB6431C797A46002EBC59 /* signup.png in Resources */,
+				6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */,
 				A10EB6461C79D394002EBC59 /* lock.png in Resources */,
 				A10EB6571C7B7701002EBC59 /* Encyclopedia.png in Resources */,
 			);

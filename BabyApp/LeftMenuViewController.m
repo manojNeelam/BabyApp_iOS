@@ -173,10 +173,10 @@
                 
                 cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 cell1.babyNameLabel.text=@"Charan Giri";
-                cell1.babyPic.image = [UIImage imageNamed:@"e1.jpg"];
-                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
-                cell1.babyPic.layer.masksToBounds = YES;
-                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
+                cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
+//                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+//                cell1.babyPic.layer.masksToBounds = YES;
+//                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
                 return cell1;
                 break;
                 
