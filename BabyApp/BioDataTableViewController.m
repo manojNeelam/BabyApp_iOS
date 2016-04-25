@@ -195,7 +195,9 @@
         }
         else
         {
-            [cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
+            
+            cell.userProflePic.image = [UIImage imageNamed:@"pic.png"];
+            //[cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
         }
         return cell;
     }
@@ -325,6 +327,7 @@
         userName = [datDict objectForKey:@"name"];
         dob = [datDict objectForKey:@"dob"];
         bioDataObj.userProfile = [datDict objectForKey:@"baby_image"];
+    
         bioDataObj.name = userName;
         bioDataObj.dob = dob;
         
