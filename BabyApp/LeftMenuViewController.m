@@ -45,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    noofSections=3;
+    noofSections=4;
     dropdownSelected=NO;
     //@"Baby Booklet"
     section1Array=[NSArray arrayWithObjects:@"New Immunisation",@"New Screening", nil];
@@ -85,7 +85,7 @@
             sectionName = @"";
             break;
         case 2:
-            sectionName = @"";
+            sectionName = @"MAIN MENU";
             break;
             
         case 3:
@@ -117,8 +117,11 @@
             case 1:
                 return section1Array.count;
                 break;
-                
             case 2:
+                return section2Array.count;
+                break;
+                
+            case 3:
                 return section3Array.count;
                 break;
                 
@@ -170,18 +173,67 @@
                 
                 cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 cell1.babyNameLabel.text=@"Charan Giri";
+                cell1.babyPic.image = [UIImage imageNamed:@"e1.jpg"];
+                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+                cell1.babyPic.layer.masksToBounds = YES;
+                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
                 return cell1;
                 break;
                 
             case 1:
                 cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
                 cell2.contentNameLabel.text = section1Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"newScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 1) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"newScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                return cell2;
+                break;
+            
+            case 2:
+                cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
+                cell2.contentNameLabel.text = section2Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myImmunisattion.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 1) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 2) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myGrowth.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 3) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 4) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Encyclopedianew.png"] forState:UIControlStateNormal];
+                    
+                }
+                
+                
                 return cell2;
                 break;
                 
-            case 2:
+            case 3:
                 cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
                 cell2.contentNameLabel.text = section3Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+                   
+                }
+                else
+                {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Signout.png"] forState:UIControlStateNormal];
+
+                }
                 return cell2;
                 break;
                 
@@ -214,7 +266,7 @@
             
             if (dropdownSelected) {
                 dropdownSelected=NO;
-                noofSections=3;
+                noofSections=4;
             }
             else
             {
@@ -226,7 +278,7 @@
         else
         {
             dropdownSelected=NO;
-            noofSections=3;
+            noofSections=4;
             [self.tableView reloadData];
             
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
@@ -264,7 +316,7 @@
             }
         }
         
-        /*  else if (indexPath.section==2) {
+          else if (indexPath.section==2) {
          
          
          switch (indexPath.row)
@@ -288,8 +340,8 @@
          vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
          break;
          }
-         }*/
-        else
+         }
+         else if (indexPath.section==3)
         {
             if (indexPath.row==0) {
                 vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SettingsViewController_SB_ID"];
@@ -331,7 +383,7 @@
 - (IBAction)kidDropdownAction:(id)sender {
     if (dropdownSelected) {
         dropdownSelected=NO;
-        noofSections=3;
+        noofSections=4;
     }
     else
     {
