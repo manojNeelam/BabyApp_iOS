@@ -24,6 +24,11 @@
     UIButton *txtDate;
     CustomIOS7AlertView *dateAlertView;
     UIDatePicker *datePicker;
+    UILabel *lblHeading;
+    UITextField *txtAge,*txtCare;
+    
+    NSArray *labelArray;
+
     
     NSArray *screeningSummaryList;
 }
@@ -31,7 +36,6 @@
 
 @implementation ScreeningViewController
 @synthesize screeningTable;
-NSArray *labelArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,7 +54,7 @@ NSArray *labelArray;
     allChildDevList = [NSMutableArray array];
     
     
-    [self loadData];
+   // [self loadData];
     
     NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
     [titleBarAttributes setValue:[UIFont boldSystemFontOfSize:20] forKey:UITextAttributeFont];
@@ -61,7 +65,7 @@ NSArray *labelArray;
     [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
     [self.view addSubview:v];
     
-    UILabel *lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(30,10, v.frame.size.width-60, 30)];
+    lblHeading=[[UILabel alloc] initWithFrame:CGRectMake(30,10, v.frame.size.width-60, 30)];
     [v addSubview:lblHeading];
     
     [lblHeading setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
@@ -107,7 +111,6 @@ NSArray *labelArray;
     [v2 addSubview:hLine];
     
     
-    UITextField *txtAge,*txtCare;
     
     txtDate=[UIButton buttonWithType:UIButtonTypeCustom];
     txtDate.frame = CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2);
@@ -197,7 +200,7 @@ NSArray *labelArray;
         [dict setObject:@"52" forKey:@"child_id"];
     }
     
-    [[ConnectionsManager sharedManager] getScreeningSummary:dict withdelegate:self];
+  [[ConnectionsManager sharedManager] getScreeningSummary:dict withdelegate:self];
     
 }
 
@@ -458,6 +461,7 @@ NSArray *labelArray;
         id dataList_ = [dict objectForKey:@"data"];
         if([dataList_ isKindOfClass:[NSDictionary class]])
         {
+            NSLog(@"First api result with screenoing id recived");
             NSArray *itemsArray = [dataList_ objectForKey:@"summary"];
             if(itemsArray.count)
             {
@@ -477,10 +481,18 @@ NSArray *labelArray;
                 }
                 
                 screeningSummaryList = temp;
+                
+                if(screeningSummaryList.count>0)
+                {
+                    [self setHeaderLabelFor:0];
+                }
+
             }
         }
         else if ([dataList_ isKindOfClass:[NSArray class]])
         {
+            NSLog(@"Second api result with screenoing Result recived");
+
             NSArray *dataList = dataList_;
             if(dataList.count)
             {
@@ -532,6 +544,14 @@ NSArray *labelArray;
     }
 }
 
+-(void)setHeaderLabelFor:(int)pos
+{
+    ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:pos];
+    [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
+    [lblHeading setText:screen.title];
+
+    [self loadData];
+}
 -(void)failure:(id)response
 {
     
@@ -566,7 +586,6 @@ NSArray *labelArray;
     [demoView addSubview:datePicker];
     return demoView;
 }
-
 - (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
 {
     [dateAlertView close];
