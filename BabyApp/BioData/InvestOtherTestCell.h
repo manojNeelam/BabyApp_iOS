@@ -13,5 +13,6 @@
 -(void)populateData:(InvestigationOptionsData *)aData;
 @property (weak, nonatomic) IBOutlet UITextField *txtFldOtherTest;
 @property (weak, nonatomic) IBOutlet UITextField *txtFldDate;
+@property (weak, nonatomic) IBOutlet UIButton *btnDate;
 
 @end
