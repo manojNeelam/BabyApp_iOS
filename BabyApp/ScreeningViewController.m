@@ -31,6 +31,7 @@
 
     
     NSArray *screeningSummaryList;
+    int currentScreening;
 }
 @end
 
@@ -38,7 +39,7 @@
 @synthesize screeningTable;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    currentScreening=0;
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -60,7 +61,7 @@
     [titleBarAttributes setValue:[UIFont boldSystemFontOfSize:20] forKey:UITextAttributeFont];
     [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
     
-    labelArray=[NSArray arrayWithObjects:@"DEVELOPMENTAL CHECKLIST",@"Personal Social",@"Fine Motor-Adaptive",@"Language",@"Gross Motor",@"GROWTH",@"OTHER SCREENING",@"Physical Examination",@"Outcome", nil];
+    labelArray=[NSArray arrayWithObjects:@"DEVELOPMENTAL CHECKLIST",@"Personal Social",@"Fine Motor-Adaptive",@"Language",@"Gross Motor",@"GROWTH",@"OTHER SCREENING",@"PHYSICAL EXAMINATION",@"OUTCOME EXAMINATION", nil];
     UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 45)];
     [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
     [self.view addSubview:v];
@@ -74,25 +75,35 @@
     
     
     //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
-    
-    
-    //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
+   //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
     
     
     
     
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
-    
-    UIImageView *imgNext = [[UIImageView alloc] init];
+    //btnPrevious
+    //UIImageView *imgNext = [[UIImageView alloc] init];
+    UIButton *imgNext = [[UIButton alloc] init];
+
     [imgNext setFrame:CGRectMake(10, 15, 10, 10)];
-    [imgNext setImage:[UIImage imageNamed:@"previousAppBg"]];
+    //[imgNext setImage:[UIImage imageNamed:@"previousAppBg"]];
+    [imgNext setBackgroundImage:[UIImage imageNamed:@"previousAppBg"] forState:UIControlStateNormal];
     [v addSubview:imgNext];
     
-    UIImageView *imgPrevious = [[UIImageView alloc] init];
+   // UIImageView *imgPrevious = [[UIImageView alloc] init];
+    UIButton *imgPrevious = [[UIButton alloc] init];
+
     [imgPrevious setFrame:CGRectMake(v.frame.size.width-25, 15, 10, 10)];
-    [imgPrevious setImage:[UIImage imageNamed:@"nextAppColor"]];
+    [imgPrevious setBackgroundImage:[UIImage imageNamed:@"nextAppColor"] forState:UIControlStateNormal];
+
+    //[imgPrevious setImage:[UIImage imageNamed:@"nextAppColor"]];
     [v addSubview:imgPrevious];
+    
+    [imgNext addTarget:self action:@selector(btnPrevious) forControlEvents:UIControlEventTouchUpInside];
+    [imgPrevious addTarget:self action:@selector(btnNext) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     
     UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(25, v.frame.origin.y+v.frame.size.height+20, self.view.frame.size.width-50, 90)];
@@ -233,7 +244,9 @@
     }
     UILabel *lblName=[cell.contentView viewWithTag:10];
     UIImageView *ivIcon=[cell.contentView viewWithTag:20];
-    if(indexPath.row==0||indexPath.row==5||indexPath.row==6)
+   // if(indexPath.row==0||indexPath.row==5||indexPath.row==6)
+        if(indexPath.row==0||indexPath.row>=5)
+
     {
         [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Bold" size:13]];
         [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
@@ -348,14 +361,9 @@
  }
  */
 
--(void)loadData
+-(void)loadData:(NSDictionary*)dict
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    //screening_id
-    //child_id
-    
-    [dict setObject:@"1" forKey:@"screening_id"];
-    [dict setObject:@"52" forKey:@"child_id"];
+  
     
     [[ConnectionsManager sharedManager] getDevelopmentCheckList:dict withdelegate:self];
 }
@@ -461,7 +469,17 @@
         id dataList_ = [dict objectForKey:@"data"];
         if([dataList_ isKindOfClass:[NSDictionary class]])
         {
-            NSLog(@"First api result with screenoing id recived");
+            
+                if ([[dataList_ allKeys] containsObject:@"caregiver"])
+                {
+               // if([dataList_ valueForKey:@"caregiver"] != nil)
+               // {
+                    NSLog(@"Second api result with screenoing id data recived");
+                    [self getDevelopmentalDataOfParticularScreeningId:dataList_];
+                }
+                else
+                {
+            NSLog(@"First api result with screenoing id list recived");
             NSArray *itemsArray = [dataList_ objectForKey:@"summary"];
             if(itemsArray.count)
             {
@@ -489,9 +507,10 @@
 
             }
         }
+        }
         else if ([dataList_ isKindOfClass:[NSArray class]])
         {
-            NSLog(@"Second api result with screenoing Result recived");
+            NSLog(@"third api result with screenoing Result recived");
 
             NSArray *dataList = dataList_;
             if(dataList.count)
@@ -507,7 +526,7 @@
                         
                         for(NSDictionary *itemDict in itemsArray)
                         {
-                            ScreeningDevCheckListObj *screen = [[ScreeningDevCheckListObj alloc] init];
+                        ScreeningDevCheckListObj *screen = [[ScreeningDevCheckListObj alloc] init];
                             screen.age = [itemDict objectForKey:@"age"];
                             screen.screenID = [itemDict objectForKey:@"id"];
                             screen.title = [itemDict objectForKey:@"title"];
@@ -544,14 +563,55 @@
     }
 }
 
+-(void)btnPrevious
+{
+     NSLog(@"btnPrevious currentScreening=%d screeningSummaryList.count=%ld",currentScreening,screeningSummaryList.count);
+    if(screeningSummaryList.count>0)
+    {
+    if(currentScreening>0)
+    {
+        currentScreening--;
+        [self setHeaderLabelFor:currentScreening];
+    }
+    }
+}
+-(void)btnNext
+{
+    NSLog(@"btnNext currentScreening=%d screeningSummaryList.count=%ld",currentScreening,screeningSummaryList.count);
+    if(screeningSummaryList.count>0)
+    {
+    if(currentScreening<screeningSummaryList.count-1)
+    {
+        currentScreening++;
+        [self setHeaderLabelFor:currentScreening];
+    }
+    }
+}
+
 -(void)setHeaderLabelFor:(int)pos
 {
+    NSLog(@"setheader pos=%d",pos);
     ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:pos];
     [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
     [lblHeading setText:screen.title];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"screening_id"];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:screen.screening_id forKey:@"screening_id"];
+    [[ConnectionsManager sharedManager] readScreening:dict withdelegate:self];
 
-    [self loadData];
+  }
+-(void)getDevelopmentalDataOfParticularScreeningId:(NSDictionary*)screenigDt
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[screenigDt objectForKey:@"id"] forKey:@"screening_id"];
+    [dict setObject:@"52" forKey:@"child_id"];
+    txtAge.text=[screenigDt objectForKey:@"age"];
+    txtCare.text=[NSString stringWithFormat:@"  %@",[screenigDt objectForKey:@"caregiver"]];
+
+    [self loadData:dict];
 }
+
 -(void)failure:(id)response
 {
     

@@ -11,9 +11,15 @@
 #import "DateTimeUtil.h"
 #import "StoresTableViewCell.h"
 
+#import "ConnectionsManager.h"
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
+
+
+
 #define kOFFSET_FOR_KEYBOARD 100.0
 
-@interface ScreeningOutcomeOptions () <UITextFieldDelegate, CustomIOS7AlertViewDelegate>
+@interface ScreeningOutcomeOptions () <UITextFieldDelegate, CustomIOS7AlertViewDelegate,ServerResponseDelegate>
 {
     CustomIOS7AlertView *dateAlertView;
     UIDatePicker *datePicker;
@@ -31,8 +37,8 @@ UIButton *refBtn;
 {
     refBtn=bt;
     UIView *v=[[UIView alloc] initWithFrame:self.view.frame];
-    [v setBackgroundColor:[UIColor blackColor]];
-    [v setAlpha:0.2];
+    [v setBackgroundColor:[UIColor clearColor]];
+   // [v setAlpha:0.1];
     v.tag=300;
     UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(bt.frame.origin.x, bt.superview.frame.origin.y, bt.frame.size.width,120)];
     [self.view addSubview:v];
@@ -56,7 +62,46 @@ UIButton *refBtn;
         lblName1.tag=k;
         
     }
+    
+    
 }
+
+-(void)success:(id)response
+{
+    
+    
+    
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {//dict
+        
+        if ([[dict allKeys] containsObject:@"data"])
+        {
+            NSDictionary *dataList_ = [dict objectForKey:@"data"];
+            NSLog(@"First api result with screenoing id list recived");
+            
+        }
+        else
+        {
+            NSLog(@"Second api result with update recived");
+        }
+    }
+    
+}
+
+
+
 
 -(void)setViewMovedUp:(BOOL)movedUp
 {
@@ -236,6 +281,25 @@ UIButton *refBtn;
     
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
+    
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    NSLog(@"dict=%@",dict);
+    [[ConnectionsManager sharedManager] readOutCome:dict withdelegate:self];
+    
 }
 
 -(void)onClickSave:(id)sender

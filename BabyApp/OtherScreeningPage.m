@@ -7,9 +7,14 @@
 //
 
 #import "OtherScreeningPage.h"
+#import "ConnectionsManager.h"
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
 
-@interface OtherScreeningPage ()
-
+@interface OtherScreeningPage ()<ServerResponseDelegate>
+{
+    UITextField *lblName;
+}
 @end
 
 @implementation OtherScreeningPage
@@ -23,7 +28,7 @@
     [self.view addSubview:v];
     
     
-    UITextField *lblName=nil;
+    lblName=nil;
     
     lblName=[[UITextField alloc] initWithFrame:CGRectMake(20, v.frame.origin.y+v.frame.size.height+5, self.view.frame.size.width-40, 40)];
     lblName.tag=10;
@@ -36,11 +41,97 @@
     
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
+    
+    
+    
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+
+    NSLog(@"dict=%@",dict);
+    [[ConnectionsManager sharedManager] readOtherScreening:dict withdelegate:self];
+    
+
 }
+
+
+-(void)success:(id)response
+{
+
+    
+    
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {//dict
+        
+        if ([[dict allKeys] containsObject:@"data"])
+        {
+            NSDictionary *dataList_ = [dict objectForKey:@"data"];
+            NSLog(@"First api result with screenoing id list recived");
+            [lblName setText:[dataList_ objectForKey:@"notes"]];
+            
+        }
+            else
+            {
+            NSLog(@"Second api result with update recived");
+            }
+        }
+        
+    }
+
+
+
+
 
 -(void)onClickSave:(id)sender
 {
     
+    if(lblName.text!=nil&&lblName.text.length>0)
+    {
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    
+      [dict setObject:lblName.text forKey:@"notes"];
+    
+    NSLog(@"dict=%@",dict);
+    [[ConnectionsManager sharedManager] updateOtherScreening:dict withdelegate:self];
+    
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
