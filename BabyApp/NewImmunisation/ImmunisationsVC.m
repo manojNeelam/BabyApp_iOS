@@ -6,6 +6,9 @@
 //  Copyright (c) 2016 Infinity. All rights reserved.
 //
 
+#define UnCheck @"unCheck"
+#define Check   @"checkBox"
+
 #import "ImmunisationsVC.h"
 #import "AllImmunisationCell.h"
 #import "DueImmunisationCell.h"
@@ -109,45 +112,141 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ImmunisationData *immunisationData;
+    
+    if (self.segmentImu.selectedSegmentIndex == 0)
+    {
+        ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
+        immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        immunisationData.is_done = !immunisationData.is_done;
+        
+        //        if(immunisationData.is_done)
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+        //        }
+        //        else
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+        //        }
+        
+    }
+    else if(self.segmentImu.selectedSegmentIndex == 1)
+    {
+        
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
+        immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        immunisationData.is_done = !immunisationData.is_done;
+        
+        //        if(immunisationData.is_done)
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+        //        }
+        //        else
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+        //        }
+        
+    }
+    else
+    {
+        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:indexPath.section];
+        immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        immunisationData.is_done = !immunisationData.is_done;
+        
+        //        if(immunisationData.is_done)
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+        //        }
+        //        else
+        //        {
+        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+        //        }
+        
+    }
+    
+    
+    [self.tableView reloadData];
+    
+    //immunisation_id
+    //int
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.segmentImu.selectedSegmentIndex == 0)
     {
         AllImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AllImmunisationCell"];
         [cell setBackgroundColor:[UIColor whiteColor]];
-        cell.lblNext.layer.cornerRadius = 8.0f;
-        cell.lblNext.clipsToBounds = YES;
         
-        if(indexPath.section == 0)
+        ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
+        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        if(immunisationData.is_done)
         {
-            [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+            [cell.lblLine setHidden:YES];
+            [cell.lblNext setHidden:NO];
+            
+            [cell.lblTitle setText:immunisationData.sequence];
+            
+            [cell.imgNotePad setHidden:YES];
+            
+        }
+        else
+        {
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
             [cell.lblLine setHidden:NO];
-            [cell.lblDate setText:@"10/04/13"];
-            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
             [cell.lblNext setHidden:YES];
+            
+            [cell.lblTitle setText:immunisationData.sequence];
+            
             [cell.imgNotePad setHidden:NO];
             
         }
-        else if(indexPath.section == 1)
-        {
-            if(indexPath == 0)
-            {
-                [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
-                [cell.lblLine setHidden:YES];
-                [cell.lblDate setText:@"12/04/13"];
-                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-                [cell.lblNext setHidden:YES];
-            }
-            else
-            {
-                [cell.indicatorView setBackgroundColor:cell.lblNext.backgroundColor];
-                [cell.lblLine setHidden:YES];
-                [cell.lblDate setText:@"15/04/13"];
-                [cell.lblDate setTextColor:cell.lblNext.backgroundColor];
-                [cell.lblNext setHidden:NO];
-                [cell.imgNotePad setHidden:YES];
-            }
-        }
+        
+        /*cell.lblNext.layer.cornerRadius = 8.0f;
+         cell.lblNext.clipsToBounds = YES;
+         
+         if(indexPath.section == 0)
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:NO];
+         [cell.lblDate setText:@"10/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         [cell.imgNotePad setHidden:NO];
+         
+         }
+         else if(indexPath.section == 1)
+         {
+         
+         AllImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AllImmunisationCell"];
+         
+         if(indexPath == 0)
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblDate setText:@"12/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         }
+         else
+         {
+         [cell.indicatorView setBackgroundColor:cell.lblNext.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblDate setText:@"15/04/13"];
+         [cell.lblDate setTextColor:cell.lblNext.backgroundColor];
+         [cell.lblNext setHidden:NO];
+         [cell.imgNotePad setHidden:YES];
+         }
+         }*/
         
         
         return cell;
@@ -157,49 +256,74 @@
         AllImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AllImmunisationCell"];
         [cell setBackgroundColor:[UIColor whiteColor]];
         
-        if(indexPath.section == 0)
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
+        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        if(immunisationData.is_done)
         {
-            [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
-            [cell.lblLine setHidden:YES];
-            [cell.lblTitle setText:@"First Dose"];
-            [cell.lblDate setText:@"10/04/13"];
-            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+            [cell.lblLine setHidden:NO];
             [cell.lblNext setHidden:YES];
-            [cell.imgNotePad setHidden:NO];
+            
+            [cell.lblTitle setText:immunisationData.sequence];
+            
+            [cell.imgNotePad setHidden:YES];
+            
         }
-        else if(indexPath.section == 1)
+        else
         {
-            [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
             [cell.lblLine setHidden:YES];
-            [cell.lblTitle setText:@"First Dose"];
-            [cell.lblDate setText:@"12/04/13"];
-            [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-            [cell.lblNext setHidden:YES];
+            [cell.lblNext setHidden:NO];
+            
+            [cell.lblTitle setText:immunisationData.sequence];
+            
             [cell.imgNotePad setHidden:NO];
+            
         }
-        else if(indexPath.section == 2)
-        {
-            if(indexPath == 0)
-            {
-                [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
-                [cell.lblLine setHidden:YES];
-                [cell.lblTitle setText:@"First Dose"];
-                [cell.lblDate setText:@"12/08/13"];
-                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-                [cell.lblNext setHidden:YES];
-                [cell.imgNotePad setHidden:NO];
-            }
-            else
-            {
-                [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
-                [cell.lblLine setHidden:YES];
-                [cell.lblTitle setText:@"Second Dose"];
-                [cell.lblDate setText:@"03/02/13"];
-                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-                [cell.lblNext setHidden:YES];
-                [cell.imgNotePad setHidden:YES];
-            }
-        }
+        /*if(indexPath.section == 0)
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblTitle setText:@"First Dose"];
+         [cell.lblDate setText:@"10/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         [cell.imgNotePad setHidden:NO];
+         }
+         else if(indexPath.section == 1)
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblTitle setText:@"First Dose"];
+         [cell.lblDate setText:@"12/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         [cell.imgNotePad setHidden:NO];
+         }
+         else if(indexPath.section == 2)
+         {
+         if(indexPath == 0)
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblTitle setText:@"First Dose"];
+         [cell.lblDate setText:@"12/08/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         [cell.imgNotePad setHidden:NO];
+         }
+         else
+         {
+         [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
+         [cell.lblLine setHidden:YES];
+         [cell.lblTitle setText:@"Second Dose"];
+         [cell.lblDate setText:@"03/02/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblNext setHidden:YES];
+         [cell.imgNotePad setHidden:YES];
+         }
+         }*/
         
         return cell;
     }
@@ -208,33 +332,52 @@
         DueImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DueImmunisationCell"];
         [cell setBackgroundColor:[UIColor whiteColor]];
         
-        if(indexPath.section == 0)
+        
+        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:indexPath.section];
+        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        
+        if(immunisationData.is_done)
         {
-            [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
-            [cell.lblTitle setText:@"HepB"];
-            [cell.lblDate setText:@"15/04/13"];
-            [cell.lblDate setTextColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
-            [cell.lblDose setText:@"Second Dose"];
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+            [cell.lblDate setText:immunisationData.date_given];
+            
+            [cell.lblTitle setText:immunisationData.sequence];
         }
-        else if(indexPath.section == 1)
+        else
         {
-            if(indexPath == 0)
-            {
-                [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
-                [cell.lblTitle setText:@"Dpat Dose"];
-                [cell.lblDate setText:@"10/09/13"];
-                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-                [cell.lblDose setText:@"Third Dose"];
-            }
-            else
-            {
-                [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
-                [cell.lblTitle setText:@"Polio"];
-                [cell.lblDate setText:@"10/04/13"];
-                [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-                [cell.lblDose setText:@"Second Dose"];
-            }
+            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+            [cell.lblDate setText:immunisationData.date_given];
+            [cell.lblTitle setText:immunisationData.sequence];
+            
         }
+        
+        /*if(indexPath.section == 0)
+         {
+         [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
+         [cell.lblTitle setText:@"HepB"];
+         [cell.lblDate setText:@"15/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
+         [cell.lblDose setText:@"Second Dose"];
+         }
+         else if(indexPath.section == 1)
+         {
+         if(indexPath == 0)
+         {
+         [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
+         [cell.lblTitle setText:@"Dpat Dose"];
+         [cell.lblDate setText:@"10/09/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblDose setText:@"Third Dose"];
+         }
+         else
+         {
+         [cell.indicatorView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:76.0f/255.0f blue:101.0f/255.0f alpha:1.0f]];
+         [cell.lblTitle setText:@"Polio"];
+         [cell.lblDate setText:@"10/04/13"];
+         [cell.lblDate setTextColor:[UIColor colorWithRed:200.0f/255.0f green:199.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+         [cell.lblDose setText:@"Second Dose"];
+         }
+         }*/
         return cell;
     }
 }
@@ -289,8 +432,6 @@
         
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
         self.imuNavigationItem.rightBarButtonItem = rightButton;
-        
-        
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
@@ -360,6 +501,17 @@
 
 -(void)failure:(id)response
 {
+    
+}
+
+-(void)update:(ImmunisationData *)immunisationData withStatus:(BOOL)isStatus
+{
+    //get_vaccine_type_detail
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:immunisationData.immuId forKey:@"immunisation_id"];
+    [dict setObject:[NSNumber numberWithBool:isStatus] forKey:@"status"];
+    
+    [[ConnectionsManager sharedManager] updateImmunisation:dict withdelegate:self];
     
 }
 @end

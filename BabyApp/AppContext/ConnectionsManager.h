@@ -96,6 +96,7 @@ typedef void (^CompletionBlock)(NSDictionary *result, NSError *error);
 -(void)getSafetyChecklist:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 -(void)addinvestigations_read:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 
--(void)addinvestigations_read:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 
+//immunisation_status_update
+-(void)updateImmunisation:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 @end
