@@ -9,9 +9,17 @@
 #import "ImmunisationsVC.h"
 #import "AllImmunisationCell.h"
 #import "DueImmunisationCell.h"
+#import "ConnectionsManager.h"
+#import "WSConstant.h"
+#import "NSUserDefaults+Helpers.h"
 
-@interface ImmunisationsVC () <UITableViewDataSource,UITableViewDelegate>
+#import "ImmunisationData.h"
+#import "ImmunisationBaseDate.h"
 
+@interface ImmunisationsVC () <UITableViewDataSource,UITableViewDelegate, ServerResponseDelegate>
+{
+    NSArray *immunisationList, *immunisationDueList, *immunisationDoneList;
+}
 @end
 
 @implementation ImmunisationsVC
@@ -28,6 +36,13 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
     self.imuNavigationItem.rightBarButtonItem = rightButton;
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [dict setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:USERID]] forKey:@"user_id"];
+    [dict setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
+    
+    
+    [[ConnectionsManager sharedManager] readAllImmunisation:dict withdelegate:self];
     
     // Do any additional setup after loading the view.
 }
@@ -40,6 +55,17 @@
 
 -(void)onClickAddNew:(id)sender
 {
+    UIViewController *newImmunisation = [self.storyboard instantiateViewControllerWithIdentifier:@"NewImmunisationVC_SB_ID"];
+    [self.navigationController pushViewController:newImmunisation animated:YES];
+}
+
+-(NSNumber *)numfromString:(NSString *)aStr
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:aStr];
+    
+    return myNumber;
     
 }
 
@@ -52,40 +78,18 @@
 {
     if (self.segmentImu.selectedSegmentIndex == 0)
     {
-        if(section == 0)
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
+        ImmunisationBaseDate *base = [immunisationList objectAtIndex:section];
+        return base.listOfData.count;
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
-        if(section == 0)
-        {
-            return 1;
-        }
-        else if (section == 1)
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:section];
+        return base.listOfData.count;
     }
     else
     {
-        if(section == 0)
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
+        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:section];
+        return base.listOfData.count;
     }
 }
 
@@ -93,17 +97,15 @@
 {
     if (self.segmentImu.selectedSegmentIndex == 0)
     {
-        return 2;
-        
+        return immunisationList.count;
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
-        return 3;
-        
+        return immunisationDoneList.count;
     }
     else
     {
-        return 3;
+        return immunisationDueList.count;
     }
 }
 
@@ -252,48 +254,18 @@
     
     if (self.segmentImu.selectedSegmentIndex == 0)
     {
-        if(section == 0)
-        {
-            [lblHeader setText:@"BCG (TUBERCULOSIS)"];
-        }
-        if(section == 1)
-        {
-            [lblHeader setText:@"HEPATITIS B"];
-        }
-        else
-        {
-            [lblHeader setText:@"dpAt (DIPTHERIA PERTUSSIS, TETANUS)"];
-        }
+        ImmunisationBaseDate *base = [immunisationList objectAtIndex:section];
+        [lblHeader setText:base.sectionName];
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
-        if(section == 0)
-        {
-            [lblHeader setText:@"BCG (TUBERCULOSIS)"];
-        }
-        if(section == 1)
-        {
-            [lblHeader setText:@"HEPATITIS B"];
-        }
-        else
-        {
-            [lblHeader setText:@"dpAt (DIPTHERIA PERTUSSIS, TETANUS)"];
-        }
+        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:section];
+        [lblHeader setText:base.sectionName];
     }
     else
     {
-        if(section == 0)
-        {
-            [lblHeader setText:@"BCG (TUBERCULOSIS)"];
-        }
-        if(section == 1)
-        {
-            [lblHeader setText:@"dpAt (DIPTHERIA PERTUSSIS, TETANUS)"];
-        }
-        else
-        {
-            [lblHeader setText:@"POLIO"];
-        }
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:section];
+        [lblHeader setText:base.sectionName];
     }
     
     return headerView;
@@ -332,5 +304,62 @@
         [self.tableView reloadData];
         [self.imuNavigationItem setRightBarButtonItem:nil];
     }
+}
+
+
+-(void)success:(id)response
+{
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {
+        NSDictionary *dataDict = [dict objectForKey:@"data"];
+        
+        NSArray *listImmuniHolder = [dataDict objectForKey:@"immunisation"];
+        if(listImmuniHolder.count)
+        {
+            NSMutableArray *temp = [NSMutableArray array];
+            for(NSDictionary *dict in listImmuniHolder)
+            {
+                ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:NO];
+                [temp addObject:immunisationData];
+            }
+            immunisationDueList = [temp mutableCopy];
+            
+            
+            NSMutableArray *tempDone = [NSMutableArray array];
+            for(NSDictionary *dict in listImmuniHolder)
+            {
+                ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:YES];
+                [tempDone addObject:immunisationData];
+            }
+            immunisationDoneList = [tempDone mutableCopy];
+            
+            NSMutableArray *tempAll = [NSMutableArray array];
+            for(NSDictionary *dict in listImmuniHolder)
+            {
+                ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
+                [tempAll addObject:immunisationData];
+            }
+            immunisationList = [tempAll mutableCopy];
+            
+            [self.tableView reloadData];
+        }
+    }
+}
+
+-(void)failure:(id)response
+{
+    
 }
 @end

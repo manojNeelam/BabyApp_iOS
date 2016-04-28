@@ -56,9 +56,9 @@
     _vaccineTextField.tintColor = [UIColor clearColor];
     
     _dateGiveTextField.tintColor = [UIColor clearColor];
-//    [_vaccineTextField addTarget:self action:@selector(textDidChanged:) forControlEvents:UIControlEventEditingDidBegin];
+    //    [_vaccineTextField addTarget:self action:@selector(textDidChanged:) forControlEvents:UIControlEventEditingDidBegin];
     [self getVaccineType];
-//    [self configureDatePicker];
+    //    [self configureDatePicker];
     
     // register for keyboard notifications
     //    [[NSNotificationCenter defaultCenter] addObserver:self
@@ -117,16 +117,18 @@
 {
     //    UIImage *buttonImage = [UIImage imageNamed:@"teeth.png"];
     
-    UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [aButton setTitle:@"SAVE" forState:UIControlStateNormal];
+    //UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //[aButton setTitle:@"Save" forState:UIControlStateNormal];
     
     //    [aButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
-    aButton.frame = CGRectMake(0.0, 0.0, 80,40);
+    //aButton.frame = CGRectMake(0.0, 0.0, 80,40);
     
-    UIBarButtonItem *aBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:aButton];
+    // UIBarButtonItem *aBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:aButton];
     
-    [aButton addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *aBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveAction)];
+    
+    //[aButton addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
     
     return aBarButtonItem;
 }
@@ -163,7 +165,7 @@
     }
     NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     NSString *userID = [NSUserDefaults retrieveObjectForKey:USERID];
-
+    
     NSDictionary *params = @{
                              @"user_id":userID,
                              @"child_id":childID,
@@ -200,15 +202,6 @@
         if([[json objectForKey:@"status"] boolValue])
         {
             
-            //for feature use if any want to popup or cloe the this screen once done add immunisation
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"New Immunisation" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            [alert addAction:okAction];
-            
-            //                [self presentViewController:alert animated:YES completion:nil];
-            [Constants showOKAlertWithTitle:@"New Immunisation" message:@"Immunisation created successfully." presentingVC:self];
         }
         else
         {
@@ -239,8 +232,8 @@
     [SVProgressHUD showWithStatus:@"Loading"];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
-    NSDictionary *params = @{ @"user_id":@64,
-                              @"child_id":@10};
+    NSDictionary *params = @{ @"user_id":[self numfromString:[NSUserDefaults retrieveObjectForKey:USERID]],
+                              @"child_id":[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]]};
     NSString *Post=[NSString stringWithFormat:@"user_id=%@&child_id=%@",params[@"user_id"],params[@"child_id"]];
     
     NSData *PostData = [Post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
@@ -291,6 +284,19 @@
     
     
 }
+
+
+-(NSNumber *)numfromString:(NSString *)aStr
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:aStr];
+    
+    return myNumber;
+    
+}
+
+
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -344,7 +350,7 @@
     else if(textField == _dateGiveTextField)
     {
         [currentTextField resignFirstResponder];
-
+        
         [self openDate];
         return NO;
     }

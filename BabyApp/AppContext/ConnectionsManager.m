@@ -324,6 +324,13 @@ static NSString * const BaseURLString = BaseUrl;
     [self getToURL:@"investigations_read" withParameters:params delegate:delegate];
 }
 
+-(void)addinvestigations_read:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
+{
+    [self getToURL:@"investigations" withParameters:params delegate:delegate];
+}
+
+
+
 #pragma mark - immunisation
 
 -(void)addImmunisation:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate

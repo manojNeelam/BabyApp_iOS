@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ImmunisationData : NSObject
-@property (nonatomic,strong) NSString *title, *completedDate, *nextDoseDate, *dosage;
-@property (nonatomic, assign) BOOL isCompleted;
+@property (nonatomic,strong) NSString *sequence, *date_given, *nextDoseDate, *dosage, *immuId;
+@property (nonatomic, assign) BOOL is_done;
+
+-(id)initwithDictionary:(NSDictionary *)params;
+
+-(id)initwithData:(ImmunisationData *)data;
 @end
