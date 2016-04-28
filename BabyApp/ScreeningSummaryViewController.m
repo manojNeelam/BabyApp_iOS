@@ -170,7 +170,6 @@
         [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:14]];
         [lblName2 setTextColor:[UIColor colorWithRed:108.0/255.0 green:107.0/255.0 blue:108.0/255.0 alpha:1.0]];
         
-        
         UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40,10,25,25)];
         btIcon.tag=30;
         [cell.contentView addSubview:btIcon];
@@ -231,7 +230,6 @@
         [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
     }
     
-    //   [self performSegueWithIdentifier:@"screeningsummarydetailsegu" sender:self];
 }
 
 

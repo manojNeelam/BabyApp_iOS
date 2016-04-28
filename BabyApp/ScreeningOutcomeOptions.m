@@ -11,19 +11,26 @@
 #import "DateTimeUtil.h"
 #import "StoresTableViewCell.h"
 
+#import "ConnectionsManager.h"
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
+
+
+
 #define kOFFSET_FOR_KEYBOARD 100.0
 
-@interface ScreeningOutcomeOptions () <UITextFieldDelegate, CustomIOS7AlertViewDelegate>
+@interface ScreeningOutcomeOptions () <UITextFieldDelegate, CustomIOS7AlertViewDelegate,ServerResponseDelegate>
 {
     CustomIOS7AlertView *dateAlertView;
     UIDatePicker *datePicker;
-    
     NSString *selectedDate;
+    UITextField *lblName2;
+    UIButton *lblName1;
+    NSMutableArray *txtfieldAr;
 }
 @end
 
 @implementation ScreeningOutcomeOptions
-//screeningoutcomeoptionsegu
 @synthesize screeningOutcomeOptionTable;
 NSArray *labelArrayOutcomeOption;
 UIButton *refBtn;
@@ -31,8 +38,8 @@ UIButton *refBtn;
 {
     refBtn=bt;
     UIView *v=[[UIView alloc] initWithFrame:self.view.frame];
-    [v setBackgroundColor:[UIColor blackColor]];
-    [v setAlpha:0.2];
+    [v setBackgroundColor:[UIColor clearColor]];
+   // [v setAlpha:0.1];
     v.tag=300;
     UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(bt.frame.origin.x, bt.superview.frame.origin.y, bt.frame.size.width,120)];
     [self.view addSubview:v];
@@ -43,20 +50,80 @@ UIButton *refBtn;
     int k=0;
     for(NSString *s in ar)
     {
-        UIButton *lblName1=nil;
-        lblName1=[[UIButton alloc] initWithFrame:CGRectMake(10,k*40, v2.frame.size.width-10, 40)];
-        [v2 addSubview:lblName1];
-        [lblName1 setTitle:s forState:UIControlStateNormal];
-        [lblName1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [[lblName1 titleLabel] setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:18]];
+        UIButton *lblName=nil;
+        lblName=[[UIButton alloc] initWithFrame:CGRectMake(10,k*40, v2.frame.size.width-10, 40)];
+        [v2 addSubview:lblName];
+        [lblName setTitle:s forState:UIControlStateNormal];
+        [lblName setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [[lblName titleLabel] setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:18]];
         
-        lblName1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [lblName1 addTarget:self action:@selector(onPopViewClicked:) forControlEvents:UIControlEventTouchUpInside];
+        lblName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [lblName addTarget:self action:@selector(onPopViewClicked:) forControlEvents:UIControlEventTouchUpInside];
         k++;
-        lblName1.tag=k;
+        lblName.tag=k;
         
     }
+    
+    
 }
+
+-(void)success:(id)response
+{
+    
+    
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {
+        
+        if ([[dict allKeys] containsObject:@"data"])
+        {
+            NSDictionary *dataList_ = [dict objectForKey:@"data"];
+            NSLog(@"First api result with screenoing id list recived");
+            
+            /*
+             "screening_id": "1",
+             "child_id": "1",
+             "outcome_type": "",
+             "outcome_next_routine": "",
+             "outcome_doctore": "",
+             "outcome_idnumber": "",
+             "outcome_clinic": "",
+             "outcome_date": "0000-00-00"
+             */
+            
+        [lblName1 setTitle:[dataList_ objectForKey:@"outcome_type"] forState:UIControlStateNormal];
+        lblName2.text=[dataList_ objectForKey:@"outcome_next_routine"];
+        [(UITextField*)[txtfieldAr objectAtIndex:0] setText:[dataList_ objectForKey:@"outcome_doctore"]];
+        [(UITextField*)[txtfieldAr objectAtIndex:1] setText:[dataList_ objectForKey:@"outcome_idnumber"]];
+        [(UITextField*)[txtfieldAr objectAtIndex:2] setText:[dataList_ objectForKey:@"outcome_clinic"]];
+        [(UITextField*)[txtfieldAr objectAtIndex:3] setText:[dataList_ objectForKey:@"outcome_date"]];
+  
+            
+        }
+        else
+        {
+            
+            
+            
+            NSLog(@"Second api result with update recived");
+        }
+    }
+    
+}
+
+
+
 
 -(void)setViewMovedUp:(BOOL)movedUp
 {
@@ -170,8 +237,10 @@ UIButton *refBtn;
     [[self.view viewWithTag:300] removeFromSuperview];
     
 }
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    txtfieldAr=[[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     labelArrayOutcomeOption=[NSArray arrayWithObjects:@"Docter/Nurse",@"ID number",@"Clinic",@"Date", nil];
     
@@ -193,7 +262,7 @@ UIButton *refBtn;
     iv.image=[UIImage imageNamed:@"right_arrow.png"];
     [v addSubview:iv];
     
-    UIButton *lblName1=nil;
+    lblName1=nil;
     lblName1=[[UIButton alloc] initWithFrame:CGRectMake(120,10, v.frame.size.width-155, 30)];
     lblName1.tag=120;
     [v addSubview:lblName1];
@@ -215,7 +284,7 @@ UIButton *refBtn;
     lblHeading2.tag=101;
     [v2 addSubview:lblHeading2];
     
-    UITextField *lblName2=nil;
+   lblName2=nil;
     lblName2=[[UITextField alloc] initWithFrame:CGRectMake(190,10, v2.frame.size.width-195, 30)];
     lblName2.tag=201;
     [v2 addSubview:lblName2];
@@ -236,10 +305,55 @@ UIButton *refBtn;
     
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
+    
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    NSLog(@"dict=%@",dict);
+    [[ConnectionsManager sharedManager] readOutCome:dict withdelegate:self];
+    
 }
 
 -(void)onClickSave:(id)sender
 {
+    
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    [dict setObject:[lblName1 titleForState:UIControlStateNormal] forKey:@"outcome_type"];
+    [dict setObject:lblName2.text forKey:@"outcome_next_routine"];
+    [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:0] text] forKey:@"outcome_doctore"];
+    [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:1] text] forKey:@"outcome_idnumber"];
+    [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:2] text] forKey:@"outcome_clinic"];
+    [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:3] text] forKey:@"outcome_date"];
+    
+    NSLog(@"dict=%@",dict);
+    
+    [[ConnectionsManager sharedManager] updateOutcome:dict withdelegate:self];
     
 }
 
@@ -258,7 +372,7 @@ UIButton *refBtn;
         cell.lblName=[[UITextField alloc] initWithFrame:CGRectMake(140,15, tableView.frame.size.width-145, 30)];
         [cell.lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [cell.contentView addSubview:cell.lblName];
-        
+        [txtfieldAr addObject:cell.lblName];
     }
     
     [cell setBackgroundColor:[UIColor whiteColor]];

@@ -14,7 +14,7 @@
     [self.lblTitle setText:aData.testName];
     [self.txtFldResultValue setPlaceholder:aData.placeHolderText];
     [self.txtFldResultValue setText:aData.title];
-    [self.txtFldDate setText:aData.date];
+    [self.btnDate setTitle:aData.date forState:UIControlStateNormal];
 }
 
 @end

@@ -20,10 +20,11 @@ NSArray *labelArrayExamination;
     [super viewDidLoad];
     NSLog(@"View did load Screening Examination");
     // Do any additional setup after loading the view.
-    labelArrayExamination=[NSArray arrayWithObjects:@"Fixation on moving object:",@"Right eye",@"Left eye",@"Cornea/Lens",@"Pupillary Light reflex",@"Red reflex",@"Nystagmus",@"Sqint",@"Roving eye movement",@"Fontanelies", nil];
+    labelArrayExamination=[NSArray arrayWithObjects:@"EYE EXAMINATION:",@"Fixation on moving object:",@"Right eye",@"Left eye",@"Cornea/Lens",@"Pupillary Light reflex",@"Red reflex",@"Nystagmus",@"Sqint",@"Roving eye movement",@" ",@"Fontanelies",@"Ears",@"Teeth",@" ",@"Hearth",@"Lungs",@"Abdomen",@" ",@"Femoral",@"Genitals",@"Hips",@" ",@"Posture",@"Muscle",@"Skin", nil];
     
     self.navigationItem.title = [[[NSUserDefaults standardUserDefaults] objectForKey:@"selectedScreenLbl"] capitalizedString];
-    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 50)];
+   
+    /*UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 50)];
     [v setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
     [self.view addSubview:v];
     
@@ -35,12 +36,12 @@ NSArray *labelArrayExamination;
     [lblHeading setTextColor:[UIColor colorWithRed:87.0/255.0 green:87.0/255.0 blue:88.0/255.0 alpha:1.0]];
     [lblHeading setText:@"EYE EXAMINATION:"];
     
-    
-    screeningExaminationTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height+10, self.view.frame.size.width, self.view.frame.size.height-(v.frame.origin.y+v.frame.size.height+10))];
+    */
+    screeningExaminationTable=[[UITableView alloc] initWithFrame:CGRectMake(0,10, self.view.frame.size.width, self.view.frame.size.height-(10))];
     [self.view addSubview:screeningExaminationTable];
     screeningExaminationTable.dataSource=self;
     screeningExaminationTable.delegate=self;
-    
+    [screeningExaminationTable setBounces:NO];
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
 }
@@ -51,14 +52,14 @@ NSArray *labelArrayExamination;
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+/*-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0)
         return 0;
     else
         return 30;
-}
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+}*/
+/*-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Stores"];
     if(cell==nil)
@@ -80,7 +81,7 @@ NSArray *labelArrayExamination;
         if (indexPath.section==0)
         {
             if(indexPath.row==1||indexPath.row==2)
-                lblName.frame=CGRectMake(lblName.frame.origin.x+20, lblName.frame.origin.y, lblName.frame.size.width-20,lblName.frame.size.height);
+            lblName.frame=CGRectMake(lblName.frame.origin.x+20, lblName.frame.origin.y, lblName.frame.size.width-20,lblName.frame.size.height);
         }
         
         if(indexPath.row>0||indexPath.section==1)
@@ -99,7 +100,6 @@ NSArray *labelArrayExamination;
                 UISegmentedControl *sgt=[self maheSegmentControl:YES];
                 [cell.contentView addSubview:sgt];
                 sgt.tag=30;
-                
             }
             
         }
@@ -140,7 +140,140 @@ NSArray *labelArrayExamination;
     
     return cell;
     
+}*/
+
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Stores"];
+    if(cell==nil)
+    {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Stores"];
+        
+        
+        UILabel *lblName=nil;
+        
+        lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,15, screeningExaminationTable.frame.size.width-80, 30)];
+        lblName.tag=10;
+        
+        
+      [cell.contentView addSubview:lblName];
+        
+       /* if (indexPath.section==0)
+        {
+            if(indexPath.row==1||indexPath.row==2)
+                lblName.frame=CGRectMake(lblName.frame.origin.x+20, lblName.frame.origin.y, lblName.frame.size.width-20,lblName.frame.size.height);
+        }
+        
+        if(indexPath.row>0||indexPath.section==1)
+        {
+            UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningExaminationTable.frame.size.width-40,10,25,25)];
+            btIcon.tag=20;
+            [cell.contentView addSubview:btIcon];
+            [btIcon setContentMode:UIViewContentModeScaleAspectFill];
+            [btIcon setClipsToBounds:YES];
+        }
+        
+        if(indexPath.section==0)
+        {
+            if(indexPath.row>=6&&indexPath.row<=8)
+            {
+                UISegmentedControl *sgt=[self maheSegmentControl:YES];
+                [cell.contentView addSubview:sgt];
+                sgt.tag=30;
+            }
+            
+        }*/
+        
+        
+        
+        
+        
+        if(indexPath.row==2||indexPath.row==3)
+            lblName.frame=CGRectMake(lblName.frame.origin.x+20, lblName.frame.origin.y, lblName.frame.size.width-20,lblName.frame.size.height);
+
+
+   
+        if(indexPath.row!=0&&indexPath.row!=10&&indexPath.row!=14&&indexPath.row!=18&&indexPath.row!=22)
+        {
+            
+            if(indexPath.row==7||indexPath.row==8||indexPath.row==9)
+            {
+        UISegmentedControl *sgt=[self maheSegmentControl:YES];
+        [cell.contentView addSubview:sgt];
+        sgt.tag=30;
+        [sgt setHidden:YES];
+            }
+            else
+            {
+                UIButton *btIcon=[[UIButton alloc] initWithFrame:CGRectMake(screeningExaminationTable.frame.size.width-40,10,25,25)];
+                btIcon.tag=20;
+                [cell.contentView addSubview:btIcon];
+                [btIcon setContentMode:UIViewContentModeScaleAspectFill];
+                [btIcon setClipsToBounds:YES];
+                
+                [btIcon setHidden:YES];
+
+            }
+        }
+    }
+    
+    if(indexPath.row!=0&&indexPath.row!=10&&indexPath.row!=14&&indexPath.row!=18&&indexPath.row!=22)
+    {
+        if(indexPath.row==7||indexPath.row==8||indexPath.row==9)
+        {
+            UISegmentedControl *sgt=[cell.contentView viewWithTag:30];
+            [sgt setHidden:NO];
+        }
+        else
+        {
+            UIButton *btIcon=[cell.contentView viewWithTag:20];
+            [btIcon setHidden:NO];
+            [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+        }
+        NSLog(@"Row nu=%ld",(long)indexPath.row);
+    }
+    
+  /*  if(![btIcon isHidden])
+        [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];*/
+
+    UITextField *lblName=[cell.contentView viewWithTag:10];
+    
+   
+    
+    
+    if(indexPath.row==0)
+    {
+        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15.0f]];
+        [lblName setTextColor:[UIColor colorWithRed:87.0/255.0 green:87.0/255.0 blue:88.0/255.0 alpha:1.0]];
+
+    }
+    else
+    {
+        [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:17]];
+        [lblName setTextColor:[UIColor grayColor]];
+
+    }
+    
+    
+    if(indexPath.row==0||indexPath.row==10||indexPath.row==14||indexPath.row==18||indexPath.row==22)
+         [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:240.0/255.0 alpha:1.0]];
+      else
+      {
+     [cell setBackgroundColor:[UIColor whiteColor]];
+        
+      }
+    
+    
+    [lblName setText:[labelArrayExamination objectAtIndex:indexPath.row]];
+
+    
+    return cell;
+    
 }
+
+
+
 
 -(UISegmentedControl*)maheSegmentControl:(BOOL)b
 {
@@ -224,7 +357,7 @@ NSArray *labelArrayExamination;
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
     
-    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+ /*   UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     UIButton *btIcon=[cell.contentView viewWithTag:20];
     
     if((indexPath.section==0&&(indexPath.row>=1&&indexPath.row<=5))||(indexPath.section==1&&indexPath.row==0))
@@ -242,26 +375,40 @@ NSArray *labelArrayExamination;
         }
      }
      
-    
+    */
     
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return labelArrayExamination.count;
+   /* int n=1;
+    if(section==0)
+         n=9;
+    else
+        n=3;
+    
+    return n;
     if(section==1)
         return 1;
     else
         return labelArrayExamination.count-1;
+     */
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+ if(indexPath.row==0)
+return 50;
+else  if(indexPath.row==10||indexPath.row==14||indexPath.row==18||indexPath.row==22)
+    return 40;
+else
     return 60;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 

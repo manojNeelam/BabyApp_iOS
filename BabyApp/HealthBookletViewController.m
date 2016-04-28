@@ -12,6 +12,7 @@
 #import "MedicalConditionVC.h"
 #import "PercentialViewController.h"
 #import "DevelopmetalScreenViewController.h"
+#import "OralHealth.h"
 @interface HealthBookletViewController ()
 {
     float width;
@@ -453,16 +454,27 @@
 -(void)oralAction
 {
     [oralOverlayView setHidden:YES];
-    [self performSegueWithIdentifier:@"activitySegue" sender:self];
+    //[self performSegueWithIdentifier:@"activitySegue" sender:self];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"forOral"];
+    
+    OralHealth *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"oralHealth"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
+
+    
+    
     
     
 }
 -(void)visualAction
 {
     [oralOverlayView setHidden:YES];
-    [self performSegueWithIdentifier:@"activitySegue" sender:self];
-    
-    
+  //  [self performSegueWithIdentifier:@"activitySegue" sender:self];
+  
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"forOral"];
+    OralHealth *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"oralHealth"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
+
+
 }
 
 - (void)didReceiveMemoryWarning {

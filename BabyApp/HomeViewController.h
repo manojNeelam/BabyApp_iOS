@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *childPic;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnEncyclopedia;
+@property (weak, nonatomic) IBOutlet UIButton *btnHealthbooklet;
 
 
 @end

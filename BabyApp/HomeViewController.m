@@ -47,6 +47,11 @@
     titlesArray=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles", nil];
     colorArray=[NSArray arrayWithObjects:@"D35560",@"F8C34F",@"53B8B1", nil];
 
+    
+    self.btnEncyclopedia.layer.borderWidth = 1.0;
+    self.btnEncyclopedia.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnHealthbooklet.layer.borderWidth = 1.0;
+    self.btnHealthbooklet.layer.borderColor = [UIColor lightGrayColor].CGColor;
 
 }
 
@@ -83,8 +88,8 @@
         NSLog(@"child photo url at home page=%@",child.baby_image);
 
         [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
-        [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
-        [self.childPic setClipsToBounds:YES];
+     //   [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
+     //   [self.childPic setClipsToBounds:YES];
         
     }
     else
@@ -150,6 +155,7 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+    
 }
 
 #pragma mark - UITableView Delegate & Datasrouce -

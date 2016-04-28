@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtFldDate;
 @property (weak, nonatomic) IBOutlet UIImageView *imgArrow;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnDate;
 
 @end

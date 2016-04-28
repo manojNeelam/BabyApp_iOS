@@ -7,9 +7,16 @@
 //
 
 #import "GrowthScreening.h"
+#import "ConnectionsManager.h"
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
+#import "CustomIOS7AlertView.h"
 
-@interface GrowthScreening ()
+@interface GrowthScreening ()<CustomIOS7AlertViewDelegate,ServerResponseDelegate>
+{
+    NSMutableArray *txtfieldAr2;
 
+}
 @end
 
 @implementation GrowthScreening
@@ -19,7 +26,8 @@ NSArray *labelArrayGrowth;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    txtfieldAr2=[[NSMutableArray alloc] init];
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
     
     
@@ -36,14 +44,108 @@ NSArray *labelArrayGrowth;
     [self.view addSubview:screeningGrowthTable];
     screeningGrowthTable.dataSource=self;
     screeningGrowthTable.delegate=self;
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
     
-    // Do any additional setup after loading the view.
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    NSLog(@"dict=%@",dict);
+    [[ConnectionsManager sharedManager] readGrowth:dict withdelegate:self];
+    
 }
 
 -(void)onClickSave:(id)sender
 {
     
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+ 
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:0] text] forKey:@"weight"];
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:1] text] forKey:@"length"];
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:2] text] forKey:@"occitofrontal_circ"];
+
+    NSLog(@"dict=%@",dict);
+    
+    [[ConnectionsManager sharedManager] updateGrowth:dict withdelegate:self];
+    
 }
+
+-(void)success:(id)response
+{
+    
+    
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {
+        
+        if ([[dict allKeys] containsObject:@"data"])
+        {
+            NSDictionary *dataList_ = [dict objectForKey:@"data"];
+            NSLog(@"First api result with screenoing id list recived");
+            
+            
+            /*
+             "data": {
+             "screening_id": "1",
+             "child_id": "1",
+             "weight": "4",
+             "length": "1",
+             "occitofrontal_circ": "3"
+             }
+
+             */
+            [(UITextField*)[txtfieldAr2 objectAtIndex:0] setText:[dataList_ objectForKey:@"weight"]];
+            [(UITextField*)[txtfieldAr2 objectAtIndex:1] setText:[dataList_ objectForKey:@"length"]];
+            [(UITextField*)[txtfieldAr2 objectAtIndex:2] setText:[dataList_ objectForKey:@"occitofrontal_circ"]];
+            
+        }
+        else
+        {
+            
+            
+            
+            NSLog(@"Second api result with update recived");
+        }
+    }
+    
+}
+
+
+
+
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -66,7 +168,8 @@ NSArray *labelArrayGrowth;
         [lblMesure setTextAlignment:NSTextAlignmentRight];
         [lblMesure setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:16.0f]];
         [cell.contentView addSubview:lblMesure];
-        
+        [txtfieldAr2 addObject:lblMesure];
+
         
     }
     UILabel *lblName=[cell.contentView viewWithTag:10];
