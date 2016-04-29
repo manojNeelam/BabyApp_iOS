@@ -78,6 +78,8 @@
 		96A9696E1CB8D8D700D1212B /* ImmunisationBaseDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969671CB8D8D700D1212B /* ImmunisationBaseDate.m */; };
 		96A9696F1CB8D8D700D1212B /* ImmunisationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969691CB8D8D700D1212B /* ImmunisationData.m */; };
 		96A969701CB8D8D700D1212B /* ImmunisationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */; };
+		96D07ABB1CD40588009251D4 /* ImmunisationChildData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D07ABA1CD40588009251D4 /* ImmunisationChildData.m */; };
+		96D07AC11CD407E9009251D4 /* ScreeningChildData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D07AC01CD407E9009251D4 /* ScreeningChildData.m */; };
 		96E5A03E1CC94F8100C8BB75 /* StoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */; };
 		96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EC1CC23131009F4932 /* JMImageCache.m */; };
 		96EE83F21CC23131009F4932 /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EE1CC23131009F4932 /* UIImageView+JMImageCache.m */; };
@@ -386,6 +388,10 @@
 		96A969691CB8D8D700D1212B /* ImmunisationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationData.m; sourceTree = "<group>"; };
 		96A9696A1CB8D8D700D1212B /* ImmunisationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmunisationsVC.h; sourceTree = "<group>"; };
 		96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationsVC.m; sourceTree = "<group>"; };
+		96D07AB91CD40588009251D4 /* ImmunisationChildData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmunisationChildData.h; sourceTree = "<group>"; };
+		96D07ABA1CD40588009251D4 /* ImmunisationChildData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationChildData.m; sourceTree = "<group>"; };
+		96D07ABF1CD407E9009251D4 /* ScreeningChildData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningChildData.h; sourceTree = "<group>"; };
+		96D07AC01CD407E9009251D4 /* ScreeningChildData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningChildData.m; sourceTree = "<group>"; };
 		96E5A03C1CC94F8100C8BB75 /* StoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresTableViewCell.h; sourceTree = "<group>"; };
 		96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresTableViewCell.m; sourceTree = "<group>"; };
 		96EE83EB1CC23131009F4932 /* JMImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMImageCache.h; sourceTree = "<group>"; };
@@ -864,6 +870,8 @@
 		9695B4F21CC2D32100815220 /* ScreeningData */ = {
 			isa = PBXGroup;
 			children = (
+				96D07ABF1CD407E9009251D4 /* ScreeningChildData.h */,
+				96D07AC01CD407E9009251D4 /* ScreeningChildData.m */,
 				96A342461CCAB07E00888E55 /* ChildDetailsData.h */,
 				96A342471CCAB07E00888E55 /* ChildDetailsData.m */,
 				8C8ABC4B1CC50A71003B3CC8 /* ScreeningSummaryData.h */,
@@ -877,6 +885,8 @@
 		96A969611CB8D8D700D1212B /* NewImmunisation */ = {
 			isa = PBXGroup;
 			children = (
+				96D07AB91CD40588009251D4 /* ImmunisationChildData.h */,
+				96D07ABA1CD40588009251D4 /* ImmunisationChildData.m */,
 				96A969621CB8D8D700D1212B /* AllImmunisationCell.h */,
 				96A969631CB8D8D700D1212B /* AllImmunisationCell.m */,
 				96A969641CB8D8D700D1212B /* DueImmunisationCell.h */,
@@ -1648,6 +1658,7 @@
 				90FC54671CB1A83400ED0E34 /* InvestigationOptionsData.m in Sources */,
 				96A9696F1CB8D8D700D1212B /* ImmunisationData.m in Sources */,
 				90FC54691CB1A83400ED0E34 /* InvestOtherTestCell.m in Sources */,
+				96D07ABB1CD40588009251D4 /* ImmunisationChildData.m in Sources */,
 				6C92336A1CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m in Sources */,
 				96E5A03E1CC94F8100C8BB75 /* StoresTableViewCell.m in Sources */,
 				90000F531CB3528000BC9BFC /* AllergyConditionVC.m in Sources */,
@@ -1663,6 +1674,7 @@
 				A1A469FE1CBD6C66009F65BB /* VisiualActivityViewController.m in Sources */,
 				A10EB5ED1C786B91002EBC59 /* SlideNavigationController.m in Sources */,
 				8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */,
+				96D07AC11CD407E9009251D4 /* ScreeningChildData.m in Sources */,
 				90F165CF1CB5A4DA006B5DD6 /* ConnectionsManager.m in Sources */,
 				90000F561CB352A000BC9BFC /* MedicalConditionVC.m in Sources */,
 				A10EB5FA1C786B9A002EBC59 /* SlideNavigationContorllerAnimatorScale.m in Sources */,

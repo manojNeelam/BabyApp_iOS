@@ -18,6 +18,7 @@
 #import "UIImageView+JMImageCache.h"
 #import "ChildDetailsData.h"
 #import "AppConstent.h"
+#import "NewImmunisationVC.h"
 
 @implementation HomeViewController
 {
@@ -26,19 +27,19 @@
 - (IBAction)helthBookletClicked:(id)sender {
     NSLog(@"helthBookletClicked");
     [self performSegueWithIdentifier:@"healthBookletsegue" sender:self];
-
+    
     //growthsummarysegu
 }
 - (IBAction)encyclopediaClicked:(id)sender
 {
     NSLog(@"encyclopediaClicked");
     [self performSegueWithIdentifier:@"encyclopediatapscrollersegu" sender:self];
-
+    
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
     [self.navigationItem setTitle:@"Baby Booklet"];
     self.navigationController.navigationBarHidden=NO;
     [[_addBioButton layer] setBorderWidth:1.0f];
@@ -46,13 +47,13 @@
     imagesNames=[NSArray arrayWithObjects:@"needle_icon.png",@"screening_icon.png",@"growth_icon.png", nil];
     titlesArray=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles", nil];
     colorArray=[NSArray arrayWithObjects:@"D35560",@"F8C34F",@"53B8B1", nil];
-
+    
     
     self.btnEncyclopedia.layer.borderWidth = 1.0;
     self.btnEncyclopedia.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.btnHealthbooklet.layer.borderWidth = 1.0;
     self.btnHealthbooklet.layer.borderColor = [UIColor lightGrayColor].CGColor;
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -79,17 +80,17 @@
     NSArray *list = [appdelegate listOfChildrens];
     
     NSLog(@"calling of load child at home page list=%@",list);
-
+    
     if(list.count)
     {
         ChildDetailsData *child = [list objectAtIndex:0];
         [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
         
         NSLog(@"child photo url at home page=%@",child.baby_image);
-
+        
         [self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
-     //   [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
-     //   [self.childPic setClipsToBounds:YES];
+        //   [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
+        //   [self.childPic setClipsToBounds:YES];
         
     }
     else
@@ -103,9 +104,9 @@
     
     NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     NSDictionary *params = @{@"user_id" : s};
-
+    
     NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
-
+    
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 
@@ -113,12 +114,12 @@
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
-	return YES;
+    return YES;
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayRightMenu
 {
-	return NO;
+    return NO;
 }
 
 -(UIColor*)colorWithHexString:(NSString*)hex
@@ -163,7 +164,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  
+    
     return imagesNames.count;
 }
 
@@ -196,11 +197,11 @@
     
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     NSArray *list = [appdelegate listOfChildrens];
-   if(list.count<1)
-    cell.subtitleLabel.text=@"No entry yet";
+    if(list.count<1)
+        cell.subtitleLabel.text=@"No entry yet";
     else
-    cell.subtitleLabel.text=@"Click Here to Show Detail";
-
+        cell.subtitleLabel.text=@"Click Here to Show Detail";
+    
     cell.subtitleLabel.textColor=[UIColor grayColor];
     return cell;
 }
@@ -208,52 +209,75 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-   /* HomeTableViewCell *cell = (HomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    if([cell.subtitleLabel.text isEqualToString:@"No entry yet"])
-    {
-        
-        UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOENTRYTITLE message:(NSString*)NOENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-        [alt show];
-        
-
-    }
-    else
-    {*/
+    //    HomeTableViewCell *cell = (HomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    //
+    //    if([cell.subtitleLabel.text isEqualToString:@"No entry yet"])
+    //    {
+    //        UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOENTRYTITLE message:(NSString*)NOENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+    //        [alt show];
+    //    }
+    //    else
+    //    {
     //ImmunisationsVC_SB_ID
+    
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSArray *list = [appdelegate listOfChildrens];
+    if(!list.count)
+    {
+        return;
+    }
+    
+    ChildDetailsData *child = [list objectAtIndex:0];
+    
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
     if(indexPath.row==0)
     {
         
-        ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
         
+        if(child.immunisationList.count)
+        {
+            ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+            [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+        }
+        else
+        {
+            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOIMMUNISATIONENTRYTITLE message:(NSString*)NOIMMUNISATIONENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+            [alt show];
+        }
         
-        [self.navigationController pushViewController:ImmunisationsVC animated:YES];
     }
     if(indexPath.row==1)
     {
         //screeningSummaryList
         
-        ScreeningSummaryViewController *summaryVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
-        
-        
-        [self.navigationController pushViewController:summaryVC animated:YES];
+        if(child.screeningList.count)
+        {
+            ScreeningSummaryViewController *summaryVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
+            [self.navigationController pushViewController:summaryVC animated:YES];
+        }
+        else
+        {
+            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOIMMUNISATIONENTRYTITLE message:(NSString*)NOIMMUNISATIONENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+            [alt show];
+        }
         
     }
     else if(indexPath.row==2)
     {
         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
-  //  }
+    //    }
 }
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-   
+    
     NSLog(@"alert view clicked with MESSAGE=%@ at index=%ld",[alertView message],(long)buttonIndex);
     
-    if([[alertView message] isEqualToString:NOENTRYMESSAGE])
+    if([[alertView message] isEqualToString:(NSString *)NOENTRYMESSAGE])
     {
         if(buttonIndex==0)
         {
@@ -265,8 +289,31 @@
             NSLog(@"Cancel clicked");
         }
     }
-    
-    
+    else if([[alertView message] isEqualToString:(NSString *)NOIMMUNISATIONENTRYMESSAGE])
+    {
+        if(buttonIndex==0)
+        {
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NewImmunisationVC_SB_ID"];
+            [self.navigationController pushViewController:vc animated:YES];
+            //[self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+        }
+        else
+        {
+            NSLog(@"Cancel clicked");
+        }
+    }
+    else if([[alertView message] isEqualToString:(NSString *)NOSCREENINGENTRYMESSAGE])
+    {
+        if(buttonIndex==0)
+        {
+            [self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+            //[self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+        }
+        else
+        {
+            NSLog(@"Cancel clicked");
+        }
+    }
 }
 
 #pragma mark - IBActions -
