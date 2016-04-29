@@ -1188,6 +1188,9 @@
                                         <state key="normal" title="Add Bio">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="Nsp-fl-K9c" kind="show" id="j7O-Ow-l0k"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPw-Br-n4X">
                                         <rect key="frame" x="175" y="30" width="125" height="21"/>
@@ -1934,7 +1937,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4J-qv-IwT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="-1706"/>
+            <point key="canvasLocation" x="1014" y="-178"/>
         </scene>
         <!--Growth Screening-->
         <scene sceneID="uWs-AK-qXY">
