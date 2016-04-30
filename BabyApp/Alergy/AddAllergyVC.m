@@ -17,6 +17,9 @@
 @interface AddAllergyVC () <ServerResponseDelegate, CustomIOS7AlertViewDelegate, UITextFieldDelegate>
 {
     CustomIOS7AlertView *dateAlertView;
+    
+    BOOL isConfirmed, isSuspended;
+    
     UIDatePicker *datePicker;
 }
 @end
@@ -37,7 +40,15 @@
             [dict setObject:self.txtFldDrugName.text forKey:@"drug_name"];
             [dict setObject:self.txtFldAllergyReaction.text forKey:@"allergic_reaction"];
             [dict setObject:self.btnDate.titleLabel.text forKey:@"date"];
-            [dict setObject:@"1" forKey:@"status"];
+            
+            NSString *str = @"0";
+            
+            if(isConfirmed)
+            {
+                str = @"1";
+            }
+            
+            [dict setObject:str forKey:@"status"];
             
             if(drugAlergyData && drugAlergyData != nil)
             {
@@ -75,6 +86,19 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    isConfirmed = YES;
+    isSuspended = NO;
+    
+    UITapGestureRecognizer *tapConfirmGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclikConfirmLbl:)];
+    [self.lblConfirmed addGestureRecognizer:tapConfirmGest];
+    [self.lblConfirmed setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *tapSuspectGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclikSuspectLbl:)];
+    [self.lblSuspect addGestureRecognizer:tapSuspectGest];
+    [self.lblSuspect setUserInteractionEnabled:YES];
+    
+    
     [self.txtFldAllergyReaction setDelegate:self];
     [self.txtFldDrugName setDelegate:self];
     
@@ -83,6 +107,31 @@
         [self.txtFldDrugName setText:drugAlergyData.drugTitle];
         [self.txtFldDate setText:drugAlergyData.date];
         [self.txtFldAllergyReaction setText:drugAlergyData.reaction];
+    }
+}
+
+-(void)onclikConfirmLbl:(UIGestureRecognizer *)aGest
+{
+    if(!isConfirmed)
+    {
+        [self.lblConfirmed setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+        [self.lblSuspect setTextColor:[UIColor darkGrayColor]];
+        
+        isConfirmed = YES;
+        isSuspended = NO;
+    }
+    
+}
+
+-(void)onclikSuspectLbl:(UIGestureRecognizer *)aGest
+{
+    if(!isSuspended)
+    {
+        [self.lblSuspect setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+        [self.lblConfirmed setTextColor:[UIColor darkGrayColor]];
+        
+        isConfirmed = NO;
+        isSuspended = YES;
     }
 }
 
