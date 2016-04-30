@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
     UIFont *font = [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15.0f];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
@@ -125,15 +127,7 @@
         
         immunisationData.is_done = !immunisationData.is_done;
         
-        //        if(immunisationData.is_done)
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-        //        }
-        //        else
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-        //        }
-        
+        [self update:immunisationData withStatus:!immunisationData.is_done];
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
@@ -142,16 +136,6 @@
         immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
         
         immunisationData.is_done = !immunisationData.is_done;
-        
-        //        if(immunisationData.is_done)
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-        //        }
-        //        else
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-        //        }
-        
     }
     else
     {
@@ -160,22 +144,9 @@
         
         immunisationData.is_done = !immunisationData.is_done;
         
-        //        if(immunisationData.is_done)
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-        //        }
-        //        else
-        //        {
-        //            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-        //        }
-        
     }
     
-    
     [self.tableView reloadData];
-    
-    //immunisation_id
-    //int
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,30 +161,34 @@
         [cell setBackgroundColor:[UIColor whiteColor]];
         
         ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
-        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        if(base.listOfData)
+        {
+            ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+            
+            if(immunisationData.is_done)
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+                [cell.lblLine setHidden:YES];
+                [cell.lblNext setHidden:NO];
+                
+                [cell.lblTitle setText:immunisationData.sequence];
+                
+                [cell.imgNotePad setHidden:YES];
+                
+            }
+            else
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+                [cell.lblLine setHidden:NO];
+                [cell.lblNext setHidden:YES];
+                
+                [cell.lblTitle setText:immunisationData.sequence];
+                
+                [cell.imgNotePad setHidden:NO];
+                
+            }
+        }
         
-        if(immunisationData.is_done)
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-            [cell.lblLine setHidden:YES];
-            [cell.lblNext setHidden:NO];
-            
-            [cell.lblTitle setText:immunisationData.sequence];
-            
-            [cell.imgNotePad setHidden:YES];
-            
-        }
-        else
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-            [cell.lblLine setHidden:NO];
-            [cell.lblNext setHidden:YES];
-            
-            [cell.lblTitle setText:immunisationData.sequence];
-            
-            [cell.imgNotePad setHidden:NO];
-            
-        }
         
         /*cell.lblNext.layer.cornerRadius = 8.0f;
          cell.lblNext.clipsToBounds = YES;
@@ -265,30 +240,34 @@
         [cell setBackgroundColor:[UIColor whiteColor]];
         
         ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
-        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        if(base.listOfData)
+        {
+            ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+            
+            if(immunisationData.is_done)
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+                [cell.lblLine setHidden:NO];
+                [cell.lblNext setHidden:YES];
+                
+                [cell.lblTitle setText:immunisationData.sequence];
+                
+                [cell.imgNotePad setHidden:YES];
+                
+            }
+            else
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+                [cell.lblLine setHidden:YES];
+                [cell.lblNext setHidden:NO];
+                
+                [cell.lblTitle setText:immunisationData.sequence];
+                
+                [cell.imgNotePad setHidden:NO];
+                
+            }
+        }
         
-        if(immunisationData.is_done)
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-            [cell.lblLine setHidden:NO];
-            [cell.lblNext setHidden:YES];
-            
-            [cell.lblTitle setText:immunisationData.sequence];
-            
-            [cell.imgNotePad setHidden:YES];
-            
-        }
-        else
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-            [cell.lblLine setHidden:YES];
-            [cell.lblNext setHidden:NO];
-            
-            [cell.lblTitle setText:immunisationData.sequence];
-            
-            [cell.imgNotePad setHidden:NO];
-            
-        }
         /*if(indexPath.section == 0)
          {
          [cell.indicatorView setBackgroundColor:self.baseSegmentView.backgroundColor];
@@ -342,22 +321,26 @@
         
         
         ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:indexPath.section];
-        ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        if(base.listOfData.count)
+        {
+            ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+            
+            if(immunisationData.is_done)
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
+                [cell.lblDate setText:immunisationData.date_given];
+                
+                [cell.lblTitle setText:immunisationData.sequence];
+            }
+            else
+            {
+                [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
+                [cell.lblDate setText:immunisationData.date_given];
+                [cell.lblTitle setText:immunisationData.sequence];
+                
+            }
+        }
         
-        if(immunisationData.is_done)
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
-            [cell.lblDate setText:immunisationData.date_given];
-            
-            [cell.lblTitle setText:immunisationData.sequence];
-        }
-        else
-        {
-            [cell.btnCheck setBackgroundImage:[UIImage imageNamed:Check] forState:UIControlStateNormal];
-            [cell.lblDate setText:immunisationData.date_given];
-            [cell.lblTitle setText:immunisationData.sequence];
-            
-        }
         
         /*if(indexPath.section == 0)
          {
@@ -410,12 +393,12 @@
     }
     else if(self.segmentImu.selectedSegmentIndex == 1)
     {
-        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:section];
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:section];
         [lblHeader setText:base.sectionName];
     }
     else
     {
-        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:section];
+        ImmunisationBaseDate *base = [immunisationDueList objectAtIndex:section];
         [lblHeader setText:base.sectionName];
     }
     
@@ -481,7 +464,10 @@
             for(NSDictionary *dict in listImmuniHolder)
             {
                 ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:NO];
-                [temp addObject:immunisationData];
+                if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                {
+                    [temp addObject:immunisationData];
+                }
             }
             immunisationDueList = [temp mutableCopy];
             
@@ -490,7 +476,12 @@
             for(NSDictionary *dict in listImmuniHolder)
             {
                 ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:YES];
-                [tempDone addObject:immunisationData];
+                if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                {
+                    [tempDone addObject:immunisationData];
+                }
+                
+                
             }
             immunisationDoneList = [tempDone mutableCopy];
             
@@ -498,7 +489,12 @@
             for(NSDictionary *dict in listImmuniHolder)
             {
                 ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
-                [tempAll addObject:immunisationData];
+                
+                if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                {
+                    [tempAll addObject:immunisationData];
+                }
+                
             }
             immunisationList = [tempAll mutableCopy];
             
