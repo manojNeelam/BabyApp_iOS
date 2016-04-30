@@ -225,8 +225,15 @@
     NSArray *list = [appdelegate listOfChildrens];
     if(!list.count)
     {
-        return;
+      //  return;
+        
+        UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOENTRYTITLE message:(NSString*)NOENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+           [alt show];
+
     }
+    
+    else
+    {
     
     ChildDetailsData *child = [list objectAtIndex:0];
     
@@ -254,6 +261,7 @@
     {
         //screeningSummaryList
         
+        NSLog(@"in did select screening");
         if(child.screeningList.count)
         {
             ScreeningSummaryViewController *summaryVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
@@ -270,7 +278,7 @@
     {
         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
-    //    }
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
