@@ -16,8 +16,10 @@
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
 
-@interface BirthRecordTableViewController () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate>
+@interface BirthRecordTableViewController () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
+    
+    NSArray *genderList;
     NSArray *identifierNames;
     
     UITapGestureRecognizer *genderGesture, *ethnicGesture, *modeDeliveryGesture, *apgarMinDurationGesture, *apgarMaxDurationGesture, *durationGesture;
@@ -26,6 +28,11 @@
     NSInteger selectedIndex;
     CustomIOS7AlertView *dateAlertView;
     UIDatePicker *datePicker;
+    
+    UITableView *commonTblView;
+    
+    UITextField *currentTextField;
+    
     
     BOOL isUpdate;
 }
@@ -37,6 +44,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
+    //[gesture setCancelsTouchesInView:YES];
+    [self.view addGestureRecognizer:gesture];
+    
+    [self.txtFldBirthCertificateNo setDelegate:self];
+    [self.txtFldDurationGestation setDelegate:self];
+    [self.txtFldEthnicGroup setDelegate:self];
+    [self.txtFldHeadCircunference setDelegate:self];
+    [self.txtFldLengthAtBirth setDelegate:self];
+    [self.txtFldModeofDelivery setDelegate:self];
+    [self.txtfldPlaceOfDelivery setDelegate:self];
+    [self.txtFldSex setDelegate:self];
+    [self.txtFldWeightAtBirth setDelegate:self];
     
     [self.txtFldWeightAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
     [self.txtFldLengthAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
@@ -52,6 +73,14 @@
     
     [self loadData];
     
+    commonTblView = [[UITableView alloc] init];
+    [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [commonTblView setDataSource:self];
+    [commonTblView setDelegate:self];
+    [commonTblView setHidden:YES];
+    
+    
+    [self.scrollView addSubview:commonTblView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -63,6 +92,12 @@
 - (void)viewDidLayoutSubviews
 {
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 60)];
+}
+
+-(void)onclickkeyboardhide:(UITapGestureRecognizer *)aGesture
+{
+    [self.view endEditing:YES];
+    [commonTblView setHidden:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -109,27 +144,70 @@
 
 -(void)onClickGenderButton:(UIGestureRecognizer *)aGesture
 {
-    selectedIndex = 1;
-    keyString = @"Gender";
-    [self openCommonSelectionVC];
+    [self.view endEditing:YES];
+    
+    currentTextField = self.txtFldSex;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseSexView.frame;
+    CGRect frameTxtFld = self.txtFldSex.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
+    //    [commonTblView setFrame:CGRectMake(frameTxtFld.origin.x, frameView.origin.y+frameView.size.height, frameTxtFld.size.width, 88)];
+    //    [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    //    [commonTblView setBackgroundColor:[UIColor whiteColor]];
+    //
+    //
+    //    [commonTblView setHidden:NO];
+    //    [commonTblView reloadData];
+    
+    //[self openCommonSelectionVC];
 }
 
 -(void)onClickEthnicGesture:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 2;
-    keyString = @"Ethnic";
-    [self openCommonSelectionVC];
+    [self.view endEditing:YES];
+    
+    currentTextField = self.txtFldEthnicGroup;
+    [self loadEthickData];
+    
+    
+    CGRect frameView = self.baseEthnicGroupView.frame;
+    CGRect frameTxtFld = self.txtFldEthnicGroup.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
+    //selectedIndex = 2;
+    //keyString = @"Ethnic";
+    //[self openCommonSelectionVC];
 }
 
 -(void)onClickModeDeliveryGesture:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 3;
-    keyString = @"Delivery";
-    [self openCommonSelectionVC];
+    
+    [self.view endEditing:YES];
+    
+    
+    //    selectedIndex = 3;
+    //    keyString = @"Delivery";
+    //    [self openCommonSelectionVC];
+    
+    currentTextField = self.txtFldModeofDelivery;
+    
+    [self loadDeliveryData];
+    
+    
+    CGRect frameView = self.baseModeOfDeliveryView.frame;
+    CGRect frameTxtFld = self.txtFldModeofDelivery.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)onClickApgarMinScoreGesture:(UITapGestureRecognizer *)aTapGesture
 {
+    
+    [self.view endEditing:YES];
+    
+    
     selectedIndex = 4;
     keyString = @"MinScore";
     [self openCommonSelectionVC];
@@ -137,6 +215,8 @@
 
 -(void)onClickApgarMaxScoreGesture:(UITapGestureRecognizer *)aTapGesture
 {
+    [self.view endEditing:YES];
+    
     selectedIndex = 5;
     keyString = @"MaxScore";
     [self openCommonSelectionVC];
@@ -145,8 +225,21 @@
 //onClickDurationGesture
 -(void)onClickDurationGesture:(UITapGestureRecognizer *)aTapGesture
 {
+    [self.view endEditing:YES];
+    
     selectedIndex = 6;
     [self openDate];
+}
+
+-(void)setFrameCommonTableView:(CGRect)frameView andTextFieldRect:(CGRect)frameTxtFld
+{
+    [commonTblView setFrame:CGRectMake(frameTxtFld.origin.x-20, frameView.origin.y+frameView.size.height, frameTxtFld.size.width+50, genderList.count*44)];
+    [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [commonTblView setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    [commonTblView setHidden:NO];
+    [commonTblView reloadData];
 }
 
 -(void)selectedValue:(NSString *)aSelectedValue
@@ -430,4 +523,79 @@
 {
     
 }
+
+-(void)loadGenderData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    [tempData addObject:@"Mail"];
+    [tempData addObject:@"Female"];
+    
+    genderList = tempData;
+    
+}
+
+-(void)loadEthickData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Hispanic or Latino"];
+    [tempData addObject:@"American Indian or Alaska Native"];
+    [tempData addObject:@"Asian"];
+    [tempData addObject:@"Black or African American"];
+    [tempData addObject:@"Native Hawaiian or Pacific Islander"];
+    [tempData addObject:@"White"];
+    
+    genderList = tempData;
+}
+
+-(void)loadDeliveryData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Normal delivery"];
+    [tempData addObject:@"Cesarean delivery"];
+    
+    genderList = tempData;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return genderList.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:13]];
+    [cell.textLabel setText:[genderList objectAtIndex:indexPath.row]];
+    [cell.textLabel setNumberOfLines:0];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.textLabel sizeToFit];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *str = [genderList objectAtIndex:indexPath.row];
+    [commonTblView setHidden:YES];
+    
+    
+    [currentTextField setText:str];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [commonTblView setHidden:YES];
+    return YES;
+}
+
 @end

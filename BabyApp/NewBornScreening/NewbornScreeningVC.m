@@ -16,7 +16,7 @@
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
 
-@interface NewbornScreeningVC () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate>
+@interface NewbornScreeningVC () <CommonSelectionListVCDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UITapGestureRecognizer *DeficiencyTapGesture, *dateTSHTapGesture, *IEMTapGesture, *DateIEMTapGesture, *OAETapGesture, *DateOAETapGesture, *LeftTapGesture, *RightTapGesture, *evaluationTapGesture;
     
@@ -26,6 +26,12 @@
     UIDatePicker *datePicker;
     
     BOOL isUpdate;
+    
+    NSArray *genderList;
+    UITableView *commonTblView;
+    
+    UITextField *currentTextField;
+    
 }
 @end
 
@@ -37,6 +43,27 @@
     [self addTapGestures];
     
     [self loadData];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
+    //[gesture setCancelsTouchesInView:YES];
+    [self.view addGestureRecognizer:gesture];
+    
+    
+    commonTblView = [[UITableView alloc] init];
+    [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [commonTblView setDataSource:self];
+    [commonTblView setDelegate:self];
+    [commonTblView setHidden:YES];
+    
+    
+    [self.scrollView addSubview:commonTblView];
+    
+}
+
+-(void)onclickkeyboardhide:(UITapGestureRecognizer *)aGesture
+{
+    [self.view endEditing:YES];
+    [commonTblView setHidden:YES];
 }
 
 -(void)addTapGestures
@@ -69,11 +96,26 @@
     [self.baseNeedsFurthurView addGestureRecognizer:evaluationTapGesture];
 }
 
+-(void)setFrameCommonTableView:(CGRect)frameView andTextFieldRect:(CGRect)frameTxtFld
+{
+    [commonTblView setFrame:CGRectMake(frameTxtFld.origin.x-20, frameView.origin.y+frameView.size.height, frameTxtFld.size.width+50, genderList.count*44)];
+    [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [commonTblView setBackgroundColor:[UIColor whiteColor]];
+    
+    [commonTblView setHidden:NO];
+    [commonTblView reloadData];
+}
 
 -(void)onClickBaseG6PDView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 1;
-    [self openCommonSelectionVC];
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldG6PD;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseG6pdView.frame;
+    CGRect frameTxtFld = self.txtFldG6PD.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
 }
 
 -(void)onClickdateTSHView:(UITapGestureRecognizer *)aTapGesture
@@ -85,8 +127,19 @@
 
 -(void)onClickBaseIEMView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 3;
-    [self openCommonSelectionVC];
+    
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldIEMScreeming;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseIEMScreemingView.frame;
+    CGRect frameTxtFld = self.txtFldIEMScreeming.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
+    
+    //    selectedIndex = 3;
+    //    [self openCommonSelectionVC];
 }
 
 -(void)onClickBaseDateIEMView:(UITapGestureRecognizer *)aTapGesture
@@ -99,8 +152,18 @@
 
 -(void)onClickBaseOAEView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 5;
-    [self openCommonSelectionVC];
+    //    selectedIndex = 5;
+    //    [self openCommonSelectionVC];
+    
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldOAE;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseOAEView.frame;
+    CGRect frameTxtFld = self.txtFldOAE.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)onClickdateOAEView:(UITapGestureRecognizer *)aTapGesture
@@ -111,20 +174,50 @@
 
 -(void)onClickBaseLeftView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 7;
-    [self openCommonSelectionVC];
+    //    selectedIndex = 7;
+    //    [self openCommonSelectionVC];
+    
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldLeftPass;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseLeftPassView.frame;
+    CGRect frameTxtFld = self.txtFldLeftPass.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)onClickBaseRightView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 8;
-    [self openCommonSelectionVC];
+    //    selectedIndex = 8;
+    //    [self openCommonSelectionVC];
+    
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldBaseRight;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseRightPassView.frame;
+    CGRect frameTxtFld = self.txtFldBaseRight.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)onClickBaseEvaluationView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 9;
-    [self openCommonSelectionVC];
+    //    selectedIndex = 9;
+    //    [self openCommonSelectionVC];
+    
+    //[self.view endEditing:YES];
+    
+    currentTextField = self.txtFldNeedFurthur;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseNeedsFurthurView.frame;
+    CGRect frameTxtFld = self.txtFldNeedFurthur.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)selectedValue:(NSString *)aSelectedValue
@@ -447,4 +540,81 @@
 {
     
 }
+
+
+-(void)loadGenderData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    [tempData addObject:@"Yes"];
+    [tempData addObject:@"No"];
+    
+    genderList = tempData;
+    
+}
+
+-(void)loadEthickData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Hispanic or Latino"];
+    [tempData addObject:@"American Indian or Alaska Native"];
+    [tempData addObject:@"Asian"];
+    [tempData addObject:@"Black or African American"];
+    [tempData addObject:@"Native Hawaiian or Pacific Islander"];
+    [tempData addObject:@"White"];
+    
+    genderList = tempData;
+}
+
+-(void)loadDeliveryData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Normal delivery"];
+    [tempData addObject:@"Cesarean delivery"];
+    
+    genderList = tempData;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return genderList.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:13]];
+    [cell.textLabel setText:[genderList objectAtIndex:indexPath.row]];
+    [cell.textLabel setNumberOfLines:0];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.textLabel sizeToFit];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *str = [genderList objectAtIndex:indexPath.row];
+    [commonTblView setHidden:YES];
+    
+    
+    [currentTextField setText:str];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [commonTblView setHidden:YES];
+    return YES;
+}
+
+
 @end

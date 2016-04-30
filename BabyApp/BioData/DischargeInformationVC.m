@@ -13,7 +13,7 @@
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
 
-@interface DischargeInformationVC () <CustomIOS7AlertViewDelegate, CommonSelectionListVCDelegate, ServerResponseDelegate>
+@interface DischargeInformationVC () <CustomIOS7AlertViewDelegate, CommonSelectionListVCDelegate, ServerResponseDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     CustomIOS7AlertView *dateAlertView;
     NSInteger selectedIndex;
@@ -22,6 +22,11 @@
     UITapGestureRecognizer *dateTapGesture, *breastFeedTapGesture;
     
     BOOL isUpdate;
+    
+    NSArray *genderList;
+    UITableView *commonTblView;
+    
+    UITextField *currentTextField;
 }
 @end
 
@@ -30,6 +35,14 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    commonTblView = [[UITableView alloc] init];
+    [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [commonTblView setDataSource:self];
+    [commonTblView setDelegate:self];
+    [commonTblView setHidden:YES];
+    
+    
+    [self.scrollView addSubview:commonTblView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -37,6 +50,8 @@
     [super viewWillAppear:animated];
     [self addTapGestures];
     [self loadData];
+    
+    
 }
 
 -(void)loadData
@@ -117,9 +132,31 @@
 
 -(void)onClickBreastView:(UITapGestureRecognizer *)aTapGesture
 {
-    selectedIndex = 2;
-    [self openCommonSelectionVC];
+    //    selectedIndex = 2;
+    //    [self openCommonSelectionVC];
+    
+    [self.view endEditing:YES];
+    
+    currentTextField = self.txtFldBreastFeed;
+    [self loadGenderData];
+    
+    CGRect frameView = self.baseBreastFeed.frame;
+    CGRect frameTxtFld = self.txtFldBreastFeed.frame;
+    [self setFrameCommonTableView:frameView andTextFieldRect:frameTxtFld];
+    
 }
+
+-(void)setFrameCommonTableView:(CGRect)frameView andTextFieldRect:(CGRect)frameTxtFld
+{
+    [commonTblView setFrame:CGRectMake(frameTxtFld.origin.x-20, frameView.origin.y+frameView.size.height, frameTxtFld.size.width+50, genderList.count*44)];
+    [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [commonTblView setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    [commonTblView setHidden:NO];
+    [commonTblView reloadData];
+}
+
 
 -(void)selectedValue:(NSString *)aSelected
 {
@@ -236,5 +273,80 @@
 {
     
 }
+
+-(void)loadGenderData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    [tempData addObject:@"Mail"];
+    [tempData addObject:@"Female"];
+    
+    genderList = tempData;
+    
+}
+
+-(void)loadEthickData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Hispanic or Latino"];
+    [tempData addObject:@"American Indian or Alaska Native"];
+    [tempData addObject:@"Asian"];
+    [tempData addObject:@"Black or African American"];
+    [tempData addObject:@"Native Hawaiian or Pacific Islander"];
+    [tempData addObject:@"White"];
+    
+    genderList = tempData;
+}
+
+-(void)loadDeliveryData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"Normal delivery"];
+    [tempData addObject:@"Cesarean delivery"];
+    
+    genderList = tempData;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return genderList.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:13]];
+    [cell.textLabel setText:[genderList objectAtIndex:indexPath.row]];
+    [cell.textLabel setNumberOfLines:0];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.textLabel sizeToFit];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *str = [genderList objectAtIndex:indexPath.row];
+    [commonTblView setHidden:YES];
+    
+    
+    [currentTextField setText:str];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [commonTblView setHidden:YES];
+    return YES;
+}
+
 
 @end
