@@ -183,6 +183,10 @@
     if (self.segmentImu.selectedSegmentIndex == 0)
     {
         AllImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AllImmunisationCell"];
+        [cell.lblDate setTextAlignment:NSTextAlignmentLeft];
+        cell.lblNext.layer.cornerRadius = 5.0f;
+        [cell.lblNext setClipsToBounds:YES];
+        
         [cell setBackgroundColor:[UIColor whiteColor]];
         
         ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
@@ -248,12 +252,16 @@
          }
          }*/
         
-        
         return cell;
     }
+    
     if (self.segmentImu.selectedSegmentIndex == 1)
     {
         AllImmunisationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AllImmunisationCell"];
+        [cell.lblDate setTextAlignment:NSTextAlignmentLeft];
+        cell.lblNext.layer.cornerRadius = 5.0f;
+        [cell.lblNext setClipsToBounds:YES];
+        
         [cell setBackgroundColor:[UIColor whiteColor]];
         
         ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
