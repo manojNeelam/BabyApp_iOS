@@ -21,12 +21,15 @@
 
 -(void)parseDictionary:(NSDictionary *)params withStatus:(BOOL)isDue
 {
-    self.sectionName = [params objectForKey:@"title"];
-    self.immuID = [params objectForKey:@"id"];
+    
     
     NSArray *listItems = [params objectForKey:@"items"];
     if(listItems.count)
     {
+        
+        self.sectionName = [params objectForKey:@"title"];
+        self.immuID = [params objectForKey:@"id"];
+        
         NSMutableArray *temp = [NSMutableArray array];
         for(NSDictionary *dict in listItems)
         {
@@ -41,6 +44,7 @@
     }
 }
 
+
 -(id)initwithDueDictionary:(NSDictionary *)dict
 {
     [self parseDictionary:dict];
@@ -49,12 +53,15 @@
 
 -(void)parseDictionary:(NSDictionary *)params
 {
+    
     self.sectionName = [params objectForKey:@"title"];
     self.immuID = [params objectForKey:@"id"];
     
     NSArray *listItems = [params objectForKey:@"items"];
     if(listItems.count)
     {
+        
+        
         NSMutableArray *temp = [NSMutableArray array];
         for(NSDictionary *dict in listItems)
         {

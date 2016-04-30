@@ -165,7 +165,7 @@
         {
             ImmunisationData *immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
             
-            if(immunisationData.is_done)
+            if(!immunisationData.is_done)
             {
                 [cell.btnCheck setBackgroundImage:[UIImage imageNamed:UnCheck] forState:UIControlStateNormal];
                 [cell.lblLine setHidden:YES];
@@ -490,10 +490,10 @@
             {
                 ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
                 
-                if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
-                {
-                    [tempAll addObject:immunisationData];
-                }
+                //if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                //{
+                [tempAll addObject:immunisationData];
+                //}
                 
             }
             immunisationList = [tempAll mutableCopy];
