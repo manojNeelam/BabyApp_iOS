@@ -19,6 +19,7 @@
 #import "ChildDetailsData.h"
 #import "AppConstent.h"
 #import "NewImmunisationVC.h"
+#import "ScreeningViewController.h"
 
 @implementation HomeViewController
 {
@@ -260,7 +261,7 @@
         }
         else
         {
-            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOIMMUNISATIONENTRYTITLE message:(NSString*)NOIMMUNISATIONENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOSCREENINGENTRYTITLE message:(NSString*)NOSCREENINGENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
             [alt show];
         }
         
@@ -274,7 +275,6 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     NSLog(@"alert view clicked with MESSAGE=%@ at index=%ld",[alertView message],(long)buttonIndex);
     
     if([[alertView message] isEqualToString:(NSString *)NOENTRYMESSAGE])
@@ -306,7 +306,10 @@
     {
         if(buttonIndex==0)
         {
-            [self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+            ScreeningViewController *screeningVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Screening"];
+            [self.navigationController pushViewController:screeningVC animated:YES];
+            
+            //[self performSegueWithIdentifier:@"Screening" sender:self];
             //[self performSegueWithIdentifier:@"bioDataSegue" sender:self];
         }
         else
