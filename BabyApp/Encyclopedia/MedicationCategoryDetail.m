@@ -181,7 +181,7 @@ NSDictionary *d;
 
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:( NSIndexPath *)indexPath
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
