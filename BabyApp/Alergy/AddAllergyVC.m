@@ -105,7 +105,19 @@
     if(drugAlergyData && drugAlergyData != nil)
     {
         [self.txtFldDrugName setText:drugAlergyData.drugTitle];
-        [self.txtFldDate setText:drugAlergyData.date];
+        [self.btnDate setTitle:drugAlergyData.date forState:UIControlStateNormal];
+        if([drugAlergyData.status isEqualToString:@"1"])
+        {
+            [self.lblConfirmed setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+            [self.lblSuspect setTextColor:[UIColor darkGrayColor]];
+            
+        }
+        else if([drugAlergyData.status isEqualToString:@"0"])
+        {
+            [self.lblSuspect setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+            [self.lblConfirmed setTextColor:[UIColor darkGrayColor]];
+        }
+        //[self.txtFldDate setText:drugAlergyData.date];
         [self.txtFldAllergyReaction setText:drugAlergyData.reaction];
     }
 }

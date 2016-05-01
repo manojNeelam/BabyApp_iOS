@@ -26,39 +26,40 @@
 
 -(void)loadData
 {
-    NSMutableArray *temp = [NSMutableArray array];
+    /*NSMutableArray *temp = [NSMutableArray array];
+     
+     DrugAlergyData *drugData = [[DrugAlergyData alloc] init];
+     drugData.drugTitle = @"Panadol";
+     drugData.reaction = @"Reaction: Anaphylaxis";
+     drugData.date = @"Date: 05/0612016";
+     drugData.status = @"Confirmed: allergy";
+     
+     [temp addObject:drugData];
+     
+     drugData = [[DrugAlergyData alloc] init];
+     drugData.drugTitle = @"Drug 2";
+     drugData.reaction = @"Reaction: Anaphylaxis";
+     drugData.date = @"Date: 05/0612016";
+     drugData.status = @"Confirmed: allergy";
+     
+     [temp addObject:drugData];
+     
+     drugData = [[DrugAlergyData alloc] init];
+     drugData.drugTitle = @"Drug 3";
+     drugData.reaction = @"Reaction: Anaphylaxis";
+     drugData.date = @"Date: 05/0612016";
+     drugData.status = @"Confirmed: allergy";
+     
+     [temp addObject:drugData];
+     
+     listOfObjects = temp;*/
     
-    DrugAlergyData *drugData = [[DrugAlergyData alloc] init];
-    drugData.drugTitle = @"Panadol";
-    drugData.reaction = @"Reaction: Anaphylaxis";
-    drugData.date = @"Date: 05/0612016";
-    drugData.status = @"Confirmed: allergy";
-    
-    [temp addObject:drugData];
-    
-    drugData = [[DrugAlergyData alloc] init];
-    drugData.drugTitle = @"Drug 2";
-    drugData.reaction = @"Reaction: Anaphylaxis";
-    drugData.date = @"Date: 05/0612016";
-    drugData.status = @"Confirmed: allergy";
-    
-    [temp addObject:drugData];
-    
-    drugData = [[DrugAlergyData alloc] init];
-    drugData.drugTitle = @"Drug 3";
-    drugData.reaction = @"Reaction: Anaphylaxis";
-    drugData.date = @"Date: 05/0612016";
-    drugData.status = @"Confirmed: allergy";
-    
-    [temp addObject:drugData];
-    
-    listOfObjects = temp;
-    //    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
-    //    if(childID.length > 0)
-    //    {
-    //        NSDictionary *params = @{@"child_id": childID};
-    //        [self getDrugAllergyList:params];
-    //    }
+    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    if(childID.length > 0)
+    {
+        NSDictionary *params = @{@"child_id": childID};
+        [self getDrugAllergyList:params];
+    }
     
     
     [self.tableView reloadData];
@@ -79,9 +80,9 @@
 {
     static NSString *cellIdentifier = @"DrugAlergyCell";
     DrugAlergyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell.btnEdit setTag:indexPath.row];
     
     DrugAlergyData *data = [listOfObjects objectAtIndex:indexPath.row];
-    cell.btnEdit.tag=indexPath.row+100;
     [cell.btnEdit addTarget:self
                      action:@selector(editAlergy:) forControlEvents:UIControlEventTouchDown];
     [cell populateData:data];
@@ -110,11 +111,14 @@
 }
 -(void)editAlergy:(id)sender
 {
+    UIButton *editBtn = (UIButton *)sender;
     UIStoryboard *storyboard = self.navigationController.storyboard;
     
     AddAllergyVC *detailPage = [storyboard
                                 instantiateViewControllerWithIdentifier:@"AddAllergyVC_SB_ID"];
+    DrugAlergyData *data = [listOfObjects objectAtIndex:editBtn.tag];
     
+    detailPage.drugAlergyData = data;
     [self.navigationController pushViewController:detailPage animated:YES];
 }
 #pragma mark - get Drug allergy Api
@@ -136,7 +140,7 @@
                        if ([responseDict[@"status"] boolValue]) {
                            
                            
-                           NSArray *allergyListArry = responseDict[@"allergy_list"];
+                           NSArray *allergyListArry = [[responseDict objectForKey:@"data"] objectForKey:@"allergy list"];
                            listOfObjects = [NSMutableArray new];
                            for (NSDictionary *allerguDict in allergyListArry) {
                                //                               {
