@@ -603,7 +603,6 @@
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
                                 <exclude reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="200-7a-VQC"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
@@ -619,6 +618,7 @@
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
                             </mask>
@@ -636,7 +636,6 @@
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
                                 <include reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="200-7a-VQC"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
@@ -652,6 +651,7 @@
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
                             </mask>
@@ -3915,6 +3915,7 @@
                         <outlet property="baseModeOfDeliveryView" destination="wGt-IP-Hh8" id="9RH-So-tNM"/>
                         <outlet property="basePlaceOfDeliveryView" destination="HTB-3w-pC9" id="XsU-8E-gav"/>
                         <outlet property="baseSexView" destination="npw-HB-aF4" id="4WX-Dk-At2"/>
+                        <outlet property="baseSubApgarView" destination="PJ2-K4-KIu" id="53S-Ha-FwY"/>
                         <outlet property="baseWeightAtBirth" destination="SLw-Wm-4Nz" id="Y1B-Sq-a7P"/>
                         <outlet property="lblMaxDuration" destination="cD1-6I-nhK" id="SXF-UA-ssa"/>
                         <outlet property="lblMinDuration" destination="M9q-5S-wvt" id="RBS-rb-rfP"/>
@@ -5348,7 +5349,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dcq-cv-46U">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="464"/>
-                                <color key="backgroundColor" red="0.27058823529999998" green="0.6705882353" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2274509804" green="0.56862745100000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InvestigationDefaultCell" rowHeight="150" id="PCu-Sg-Etx" customClass="InvestigationDefaultCell">
                                         <rect key="frame" x="0.0" y="187" width="320" height="150"/>
@@ -5362,7 +5363,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZL-cn-UzT">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                                            <color key="backgroundColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.2274509804" green="0.56862745100000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="tqL-tD-PBB"/>
                                                             </constraints>
@@ -5496,7 +5497,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-a1-4gA">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                                            <color key="backgroundColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.2274509804" green="0.56862745100000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="R6n-xQ-Ox0"/>
                                                             </constraints>
@@ -5610,7 +5611,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaJ-9X-5eH">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                                            <color key="backgroundColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.2274509804" green="0.56862745100000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="BEo-it-jCa"/>
                                                             </constraints>

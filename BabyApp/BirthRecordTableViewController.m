@@ -33,6 +33,7 @@
     
     UITextField *currentTextField;
     
+    UILabel *currentLabel;
     
     BOOL isUpdate;
 }
@@ -46,8 +47,8 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
-    //[gesture setCancelsTouchesInView:YES];
-    [self.view addGestureRecognizer:gesture];
+    // [gesture setCancelsTouchesInView:YES];
+    //[self.view addGestureRecognizer:gesture];
     
     [self.txtFldBirthCertificateNo setDelegate:self];
     [self.txtFldDurationGestation setDelegate:self];
@@ -75,6 +76,7 @@
     
     commonTblView = [[UITableView alloc] init];
     [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    commonTblView.backgroundView = nil;
     [commonTblView setDataSource:self];
     [commonTblView setDelegate:self];
     [commonTblView setHidden:YES];
@@ -91,6 +93,8 @@
 
 - (void)viewDidLayoutSubviews
 {
+    [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 60)];
 }
 
@@ -205,21 +209,58 @@
 -(void)onClickApgarMinScoreGesture:(UITapGestureRecognizer *)aTapGesture
 {
     
+    //    [self.view endEditing:YES];
+    //
+    //
+    //    selectedIndex = 4;
+    //    keyString = @"MinScore";
+    //    [self openCommonSelectionVC];
+    
+    currentTextField = nil;
+    
     [self.view endEditing:YES];
     
     
-    selectedIndex = 4;
-    keyString = @"MinScore";
-    [self openCommonSelectionVC];
+    //    selectedIndex = 3;
+    //    keyString = @"Delivery";
+    //    [self openCommonSelectionVC];
+    
+    currentLabel = self.lblMinDuration;
+    
+    [self loadApgarData];
+    
+    CGRect frameView = self.baseApgarScoreView.frame;
+    CGRect frameTxtFld = self.minDurationView.frame;
+    [self setFrameCommonTableViewApgar:frameView andTextFieldRect:frameTxtFld];
+    
 }
 
 -(void)onClickApgarMaxScoreGesture:(UITapGestureRecognizer *)aTapGesture
 {
+    //    [self.view endEditing:YES];
+    //
+    //    selectedIndex = 5;
+    //    keyString = @"MaxScore";
+    //    [self openCommonSelectionVC];
+    
+    currentTextField = nil;
+    
     [self.view endEditing:YES];
     
-    selectedIndex = 5;
-    keyString = @"MaxScore";
-    [self openCommonSelectionVC];
+    
+    //    selectedIndex = 3;
+    //    keyString = @"Delivery";
+    //    [self openCommonSelectionVC];
+    
+    currentLabel = self.lblMaxDuration;
+    
+    [self loadApgarData];
+    
+    CGRect frameView = self.baseApgarScoreView.frame;
+    CGRect frameTxtFld = self.maxDurationView.frame;
+    [self setFrameCommonTableViewApgar:frameView andTextFieldRect:frameTxtFld];
+    
+    
 }
 
 //onClickDurationGesture
@@ -235,12 +276,26 @@
 {
     [commonTblView setFrame:CGRectMake(frameTxtFld.origin.x-20, frameView.origin.y+frameView.size.height, frameTxtFld.size.width+50, genderList.count*44)];
     [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    
+    [commonTblView setHidden:NO];
+    [commonTblView reloadData];
+}
+
+-(void)setFrameCommonTableViewApgar:(CGRect)frameView andTextFieldRect:(CGRect)frameTxtFld
+{
+    CGRect frm = self.baseSubApgarView.frame;
+    
+    [commonTblView setFrame:CGRectMake(frm.origin.x +  frameTxtFld.origin.x, frameView.origin.y+frameTxtFld.size.height +frameTxtFld.origin.y , frameTxtFld.size.width+50, 4*44)];
+    [commonTblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [commonTblView setBackgroundColor:[UIColor whiteColor]];
     
     
     [commonTblView setHidden:NO];
     [commonTblView reloadData];
 }
+
 
 -(void)selectedValue:(NSString *)aSelectedValue
 {
@@ -558,6 +613,22 @@
     genderList = tempData;
 }
 
+-(void)loadApgarData
+{
+    NSMutableArray *tempData = [NSMutableArray array];
+    
+    [tempData addObject:@"1"];
+    [tempData addObject:@"2"];
+    [tempData addObject:@"3"];
+    [tempData addObject:@"4"];
+    [tempData addObject:@"5"];
+    [tempData addObject:@"6"];
+    [tempData addObject:@"7"];
+    [tempData addObject:@"8"];
+    [tempData addObject:@"9"];
+    
+    genderList = tempData;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -588,8 +659,14 @@
     NSString *str = [genderList objectAtIndex:indexPath.row];
     [commonTblView setHidden:YES];
     
-    
-    [currentTextField setText:str];
+    if(currentTextField && currentTextField !=nil)
+    {
+        [currentTextField setText:str];
+    }
+    else
+    {
+        [currentLabel setText:str];
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField

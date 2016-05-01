@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIView *baseHeadCircumferenceView;
 @property (weak, nonatomic) IBOutlet UITextField *txtFldHeadCircunference;
 
+@property (weak, nonatomic) IBOutlet UIView *baseSubApgarView;
 
 
 - (IBAction)onClickPreviousButton:(id)sender;
