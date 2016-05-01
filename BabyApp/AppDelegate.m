@@ -11,6 +11,7 @@
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
 #import "HomeViewController2.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -198,11 +199,14 @@
                                                              bundle: nil];
     
     NSString *userID = [NSUserDefaults retrieveObjectForKey:USERID];
-    if(userID && userID != nil)
+    if(!userID && userID != nil)  // if(userID && userID != nil)
     {
         NSLog(@"App Deligate checkValidUseruserID != nil ");
+        HomeViewController *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        
+        SlideNavigationController *homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
 
-        SlideNavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"];
+      //  SlideNavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"];
         //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVC];
         
         self.window.rootViewController = homeVC;
@@ -234,7 +238,7 @@
         }];
     }
     //Atul write required condition
-    /*else if(1)
+    else if(1)
     {
         HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
         
@@ -263,7 +267,7 @@
             NSString *menu = note.userInfo[@"menu"];
             NSLog(@"Revealed %@", menu);
         }];
-    }*/
+    }
     else
     {
         
