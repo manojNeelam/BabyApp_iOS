@@ -7,7 +7,9 @@
 //HomeController2
 
 #import <UIKit/UIKit.h>
+#import "SlideNavigationController.h"
 
-@interface HomeViewController2 : UIViewController
+@interface HomeViewController2 : UIViewController <SlideNavigationControllerDelegate>
+
 
 @end
