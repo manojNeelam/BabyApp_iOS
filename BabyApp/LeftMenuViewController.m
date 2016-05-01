@@ -281,6 +281,8 @@
             noofSections=4;
             [self.tableView reloadData];
             
+            NSLog(@"open home page");
+            
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
             [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
             
