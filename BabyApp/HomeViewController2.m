@@ -7,11 +7,21 @@
 //
 
 #import "HomeViewController2.h"
+#import <QuartzCore/QuartzCore.h>
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
 #import "AppDelegate.h"
+#import "UIImageView+JMImageCache.h"
+#import "ChildDetailsData.h"
+#import "AppConstent.h"
+
 @interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     UIPageControl *pageHome;
     NSArray *titlesArray,*imagesNames,*colorArray;
+    NSArray *list;
+    int selectedChildIndex;
+    ChildDetailsData *child;
 
 }
 @property (nonatomic)  UITableView *home2Table;
@@ -23,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    selectedChildIndex=0;
     imagesNames=[NSArray arrayWithObjects:@"needle_icon.png",@"screening_icon.png",@"growth_icon.png", nil];
     titlesArray=[NSArray arrayWithObjects:@"My Immunisation",@"My Screenings",@"Encyclopedia", nil];
     colorArray=[NSArray arrayWithObjects:@"D35560",@"F8C34F",@"53B8B1", nil];
@@ -40,16 +50,25 @@
     
     _home2Table.dataSource=self;
     _home2Table.delegate=self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    list = [appdelegate listOfChildrens];
+
+    child = [list objectAtIndex:selectedChildIndex];
+    [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
     [self drawViewInScrollForChildAt];
+
 }
 
 
 
 -(void)drawViewInScrollForChildAt
 {
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NSArray *list = [appdelegate listOfChildrens];
-    int i=0;
+       int i=0;
     for( ;i<3;i++)
     {
         UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
@@ -58,36 +77,42 @@
         
         
         
-        UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-50,15, 100, 100)];
+        UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-50,10, 120, 120)];
         [[iv layer] setCornerRadius:iv.frame.size.height/2];
+        [iv setClipsToBounds:YES];
         [vv2 addSubview:iv];
         
-        [[iv layer] setBorderWidth:10];
+        [[iv layer] setBorderWidth:15];
         [[iv layer] setBorderColor:[UIColor colorWithRed:35.0/255.0 green:127.0/255.0 blue:118.0/255.0 alpha:1.0].CGColor];
+        
+        
         UILabel *lbl1=nil,*lbl2=nil;
         
-        lbl1=[[UILabel alloc] initWithFrame:CGRectMake(20,iv.frame.origin.y+iv.frame.size.height+10, vv2.frame.size.width-40, 30)];
+        lbl1=[[UILabel alloc] initWithFrame:CGRectMake(20,iv.frame.origin.y+iv.frame.size.height, vv2.frame.size.width-40, 30)];
         lbl1.tag=10;
         [vv2 addSubview:lbl1];
         
-        lbl2=[[UILabel alloc] initWithFrame:CGRectMake(20,lbl1.frame.origin.y+lbl1.frame.size.height+5, vv2.frame.size.width-40, 20)];
+        lbl2=[[UILabel alloc] initWithFrame:CGRectMake(20,lbl1.frame.origin.y+lbl1.frame.size.height, vv2.frame.size.width-40, 20)];
         lbl2.tag=20;
         [vv2 addSubview:lbl2];
         
         [lbl1 setTextAlignment:NSTextAlignmentCenter];
         [lbl2 setTextAlignment:NSTextAlignmentCenter];
-
         [lbl1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
                                             size:24]];
-        [lbl1 setTextColor:[UIColor whiteColor]];
-
-        lbl1.text=@"Margerie Tyrell";
         
+        [lbl1 setTextColor:[UIColor whiteColor]];
+        lbl1.text=@"Margerie Tyrell";
+       // lbl1.text=child.name;
+
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [lbl2 setTextColor:[UIColor whiteColor]];
-        
-        lbl2.text=@"5 months old";
+       // lbl2.text=@"5 months old";
 
+        
+         [iv setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+
+        vv2.tag=2000+i;
         
     }
     
@@ -102,7 +127,6 @@
     
     [self.view addSubview:pageHome];
     [self.view bringSubviewToFront:pageHome];
-    
 
 }
 
@@ -161,13 +185,12 @@
         
         iv.tag=5;
         
-        
+        [lbl1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                      size:15]];
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         
         [lbl2 setTextColor:[UIColor colorWithRed:143.0/255.0 green:143.0/255.0 blue:149.0/255.0 alpha:1.0]];
 
-        
-        
         
     }
     
@@ -189,8 +212,8 @@
     
     
     
-    
-    /* HomeTableViewCell *cell = (HomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"homeCellIdentifier"];
+    /*
+     HomeTableViewCell *cell = (HomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"homeCellIdentifier"];
      cell.backgroundColor=[UIColor whiteColor];
      cell.imageViewContent.image=[UIImage imageNamed:imagesNames[indexPath.row]];
      cell.titleLabel.text=titlesArray[indexPath.row];
