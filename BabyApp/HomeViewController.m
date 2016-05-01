@@ -240,8 +240,13 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
-    
-    if(indexPath.row==0)
+        
+    // testing
+   ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeController2"];
+  [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+    //
+     /*
+   if(indexPath.row==0)
     {
         
         
@@ -249,6 +254,9 @@
         {
             ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
             [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+            
+            
+            
         }
         else
         {
@@ -278,6 +286,7 @@
     {
         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
+        */
     }
 }
 

@@ -604,6 +604,7 @@
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
                                 <exclude reference="pn5-kM-htF"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="200-7a-VQC"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
@@ -619,7 +620,6 @@
                                 <exclude reference="2BS-ae-DLv"/>
                                 <exclude reference="ZCZ-uu-TFA"/>
                                 <exclude reference="q4r-OG-X5V"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
                             </mask>
@@ -637,6 +637,7 @@
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
                                 <include reference="pn5-kM-htF"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="200-7a-VQC"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
@@ -652,7 +653,6 @@
                                 <include reference="2BS-ae-DLv"/>
                                 <include reference="ZCZ-uu-TFA"/>
                                 <include reference="q4r-OG-X5V"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
                             </mask>
@@ -857,42 +857,10 @@
                     <view key="view" contentMode="scaleToFill" id="k8L-kL-1rl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="smk-9g-Tzy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
-                                <color key="backgroundColor" red="0.21282714210341513" green="1" blue="0.23602360078770268" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="FyN-yE-i1b"/>
-                                    <constraint firstAttribute="height" constant="173" id="xWB-nS-glV"/>
-                                </constraints>
-                            </scrollView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cFE-kn-umo">
-                                <rect key="frame" x="0.0" y="181" width="320" height="379"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="379" id="JH7-H1-Qai"/>
-                                    <constraint firstAttribute="width" constant="320" id="VlP-vn-jEy"/>
-                                </constraints>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="smk-9g-Tzy" secondAttribute="trailing" id="EE5-7U-31f"/>
-                            <constraint firstItem="eLC-YU-C9x" firstAttribute="top" secondItem="cFE-kn-umo" secondAttribute="bottom" constant="8" id="QwS-It-wWm"/>
-                            <constraint firstItem="smk-9g-Tzy" firstAttribute="leading" secondItem="k8L-kL-1rl" secondAttribute="leading" id="SPt-aw-kf6"/>
-                            <constraint firstItem="eLC-YU-C9x" firstAttribute="top" secondItem="smk-9g-Tzy" secondAttribute="bottom" constant="395" id="USs-1Q-flL"/>
-                            <constraint firstAttribute="trailing" secondItem="cFE-kn-umo" secondAttribute="trailing" id="WiI-mw-UUR"/>
-                            <constraint firstItem="cFE-kn-umo" firstAttribute="leading" secondItem="k8L-kL-1rl" secondAttribute="leading" id="vOd-8U-wCO"/>
-                            <constraint firstItem="cFE-kn-umo" firstAttribute="top" secondItem="smk-9g-Tzy" secondAttribute="bottom" constant="8" id="wYb-jS-Bhz"/>
-                            <constraint firstItem="smk-9g-Tzy" firstAttribute="top" secondItem="k8L-kL-1rl" secondAttribute="top" id="yHR-Ep-vWT"/>
-                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="home2Scorll" destination="smk-9g-Tzy" id="oES-2w-nPW"/>
-                        <outlet property="home2Table" destination="cFE-kn-umo" id="pbW-YY-K3Y"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sb-Mg-yXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
