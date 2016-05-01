@@ -15,15 +15,19 @@
 #import "ChildDetailsData.h"
 #import "AppConstent.h"
 #import "EncyclopediaTapScroller.h"
+#import "ConnectionsManager.h"
 
-@interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, ServerResponseDelegate>
 {
     UIPageControl *pageHome;
     NSArray *titlesArray,*imagesNames,*colorArray;
     NSArray *list;
     int selectedChildIndex;
     ChildDetailsData *child;
-
+    
+    UIView *overlayView;
+    
+    
 }
 @property (nonatomic)  UITableView *home2Table;
 @property (nonatomic)  UIScrollView *home2Scorll;
@@ -34,6 +38,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    overlayView=[UIView new];
+    overlayView.frame=self.view.frame;
+    overlayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [overlayView setHidden:YES];
+    [self.view addSubview:overlayView];
+    
     selectedChildIndex=0;
     imagesNames=[NSArray arrayWithObjects:@"needle_icon.png",@"screening_icon.png",@"growth_icon.png", nil];
     titlesArray=[NSArray arrayWithObjects:@"My Immunisation",@"My Screenings",@"Encyclopedia", nil];
@@ -56,25 +67,61 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    list = [appdelegate listOfChildrens];
-
-    child = [list objectAtIndex:selectedChildIndex];
-    [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+    //    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    //    list = [appdelegate listOfChildrens];
+    //
+    //    child = [list objectAtIndex:selectedChildIndex];
+    //    [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
     
+    [self loadChild];
     
     for(UIView * v in _home2Scorll.subviews)
         [v removeFromSuperview];
     
     [self drawViewInScrollForChildAt];
-
+    
 }
 
+-(void)loadChild
+{
+    //
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSArray *listChild = [appdelegate listOfChildrens];
+    
+    NSLog(@"calling of load child at home page list=%@",list);
+    
+    if(listChild.count)
+    {
+        ChildDetailsData *childUser = [listChild objectAtIndex:0];
+        [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
+        
+        NSLog(@"child photo url at home page=%@",childUser.baby_image);
+        
+        //[self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+        //   [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
+        //   [self.childPic setClipsToBounds:YES];
+        
+    }
+    else
+    {
+        [self getAllChildrans];
+    }
+}
 
+-(void)getAllChildrans
+{
+    
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    NSDictionary *params = @{@"user_id" : s};
+    
+    NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
+    
+    [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
+}
 
 -(void)drawViewInScrollForChildAt
 {
-       int i=0;
+    int i=0;
     for( ;i<3;i++)
     {
         UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
@@ -105,19 +152,19 @@
         [lbl1 setTextAlignment:NSTextAlignmentCenter];
         [lbl2 setTextAlignment:NSTextAlignmentCenter];
         [lbl1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
-                                            size:24]];
+                                      size:24]];
         
         [lbl1 setTextColor:[UIColor whiteColor]];
         lbl1.text=@"Margerie Tyrell";
-       // lbl1.text=child.name;
-
+        // lbl1.text=child.name;
+        
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [lbl2 setTextColor:[UIColor whiteColor]];
-       // lbl2.text=@"5 months old";
-
+        // lbl2.text=@"5 months old";
         
-         [iv setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
-
+        
+        [iv setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+        
         vv2.tag=2000+i;
         
     }
@@ -133,7 +180,7 @@
     
     [self.view addSubview:pageHome];
     [self.view bringSubviewToFront:pageHome];
-
+    
 }
 
 
@@ -196,7 +243,7 @@
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         
         [lbl2 setTextColor:[UIColor colorWithRed:143.0/255.0 green:143.0/255.0 blue:149.0/255.0 alpha:1.0]];
-
+        
         
     }
     
@@ -240,6 +287,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    [self AllergyAndMedicalView];
     
     if(indexPath.row==2)
     {
@@ -253,7 +301,7 @@
 
 -(void)drawOverlay
 {
-   
+    
 }
 
 
@@ -322,5 +370,168 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+-(void)AllergyAndMedicalView
+{
+    [self.view bringSubviewToFront:overlayView];
+    [overlayView setHidden:NO];
+    
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"hb_immunisation.png"] forState:UIControlStateNormal];
+    backButton.frame=CGRectMake(10, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + 15, 80, 80);
+    
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:backButton];
+    
+    UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-100, 50, 50);
+    [drugButton addTarget:self action:@selector(newImmuAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton];
+    
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+10, drugButton.frame.origin.y, 150, 50)];
+    drugLabel.text=@"New Immunisation";
+    drugLabel.textAlignment=NSTextAlignmentLeft;
+    drugLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel];
+    
+    
+    NSString *immuStr = @"Immunisation Summary";
+    
+    if(child.immunisationList.count)
+    {
+        immuStr = @"Immunisation Summary \n(no summary yet)";
+    }
+    
+    UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100+25, 50, 50);
+    [medicalButton addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:medicalButton];
+    
+    
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+10, medicalButton.frame.origin.y, 150, 50)];
+    medicalLabel.text=immuStr;
+    medicalLabel.numberOfLines=2;
+    medicalLabel.textAlignment=NSTextAlignmentLeft;
+    medicalLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:medicalLabel];
+    
+    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    
+}
+
+-(void)backAction
+{
+    [overlayView setHidden:YES];
+}
+
+-(void)newImmuAction
+{
+    [overlayView setHidden:YES];
+    
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"NewImmunisationVC_SB_ID"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)immuSummaryAction
+{
+    [overlayView setHidden:YES];
+    if(child.immunisationList.count)
+    {
+        
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+
+#pragma mark - IBActions -
+
+-(void)success:(id)response
+{
+    
+    /*
+     {
+     message = "Your new password has been sent to you email";
+     status = 1;
+     }
+     */
+    
+    NSDictionary *params;
+    
+    if([response isKindOfClass:[NSString class]])
+    {
+        NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
+        params = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    }
+    else if ([response isKindOfClass:[NSDictionary class]])
+    {
+        params = response;
+    }
+    
+    id statusStr_ = [params objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+        statusStr = statusStr_;
+    
+    if([statusStr isEqualToString:@"1"])
+    {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSDictionary *responseDict = (NSDictionary *)response
+            ;
+            if ([responseDict[@"status"] boolValue]) {
+                
+                //            children
+                NSArray *childrenList = responseDict[@"data"][@"children"];
+                if(childrenList.count)
+                {
+                    NSMutableArray *temp = [NSMutableArray array];
+                    
+                    for(NSDictionary *dict in childrenList)
+                    {
+                        ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
+                        [temp addObject:child];
+                    }
+                    
+                    NSArray *childHolder = temp;
+                    
+                    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+                    [appdelegate setListOfChildrens:childHolder];
+                    
+                    [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+                    [self loadChild];
+                    
+                }
+                else
+                {
+                    [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+                    [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+                    
+                }
+            }
+            else{
+                
+            }
+        });
+    }
+    else if([statusStr isEqualToString:@"0"])
+    {
+        
+    }
+}
+
+-(void)failure:(id)response
+{
+    
+}
 
 @end
