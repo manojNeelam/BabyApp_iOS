@@ -287,7 +287,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    [self AllergyAndMedicalView];
+    if(indexPath.row == 0)
+    {
+        [self AllergyAndMedicalView];
+    }
+    else if (indexPath.row == 1)
+    {
+        [self screeningView];
+    }
+    
     
     if(indexPath.row==2)
     {
@@ -373,6 +381,11 @@
 
 -(void)AllergyAndMedicalView
 {
+    [[overlayView subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    
+    
     [self.view bringSubviewToFront:overlayView];
     [overlayView setHidden:NO];
     
@@ -422,7 +435,94 @@
     
 }
 
+-(void)screeningView
+{
+    
+    [[overlayView subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    float heightView = 75;
+    
+    CGSize result = [[UIScreen mainScreen] bounds].size;
+    if(result.height > 568)
+    {
+        heightView = 110;
+    }
+    
+    [self.view bringSubviewToFront:overlayView];
+    [overlayView setHidden:NO];
+    
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"hb_immunisation.png"] forState:UIControlStateNormal];
+    backButton.frame=CGRectMake(10, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + heightView +15, 80, 80);
+    
+    [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:backButton];
+    
+    UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-heightView, 50, 50);
+    [drugButton addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton];
+    
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+heightView+10, drugButton.frame.origin.y, 150, 50)];
+    drugLabel.text=@"New Screening";
+    drugLabel.textAlignment=NSTextAlignmentLeft;
+    drugLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel];
+    
+    
+    NSString *immuStr = @"Screening Summary";
+    
+    if(child.screeningList.count)
+    {
+        immuStr = @"Screening Summary \n(no summary yet)";
+    }
+    
+    UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100+25, 50, 50);
+    [medicalButton addTarget:self action:@selector(screeningSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:medicalButton];
+    
+    
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+100+10, medicalButton.frame.origin.y, 150, 50)];
+    medicalLabel.text=immuStr;
+    medicalLabel.numberOfLines=2;
+    medicalLabel.textAlignment=NSTextAlignmentLeft;
+    medicalLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:medicalLabel];
+    
+    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    
+}
+
+
 -(void)backAction
+{
+    [overlayView setHidden:YES];
+}
+
+-(void)newScreeningAction
+{
+    [overlayView setHidden:YES];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)immuSummaryAction
+{
+    [overlayView setHidden:YES];
+    if(child.immunisationList.count)
+    {
+        
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)backScreeningAction
 {
     [overlayView setHidden:YES];
 }
@@ -435,7 +535,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)immuSummaryAction
+-(void)screeningSummaryAction
 {
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
@@ -445,6 +545,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
+
 
 
 #pragma mark - IBActions -
