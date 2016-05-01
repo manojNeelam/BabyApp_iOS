@@ -243,6 +243,7 @@
 		D8F0AEF41CAF166300EE9BE5 /* ScreeningSummaeryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEEF1CAF166300EE9BE5 /* ScreeningSummaeryDetail.m */; };
 		D8F0AEF51CAF166300EE9BE5 /* ScreeningSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEF11CAF166300EE9BE5 /* ScreeningSummaryViewController.m */; };
 		D8F0AEF61CAF166300EE9BE5 /* ScreenSumaryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F0AEF31CAF166300EE9BE5 /* ScreenSumaryDetailCell.m */; };
+		D8FEE6AA1CD5460300407205 /* HomeViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FEE6A91CD5460300407205 /* HomeViewController2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -658,6 +659,8 @@
 		D8F0AEF11CAF166300EE9BE5 /* ScreeningSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningSummaryViewController.m; sourceTree = "<group>"; };
 		D8F0AEF21CAF166300EE9BE5 /* ScreenSumaryDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenSumaryDetailCell.h; sourceTree = "<group>"; };
 		D8F0AEF31CAF166300EE9BE5 /* ScreenSumaryDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenSumaryDetailCell.m; sourceTree = "<group>"; };
+		D8FEE6A81CD5460300407205 /* HomeViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController2.h; sourceTree = "<group>"; };
+		D8FEE6A91CD5460300407205 /* HomeViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1172,6 +1175,8 @@
 				A10EB6141C786F83002EBC59 /* Slide Supporters */,
 				A10EB6041C786BBF002EBC59 /* HomeViewController.h */,
 				A10EB6051C786BBF002EBC59 /* HomeViewController.m */,
+				D8FEE6A81CD5460300407205 /* HomeViewController2.h */,
+				D8FEE6A91CD5460300407205 /* HomeViewController2.m */,
 				D8A7C4B11CCCB3C5005B09B5 /* AppConstent.h */,
 				D8750D021CCDD94100821BCF /* OralHealth.h */,
 				D8750D031CCDD94100821BCF /* OralHealth.m */,
@@ -1851,6 +1856,7 @@
 				A10EB62E1C78B699002EBC59 /* HomeTableViewCell.m in Sources */,
 				90000F501CB3521500BC9BFC /* AddAllergyVC.m in Sources */,
 				D8F0AEF41CAF166300EE9BE5 /* ScreeningSummaeryDetail.m in Sources */,
+				D8FEE6AA1CD5460300407205 /* HomeViewController2.m in Sources */,
 				90F165BC1CB5A4A0006B5DD6 /* AFHTTPRequestOperationManager.m in Sources */,
 				A10EB60F1C786BBF002EBC59 /* HomeViewController.m in Sources */,
 				A10EB5FD1C786B9A002EBC59 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,

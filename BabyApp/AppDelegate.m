@@ -192,15 +192,19 @@
 -(void)checkValidUser
 {
     
+    NSLog(@"App Deligate checkValidUser");
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
     NSString *userID = [NSUserDefaults retrieveObjectForKey:USERID];
     if(userID && userID != nil)
     {
+        NSLog(@"App Deligate checkValidUseruserID != nil ");
+
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SlideNavigationController *homeVC = [storyBoard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"];
         //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVC];
+        
         self.window.rootViewController = homeVC;
         
         
@@ -213,7 +217,6 @@
         [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
         
         // Creating a custom bar button for right menu
-        
         
         [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
             NSString *menu = note.userInfo[@"menu"];
@@ -232,6 +235,9 @@
     }
     else
     {
+        
+        NSLog(@"App Deligate checkValidUseruserID = nil ");
+ 
         UIViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController_SB_ID"];
         self.window.rootViewController = loginVC;
     }
