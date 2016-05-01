@@ -14,6 +14,7 @@
 #import "UIImageView+JMImageCache.h"
 #import "ChildDetailsData.h"
 #import "AppConstent.h"
+#import "EncyclopediaTapScroller.h"
 
 @interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
@@ -60,6 +61,11 @@
 
     child = [list objectAtIndex:selectedChildIndex];
     [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+    
+    
+    for(UIView * v in _home2Scorll.subviews)
+        [v removeFromSuperview];
+    
     [self drawViewInScrollForChildAt];
 
 }
@@ -233,6 +239,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    
+    if(indexPath.row==2)
+    {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                                 bundle: nil];
+        
+        EncyclopediaTapScroller *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EncyclopediaStoryBoard"];
+        [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+    }
+}
+
+-(void)drawOverlay
+{
+   
 }
 
 
