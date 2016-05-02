@@ -33,6 +33,8 @@
 }
 - (IBAction)encyclopediaClicked:(id)sender
 {
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"scrollAt"];
+
     NSLog(@"encyclopediaClicked");
     [self performSegueWithIdentifier:@"encyclopediatapscrollersegu" sender:self];
     
@@ -241,11 +243,11 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
         
-    // testing
+    /* testing
    ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeController2"];
   [self.navigationController pushViewController:ImmunisationsVC animated:YES];
-    //
-     /*
+    */
+     
    if(indexPath.row==0)
     {
         
@@ -284,9 +286,8 @@
     }
     else if(indexPath.row==2)
     {
-        [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
+     [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
     }
-        */
     }
 }
 

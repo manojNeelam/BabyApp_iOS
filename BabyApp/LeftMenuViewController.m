@@ -339,6 +339,7 @@
          vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
          break;
          case 4:
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"scrollAt"];
          vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
          break;
          }
