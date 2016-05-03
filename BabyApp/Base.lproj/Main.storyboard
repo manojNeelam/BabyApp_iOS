@@ -911,10 +911,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_kid.png" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-Fa-fYm">
-                                        <rect key="frame" x="30" y="20" width="120" height="140"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_kid.png" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-Fa-fYm">
+                                        <rect key="frame" x="10" y="20" width="140" height="140"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="Pdi-ZN-MVO"/>
+                                            <constraint firstAttribute="width" constant="140" id="Pdi-ZN-MVO"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -923,7 +923,7 @@
                                     <constraint firstAttribute="height" constant="180" id="1Qb-9m-Exo"/>
                                     <constraint firstAttribute="trailing" secondItem="759-TN-HgB" secondAttribute="trailing" constant="20" id="GJu-xZ-3Ob"/>
                                     <constraint firstAttribute="trailing" secondItem="ZPw-Br-n4X" secondAttribute="trailing" constant="20" id="IJa-YX-VIM"/>
-                                    <constraint firstItem="h8f-Fa-fYm" firstAttribute="leading" secondItem="bi9-0b-lWf" secondAttribute="leading" constant="30" id="KWl-E8-PED"/>
+                                    <constraint firstItem="h8f-Fa-fYm" firstAttribute="leading" secondItem="bi9-0b-lWf" secondAttribute="leading" constant="10" id="KWl-E8-PED"/>
                                     <constraint firstAttribute="trailing" secondItem="2Zf-aj-Cx4" secondAttribute="trailing" constant="20" id="RLX-Lw-TOW"/>
                                     <constraint firstItem="h8f-Fa-fYm" firstAttribute="top" secondItem="bi9-0b-lWf" secondAttribute="top" constant="20" id="SmT-oi-xzI"/>
                                     <constraint firstItem="ZPw-Br-n4X" firstAttribute="top" secondItem="bi9-0b-lWf" secondAttribute="top" constant="30" id="Vks-Md-wpf"/>
