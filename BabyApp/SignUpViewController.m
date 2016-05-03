@@ -1,222 +1,453 @@
 //
-//  SignUpViewController.m
-//  BabyApp
+//  MenuViewController.m
+//  SlideMenu
 //
-//  Created by Charan Giri on 21/02/16.
-//  Copyright © 2016 Infinity. All rights reserved.
+//  Created by Aryan Gh on 4/24/13.
+//  Copyright (c) 2013 Aryan Ghassemi. All rights reserved.
 //
 
-#import "SignUpViewController.h"
+#import "LeftMenuViewController.h"
+#import "SlideNavigationContorllerAnimatorFade.h"
+#import "SlideNavigationContorllerAnimatorSlide.h"
+#import "SlideNavigationContorllerAnimatorScale.h"
+#import "SlideNavigationContorllerAnimatorScaleAndFade.h"
+#import "SlideNavigationContorllerAnimatorSlideAndFade.h"
+
+#import "NSUserDefaults+Helpers.h"
+#import "AppDelegate.h"
+
+#import "HeartTypeTableViewCell.h"
+#import "ProfileTableViewCell.h"
+
 #import "ConnectionsManager.h"
-#import "NSString+CommonForApp.h"
-#import "AppDelegate.h"
+#import "Constants.h"
 #import "WSConstant.h"
-#import "NSUserDefaults+Helpers.h"
-#import "AppDelegate.h"
-#import "WSConstant.h"
-#import "NSUserDefaults+Helpers.h"
+#import "ChildDetailsData.h"
 
-#define kOFFSET_FOR_KEYBOARD 80.0
+@interface LeftMenuViewController()<ServerResponseDelegate>
+{
+    NSArray *section1Array,*section2Array,*section3Array;
+    NSInteger noofSections;
+    BOOL dropdownSelected;
+    NSArray *childransArray;
+    
+}
 
-
-@interface SignUpViewController () <ServerResponseDelegate>
-@property (retain, nonatomic) NSMutableData *receivedData;
-@property (retain, nonatomic) NSURLConnection *connection;
 @end
 
-@implementation SignUpViewController
-UIActivityIndicatorView *act2;
+@implementation LeftMenuViewController
+#pragma mark - UIViewController Methods -
 
-- (void)viewDidLoad {
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self.slideOutAnimationEnabled = YES;
+    
+    return [super initWithCoder:aDecoder];
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    NSLog(@"SignUpViewController");
-    // Do any additional setup after loading the view.
+    noofSections=4;
+    dropdownSelected=NO;
+    //@"Baby Booklet"
+    section1Array=[NSArray arrayWithObjects:@"New Immunisation",@"New Screening", nil];
+    section2Array=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles",@"Health Book",@"Encyclopedia", nil];
+    section3Array=[NSArray arrayWithObjects:@"Settings",@"Sign Out", nil];
+    
+    
+    self.tableView.separatorColor = [UIColor lightGrayColor];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftMenu.jpg"]];
+    self.tableView.backgroundView = imageView;
+    [self getAllChildrans];
 }
--(void)viewWillAppear:(BOOL)animated
+
+#pragma mark - UITableView Delegate & Datasrouce -
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    [super viewWillAppear:animated];
-  //  self.navigationController.navigationBarHidden=NO;
-    [[self.navigationController navigationBar] setHidden:NO];
+    return 60;
 }
--(void)setViewMovedUp:(BOOL)movedUp
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [UIView beginAnimations:nil context:NULL];
-    
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-    
-    CGRect rect = self.view.frame;
-    
-    if (movedUp)
+    return noofSections;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
     {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
+        case 0:
+            sectionName = @"";
+            break;
+        case 1:
+            sectionName = @"";
+            break;
+        case 2:
+            sectionName = @"MAIN MENU";
+            break;
+            
+        case 3:
+            sectionName=  @"";
+            break;
+            // ...
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    if (dropdownSelected) {
+        if(childransArray && childransArray.count)
+        {
+            return [childransArray count] +2;
+        }
+        else
+        {
+            return 0;
+        }
+        
+    }
+    else{
+        
+        switch (section)
+        {
+            case 0:
+                return 1;
+                break;
+                
+            case 1:
+                return section1Array.count;
+                break;
+            case 2:
+                return section2Array.count;
+                break;
+                
+            case 3:
+                return section3Array.count;
+                break;
+                
+                //        case 3:
+                //            return section3Array.count;
+                //            break;
+        }
+    }
+    return 4;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HeartTypeTableViewCell*cell2=nil;
+    ProfileTableViewCell *cell1=nil;
+    
+    if (dropdownSelected) {
+        
+        if (indexPath.row==0) {
+            
+            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            
+            //delegate.ch
+            cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+            return cell1;
+        }
+        
+        else if(indexPath.row == childransArray.count+1)
+        {
+            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
+            cell1.babyNameLabel.text=@"ADD BIO";
+            [cell1.babyPic setHidden:YES];
+            cell1.dropdown.hidden=YES;
+            return cell1;
+        }
+        else
+        {
+            NSDictionary *childrenDict = childransArray[indexPath.row-1];
+            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            cell1.babyNameLabel.text=childrenDict[@"name"];
+            cell1.dropdown.hidden=YES;
+            return cell1;        }
+        return nil;
+    }
+    else{
+        
+        switch (indexPath.section)
+        {
+            case 0:
+                
+                cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+                cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
+                //                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+                //                cell1.babyPic.layer.masksToBounds = YES;
+                //                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
+                return cell1;
+                break;
+                
+            case 1:
+                cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
+                cell2.contentNameLabel.text = section1Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"newScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 1) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"newScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                return cell2;
+                break;
+                
+            case 2:
+                cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
+                cell2.contentNameLabel.text = section2Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myImmunisattion.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 1) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myScreening.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 2) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myGrowth.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 3) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                    
+                }
+                if (indexPath.row== 4) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Encyclopedianew.png"] forState:UIControlStateNormal];
+                    
+                }
+                
+                
+                return cell2;
+                break;
+                
+            case 3:
+                cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
+                cell2.contentNameLabel.text = section3Array[indexPath.row];
+                if (indexPath.row== 0) {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+                    
+                }
+                else
+                {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Signout.png"] forState:UIControlStateNormal];
+                    
+                }
+                return cell2;
+                break;
+                
+                //            case 3:
+                //                cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
+                //                cell2.contentNameLabel.text = section3Array[indexPath.row];
+                //                return cell2;
+                break;
+        }
+    }
+    
+    
+    cell1.backgroundColor = [UIColor whiteColor];
+    
+    return cell1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    UIViewController *vc ;
+    
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row==0 ) {
+            
+            
+            if (dropdownSelected) {
+                dropdownSelected=NO;
+                noofSections=4;
+            }
+            else
+            {
+                noofSections=1;
+                dropdownSelected=YES;
+            }
+            [self.tableView reloadData];
+        }
+        else
+        {
+            dropdownSelected=NO;
+            noofSections=4;
+            [self.tableView reloadData];
+            
+            NSLog(@"open home page");
+            
+            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+            
+            
+            [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                                     withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                             andCompletion:nil];
+        }
+    }
+    else if (!dropdownSelected) {
+        
+        
+        
+        
+        
+        if (indexPath.section==1) {
+            
+            
+            switch (indexPath.row)
+            {
+                    //                case 0:
+                    //                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+                    //                    break;
+                    //
+                case 0:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"NewImmunisationVC_SB_ID"];
+                    break;
+                    
+                case 1:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
+                    break;
+                    
+            }
+        }
+        
+        else if (indexPath.section==2) {
+            
+            
+            switch (indexPath.row)
+            {
+                case 0:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+                    break;
+                    
+                case 1:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
+                    break;
+                    
+                case 2:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Growth"];
+                    break;
+                    
+                case 3:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
+                    break;
+                case 4:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
+                    break;
+            }
+        }
+        else if (indexPath.section==3)
+        {
+            if (indexPath.row==0) {
+                vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SettingsViewController_SB_ID"];
+            }
+            else
+            {
+                [NSUserDefaults deleteObjectForKey:USERID];
+                [NSUserDefaults deleteObjectForKey:CURRENT_CHILD_ID];
+                [NSUserDefaults deleteObjectForKey:IS_FROM_SIGNUP];
+                [NSUserDefaults deleteObjectForKey:IS_CHILD_NOT_AVAILABLE];
+                
+                AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                [delegate checkValidUser];
+                
+                
+                //[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:NO];
+                return;
+                
+            }
+            
+            
+            
+        }
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+        
+        
+        [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                                 withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                         andCompletion:nil];
+        
+    }
+}
+
+-(void)buttonClickedEvent
+{
+    
+}
+
+- (IBAction)kidDropdownAction:(id)sender {
+    if (dropdownSelected) {
+        dropdownSelected=NO;
+        noofSections=4;
     }
     else
     {
-        // revert back to the normal state.
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-    }
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
-}
-
-
--(void)textFieldDidEndEditing:(UITextField *)sender
-{
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    //move the main view, so that the keyboard does not hide it.
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.view endEditing:YES];
-    return YES;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)createAccount:(id)sender {    //put code here for registration
-    
-    NSLog(@"createAccount");
-    if([self isValidData])
-    {
-        act2=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [act2 setCenter:self.view.center];
-        [self.view addSubview:act2];
-        [act2 startAnimating];
-
-        [self performSelector:@selector(toCallSignupApi) withObject:nil afterDelay:0.2];
-  
-     
+        noofSections=1;
+        dropdownSelected=YES;
     }
     
 }
-
--(void)toCallSignupApi
-{
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.userNameTF.text forKey:@"name"];   //
-    [params setObject:self.email.text forKey:@"email"];
-    [params setObject:self.passwordTF.text forKey:@"password"];
-    [params setObject:@"ios" forKey:@"device"];
-    [[ConnectionsManager sharedManager] registerUser:params withdelegate:self];
+- (IBAction)babyDropdownAction:(id)sender {
 }
--(BOOL)isValidData
+
+-(void)getAllChildrans
 {
-    if([self.userNameTF.text isEmpty])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter  Your Name" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    NSDictionary *params = @{@"user_id" : s};
+    
+    // NSDictionary *params = @{@"user_id" : USERID};
+    [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
+}
+
+#pragma mark - ServerResponseDelegate
+- (void) success:(id)response
+{
+    NSLog(@"Response of the get childrans : %@",response);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        return NO;
-    }
-
-    if(![self.email.text isValidEmail])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-        
-        return NO;
-    }
-    if([self.passwordTF.text isEmpty])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }
-    
-    return YES;
+        NSDictionary *responseDict = (NSDictionary *)response
+        ;
+        if ([responseDict[@"status"] boolValue]) {
+            
+            //            children
+            childransArray = responseDict[@"data"][@"children"];
+        }
+        else{
+            [Constants showOKAlertWithTitle:@"Error" message:@"Unagle to load your childrans list, Please try again after some time" presentingVC:self];
+        }
+    });
 }
-
--(void)success:(id )response
+- (void) failure:(id)response
 {
-    [act2 stopAnimating];
-    [act2 removeFromSuperview];
-    /*
-     message = "User email already exists";
-     status = 0;
-     */
-    NSDictionary *params;
+    NSLog(@"Failure Error of the get childrans : %@",response);
     
-    if([response isKindOfClass:[NSString class]])
-    {
-        NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
-        params = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    }
-    else if ([response isKindOfClass:[NSDictionary class]])
-    {
-        params = response;
-    }
-    
-    id statusStr_ = [params objectForKey:@"status"];
-    
-    NSString *statusStr;
-    
-    statusStr = statusStr_;
-    
-    if([statusStr isEqualToString:@"1"])
-    {
-        NSString *userId = [[params objectForKey:@"data"] objectForKey:@"user_id"];
-        
-        [NSUserDefaults saveObject:userId forKey:USERID];
-        [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
-        [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
-        
-        [self openHomeVC];
-        
-        [self openHomeVC];
-        //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
-    }
-    else if([statusStr isEqualToString:@"0"])
-    {
-        NSString *messageStr = [params objectForKey:@"message"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-}
-
-
--(void)failure:(id)response
-{
-    [act2 stopAnimating];
-    [act2 removeFromSuperview];
-    //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
-}
-
--(void)openHomeVC
-{
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate checkValidUser];
-}
-
-- (IBAction)btnCancelClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

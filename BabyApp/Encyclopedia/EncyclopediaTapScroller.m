@@ -9,12 +9,19 @@
 #import "EncyclopediaTapScroller.h"
 #import "KeyConstants.h"
 #import "ConnectionsManager.h"
+#import "EncycloItemData.h"
+#import "EncyclopediaData.h"
+#import "EncycloMedicationData.h"
 
-
-@interface EncyclopediaTapScroller ()<ServerResponseDelegate>
+@interface EncyclopediaTapScroller ()<ServerResponseDelegate, UITextFieldDelegate, UISearchBarDelegate>
+{
+    UISearchBar *search;
+    
+    UISearchBar *search2;
+}
 @property UIScrollView *scroll1;
 @property UIPageControl *page1;
-@property NSArray *medicationArr,*immunisationArr;
+@property NSArray *medicationArr,*immunisationArr, *medicationArrHolder, *immunisationArrHolder;
 
 @end
 
@@ -46,9 +53,9 @@ int n;
     
     
     
-   // labelArrayScroller=[NSArray arrayWithObjects:@"ANTIHISTAMINES",@"FEVER MEDICATIONS",@"COUGH EXPETORANTS",@"MUCOLYTICS",@"MIXED COUGH PREPARATIONS",@"NASAL",@"LOZENGES",@"ANTINIOTICS",@"ANTIEMETICS",@"ANTISPAMODIC",@"TOPICAL", nil];
+    // labelArrayScroller=[NSArray arrayWithObjects:@"ANTIHISTAMINES",@"FEVER MEDICATIONS",@"COUGH EXPETORANTS",@"MUCOLYTICS",@"MIXED COUGH PREPARATIONS",@"NASAL",@"LOZENGES",@"ANTINIOTICS",@"ANTIEMETICS",@"ANTISPAMODIC",@"TOPICAL", nil];
     
- //   labelArrayScroller2=[NSArray arrayWithObjects:@"BCG",@"HEPATITIS B",@"DTAP",@"MMR", nil];
+    //   labelArrayScroller2=[NSArray arrayWithObjects:@"BCG",@"HEPATITIS B",@"DTAP",@"MMR", nil];
     
     CGRect scrollFrame = CGRectMake(0, 60, [self.view bounds].size.width, [self.view bounds].size.height-60);
     scroll1 = [[UIScrollView alloc]initWithFrame: scrollFrame];
@@ -82,7 +89,10 @@ int n;
     
     [lbl1 setLineBreakMode:NSLineBreakByWordWrapping];
     [lbl1 setNumberOfLines:2];
-    UISearchBar *search=[[UISearchBar alloc] initWithFrame:CGRectMake(30,90, self.view.frame.size.width-60,35)];
+    
+    search=[[UISearchBar alloc] initWithFrame:CGRectMake(30,90, self.view.frame.size.width-60,35)];
+    [search setDelegate:self];
+    
     [v addSubview:search];
     
     search.barTintColor = [UIColor whiteColor];
@@ -99,14 +109,12 @@ int n;
     [lblOr setText:@"OR"];
     
     [lblOr setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
-
+    
     [lblOr setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
-                                  size:12]];
+                                   size:12]];
     [lblOr setTextAlignment:NSTextAlignmentCenter];
     
     [lblOr setTextColor:[UIColor whiteColor]];
-
-    
     
     
     UILabel *lbl2=[[UILabel alloc] initWithFrame:CGRectMake(10,170, self.view.frame.size.width-20, 40)];
@@ -115,12 +123,12 @@ int n;
     [lbl1 setText:@"Type in for a quick search in the database"];
     [lbl2 setText:@"SEARCH BY CATEGORIES BELOW"];
     
-   // [lblCircum1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:12]];
+    // [lblCircum1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:12]];
     
     
     [lbl1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
-                                             size:20]];
-
+                                  size:20]];
+    
     
     [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
                                   size:16]];
@@ -141,11 +149,12 @@ int n;
     [lbl12 setLineBreakMode:NSLineBreakByWordWrapping];
     [lbl12 setNumberOfLines:2];
     
-    UISearchBar *search2=[[UISearchBar alloc] initWithFrame:CGRectMake(30,90, self.view.frame.size.width-60,35)];
+    search2=[[UISearchBar alloc] initWithFrame:CGRectMake(30,90, self.view.frame.size.width-60,35)];
     [vv2 addSubview:search2];
+    [search2 setDelegate:self];
     search2.barTintColor = [UIColor whiteColor];
     [search2 setPlaceholder:@"Name or Keyword"];
-
+    
     
     
     UIView *vLine2=[[UIView alloc] initWithFrame:CGRectMake(0, 155, self.view.frame.size.width,2)];
@@ -161,12 +170,12 @@ int n;
     [lblOr2 setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     
     [lblOr2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
-                                   size:12]];
+                                    size:12]];
     [lblOr2 setTextAlignment:NSTextAlignmentCenter];
     
     [lblOr2 setTextColor:[UIColor whiteColor]];
     
-
+    
     
     UILabel *lbl22=[[UILabel alloc] initWithFrame:CGRectMake(10,170, self.view.frame.size.width-20, 40)];
     [vv2 addSubview:lbl22];
@@ -176,12 +185,12 @@ int n;
     
     
     [lbl12 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
-                                  size:20]];
+                                   size:20]];
     
     
     [lbl22 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular"
                                    size:16]];
-                   
+    
     
     [lbl12 setTextAlignment:NSTextAlignmentCenter];
     [lbl22 setTextAlignment:NSTextAlignmentCenter];
@@ -335,15 +344,15 @@ int n;
         lblName2=[[UILabel alloc] initWithFrame:CGRectMake(20,30,scrollerTable.frame.size.width-40, 30)];
         lblName2.tag=20;
         [cell.contentView addSubview:lblName2];
-       // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
-       // [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:12]];
+        // [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]];
+        // [lblName2 setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:12]];
         
         [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
                                          size:18]];
         
         
         [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
-
+        
         
         
         
@@ -359,24 +368,32 @@ int n;
     
     NSDictionary *d;
     if(self.scrollerTable==tableView)
-        d=[_medicationArr objectAtIndex:indexPath.row];
+    {
+        EncyclopediaData *enc = [_medicationArr objectAtIndex:indexPath.row];
+        [lblName setText:enc.title];
+        [lblName2 setText:enc.descriptionEncyclo];
+    }
     else
-        d=[_immunisationArr objectAtIndex:indexPath.row];
-    
-    [lblName setText:[d objectForKey:@"title"]];
-    [lblName2 setText:[d objectForKey:@"description"]];
+    {
+        
+        EncycloMedicationData *enc = [_immunisationArr objectAtIndex:indexPath.row];
+        [lblName setText:enc.title];
+        [lblName2 setText:enc.descriptionEncyMedi];
+        
+    }
     
     NSLog(@"lblName.text=%@",lblName.text);
     
     // [lblName2 setText:@"Examples:Proingravida,nibh vel velit,aliquet"];
     [lblName setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblName2 setTextColor:[UIColor colorWithRed:108.0/255.0 green:107.0/255.0 blue:108.0/255.0 alpha:1.0]];
-
+    
     
     return cell;
     
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:( NSIndexPath *)indexPath
 {
     
     NSDictionary *d;
@@ -441,16 +458,26 @@ int n;
     }
     if([statusStr isEqualToString:@"1"])
     {
-        NSDictionary *dataDict = [dict objectForKey:@"data"];
-        
-        
         // NSLog(@"\n---------------\ndataDict=%@",dataDict);
         
         if(n==1)
         {
-            _medicationArr=[dict objectForKey:@"data"];
+            NSArray *listTemp  = [dict objectForKey:@"data"];
+            if(listTemp.count)
+            {
+                NSMutableArray *temp = [NSMutableArray array];
+                for(NSDictionary *dict in listTemp)
+                {
+                    EncyclopediaData *encyclo = [[EncyclopediaData alloc] initwithDictionary:dict];
+                    [temp addObject:encyclo];
+                }
+                
+                _medicationArrHolder = temp;
+                
+                _medicationArr = temp;
+                
+            }
             NSLog(@"_medicationArr count=%lu",(unsigned long)_medicationArr.count);
-            
             
             scrollerTable.dataSource=self;
             scrollerTable.delegate=self;
@@ -459,8 +486,22 @@ int n;
         }
         if(n==2)
         {
-            _immunisationArr=[dict objectForKey:@"data"];
-            NSLog(@"_immunisationArr count=%lu",(unsigned long)_immunisationArr.count);
+            
+            NSArray *listTemp  = [dict objectForKey:@"data"];
+            if(listTemp.count)
+            {
+                NSMutableArray *temp = [NSMutableArray array];
+                for(NSDictionary *dict in listTemp)
+                {
+                    EncycloMedicationData *encyclo = [[EncycloMedicationData alloc] initwithDictionary:dict];
+                    [temp addObject:encyclo];
+                }
+                
+                _immunisationArrHolder = temp;
+                _immunisationArr = temp;
+                
+            }
+            
             
             scrollerTable2.dataSource=self;
             scrollerTable2.delegate=self;
@@ -518,5 +559,50 @@ int n;
  // Pass the selected object to the new view controller.
  }
  */
+
+/*
+ [lblName setText:[d objectForKey:@"title"]];
+ [lblName2 setText:[d objectForKey:@"description"]];
+ */
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    //
+    if([searchBar isEqual:search2])
+    {
+        
+        NSArray *resultArray = [_immunisationArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(SELF.title CONTAINS[cd] %@) OR (SELF.descriptionEncyMedi CONTAINS[cd] %@)", search2.text, search2.text]];
+        if(resultArray.count)
+        {
+            _immunisationArr = resultArray;
+        }
+        else
+        {
+            _immunisationArr = _immunisationArrHolder;
+        }
+        
+        [self.scrollerTable2 reloadData];
+        
+        [search2 resignFirstResponder];
+        
+    }
+    else
+    {
+        NSArray *resultArray = [_medicationArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(SELF.title CONTAINS[cd] %@) OR (SELF.descriptionEncyclo CONTAINS[cd] %@)", search.text, search.text]];
+        if(resultArray.count)
+        {
+            _medicationArr = resultArray;
+        }
+        else
+        {
+            _medicationArr = _medicationArrHolder;
+        }
+        
+        [self.scrollerTable reloadData];
+        
+        [search resignFirstResponder];
+    }
+}
 
 @end

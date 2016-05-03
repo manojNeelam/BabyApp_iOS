@@ -22,12 +22,15 @@
 #import "ConnectionsManager.h"
 #import "Constants.h"
 #import "WSConstant.h"
+#import "ChildDetailsData.h"
+
 @interface LeftMenuViewController()<ServerResponseDelegate>
 {
     NSArray *section1Array,*section2Array,*section3Array;
     NSInteger noofSections;
     BOOL dropdownSelected;
     NSArray *childransArray;
+    
 }
 
 @end
@@ -103,7 +106,14 @@
 {
     
     if (dropdownSelected) {
-        return [childransArray count] +1;
+        if(childransArray && childransArray.count)
+        {
+            return [childransArray count] +2;
+        }
+        else
+        {
+            return 0;
+        }
         
     }
     else{
@@ -151,7 +161,19 @@
         if (indexPath.row==0) {
             
             cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
-            cell1.babyNameLabel.text=@"Charan Giri";
+            
+            //delegate.ch
+            cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+            return cell1;
+        }
+        
+        else if(indexPath.row == childransArray.count+1)
+        {
+            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
+            cell1.babyNameLabel.text=@"ADD BIO";
+            [cell1.babyPic setHidden:YES];
+            cell1.dropdown.hidden=YES;
             return cell1;
         }
         else
@@ -160,23 +182,21 @@
             cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
             cell1.babyNameLabel.text=childrenDict[@"name"];
             cell1.dropdown.hidden=YES;
-            return cell1;
-        }
-        
+            return cell1;        }
+        return nil;
     }
     else{
-        
         
         switch (indexPath.section)
         {
             case 0:
                 
                 cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
-                cell1.babyNameLabel.text=@"Charan Giri";
+                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
                 cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
-//                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
-//                cell1.babyPic.layer.masksToBounds = YES;
-//                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
+                //                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+                //                cell1.babyPic.layer.masksToBounds = YES;
+                //                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
                 return cell1;
                 break;
                 
@@ -193,7 +213,7 @@
                 }
                 return cell2;
                 break;
-            
+                
             case 2:
                 cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
                 cell2.contentNameLabel.text = section2Array[indexPath.row];
@@ -227,12 +247,12 @@
                 cell2.contentNameLabel.text = section3Array[indexPath.row];
                 if (indexPath.row== 0) {
                     [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
-                   
+                    
                 }
                 else
                 {
                     [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Signout.png"] forState:UIControlStateNormal];
-
+                    
                 }
                 return cell2;
                 break;
@@ -318,32 +338,32 @@
             }
         }
         
-          else if (indexPath.section==2) {
-         
-         
-         switch (indexPath.row)
-         {
-         case 0:
-         vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
-         break;
-         
-         case 1:
-         vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
-         break;
-         
-         case 2:
-         vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Growth"];
-         break;
-         
-         case 3:
-         vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
-         break;
-         case 4:
-         vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
-         break;
-         }
-         }
-         else if (indexPath.section==3)
+        else if (indexPath.section==2) {
+            
+            
+            switch (indexPath.row)
+            {
+                case 0:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+                    break;
+                    
+                case 1:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
+                    break;
+                    
+                case 2:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Growth"];
+                    break;
+                    
+                case 3:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
+                    break;
+                case 4:
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
+                    break;
+            }
+        }
+        else if (indexPath.section==3)
         {
             if (indexPath.row==0) {
                 vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SettingsViewController_SB_ID"];
@@ -402,7 +422,7 @@
     NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     NSDictionary *params = @{@"user_id" : s};
     
-   // NSDictionary *params = @{@"user_id" : USERID};
+    // NSDictionary *params = @{@"user_id" : USERID};
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
 

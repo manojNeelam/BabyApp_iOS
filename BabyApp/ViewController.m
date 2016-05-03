@@ -296,9 +296,13 @@ UIActivityIndicatorView *act1;
 //        [self openHomeVC];
         
         
+        
         NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
+        NSString *userName = [[json objectForKey:@"data"] objectForKey:@"name"];
         
         [NSUserDefaults saveObject:userId forKey:USERID];
+        [NSUserDefaults saveObject:userName forKey:USER_NAME];
+        
        // NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
        // NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
         
@@ -461,8 +465,10 @@ UIActivityIndicatorView *act1;
                         //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
                         
                         NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
+                        NSString *userName = [[json objectForKey:@"data"] objectForKey:@"name"];
                         
                         [NSUserDefaults saveObject:userId forKey:USERID];
+                        [NSUserDefaults saveObject:userName forKey:USER_NAME];
                         
                         [self openHomeVC];
                         

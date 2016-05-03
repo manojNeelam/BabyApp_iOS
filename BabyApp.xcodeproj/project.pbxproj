@@ -85,6 +85,9 @@
 		96957B4B1CBAC50E00578E90 /* BioDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 96957B4A1CBAC50E00578E90 /* BioDataObj.m */; };
 		9695B4F51CC2D32100815220 /* ScreeningDevCheckListObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 9695B4F41CC2D32100815220 /* ScreeningDevCheckListObj.m */; };
 		96A342481CCAB07E00888E55 /* ChildDetailsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A342471CCAB07E00888E55 /* ChildDetailsData.m */; };
+		96A37BBE1CD7EE1100C99E1E /* EncycloItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A37BB91CD7EE1100C99E1E /* EncycloItemData.m */; };
+		96A37BBF1CD7EE1100C99E1E /* EncycloMedicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A37BBB1CD7EE1100C99E1E /* EncycloMedicationData.m */; };
+		96A37BC01CD7EE1100C99E1E /* EncyclopediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A37BBD1CD7EE1100C99E1E /* EncyclopediaData.m */; };
 		96A9696C1CB8D8D700D1212B /* AllImmunisationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969631CB8D8D700D1212B /* AllImmunisationCell.m */; };
 		96A9696D1CB8D8D700D1212B /* DueImmunisationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969651CB8D8D700D1212B /* DueImmunisationCell.m */; };
 		96A9696E1CB8D8D700D1212B /* ImmunisationBaseDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A969671CB8D8D700D1212B /* ImmunisationBaseDate.m */; };
@@ -417,6 +420,12 @@
 		9695B4F41CC2D32100815220 /* ScreeningDevCheckListObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningDevCheckListObj.m; sourceTree = "<group>"; };
 		96A342461CCAB07E00888E55 /* ChildDetailsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildDetailsData.h; sourceTree = "<group>"; };
 		96A342471CCAB07E00888E55 /* ChildDetailsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildDetailsData.m; sourceTree = "<group>"; };
+		96A37BB81CD7EE1100C99E1E /* EncycloItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncycloItemData.h; sourceTree = "<group>"; };
+		96A37BB91CD7EE1100C99E1E /* EncycloItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncycloItemData.m; sourceTree = "<group>"; };
+		96A37BBA1CD7EE1100C99E1E /* EncycloMedicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncycloMedicationData.h; sourceTree = "<group>"; };
+		96A37BBB1CD7EE1100C99E1E /* EncycloMedicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncycloMedicationData.m; sourceTree = "<group>"; };
+		96A37BBC1CD7EE1100C99E1E /* EncyclopediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncyclopediaData.h; sourceTree = "<group>"; };
+		96A37BBD1CD7EE1100C99E1E /* EncyclopediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncyclopediaData.m; sourceTree = "<group>"; };
 		96A969621CB8D8D700D1212B /* AllImmunisationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllImmunisationCell.h; sourceTree = "<group>"; };
 		96A969631CB8D8D700D1212B /* AllImmunisationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllImmunisationCell.m; sourceTree = "<group>"; };
 		96A969641CB8D8D700D1212B /* DueImmunisationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueImmunisationCell.h; sourceTree = "<group>"; };
@@ -1416,6 +1425,12 @@
 			isa = PBXGroup;
 			children = (
 				A1EAD2DB1CAEBC2B008D2B37 /* MedicationCategoryDetail.h */,
+				96A37BB81CD7EE1100C99E1E /* EncycloItemData.h */,
+				96A37BB91CD7EE1100C99E1E /* EncycloItemData.m */,
+				96A37BBA1CD7EE1100C99E1E /* EncycloMedicationData.h */,
+				96A37BBB1CD7EE1100C99E1E /* EncycloMedicationData.m */,
+				96A37BBC1CD7EE1100C99E1E /* EncyclopediaData.h */,
+				96A37BBD1CD7EE1100C99E1E /* EncyclopediaData.m */,
 				A1EAD2DC1CAEBC2B008D2B37 /* MedicationCategoryDetail.m */,
 				D8970FB61C98A6FC009C752B /* EncyclopediaTapScroller.h */,
 				D8970FB71C98A6FC009C752B /* EncyclopediaTapScroller.m */,
@@ -1758,6 +1773,7 @@
 				90F165C71CB5A4A0006B5DD6 /* UIButton+AFNetworking.m in Sources */,
 				A10EB6201C789F81002EBC59 /* HeartTypeTableViewCell.m in Sources */,
 				A10EB5F91C786B9A002EBC59 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
+				96A37BBF1CD7EE1100C99E1E /* EncycloMedicationData.m in Sources */,
 				96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */,
 				A10EB6371C78BD83002EBC59 /* ProfilePicTableViewCell.m in Sources */,
 				D8A7C4B31CCCB3C6005B09B5 /* AppConstent.m in Sources */,
@@ -1767,6 +1783,7 @@
 				90FC54631CB1A83400ED0E34 /* CommonSelectionListVC.m in Sources */,
 				D82C28EB1C8F6FDC005798EA /* ScreeningExamination.m in Sources */,
 				A1A46A091CBD77D6009F65BB /* PopoverView.m in Sources */,
+				96A37BBE1CD7EE1100C99E1E /* EncycloItemData.m in Sources */,
 				A13FC7EE1C7748AC00362A32 /* ViewController.m in Sources */,
 				A1EAD2D71CA98CFB008D2B37 /* ImmunationsGreyTableViewCell.m in Sources */,
 				A10EB64C1C79DF68002EBC59 /* SignUpViewController.m in Sources */,
@@ -1804,6 +1821,7 @@
 				CD6754F61CC0B5F8002BA5CA /* ChildDevelopementalViewController.m in Sources */,
 				A1A469FE1CBD6C66009F65BB /* VisiualActivityViewController.m in Sources */,
 				A10EB5ED1C786B91002EBC59 /* SlideNavigationController.m in Sources */,
+				96A37BC01CD7EE1100C99E1E /* EncyclopediaData.m in Sources */,
 				8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */,
 				96D07AC11CD407E9009251D4 /* ScreeningChildData.m in Sources */,
 				90F165CF1CB5A4DA006B5DD6 /* ConnectionsManager.m in Sources */,
