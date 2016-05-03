@@ -95,6 +95,8 @@
 		96A969701CB8D8D700D1212B /* ImmunisationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */; };
 		96D07ABB1CD40588009251D4 /* ImmunisationChildData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D07ABA1CD40588009251D4 /* ImmunisationChildData.m */; };
 		96D07AC11CD407E9009251D4 /* ScreeningChildData.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D07AC01CD407E9009251D4 /* ScreeningChildData.m */; };
+		96DC848F1CD92EA8003A1033 /* imgpsh_fullsize-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DC848D1CD92EA8003A1033 /* imgpsh_fullsize-2.png */; };
+		96DC84901CD92EA8003A1033 /* imgpsh_fullsize.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DC848E1CD92EA8003A1033 /* imgpsh_fullsize.png */; };
 		96E5A03E1CC94F8100C8BB75 /* StoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */; };
 		96EE83F11CC23131009F4932 /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EC1CC23131009F4932 /* JMImageCache.m */; };
 		96EE83F21CC23131009F4932 /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EE83EE1CC23131009F4932 /* UIImageView+JMImageCache.m */; };
@@ -440,6 +442,8 @@
 		96D07ABA1CD40588009251D4 /* ImmunisationChildData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationChildData.m; sourceTree = "<group>"; };
 		96D07ABF1CD407E9009251D4 /* ScreeningChildData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningChildData.h; sourceTree = "<group>"; };
 		96D07AC01CD407E9009251D4 /* ScreeningChildData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningChildData.m; sourceTree = "<group>"; };
+		96DC848D1CD92EA8003A1033 /* imgpsh_fullsize-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgpsh_fullsize-2.png"; sourceTree = "<group>"; };
+		96DC848E1CD92EA8003A1033 /* imgpsh_fullsize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgpsh_fullsize.png; sourceTree = "<group>"; };
 		96E5A03C1CC94F8100C8BB75 /* StoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresTableViewCell.h; sourceTree = "<group>"; };
 		96E5A03D1CC94F8100C8BB75 /* StoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresTableViewCell.m; sourceTree = "<group>"; };
 		96EE83EB1CC23131009F4932 /* JMImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMImageCache.h; sourceTree = "<group>"; };
@@ -1089,6 +1093,8 @@
 		A10EB62B1C78B4A9002EBC59 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				96DC848D1CD92EA8003A1033 /* imgpsh_fullsize-2.png */,
+				96DC848E1CD92EA8003A1033 /* imgpsh_fullsize.png */,
 				D8750D091CCDEB2900821BCF /* babyTeeth.png */,
 				D8750D071CCDDF9300821BCF /* visualcheck.png */,
 				D8750D051CCDDC7100821BCF /* Oral health.png */,
@@ -1617,11 +1623,13 @@
 				D8AB15C61C8E361A0062DAFE /* crv.png in Resources */,
 				D8B1380B1C90CF6F007B412D /* AvenirNextLTPro-DemiIt.otf in Resources */,
 				A10EB6231C78B027002EBC59 /* healthBooklet.png in Resources */,
+				96DC84901CD92EA8003A1033 /* imgpsh_fullsize.png in Resources */,
 				D8B138091C90CF6F007B412D /* AvenirNextLTPro-DemiCn.otf in Resources */,
 				A10EB6421C797A46002EBC59 /* signin.png in Resources */,
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
 				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
+				96DC848F1CD92EA8003A1033 /* imgpsh_fullsize-2.png in Resources */,
 				6C9A60051CCDD40700BF8E25 /* myImmunisattion.png in Resources */,
 				D8B138171C90CF6F007B412D /* HelveticaNeueCyr-UltraLight.otf in Resources */,
 				D8B138061C90CF6F007B412D /* AvenirNextLTPro-Cn.otf in Resources */,

@@ -33,8 +33,6 @@
 }
 - (IBAction)encyclopediaClicked:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"scrollAt"];
-
     NSLog(@"encyclopediaClicked");
     [self performSegueWithIdentifier:@"encyclopediatapscrollersegu" sender:self];
     
@@ -44,6 +42,15 @@
     [super viewDidLoad];
     
     [self.navigationItem setTitle:@"Baby Booklet"];
+    
+    [self addGesture];
+    
+    
+    CGRect frame = self.view.frame;
+    self.constrHBWidth.constant = frame.size.width/2;
+    self.constrEncWidth.constant = frame.size.width/2-1;
+    
+    
     self.navigationController.navigationBarHidden=NO;
     [[_addBioButton layer] setBorderWidth:1.0f];
     [[_addBioButton layer] setBorderColor:[UIColor whiteColor].CGColor];
@@ -57,6 +64,28 @@
     self.btnHealthbooklet.layer.borderWidth = 1.0;
     self.btnHealthbooklet.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
+}
+
+-(void)addGesture
+{
+    UITapGestureRecognizer *bhGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickBHView:)];
+    [self.baseBHView addGestureRecognizer:bhGesture];
+    
+    
+    UITapGestureRecognizer *encycloGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickEncycloView:)];
+    [self.baseEncycloView addGestureRecognizer:encycloGesture];
+}
+
+-(void)onClickBHView:(UIGestureRecognizer *)aGest
+{
+    NSLog(@"helthBookletClicked");
+    [self performSegueWithIdentifier:@"healthBookletsegue" sender:self];
+}
+
+-(void)onClickEncycloView:(UIGestureRecognizer *)aGest
+{
+    NSLog(@"encyclopediaClicked");
+    [self performSegueWithIdentifier:@"encyclopediatapscrollersegu" sender:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -227,67 +256,68 @@
     NSArray *list = [appdelegate listOfChildrens];
     if(!list.count)
     {
-      //  return;
+        //  return;
         
         UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOENTRYTITLE message:(NSString*)NOENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-           [alt show];
-
+        [alt show];
+        
     }
     
     else
     {
-    
-    ChildDetailsData *child = [list objectAtIndex:0];
-    
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
         
-    /* testing
-   ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeController2"];
-  [self.navigationController pushViewController:ImmunisationsVC animated:YES];
-    */
-     
-   if(indexPath.row==0)
-    {
+        ChildDetailsData *child = [list objectAtIndex:0];
         
         
-        if(child.immunisationList.count)
-        {
-            ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
-            [self.navigationController pushViewController:ImmunisationsVC animated:YES];
-            
-            
-            
-        }
-        else
-        {
-            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOIMMUNISATIONENTRYTITLE message:(NSString*)NOIMMUNISATIONENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-            [alt show];
-        }
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                                 bundle: nil];
         
-    }
-    if(indexPath.row==1)
-    {
-        //screeningSummaryList
-        
-        NSLog(@"in did select screening");
-        if(child.screeningList.count)
-        {
-            ScreeningSummaryViewController *summaryVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
-            [self.navigationController pushViewController:summaryVC animated:YES];
-        }
-        else
-        {
-            UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOSCREENINGENTRYTITLE message:(NSString*)NOSCREENINGENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-            [alt show];
-        }
-        
-    }
-    else if(indexPath.row==2)
-    {
-     [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
-    }
+        // testing
+        ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeController2"];
+        [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+        //
+        /*
+         if(indexPath.row==0)
+         {
+         
+         
+         if(child.immunisationList.count)
+         {
+         ImmunisationsVC *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+         [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+         
+         
+         
+         }
+         else
+         {
+         UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOIMMUNISATIONENTRYTITLE message:(NSString*)NOIMMUNISATIONENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+         [alt show];
+         }
+         
+         }
+         if(indexPath.row==1)
+         {
+         //screeningSummaryList
+         
+         NSLog(@"in did select screening");
+         if(child.screeningList.count)
+         {
+         ScreeningSummaryViewController *summaryVC = [mainStoryboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
+         [self.navigationController pushViewController:summaryVC animated:YES];
+         }
+         else
+         {
+         UIAlertView *alt=[[UIAlertView alloc] initWithTitle:(NSString*)NOSCREENINGENTRYTITLE message:(NSString*)NOSCREENINGENTRYMESSAGE delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+         [alt show];
+         }
+         
+         }
+         else if(indexPath.row==2)
+         {
+         [self performSegueWithIdentifier:@"growthsummarysegu" sender:self];
+         }
+         */
     }
 }
 

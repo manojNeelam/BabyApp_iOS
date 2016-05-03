@@ -19,6 +19,8 @@
 #import "HeartTypeTableViewCell.h"
 #import "ProfileTableViewCell.h"
 
+#import "UIImageView+JMImageCache.h"
+
 #import "ConnectionsManager.h"
 #import "Constants.h"
 #import "WSConstant.h"
@@ -153,14 +155,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *cellIdentifier = @"profileIdentifier";
+    ProfileTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
     HeartTypeTableViewCell*cell2=nil;
-    ProfileTableViewCell *cell1=nil;
+    cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+    [cell1.babyPic setClipsToBounds:YES];
+    
     
     if (dropdownSelected) {
         
         if (indexPath.row==0) {
             
-            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            
+            
+            [cell1.babyPic setHidden:NO];
             
             //delegate.ch
             cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
@@ -169,7 +178,8 @@
         
         else if(indexPath.row == childransArray.count+1)
         {
-            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            
             [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
             cell1.babyNameLabel.text=@"ADD BIO";
             [cell1.babyPic setHidden:YES];
@@ -179,11 +189,16 @@
         else
         {
             NSDictionary *childrenDict = childransArray[indexPath.row-1];
-            cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            
+            
+            [cell1.babyPic setHidden:NO];
+            
             cell1.babyNameLabel.text=childrenDict[@"name"];
+            [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
             cell1.dropdown.hidden=YES;
-            return cell1;        }
-        return nil;
+            return cell1;
+        }
     }
     else{
         
@@ -191,7 +206,10 @@
         {
             case 0:
                 
-                cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+                [cell1.babyPic setClipsToBounds:YES];
+                
                 cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
                 cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
                 //                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
@@ -413,6 +431,8 @@
         dropdownSelected=YES;
     }
     
+    [self.tableView reloadData];
+    
 }
 - (IBAction)babyDropdownAction:(id)sender {
 }
@@ -439,6 +459,8 @@
             
             //            children
             childransArray = responseDict[@"data"][@"children"];
+            
+            [self.tableView reloadData];
         }
         else{
             [Constants showOKAlertWithTitle:@"Error" message:@"Unagle to load your childrans list, Please try again after some time" presentingVC:self];

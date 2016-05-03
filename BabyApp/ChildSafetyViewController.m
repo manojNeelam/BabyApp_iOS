@@ -61,8 +61,8 @@
                                          ];
     
     
-    [_bottomLeftButton setTitle:@"" forState:UIControlStateNormal];
-    [_bottomRightButton setTitle:@"" forState:UIControlStateNormal];
+    //[_bottomLeftButton setTitle:@"" forState:UIControlStateNormal];
+    //[_bottomRightButton setTitle:@"" forState:UIControlStateNormal];
     //[self getSafetyCheckList];
     
 }
@@ -141,18 +141,18 @@
 
 - (IBAction)bottomLeftButtonAction:(id)sender {
     
-    if (_bottomLeftButton.tag == bottomLeftButtonTitleArray.count-1) {
-        _bottomLeftButton.tag = 0;
-    }
-    else
-    {
-        _bottomLeftButton.tag++;
-        
-    }
-    
-    [_bottomLeftButton setTitle:bottomLeftButtonTitleArray[_bottomLeftButton.tag] forState:UIControlStateNormal];
-    
-    [self sortArrayWithTitle:bottomLeftButtonTitleArray[_bottomLeftButton.tag]];
+    /*if (_bottomLeftButton.tag == bottomLeftButtonTitleArray.count-1) {
+     _bottomLeftButton.tag = 0;
+     }
+     else
+     {
+     _bottomLeftButton.tag++;
+     
+     }
+     
+     [_bottomLeftButton setTitle:bottomLeftButtonTitleArray[_bottomLeftButton.tag] forState:UIControlStateNormal];
+     
+     [self sortArrayWithTitle:bottomLeftButtonTitleArray[_bottomLeftButton.tag]];*/
     
     
     
@@ -160,17 +160,18 @@
 }
 
 - (IBAction)bottomRightButtonAction:(id)sender {
-    if (_bottomRightButton.tag == bottomRightButtonTitleArray.count-1) {
-        _bottomRightButton.tag = 0;
-    }
-    else
-    {
-        _bottomRightButton.tag++;
-        
-    }
-    
-    [_bottomRightButton setTitle:bottomRightButtonTitleArray[_bottomRightButton.tag] forState:UIControlStateNormal];
-    [self sortArrayWithTitle:bottomRightButtonTitleArray[_bottomRightButton.tag]];
+    /*if (_bottomRightButton.tag == bottomRightButtonTitleArray.count-1) {
+     _bottomRightButton.tag = 0;
+     }
+     else
+     {
+     _bottomRightButton.tag++;
+     
+     }
+     
+     [_bottomRightButton setTitle:bottomRightButtonTitleArray[_bottomRightButton.tag] forState:UIControlStateNormal];
+     [self sortArrayWithTitle:bottomRightButtonTitleArray[_bottomRightButton.tag]];*
+     */
     
 }
 
@@ -206,7 +207,7 @@
             allcheckListArray = responseDict[@"data"][@"checklist"];
             if (allcheckListArray.count == 0) {
                 
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:@"safety checklist is empty for your current child." preferredStyle:UIAlertControllerStyleAlert];
+                //UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:@"safety checklist is empty for your current child." preferredStyle:UIAlertControllerStyleAlert];
                 
                 
                 return;

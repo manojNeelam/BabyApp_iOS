@@ -20,4 +20,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnHealthbooklet;
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constrHBWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constrEncWidth;
+
+@property (weak, nonatomic) IBOutlet UIView *baseBHView;
+@property (weak, nonatomic) IBOutlet UIView *baseEncycloView;
+
 @end
