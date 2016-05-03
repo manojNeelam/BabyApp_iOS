@@ -50,7 +50,7 @@
         NSLog(@"Revealed %@", menu);
     }];*/
 
-    [self checkValidUser];
+ //   [self checkValidUser];  commentes by atul
     
     UIImage *customBackButton=nil;
     
@@ -199,12 +199,22 @@
                                                              bundle: nil];
     
     NSString *userID = [NSUserDefaults retrieveObjectForKey:USERID];
-    if(!userID && userID != nil)  // if(userID && userID != nil)
+    if(userID && userID != nil) //if(!userID && userID != nil)  //
     {
-        NSLog(@"App Deligate checkValidUseruserID != nil ");
-        HomeViewController *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        NSLog(@"App Deligate checkValidUseruserID != nil listOfChildrens.count=%lu",(unsigned long)listOfChildrens.count);
+        SlideNavigationController *homeVC;
+        if(listOfChildrens.count)
+        {
+            HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
+            homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+        }
+
+        else
+        {   HomeViewController *homeView = [mainStoryboard  instantiateViewControllerWithIdentifier:@"HomeViewController"];
+            homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+        }
         
-        SlideNavigationController *homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+      /*  SlideNavigationController *homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];*/
 
       //  SlideNavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"];
         //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVC];
@@ -234,7 +244,7 @@
         }];
     }
     //Atul write required condition
-    else if(1)
+   /* else if(1)
     {
         HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
         
@@ -263,7 +273,7 @@
             NSString *menu = note.userInfo[@"menu"];
             NSLog(@"Revealed %@", menu);
         }];
-    }
+    }*/
     else
     {
         

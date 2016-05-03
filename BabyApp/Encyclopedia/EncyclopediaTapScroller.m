@@ -57,7 +57,7 @@ int n;
     
     //   labelArrayScroller2=[NSArray arrayWithObjects:@"BCG",@"HEPATITIS B",@"DTAP",@"MMR", nil];
     
-    CGRect scrollFrame = CGRectMake(0, 60, [self.view bounds].size.width, [self.view bounds].size.height-60);
+    CGRect scrollFrame = CGRectMake(0, 0, [self.view bounds].size.width, [self.view bounds].size.height);
     scroll1 = [[UIScrollView alloc]initWithFrame: scrollFrame];
     
     [self.view addSubview:scroll1];
@@ -199,10 +199,10 @@ int n;
     [lbl22 setTextColor:[UIColor whiteColor]];
     
     
-    scrollerTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-(v.frame.origin.y+v.frame.size.height))];
+    scrollerTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height, self.view.frame.size.width, (self.view.frame.size.height-(v.frame.origin.y+v.frame.size.height))-50)];
     [v1 addSubview:scrollerTable];
     
-    scrollerTable2=[[UITableView alloc] initWithFrame:CGRectMake(0, vv2.frame.origin.y+vv2.frame.size.height, self.view.frame.size.width, scroll1.frame.size.height-(vv2.frame.origin.y+vv2.frame.size.height))];
+    scrollerTable2=[[UITableView alloc] initWithFrame:CGRectMake(0, vv2.frame.origin.y+vv2.frame.size.height, self.view.frame.size.width, (scroll1.frame.size.height-(vv2.frame.origin.y+vv2.frame.size.height))-50)];
     [v2 addSubview:scrollerTable2];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -213,6 +213,19 @@ int n;
     
     [self.view addSubview:page1];
     [self.view bringSubviewToFront:page1];
+    
+    
+    int n= (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollAt"];
+    
+    if(n>0)
+    {
+        [scroll1 setContentOffset:CGPointMake(scroll1.frame.size.width*(n-1), scroll1.frame.origin.y) animated:NO];
+        [page1 setCurrentPage:n-1];
+        self.navigationItem.title = [hed objectAtIndex:page1.currentPage];
+
+
+    }
+
     
 }
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
