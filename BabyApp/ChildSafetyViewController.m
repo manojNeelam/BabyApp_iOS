@@ -52,12 +52,12 @@
                                          @{lbl     : @"I ensure that blosters,pillows,blankets and plastics bags are kept away from my baby to avoid unintentional suffocation.I always place my baby to sleep on his back.",
                                            DetailStatus  : @"Set reminder"
                                            },
-                                         @{lbl     : @"15-18 months",
-                                           DetailStatus  : @"Set reminder"
-                                           },
-                                         @{lbl     : @"2-3 years",
-                                           DetailStatus  : @"Set reminder"
-                                           },
+                                         //                                         @{lbl     : @"15-18 months",
+                                         //                                           DetailStatus  : @"Set reminder"
+                                         //                                           },
+                                         //                                         @{lbl     : @"2-3 years",
+                                         //                                           DetailStatus  : @"Set reminder"
+                                         //                                           },
                                          ];
     
     
@@ -73,12 +73,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    CGFloat height;
+    height = UITableViewAutomaticDimension;
+    return height;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    CGFloat height;
+    height = UITableViewAutomaticDimension;
+    return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -56,7 +56,7 @@
 
     if([self.keyString isEqualToString:@"Gender"])
     {
-        [tempData addObject:@"Mail"];
+        [tempData addObject:@"Male"];
         [tempData addObject:@"Female"];
     }
     else if([self.keyString isEqualToString:@"Ethnic"])

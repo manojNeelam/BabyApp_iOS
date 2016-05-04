@@ -32,21 +32,29 @@
     
     UITextField *currentTextField;
     
+    
+    BOOL isPoptoDischargeVC;
 }
 @end
 
 @implementation NewbornScreeningVC
+@synthesize delegate;
+
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.txtFldOAE setTextColor:[UIColor whiteColor]];
+    
     [self addTapGestures];
     
     [self loadData];
     
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
+    //UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
     //[gesture setCancelsTouchesInView:YES];
-    [self.view addGestureRecognizer:gesture];
+    //[self.view addGestureRecognizer:gesture];
+    
     
     
     commonTblView = [[UITableView alloc] init];
@@ -57,7 +65,6 @@
     
     
     [self.scrollView addSubview:commonTblView];
-    
 }
 
 -(void)onclickkeyboardhide:(UITapGestureRecognizer *)aGesture
@@ -378,6 +385,8 @@
     
     if([self isValidData])
     {
+        isPoptoDischargeVC = YES;
+        
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setObject:self.txtFldG6PD.text forKey:@"g6pd_deficiency"];
         [params setObject:self.txtFldTSH.text forKey:@"tsh"];
@@ -407,7 +416,7 @@
 {
     if([self.txtFldG6PD.text isEmpty])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid C6PD" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid G6PD" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
         
         return NO;
@@ -527,11 +536,19 @@
         
         [self.txtFldBaseRight setText:[dataDict objectForKey:@"right_pass"]];
         [self.txtFldNeedFurthur setText:[dataDict objectForKey:@"needs_further_evaluation"]];
+        
+        if(isPoptoDischargeVC)
+        {
+            [self.delegate poptoDischargeScreen];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
     }
     else
     {
-        NSString *messageStr = [dict objectForKey:@"message"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:messageStr delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        //        NSString *messageStr = [dict objectForKey:@"message"];
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:messageStr delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         //[alert show];
     }
 }
@@ -540,7 +557,6 @@
 {
     
 }
-
 
 -(void)loadGenderData
 {

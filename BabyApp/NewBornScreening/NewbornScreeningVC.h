@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NewbornScreeningVCDelegate <NSObject>
+
+-(void)poptoDischargeScreen;
+
+@end
+
 @interface NewbornScreeningVC : UIViewController
+
+@property (nonatomic, assign) id<NewbornScreeningVCDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 //G6PD

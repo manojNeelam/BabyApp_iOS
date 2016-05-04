@@ -50,21 +50,18 @@
     [super viewWillAppear:animated];
     [self addTapGestures];
     [self loadData];
-    
-    
 }
 
 -(void)loadData
 {
     NSNumber *childID = [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    ///if(childID && childID != nil)
-    // {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"10" forKey:@"child_id"];
     
-    [[ConnectionsManager sharedManager] readdischarge_information:dict withdelegate:self];
-    
-    //readParticular:dict withdelegate:self];
+    if(childID && childID != nil)
+    {
+        [dict setObject:childID forKey:@"child_id"];
+        [[ConnectionsManager sharedManager] readdischarge_information:dict withdelegate:self];
+    }
 }
 
 -(void)openCommonSelectionVC
@@ -277,8 +274,8 @@
 -(void)loadGenderData
 {
     NSMutableArray *tempData = [NSMutableArray array];
-    [tempData addObject:@"Mail"];
-    [tempData addObject:@"Female"];
+    [tempData addObject:@"Yes"];
+    [tempData addObject:@"No"];
     
     genderList = tempData;
     

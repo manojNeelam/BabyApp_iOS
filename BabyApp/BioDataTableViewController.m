@@ -20,9 +20,10 @@
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
 
+#import "NewbornScreeningVC.h"
 #import "AppDelegate.h"
 
-@interface BioDataTableViewController () <ServerResponseDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomIOS7AlertViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface BioDataTableViewController () <ServerResponseDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomIOS7AlertViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, NewbornScreeningVCDelegate>
 {
     NSArray *titleArray;
     
@@ -37,6 +38,7 @@
     
     NSString *userName, *dob;
     
+    BOOL pushtoDischarge;
 }
 @end
 
@@ -80,7 +82,7 @@
     }
     if(cell.txtFldName.text)
     {
-       [params setObject:cell.txtFldName.text forKey:@"name"];
+        [params setObject:cell.txtFldName.text forKey:@"name"];
     }
     
     
@@ -123,7 +125,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    if(pushtoDischarge)
+    {
+        [self performSegueWithIdentifier:Segue_DischargeInformation sender:self];
+        
+        pushtoDischarge = NO;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -261,6 +268,10 @@
         controller.selectedBioData = bioDataObj;
     }
     
+    if ([segue.identifier isEqualToString:Segue_NewbornScreeningVC]) {
+        NewbornScreeningVC *controller = (NewbornScreeningVC *)segue.destinationViewController;
+        controller.delegate = self;
+    }
 }
 
 -(void)onClickDateOfBirth:(id)sender
@@ -327,7 +338,7 @@
         userName = [datDict objectForKey:@"name"];
         dob = [datDict objectForKey:@"dob"];
         bioDataObj.userProfile = [datDict objectForKey:@"baby_image"];
-    
+        
         bioDataObj.name = userName;
         bioDataObj.dob = dob;
         
@@ -419,4 +430,9 @@
     [self.tableView reloadData];
 }
 
+
+-(void)poptoDischargeScreen;
+{
+    pushtoDischarge = YES;
+}
 @end

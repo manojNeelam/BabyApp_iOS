@@ -49,22 +49,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclickkeyboardhide:)];
-    // [gesture setCancelsTouchesInView:YES];
-    //[self.view addGestureRecognizer:gesture];
     
     [self.txtFldBirthCertificateNo setDelegate:self];
     [self.txtFldDurationGestation setDelegate:self];
     [self.txtFldEthnicGroup setDelegate:self];
-   
     
-   
+    
     [self.txtFldLengthAtBirth setDelegate:self];
     [self.txtFldModeofDelivery setDelegate:self];
     [self.txtfldPlaceOfDelivery setDelegate:self];
     [self.txtFldSex setDelegate:self];
     [self.txtFldWeightAtBirth setDelegate:self];
-     [self.txtFldHeadCircunference setDelegate:self];
+    [self.txtFldHeadCircunference setDelegate:self];
     
     [self.txtFldWeightAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
     [self.txtFldLengthAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
@@ -75,8 +71,6 @@
     
     self.minDurationView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.minDurationView.layer.borderWidth = 1.0f;
-    
-    [self.txtFldHeadCircunference setText:@"152"];
     
     [self loadData];
     
@@ -100,8 +94,8 @@
 - (void)viewDidLayoutSubviews
 {
     [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
-   
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 80)];
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseHeadCircumferenceView.frame.size.height + 80)];
 }
 
 -(void)onclickkeyboardhide:(UITapGestureRecognizer *)aGesture
@@ -130,6 +124,13 @@
     
     [[ConnectionsManager sharedManager] readBirthRecord:dict withdelegate:self];
 }
+
+-(void)onCircumferenceBecomeResponse:(UIGestureRecognizer *)aGesture
+{
+    [self.txtFldHeadCircunference becomeFirstResponder];
+}
+
+
 
 -(void)addGestures
 {
@@ -549,7 +550,7 @@
     {
         NSDictionary *dataDict = [dict objectForKey:@"data"];
         
-      
+        
         /*
          "apgar_score1" = 3;
          "apgar_score2" = 3;
