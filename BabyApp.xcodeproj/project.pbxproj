@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		01D1537E14D44BCCF3DDC034 /* libPods-BabyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07094B7CE3DBB90AED91954B /* libPods-BabyApp.a */; };
 		5228659F1CBF62900025F8C7 /* ConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5228659E1CBF62900025F8C7 /* ConditionViewController.m */; };
+		6C277C6E1CD9C38200683D00 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C277C6D1CD9C38200683D00 /* facebook.png */; };
+		6C277C741CD9F0E100683D00 /* FB1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C277C731CD9F0E100683D00 /* FB1.png */; };
 		6C92336A1CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9233691CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m */; };
 		6C92336D1CCCFB7900ECC9E6 /* DevelopmentalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C92336C1CCCFB7900ECC9E6 /* DevelopmentalCell.m */; };
 		6C9A60031CCDD40700BF8E25 /* Encyclopedianew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A5FFB1CCDD40700BF8E25 /* Encyclopedianew.png */; };
@@ -274,6 +276,8 @@
 		5228659D1CBF62900025F8C7 /* ConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionViewController.h; sourceTree = "<group>"; };
 		5228659E1CBF62900025F8C7 /* ConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionViewController.m; sourceTree = "<group>"; };
 		5BCF25B75D8B855570DD77C9 /* Pods-BabyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyApp/Pods-BabyApp.debug.xcconfig"; sourceTree = "<group>"; };
+		6C277C6D1CD9C38200683D00 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		6C277C731CD9F0E100683D00 /* FB1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FB1.png; sourceTree = "<group>"; };
 		6C9233681CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevelopmetalScreenViewController.h; sourceTree = "<group>"; };
 		6C9233691CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevelopmetalScreenViewController.m; sourceTree = "<group>"; };
 		6C92336B1CCCFB7900ECC9E6 /* DevelopmentalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevelopmentalCell.h; sourceTree = "<group>"; };
@@ -1093,6 +1097,8 @@
 		A10EB62B1C78B4A9002EBC59 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6C277C731CD9F0E100683D00 /* FB1.png */,
+				6C277C6D1CD9C38200683D00 /* facebook.png */,
 				96DC848D1CD92EA8003A1033 /* imgpsh_fullsize-2.png */,
 				96DC848E1CD92EA8003A1033 /* imgpsh_fullsize.png */,
 				D8750D091CCDEB2900821BCF /* babyTeeth.png */,
@@ -1609,6 +1615,7 @@
 				90FC54451CB1A7E300ED0E34 /* Readme.txt in Resources */,
 				D8AB15C81C8E375B0062DAFE /* stop_watch_time.png in Resources */,
 				D8B138141C90CF6F007B412D /* Helvetica-Neue-LT.ttf in Resources */,
+				6C277C741CD9F0E100683D00 /* FB1.png in Resources */,
 				6C9A60071CCDD40700BF8E25 /* newScreening.png in Resources */,
 				A1C384D01CC21E940085C812 /* hb_percentiles.png in Resources */,
 				A1C384CE1CC21E940085C812 /* hb_immunisation.png in Resources */,
@@ -1665,6 +1672,7 @@
 				D8B1380F1C90CF6F007B412D /* AvenirNextLTPro-MediumCn.otf in Resources */,
 				A10EB62A1C78B455002EBC59 /* screening_icon.png in Resources */,
 				D8AB15C21C8E341F0062DAFE /* Screenings-checked_03.png in Resources */,
+				6C277C6E1CD9C38200683D00 /* facebook.png in Resources */,
 				A1EAD2CD1CA98235008D2B37 /* teeth.png in Resources */,
 				A13FC8211C776F6800362A32 /* img_logo.png in Resources */,
 				A1C384DA1CC24B270085C812 /* hb_Item.png in Resources */,

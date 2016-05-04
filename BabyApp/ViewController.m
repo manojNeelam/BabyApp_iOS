@@ -25,11 +25,41 @@
 @end
 
 @implementation ViewController
+{
+    BOOL isForgotPassword;
+}
 UIActivityIndicatorView *act1;
 
+
+
+- (UIView *)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius
+{
+    if (tl || tr || bl || br) {
+        UIRectCorner corner = 0;
+        if (tl) corner = corner | UIRectCornerTopLeft;
+        if (tr) corner = corner | UIRectCornerTopRight;
+        if (bl) corner = corner | UIRectCornerBottomLeft;
+        if (br) corner = corner | UIRectCornerBottomRight;
+        
+        UIView *roundedView = view;
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:roundedView.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = roundedView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        roundedView.layer.mask = maskLayer;
+        return roundedView;
+    }
+    return view;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+  
+    
+    
+    
+    isForgotPassword = NO;
     self.navigationController.navigationBarHidden=YES;
     
     for (NSString* family in [UIFont familyNames])
@@ -42,6 +72,12 @@ UIActivityIndicatorView *act1;
         }
     }
     
+}
+
+-(void)viewDidLayoutSubviews
+{
+    self.viewPassword = (UIView *)[self roundCornersOnView:self.viewPassword onTopLeft:NO topRight:NO bottomLeft:YES bottomRight:YES radius:5.0];
+     self.viewEmail = (UIView *)[self roundCornersOnView:self.viewEmail onTopLeft:YES topRight:YES bottomLeft:NO bottomRight:NO radius:5.0];
 }
 
 //
@@ -567,7 +603,7 @@ UIActivityIndicatorView *act1;
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:emailAddress forKey:@"email"];
-    
+    isForgotPassword = YES;
     [[ConnectionsManager sharedManager] getForgotPassword:dictionary withdelegate:self];
 }
 
@@ -617,6 +653,15 @@ UIActivityIndicatorView *act1;
     else
         statusStr = statusStr_;
     
+    if (isForgotPassword) {
+        
+        NSString *messageStr = [params objectForKey:@"message"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+
+        isForgotPassword = NO;
+        return;
+    }
     if([statusStr isEqualToString:@"1"])
     {
         

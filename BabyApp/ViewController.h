@@ -14,6 +14,8 @@
 - (IBAction)signinAction:(id)sender;
 - (IBAction)facebookSigninAction:(id)sender;
 - (IBAction)forgotPasswordAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *viewEmail;
+@property (weak, nonatomic) IBOutlet UIView *viewPassword;
 
 - (IBAction)signupAction:(id)sender;
 

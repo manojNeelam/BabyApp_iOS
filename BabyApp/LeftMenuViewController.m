@@ -107,14 +107,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (dropdownSelected) {
+    if (dropdownSelected)
+    {
         if(childransArray && childransArray.count)
         {
             return [childransArray count] +2;
         }
         else
         {
-            return 0;
+            return 2;
         }
         
     }
@@ -165,39 +166,68 @@
     
     if (dropdownSelected) {
         
-        if (indexPath.row==0) {
-            
-            
-            
-            [cell1.babyPic setHidden:NO];
-            
-            //delegate.ch
-            cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
-            return cell1;
-        }
         
-        else if(indexPath.row == childransArray.count+1)
+        
+        
+        if(childransArray && childransArray.count)
         {
-            //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+            if (indexPath.row==0) {
+                
+                
+                
+                [cell1.babyPic setHidden:NO];
+                
+                //delegate.ch
+                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+                return cell1;
+            }
             
-            [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
-            cell1.babyNameLabel.text=@"ADD BIO";
-            [cell1.babyPic setHidden:YES];
-            cell1.dropdown.hidden=YES;
-            return cell1;
+            else if(indexPath.row == childransArray.count+1)
+            {
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                
+                [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
+                cell1.babyNameLabel.text=@"ADD BIO";
+                [cell1.babyPic setHidden:YES];
+                cell1.dropdown.hidden=YES;
+                return cell1;
+            }
+            else
+            {
+                NSDictionary *childrenDict = childransArray[indexPath.row-1];
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                
+                
+                [cell1.babyPic setHidden:NO];
+                
+                cell1.babyNameLabel.text=childrenDict[@"name"];
+                [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
+                cell1.dropdown.hidden=YES;
+                return cell1;
+            }
+
         }
         else
         {
-            NSDictionary *childrenDict = childransArray[indexPath.row-1];
-            //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
-            
-            
-            [cell1.babyPic setHidden:NO];
-            
-            cell1.babyNameLabel.text=childrenDict[@"name"];
-            [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
-            cell1.dropdown.hidden=YES;
-            return cell1;
+            if (indexPath.row==0) {
+                
+                
+                
+                [cell1.babyPic setHidden:NO];
+                //delegate.ch
+                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+                return cell1;
+            }
+            else
+            {
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                
+                [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
+                cell1.babyNameLabel.text=@"ADD BIO";
+                [cell1.babyPic setHidden:YES];
+                cell1.dropdown.hidden=YES;
+                return cell1;
+            }
         }
     }
     else{
@@ -299,36 +329,141 @@
     
     if (indexPath.section == 0) {
         
-        if (indexPath.row==0 ) {
+        
+        
+        
+        
+        
+        
+        {
             
             
-            if (dropdownSelected) {
-                dropdownSelected=NO;
-                noofSections=4;
+            
+            
+            if(childransArray && childransArray.count)
+            {
+                if (indexPath.row==0) {
+                    
+                    if (indexPath.row==0 ) {
+                        
+                        
+                        if (dropdownSelected) {
+                            dropdownSelected=NO;
+                            noofSections=4;
+                        }
+                        else
+                        {
+                            noofSections=1;
+                            dropdownSelected=YES;
+                        }
+                        [self.tableView reloadData];
+                    }
+                }
+                else if(indexPath.row == childransArray.count+1)
+                {
+                    //addbio
+                    
+                    
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
+                    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+                    
+                    
+                    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                                             withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                                     andCompletion:nil];
+
+                }
+                else
+                {
+                    //perticular child
+                    
+                    dropdownSelected=NO;
+                    noofSections=4;
+                    [self.tableView reloadData];
+                    
+                    NSLog(@"open home page");
+                    
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+                    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+                    
+                    
+                    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                                             withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                                     andCompletion:nil];
+                    
+                    
+                }
+                
             }
             else
             {
-                noofSections=1;
-                dropdownSelected=YES;
+                if (indexPath.row==0)
+                {
+                    
+                    if (dropdownSelected) {
+                        dropdownSelected=NO;
+                        noofSections=4;
+                    }
+                    else
+                    {
+                        noofSections=1;
+                        dropdownSelected=YES;
+                    }
+                    [self.tableView reloadData];
+                }
+                else
+                {
+                    //addbio
+                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
+                    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+                    
+                  
+                    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                                             withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                                     andCompletion:nil];
+
+                    
+                }
             }
-            [self.tableView reloadData];
         }
-        else
-        {
-            dropdownSelected=NO;
-            noofSections=4;
-            [self.tableView reloadData];
-            
-            NSLog(@"open home page");
-            
-            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
-            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
-            
-            
-            [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
-                                                                     withSlideOutAnimation:self.slideOutAnimationEnabled
-                                                                             andCompletion:nil];
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+//        if (indexPath.row==0 ) {
+//            
+//            
+//            if (dropdownSelected) {
+//                dropdownSelected=NO;
+//                noofSections=4;
+//            }
+//            else
+//            {
+//                noofSections=1;
+//                dropdownSelected=YES;
+//            }
+//            [self.tableView reloadData];
+//        }
+//        else
+//        {
+//            dropdownSelected=NO;
+//            noofSections=4;
+//            [self.tableView reloadData];
+//            
+//            NSLog(@"open home page");
+//            
+//            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+//            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+//            
+//            
+//            [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+//                                                                     withSlideOutAnimation:self.slideOutAnimationEnabled
+//                                                                             andCompletion:nil];
+//        }
     }
     else if (!dropdownSelected) {
         
@@ -463,7 +598,7 @@
             [self.tableView reloadData];
         }
         else{
-            [Constants showOKAlertWithTitle:@"Error" message:@"Unagle to load your childrans list, Please try again after some time" presentingVC:self];
+          //  [Constants showOKAlertWithTitle:@"Error" message:@"Unable to load your childrans list, Please try again after some time" presentingVC:self];
         }
     });
 }

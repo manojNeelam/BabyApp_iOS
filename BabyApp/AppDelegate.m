@@ -210,7 +210,9 @@
         }
 
         else
-        {   HomeViewController *homeView = [mainStoryboard  instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        {
+            
+            HomeViewController *homeView = [mainStoryboard  instantiateViewControllerWithIdentifier:@"HomeViewController"];
             homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
         }
         

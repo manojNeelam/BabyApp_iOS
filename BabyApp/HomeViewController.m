@@ -96,7 +96,7 @@
     if(isFromSignUp)
     {
         //
-        [self performSegueWithIdentifier:@"bioDataSegue" sender:self];
+        //[self performSegueWithIdentifier:@"bioDataSegue" sender:self];
         [NSUserDefaults saveBool:NO forKey:IS_FROM_SIGNUP];
     }
     else
