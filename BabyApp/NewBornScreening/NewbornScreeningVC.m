@@ -532,7 +532,7 @@
     {
         NSString *messageStr = [dict objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:messageStr delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        //[alert show];
     }
 }
 

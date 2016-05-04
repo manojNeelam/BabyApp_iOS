@@ -12,7 +12,7 @@
 #import "CustomIOS7AlertView.h"
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
-
+#import "ParticularsOfParentsVC.h"
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
 
@@ -22,6 +22,7 @@
     NSArray *genderList;
     NSArray *identifierNames;
     
+    BOOL isDone;
     UITapGestureRecognizer *genderGesture, *ethnicGesture, *modeDeliveryGesture, *apgarMinDurationGesture, *apgarMaxDurationGesture, *durationGesture;
     NSString *keyString;
     
@@ -43,6 +44,8 @@
 @synthesize selectedBioData;
 
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -53,12 +56,15 @@
     [self.txtFldBirthCertificateNo setDelegate:self];
     [self.txtFldDurationGestation setDelegate:self];
     [self.txtFldEthnicGroup setDelegate:self];
-    [self.txtFldHeadCircunference setDelegate:self];
+   
+    
+   
     [self.txtFldLengthAtBirth setDelegate:self];
     [self.txtFldModeofDelivery setDelegate:self];
     [self.txtfldPlaceOfDelivery setDelegate:self];
     [self.txtFldSex setDelegate:self];
     [self.txtFldWeightAtBirth setDelegate:self];
+     [self.txtFldHeadCircunference setDelegate:self];
     
     [self.txtFldWeightAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
     [self.txtFldLengthAtBirth setKeyboardType:UIKeyboardTypeNumberPad];
@@ -81,7 +87,7 @@
     [commonTblView setDelegate:self];
     [commonTblView setHidden:YES];
     
-    
+    isDone = NO;
     [self.scrollView addSubview:commonTblView];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -94,8 +100,8 @@
 - (void)viewDidLayoutSubviews
 {
     [commonTblView setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
-    
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 60)];
+   
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.baseHeadCircumferenceView.frame.origin.y+self.baseDurationGestationView.frame.size.height + 80)];
 }
 
 -(void)onclickkeyboardhide:(UITapGestureRecognizer *)aGesture
@@ -387,7 +393,9 @@
 - (IBAction)onClickPreviousButton:(id)sender {
 }
 
-- (IBAction)onClickNextButton:(id)sender {
+- (IBAction)onClickNextButton:(id)sender
+{
+    
 }
 - (IBAction)onClickDone:(id)sender
 {
@@ -418,10 +426,12 @@
         
         if(isUpdate)
         {
+            isDone = YES;
             [[ConnectionsManager sharedManager] updateBirthRecord:dict withdelegate:self];
         }
         else
         {
+            isDone = YES;
             [[ConnectionsManager sharedManager] addBirthRecord:dict withdelegate:self];
         }
     }
@@ -538,6 +548,8 @@
     if([statusStr isEqualToString:@"1"])
     {
         NSDictionary *dataDict = [dict objectForKey:@"data"];
+        
+      
         /*
          "apgar_score1" = 3;
          "apgar_score2" = 3;
@@ -559,7 +571,7 @@
         [self.txtFldDurationGestation setText:[dataDict objectForKey:@"duration_of_gestation"]];
         [self.txtFldEthnicGroup setText:[dataDict objectForKey:@"ethnic_group"]];
         
-        [self.txtFldHeadCircunference setText:[dataDict objectForKey:@"head_circumference"]];
+        [self.txtFldHeadCircunference setText:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"head_circumference"]]];
         [self.txtFldLengthAtBirth setText:[dataDict objectForKey:@"length_at_birth"]];
         [self.txtFldModeofDelivery setText:[dataDict objectForKey:@"mode_of_delivery"]];
         [self.txtfldPlaceOfDelivery setText:[dataDict objectForKey:@"place_of_delivery"]];
@@ -571,6 +583,13 @@
         [self.lblMaxDuration setText:[dataDict objectForKey:@"apgar_score2"]];
         
         isUpdate = YES;
+        
+        
+        if (isDone) {
+            isDone = NO;
+            ParticularsOfParentsVC *ParentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ParticularsOfParentsVC_SB_ID"];
+            [self.navigationController pushViewController:ParentVC animated:YES];
+        }
     }
 }
 
@@ -582,7 +601,7 @@
 -(void)loadGenderData
 {
     NSMutableArray *tempData = [NSMutableArray array];
-    [tempData addObject:@"Mail"];
+    [tempData addObject:@"Male"];
     [tempData addObject:@"Female"];
     
     genderList = tempData;
@@ -674,5 +693,6 @@
     [commonTblView setHidden:YES];
     return YES;
 }
+
 
 @end

@@ -11,12 +11,13 @@
 #import "NSString+CommonForApp.h"
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
+#import "NewbornScreeningVC.h"
 
 @interface ParticularsOfParentsVC () <ServerResponseDelegate>
 {
     NSArray *identifierNames;
     
-    BOOL isUpdate;
+    BOOL isUpdate,isDone;
 }
 @end
 
@@ -65,10 +66,12 @@
         
         if(isUpdate)
         {
+            isDone = YES;
             [[ConnectionsManager sharedManager] updateParticular:params withdelegate:self];
         }
         else
         {
+            isDone = YES;
             [[ConnectionsManager sharedManager] addParticular:params withdelegate:self];
         }
     }
@@ -320,12 +323,18 @@
         [self.txtFldFatherTelHp setText:[dataDict objectForKey:@"father_tel_hp"]];
         [self.txtFldFatherTelOff setText:[dataDict objectForKey:@"father_tel_off"]];
         [self.txtFldFatherTelRes setText:[dataDict objectForKey:@"father_tel_res"]];
+        
+        if (isDone) {
+            isDone = NO;
+            NewbornScreeningVC *NewbornScreening_VC = [self.storyboard instantiateViewControllerWithIdentifier:@"NewbornScreeningVC_SB_ID"];
+            [self.navigationController pushViewController:NewbornScreening_VC animated:YES];
+        }
     }
     else
     {
         NSString *messageStr = [dict objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:messageStr delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        //[alert show];
     }
 }
 
