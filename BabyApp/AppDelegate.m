@@ -50,7 +50,7 @@
         NSLog(@"Revealed %@", menu);
     }];*/
 
- //   [self checkValidUser];  commentes by atul
+    [self checkValidUser]; // commentes by atul
     
     UIImage *customBackButton=nil;
     

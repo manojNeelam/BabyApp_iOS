@@ -46,7 +46,7 @@
     [self.view addSubview:overlayView];
     
     selectedChildIndex=0;
-    imagesNames=[NSArray arrayWithObjects:@"needle_icon.png",@"screening_icon.png",@"growth_icon.png", nil];
+    imagesNames=[NSArray arrayWithObjects:@"needle_icon.png",@"screening_icon2.png",@"growth_icon.png", nil];
     titlesArray=[NSArray arrayWithObjects:@"My Immunisation",@"My Screenings",@"Encyclopedia", nil];
     colorArray=[NSArray arrayWithObjects:@"D35560",@"F8C34F",@"53B8B1", nil];
     

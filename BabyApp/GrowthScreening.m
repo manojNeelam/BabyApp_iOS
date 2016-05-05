@@ -11,10 +11,12 @@
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
 #import "CustomIOS7AlertView.h"
+#import "Constants.h"
 
 @interface GrowthScreening ()<CustomIOS7AlertViewDelegate,ServerResponseDelegate>
 {
     NSMutableArray *txtfieldAr2;
+    BOOL isDone;
 
 }
 @end
@@ -26,6 +28,7 @@ NSArray *labelArrayGrowth;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    isDone = NO;
     txtfieldAr2=[[NSMutableArray alloc] init];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
@@ -87,7 +90,7 @@ NSArray *labelArrayGrowth;
     [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:2] text] forKey:@"occitofrontal_circ"];
 
     NSLog(@"dict=%@",dict);
-    
+    isDone =YES;
     [[ConnectionsManager sharedManager] updateGrowth:dict withdelegate:self];
     
 }
@@ -127,6 +130,12 @@ NSArray *labelArrayGrowth;
              }
 
              */
+            
+            if (isDone) {
+                isDone = NO;
+                
+                [Constants showOKAlertWithTitle:@"Success!" message:@"Data Saved Successfully" presentingVC:self];
+            }
             [(UITextField*)[txtfieldAr2 objectAtIndex:0] setText:[dataList_ objectForKey:@"weight"]];
             [(UITextField*)[txtfieldAr2 objectAtIndex:1] setText:[dataList_ objectForKey:@"length"]];
             [(UITextField*)[txtfieldAr2 objectAtIndex:2] setText:[dataList_ objectForKey:@"occitofrontal_circ"]];

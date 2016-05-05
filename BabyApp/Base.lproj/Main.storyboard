@@ -1170,7 +1170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wux-Dq-JC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1345" y="-62"/>
+            <point key="canvasLocation" x="1013" y="-130"/>
         </scene>
         <!--Encyclopedia Tap Scroller-->
         <scene sceneID="cfW-ZL-ZUc">
@@ -1772,7 +1772,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="87x-ko-fBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="427"/>
+            <point key="canvasLocation" x="1082" y="579"/>
         </scene>
         <!--Screening Examination-->
         <scene sceneID="1Vz-0J-U1Z">

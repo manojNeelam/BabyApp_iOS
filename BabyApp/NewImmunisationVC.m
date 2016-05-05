@@ -84,15 +84,16 @@
     // register for keyboard notifications
     [self.view layoutIfNeeded];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:self.view.window];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:self.view.window];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillShow:)
+//                                                 name:UIKeyboardWillShowNotification
+//                                               object:self.view.window];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillHide:)
+//                                                 name:UIKeyboardWillHideNotification
+//                                               object:self.view.window];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -201,7 +202,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if([[json objectForKey:@"status"] boolValue])
         {
-            
+             [Constants showOKAlertWithTitle:@"Success!" message:@"Immunisation Created" presentingVC:self];
         }
         else
         {

@@ -10,10 +10,12 @@
 #import "ConnectionsManager.h"
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
+#import "Constants.h"
 
 @interface OtherScreeningPage ()<ServerResponseDelegate>
 {
     UITextField *lblName;
+    BOOL isDone;
 }
 @end
 
@@ -21,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isDone = NO;
     
     self.navigationItem.title = [[[NSUserDefaults standardUserDefaults] objectForKey:@"selectedScreenLbl"] capitalizedString];
     UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, 50)];
@@ -91,6 +94,11 @@
             NSDictionary *dataList_ = [dict objectForKey:@"data"];
             NSLog(@"First api result with screenoing id list recived");
             [lblName setText:[dataList_ objectForKey:@"notes"]];
+            if (isDone) {
+                isDone = NO;
+                
+                [Constants showOKAlertWithTitle:@"Success!" message:@"Data Saved Successfully" presentingVC:self];
+            }
             
         }
             else
@@ -128,6 +136,7 @@
       [dict setObject:lblName.text forKey:@"notes"];
     
     NSLog(@"dict=%@",dict);
+        isDone = YES;
     [[ConnectionsManager sharedManager] updateOtherScreening:dict withdelegate:self];
     
     }

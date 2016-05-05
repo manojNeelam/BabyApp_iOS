@@ -11,12 +11,14 @@
 #import "NSUserDefaults+Helpers.h"
 #import "WSConstant.h"
 #import "CustomIOS7AlertView.h"
+#import "Constants.h"
 
 
 
 @interface ScreeningExamination ()<CustomIOS7AlertViewDelegate,ServerResponseDelegate>
 {
     NSMutableArray *arrList;
+    BOOL isDone;
 }
 @end
 
@@ -26,6 +28,7 @@
 NSArray *labelArrayExamination;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isDone  = NO;
     NSLog(@"View did load Screening Examination");
     // Do any additional setup after loading the view.
     labelArrayExamination=[NSArray arrayWithObjects:@"EYE EXAMINATION:",@"Fixation on moving object:",@"Right eye",@"Left eye",@"Cornea/Lens",@"Pupillary Light reflex",@"Red reflex",@"Nystagmus",@"Sqint",@"Roving eye movement",@" ",@"Fontanelies",@"Ears",@"Teeth",@" ",@"Hearth",@"Lungs",@"Abdomen",@" ",@"Femoral",@"Genitals",@"Hips",@" ",@"Posture",@"Muscle",@"Skin", nil];
@@ -121,6 +124,11 @@ NSArray *labelArrayExamination;
             NSDictionary *dataList_ = [dict objectForKey:@"data"];
             NSLog(@"First api result with screenoing id list recived dataList_=%@",dataList_);
             
+            if (isDone) {
+                isDone = NO;
+                
+                 [Constants showOKAlertWithTitle:@"Success!" message:@"Data Saved Successfully" presentingVC:self];
+            }
            
             
         }
@@ -163,7 +171,7 @@ NSArray *labelArrayExamination;
     }
     
     [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
-    
+    isDone = YES;
     NSLog(@"dict=%@",dict);
    [[ConnectionsManager sharedManager] updatePhysicalExamination:dict withdelegate:self];
 

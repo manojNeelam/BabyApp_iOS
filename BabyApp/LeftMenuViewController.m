@@ -523,13 +523,12 @@
             }
             else
             {
-                [NSUserDefaults deleteObjectForKey:USERID];
-                [NSUserDefaults deleteObjectForKey:CURRENT_CHILD_ID];
-                [NSUserDefaults deleteObjectForKey:IS_FROM_SIGNUP];
-                [NSUserDefaults deleteObjectForKey:IS_CHILD_NOT_AVAILABLE];
                 
-                AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-                [delegate checkValidUser];
+                
+                UIAlertView *alt=[[UIAlertView alloc] initWithTitle:@"Are you sure?"  message:@"You want to Log out?"  delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+                [alt show];
+                
+               
                 
                 
                 //[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:NO];
@@ -549,6 +548,38 @@
         
     }
 }
+
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //
+    NSLog(@"alert view clicked with MESSAGE=%@ at index=%ld",[alertView message],(long)buttonIndex);
+    
+    if([[alertView message] isEqualToString:@"You want to Log out?"])
+    {
+        if(buttonIndex==0)
+        {
+            [NSUserDefaults deleteObjectForKey:USERID];
+            [NSUserDefaults deleteObjectForKey:CURRENT_CHILD_ID];
+            [NSUserDefaults deleteObjectForKey:IS_FROM_SIGNUP];
+            [NSUserDefaults deleteObjectForKey:IS_CHILD_NOT_AVAILABLE];
+            
+            AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+            [delegate checkValidUser];
+        }
+        else
+        {
+            NSLog(@"Cancel clicked");
+        }
+    }
+    
+    
+    
+   
+}
+
+
 
 -(void)buttonClickedEvent
 {
