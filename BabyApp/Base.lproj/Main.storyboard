@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1712" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -332,6 +331,45 @@
                                     <action selector="forgotPasswordAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uFw-dk-nF1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe0-Mf-aSL">
+                                <rect key="frame" x="60" y="480" width="480" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="9nL-1u-hAB"/>
+                                    <constraint firstAttribute="height" constant="40" id="AN5-oz-kbs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Sign in with Facebook" backgroundImage="FB1.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9nL-1u-hAB"/>
+                                        <exclude reference="AN5-oz-kbs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="9nL-1u-hAB"/>
+                                        <include reference="AN5-oz-kbs"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="facebookSigninAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V6I-6t-YTH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2w-nK-Y2L">
+                                <rect key="frame" x="312" y="552" width="228" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="/   Sign Up">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                </variation>
+                                <connections>
+                                    <action selector="signupAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="syO-HP-AiT"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lha-rc-0Bv">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -516,45 +554,9 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe0-Mf-aSL">
-                                <rect key="frame" x="60" y="480" width="480" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="9nL-1u-hAB"/>
-                                    <constraint firstAttribute="height" constant="40" id="AN5-oz-kbs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Sign in with Facebook" backgroundImage="FB1.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="9nL-1u-hAB"/>
-                                        <exclude reference="AN5-oz-kbs"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="9nL-1u-hAB"/>
-                                        <include reference="AN5-oz-kbs"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="facebookSigninAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V6I-6t-YTH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2w-nK-Y2L">
-                                <rect key="frame" x="312" y="552" width="228" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                <state key="normal" title="/   Sign Up">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                </variation>
-                                <connections>
-                                    <action selector="signupAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="syO-HP-AiT"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-dK-ABe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -564,6 +566,7 @@
                             <constraint firstItem="Lha-rc-0Bv" firstAttribute="centerX" secondItem="ugJ-06-QQA" secondAttribute="centerX" id="Aoc-aM-bEh"/>
                             <constraint firstItem="Z8t-mm-M5z" firstAttribute="top" secondItem="Ixu-su-NlZ" secondAttribute="bottom" constant="26" id="IRy-ic-WT7"/>
                             <constraint firstItem="Oe0-Mf-aSL" firstAttribute="top" secondItem="eWe-dF-T0B" secondAttribute="bottom" constant="23" id="Kfs-QT-Exb"/>
+                            <constraint firstAttribute="trailing" secondItem="RmD-dK-ABe" secondAttribute="trailing" id="LUc-Tj-zQ2"/>
                             <constraint firstItem="eWe-dF-T0B" firstAttribute="top" secondItem="Z8t-mm-M5z" secondAttribute="bottom" constant="25" id="Lxr-Sw-vek"/>
                             <constraint firstItem="Lha-rc-0Bv" firstAttribute="top" secondItem="IeL-I7-UhP" secondAttribute="bottom" constant="10" id="TJy-6p-KIk"/>
                             <constraint firstItem="u2w-nK-Y2L" firstAttribute="leading" secondItem="B4u-ma-sbZ" secondAttribute="trailing" constant="8" id="VBG-dv-45R">
@@ -574,13 +577,16 @@
                             <constraint firstItem="B4u-ma-sbZ" firstAttribute="top" secondItem="Oe0-Mf-aSL" secondAttribute="bottom" constant="34" id="ZCZ-uu-TFA">
                                 <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                             </constraint>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RmD-dK-ABe" secondAttribute="bottom" id="aLG-J0-9zW"/>
                             <constraint firstItem="Ixu-su-NlZ" firstAttribute="top" secondItem="Lha-rc-0Bv" secondAttribute="bottom" constant="2" id="aUL-6j-reV"/>
                             <constraint firstItem="Lha-rc-0Bv" firstAttribute="height" secondItem="Ixu-su-NlZ" secondAttribute="height" id="cIu-Ka-cGA"/>
+                            <constraint firstItem="RmD-dK-ABe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dfu-Vo-9rO"/>
                             <constraint firstItem="ugJ-06-QQA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhi-4C-Y1I"/>
                             <constraint firstItem="Z8t-mm-M5z" firstAttribute="centerX" secondItem="ugJ-06-QQA" secondAttribute="centerX" id="e7c-mG-Pkx"/>
                             <constraint firstItem="Pav-LT-SyP" firstAttribute="top" secondItem="IeL-I7-UhP" secondAttribute="bottom" constant="20" id="k41-Qr-NG8">
                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                             </constraint>
+                            <constraint firstItem="RmD-dK-ABe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kts-cN-0hw"/>
                             <constraint firstItem="Lha-rc-0Bv" firstAttribute="width" secondItem="Ixu-su-NlZ" secondAttribute="width" id="nBC-We-nbs"/>
                             <constraint firstItem="Oe0-Mf-aSL" firstAttribute="centerX" secondItem="ugJ-06-QQA" secondAttribute="centerX" id="nvS-vU-3tS"/>
                             <constraint firstItem="ugJ-06-QQA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oH9-Mx-E0N"/>
@@ -598,6 +604,7 @@
                                 <exclude reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="aUL-6j-reV"/>
                                 <exclude reference="sXA-Lg-Yg0"/>
                                 <exclude reference="Aoc-aM-bEh"/>
@@ -605,7 +612,6 @@
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
                                 <exclude reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="200-7a-VQC"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
@@ -631,6 +637,7 @@
                                 <include reference="Ixu-su-NlZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="aUL-6j-reV"/>
                                 <include reference="sXA-Lg-Yg0"/>
                                 <include reference="Aoc-aM-bEh"/>
@@ -638,7 +645,6 @@
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
                                 <include reference="pn5-kM-htF"/>
-                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="200-7a-VQC"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
@@ -663,6 +669,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="bgImg" destination="RmD-dK-ABe" id="lpy-HJ-b77"/>
                         <outlet property="passwordTextfield" destination="jK3-3l-52w" id="jMA-BS-Yqg"/>
                         <outlet property="usernameTextfield" destination="Pav-LT-SyP" id="vko-3c-aBn"/>
                         <outlet property="viewEmail" destination="Lha-rc-0Bv" id="a0q-kZ-xMz"/>
@@ -1845,7 +1852,7 @@
                                     <constraint firstItem="hY9-hI-mMf" firstAttribute="top" secondItem="XHG-vF-M85" secondAttribute="top" constant="13" id="qoi-EN-kDf"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PCq-RW-DGL">
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCq-RW-DGL">
                                 <rect key="frame" x="0.0" y="160" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -9158,6 +9165,7 @@
     <resources>
         <image name="Cam.png" width="109" height="109"/>
         <image name="FB1.png" width="498" height="82"/>
+        <image name="background_image.png" width="640" height="1096"/>
         <image name="background_image_plane.png" width="640" height="1096"/>
         <image name="button_bg.png" width="498" height="82"/>
         <image name="checkBox" width="32" height="32"/>

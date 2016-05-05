@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewEmail;
 @property (weak, nonatomic) IBOutlet UIView *viewPassword;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
+
 - (IBAction)signupAction:(id)sender;
 
 @end

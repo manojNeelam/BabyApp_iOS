@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "Constants/Constants.h"
 #import "AppDelegate.h"
 #import "NSUserDefaults+Helpers.h"
@@ -55,7 +53,7 @@ UIActivityIndicatorView *act1;
     [super viewDidLoad];
     
     
-  
+    
     
     
     
@@ -74,10 +72,34 @@ UIActivityIndicatorView *act1;
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getAllChildrans];
+}
+
+-(void)getAllChildrans
+{
+    
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    if(s && s != nil)
+    {
+        NSDictionary *params = @{@"user_id" : s};
+        
+        NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
+        
+        [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
+    }
+    else
+    {
+        [self.bgImg setHidden:YES];
+    }
+}
+
 -(void)viewDidLayoutSubviews
 {
     self.viewPassword = (UIView *)[self roundCornersOnView:self.viewPassword onTopLeft:NO topRight:NO bottomLeft:YES bottomRight:YES radius:5.0];
-     self.viewEmail = (UIView *)[self roundCornersOnView:self.viewEmail onTopLeft:YES topRight:YES bottomLeft:NO bottomRight:NO radius:5.0];
+    self.viewEmail = (UIView *)[self roundCornersOnView:self.viewEmail onTopLeft:YES topRight:YES bottomLeft:NO bottomRight:NO radius:5.0];
 }
 
 //
@@ -222,83 +244,83 @@ UIActivityIndicatorView *act1;
 }
 - (IBAction)signinAction:(id)sender {
     NSLog(@"signinAction");
-//     [self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
+    //     [self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
     if([self isValidData])
     {
-//    act1=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        [act1 setCenter:self.view.center];
-//        [self.view addSubview:act1];
-//        [act1 startAnimating];
+        //    act1=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        //        [act1 setCenter:self.view.center];
+        //        [self.view addSubview:act1];
+        //        [act1 startAnimating];
         [SVProgressHUD showWithStatus:@"Loading"];
         [self performSelector:@selector(requesttoserver) withObject:nil afterDelay:0.2];
-     //[self requesttoserver];
+        //[self requesttoserver];
     }
 }
 
 -(BOOL)isValidData
 {
     if([self.usernameTextfield.text isEmpty])
-            {
-//                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//                   [alert show];
-                [Constants showOKAlertWithTitle:@"Info" message:@"Please enter valid email address" presentingVC:self];
+    {
+        //                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        //                   [alert show];
+        [Constants showOKAlertWithTitle:@"Info" message:@"Please enter valid email address" presentingVC:self];
         
-                   return NO;
-                }
-    if([self.passwordTextfield.text isEmpty])
-           {
-//                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//                   [alert show];
-               [Constants showOKAlertWithTitle:@"Info" message:@"Please enter valid password" presentingVC:self];
-
-                  return NO;
-              }
-    
-        return YES;
+        return NO;
     }
+    if([self.passwordTextfield.text isEmpty])
+    {
+        //                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Please enter valid password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        //                   [alert show];
+        [Constants showOKAlertWithTitle:@"Info" message:@"Please enter valid password" presentingVC:self];
+        
+        return NO;
+    }
+    
+    return YES;
+}
 
 -(void)requesttoserver
 {
     
-        //if there is a connection going on just cancel it.
-      [self.connection cancel];
+    //if there is a connection going on just cancel it.
+    [self.connection cancel];
     
     //initialize new mutable data
-       NSMutableData *data = [[NSMutableData alloc] init];
-       self.receivedData = data;
-
-
-       NSMutableDictionary *params = [NSMutableDictionary dictionary];
-       [params setObject:self.usernameTextfield.text forKey:@"email"];
-       [params setObject:self.passwordTextfield.text forKey:@"password"];
-       [params setObject:@"ios" forKey:@"device"];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    self.receivedData = data;
+    
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.usernameTextfield.text forKey:@"email"];
+    [params setObject:self.passwordTextfield.text forKey:@"password"];
+    [params setObject:@"ios" forKey:@"device"];
     
     NSString *Post=[NSString stringWithFormat:@"email=%@&password=%@&@device=ios",self.usernameTextfield.text,self.passwordTextfield.text];
     
-       NSData *PostData = [Post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-       NSString *PostLengh=[NSString stringWithFormat:@"%d",[Post length]];
-       NSURL *Url=[NSURL URLWithString: @"http://babyappdev.azurewebsites.net/apiv1/service/login/"];
+    NSData *PostData = [Post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+    NSString *PostLengh=[NSString stringWithFormat:@"%d",[Post length]];
+    NSURL *Url=[NSURL URLWithString: @"http://babyappdev.azurewebsites.net/apiv1/service/login/"];
     
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:Url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-      [request setHTTPMethod:@"POST"];
-      [request setValue:PostLengh forHTTPHeaderField:@"Content-Lenght"];
-      [request setHTTPBody:PostData];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:Url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:PostLengh forHTTPHeaderField:@"Content-Lenght"];
+    [request setHTTPBody:PostData];
     
-       NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-       self.connection = connection;
+    self.connection = connection;
     
-        [connection start];
+    [connection start];
     
     
-    }
+}
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-        [self.receivedData appendData:data];
+    [self.receivedData appendData:data];
     
-    }
+}
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-       NSLog(@"error%@" , error);
+    NSLog(@"error%@" , error);
     [act1 stopAnimating];
     [act1 removeFromSuperview];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -309,27 +331,27 @@ UIActivityIndicatorView *act1;
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     // NSString *htmlSTR = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
-
-      [act1 stopAnimating];
+    
+    [act1 stopAnimating];
     [act1 removeFromSuperview];
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [SVProgressHUD dismiss];
         
     });
-      NSError* error;
-       NSDictionary* json = [NSJSONSerialization JSONObjectWithData:self.receivedData options:kNilOptions error:&error];
-       NSLog(@"connectionDidFinishLoading =%@",json);
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:self.receivedData options:kNilOptions error:&error];
+    NSLog(@"connectionDidFinishLoading =%@",json);
     if([[json objectForKey:@"status"] isEqualToString:@"1"])
     {
         // [[NSUserDefaults standardUserDefaults] setObject:json forKey:@"userData"];
         //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
         
-//        NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
-//        
-//        [NSUserDefaults saveObject:userId forKey:USERID];
-//        
-//        [self openHomeVC];
+        //        NSString *userId = [[json objectForKey:@"data"] objectForKey:@"user_id"];
+        //
+        //        [NSUserDefaults saveObject:userId forKey:USERID];
+        //
+        //        [self openHomeVC];
         
         
         
@@ -339,42 +361,42 @@ UIActivityIndicatorView *act1;
         [NSUserDefaults saveObject:userId forKey:USERID];
         [NSUserDefaults saveObject:userName forKey:USER_NAME];
         
-       // NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
-       // NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
+        // NSArray *ar=[[json objectForKey:@"data"] objectForKey:@"children"];
+        // NSLog(@"childeren data=%@ coun=%d",ar,ar.count);
         
         
         //
         
         //            children
         NSArray *childrenList = json[@"data"][@"children"];
-            if(childrenList.count)
+        if(childrenList.count)
+        {
+            NSMutableArray *temp = [NSMutableArray array];
+            
+            for(NSDictionary *dict in childrenList)
             {
-                NSMutableArray *temp = [NSMutableArray array];
-                
-                for(NSDictionary *dict in childrenList)
-                {
-                    ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
-                    [temp addObject:child];
-                }
-                
-                NSArray *childHolder = temp;
-                
-                AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-                [appdelegate setListOfChildrens:childHolder];
-                
-                [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
-                
-                
-                [self openHomeVC];
+                ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
+                [temp addObject:child];
             }
-            else
-            {
-                [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
-                [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
-                
-                [self openHomeVC];
-            }
-            //
+            
+            NSArray *childHolder = temp;
+            
+            AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+            [appdelegate setListOfChildrens:childHolder];
+            
+            [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+            
+            
+            [self openHomeVC];
+        }
+        else
+        {
+            [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+            [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+            
+            [self openHomeVC];
+        }
+        //
         //[self getAllChildrans];
         
     }
@@ -386,86 +408,19 @@ UIActivityIndicatorView *act1;
     }
 }
 
-
--(void)getAllChildrans
-{
-   // NSDictionary *params = @{@"user_id" : USERID};
-    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
-    NSDictionary *params = @{@"user_id" : s};
-
-    [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
-}
-
-
 - (IBAction)facebookSigninAction:(id)sender {
     
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    login.loginBehavior = FBSDKLoginBehaviorBrowser;
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb://"]]) {
-        // Facebook app is installed
-        login.loginBehavior = FBSDKLoginBehaviorNative;
-
-        
-    }
-    [login
-     logInWithReadPermissions: @[@"public_profile"]
-     fromViewController:self
-     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-         if (error) {
-             NSLog(@"Process error");
-         } else if (result.isCancelled) {
-             NSLog(@"Cancelled");
-         } else {
-             NSLog(@"Logged in");
-             dispatch_async(dispatch_get_main_queue(), ^{
-                                 [self getUserInfoFromFacebook];
-                 
-             });
-         }
-     }];
+    
 }
 
 -(void)getUserInfoFromFacebook
 {
-    [SVProgressHUD showWithStatus:@"Loading"];
-
-    if ([FBSDKAccessToken currentAccessToken]) {
-        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"email,name,id"}]
-         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-             
-             if (!error) {
-                 NSLog(@"fetched user:%@", result);
-                 NSLog(@"%@",result[@"email"]);
-                 NSString *email = result[@"email"];
-                 NSString *fbId = result[@"id"];
-                 NSString *userName = result[@"name"];
-
-
-                 NSDictionary *params = @{@"email":email,@"username":userName,@"facbook_id":fbId};
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [self callFacebookLoginAPI:params];
-                     
-                 });
-             }
-             else
-             {
-                  [Constants showOKAlertWithTitle:@"Error" message:@"Unable to login, Please try again after some time." presentingVC:self];
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     
-                     [SVProgressHUD dismiss];
-                     
-                 });
-
-             }
-         }];
-        
-        
-    }
+    
 }
 
 -(void)callFacebookLoginAPI:(NSDictionary *)params
 {
-
+    
     NSError *error;
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -488,12 +443,12 @@ UIActivityIndicatorView *act1;
         });
         if (!error) {
             
-
+            
             NSError* errorJason;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSLog(@"facebook_login response : %@",json);
             if (!errorJason) {
-
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if([[json objectForKey:@"status"] boolValue])
                     {
@@ -514,14 +469,14 @@ UIActivityIndicatorView *act1;
             {
                 NSLog(@"facebook_login error : %@",[errorJason localizedDescription]);
                 [Constants showOKAlertWithTitle:@"Error" message:@"Unable to login, Please try again after some time." presentingVC:self];
-
+                
             }
-           
-
+            
+            
         }
         else{
             NSLog(@"facebook_login error : %@",[error localizedDescription]);
-             [Constants showOKAlertWithTitle:@"Error" message:@"Unable to login, Please try again after some time." presentingVC:self];
+            [Constants showOKAlertWithTitle:@"Error" message:@"Unable to login, Please try again after some time." presentingVC:self];
         }
         
     }];
@@ -551,8 +506,8 @@ UIActivityIndicatorView *act1;
                                                        [self.view addSubview:act1];
                                                        [act1 startAnimating];
                                                        [self performSelector:@selector(getForgotPassword:) withObject:textField.text afterDelay:0.2];
-
-                                                      // [self getForgotPassword:textField.text];
+                                                       
+                                                       // [self getForgotPassword:textField.text];
                                                        
                                                        NSLog(@"text was %@", textField.text);
                                                        
@@ -658,7 +613,7 @@ UIActivityIndicatorView *act1;
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-
+        
         isForgotPassword = NO;
         return;
     }
@@ -702,6 +657,9 @@ UIActivityIndicatorView *act1;
                 }
             }
             else{
+                
+                [self.bgImg setHidden:YES];
+                
                 [Constants showOKAlertWithTitle:@"Error" message:@"Unagle to load your childrans list, Please try again after some time" presentingVC:self];
             }
         });
@@ -713,13 +671,18 @@ UIActivityIndicatorView *act1;
     }
     else if([statusStr isEqualToString:@"0"])
     {
+        [self.bgImg setHidden:YES];
+        
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
+
 -(void)failure:(id)response
 {
+    [self.bgImg setHidden:YES];
+    
     [act1 stopAnimating];
     [act1 removeFromSuperview];
 }
