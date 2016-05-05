@@ -148,7 +148,11 @@
     
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
 }
-
+-(void)btnTap:(UIButton*)bt
+{
+    int tapedShild=bt.tag-200;
+    NSLog(@"btnTap tag=%ld tapedShild postion=%d",(long)bt.tag,tapedShild);
+}
 -(void)drawViewInScrollForChildAt
 {
     int i=0;
@@ -159,15 +163,20 @@
         [_home2Scorll addSubview:vv2];
         
         
-        
         UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-50,10, 120, 120)];
         [[iv layer] setCornerRadius:iv.frame.size.height/2];
         [iv setClipsToBounds:YES];
         [vv2 addSubview:iv];
-        
+        iv.tag=100+i;
         [[iv layer] setBorderWidth:15];
         [[iv layer] setBorderColor:[UIColor colorWithRed:35.0/255.0 green:127.0/255.0 blue:118.0/255.0 alpha:1.0].CGColor];
         
+        
+        UIButton *bt=[[UIButton alloc] initWithFrame:iv.frame];
+        [bt addTarget:self action:@selector(btnTap:) forControlEvents:UIControlEventTouchUpInside];
+        [vv2 addSubview:bt];
+        
+        bt.tag=200+i;
         
         UILabel *lbl1=nil,*lbl2=nil;
         

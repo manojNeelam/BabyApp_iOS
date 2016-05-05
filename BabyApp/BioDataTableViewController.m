@@ -90,7 +90,6 @@
     }
     
     
-    
     [params setObject:[NSUserDefaults retrieveObjectForKey:USERID] forKey:@"user_id"];
     [params setObject:SAFE_DEF([NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID], @"") forKey:@"child_id"];
     
@@ -102,6 +101,8 @@
     }
     [params setObject:[NSNumber numberWithInt:status] forKey:@"action"];
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"addChildResult"];
+
     [[ConnectionsManager sharedManager] saveBioData:params andImage:cell.userProflePic withdelegate:self];
 }
 
@@ -170,7 +171,6 @@
     {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:childID forKey:@"child_id"];
-        
         [[ConnectionsManager sharedManager] getBioData:dict withdelegate:self];
     }
 }
@@ -373,6 +373,18 @@
         
         AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
         [delegate setListOfChildrens:nil];
+        
+        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"addChildResult"])
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"addChildResult"];
+            AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+            [delegate setListOfChildrens:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+
+        
     }
 }
 
