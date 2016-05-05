@@ -199,22 +199,36 @@
                                                              bundle: nil];
     
     NSString *userID = [NSUserDefaults retrieveObjectForKey:USERID];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showChild"];
+
     if(userID && userID != nil) //if(!userID && userID != nil)  //
     {
         NSLog(@"App Deligate checkValidUseruserID != nil listOfChildrens.count=%lu",(unsigned long)listOfChildrens.count);
         SlideNavigationController *homeVC;
         if(listOfChildrens.count)
         {
-            HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
-            homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+           /* HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
+            homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];*/
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showChild"];
         }
 
         else
         {
-            
-            HomeViewController *homeView = [mainStoryboard  instantiateViewControllerWithIdentifier:@"HomeViewController"];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showChild"];
+
+            /*
+             HomeViewController *homeView = [mainStoryboard  instantiateViewControllerWithIdentifier:@"HomeViewController"];
             homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+            */
         }
+        
+        
+        HomeViewController2 *homeView = [mainStoryboard instantiateViewControllerWithIdentifier:@"HomeController2"];
+        homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];
+        
+        
+        
+        
         
       /*  SlideNavigationController *homeVC = [[mainStoryboard instantiateViewControllerWithIdentifier:@"SlideNavigationController_SB_ID"] initWithRootViewController:homeView];*/
 

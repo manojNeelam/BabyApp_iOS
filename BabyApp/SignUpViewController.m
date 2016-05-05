@@ -194,7 +194,7 @@ UIActivityIndicatorView *act2;
         
         [self openHomeVC];
         
-        [self openHomeVC];
+       // * [self openHomeVC];
         //[self performSegueWithIdentifier:@"HomeViewControllerSegue" sender:self];
     }
     else if([statusStr isEqualToString:@"0"])

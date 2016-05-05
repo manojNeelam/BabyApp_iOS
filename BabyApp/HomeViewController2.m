@@ -62,6 +62,36 @@
     
     _home2Table.dataSource=self;
     _home2Table.delegate=self;
+    
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showChild"])
+    {
+        NSLog(@"at home from signm in with yes child");
+
+    }
+    else
+    {
+        NSLog(@"at home from with no child");
+        [self performSelector:@selector(showAddbio) withObject:nil afterDelay:0.2];
+    }
+   //     [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+   // [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+
+    
+}
+
+-(void)showAddbio
+{
+    
+    
+      UIViewController *vc ;
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"AddBio"];
+    [self.navigationController pushViewController:vc animated:YES];
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
