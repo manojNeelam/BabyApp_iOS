@@ -22,6 +22,9 @@
 		6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A60011CCDD40700BF8E25 /* Signout.png */; };
 		6C9A600B1CCDD43F00BF8E25 /* healthBookletnew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */; };
 		6C9A600D1CCDD56800BF8E25 /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600C1CCDD56800BF8E25 /* e1.png */; };
+		6CEC2F5E1CDB139700B39000 /* middlecircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F5D1CDB139700B39000 /* middlecircle@2x.png */; };
+		6CEC2F621CDB180A00B39000 /* screening_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F611CDB180A00B39000 /* screening_icon2.png */; };
+		6CEC2F6A1CDB61E200B39000 /* middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F691CDB61E200B39000 /* middle@2x.png */; };
 		8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */; };
 		8C8ABC4D1CC50A71003B3CC8 /* ScreeningSummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8ABC4C1CC50A71003B3CC8 /* ScreeningSummaryData.m */; };
 		90000F501CB3521500BC9BFC /* AddAllergyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90000F4F1CB3521500BC9BFC /* AddAllergyVC.m */; };
@@ -291,6 +294,9 @@
 		6C9A60011CCDD40700BF8E25 /* Signout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Signout.png; sourceTree = "<group>"; };
 		6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthBookletnew.png; sourceTree = "<group>"; };
 		6C9A600C1CCDD56800BF8E25 /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
+		6CEC2F5D1CDB139700B39000 /* middlecircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middlecircle@2x.png"; sourceTree = "<group>"; };
+		6CEC2F611CDB180A00B39000 /* screening_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screening_icon2.png; sourceTree = "<group>"; };
+		6CEC2F691CDB61E200B39000 /* middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle@2x.png"; sourceTree = "<group>"; };
 		8C4957B81CC0FC1400C66B13 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8C8ABC4B1CC50A71003B3CC8 /* ScreeningSummaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningSummaryData.h; sourceTree = "<group>"; };
@@ -1097,6 +1103,8 @@
 		A10EB62B1C78B4A9002EBC59 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6CEC2F611CDB180A00B39000 /* screening_icon2.png */,
+				6CEC2F5D1CDB139700B39000 /* middlecircle@2x.png */,
 				6C277C731CD9F0E100683D00 /* FB1.png */,
 				6C277C6D1CD9C38200683D00 /* facebook.png */,
 				96DC848D1CD92EA8003A1033 /* imgpsh_fullsize-2.png */,
@@ -1323,6 +1331,7 @@
 		A1A46A0C1CBD8855009F65BB /* CircleView */ = {
 			isa = PBXGroup;
 			children = (
+				6CEC2F691CDB61E200B39000 /* middle@2x.png */,
 				D8DAA4581CCACA04004E83FD /* centerImagetemp.png */,
 				A1C384DB1CC35F980085C812 /* hb_back_oralvisual.png */,
 				A1C384DC1CC35F980085C812 /* hb_teeth.png */,
@@ -1332,9 +1341,9 @@
 				A1C384D41CC220AC0085C812 /* hb_Alergy_option.png */,
 				A1C384D51CC220AC0085C812 /* hb_medical_option.png */,
 				A1C384C91CC21E940085C812 /* hb_allergy.png */,
-				A1C384CA1CC21E940085C812 /* hb_immunisation.png */,
 				A1C384CB1CC21E940085C812 /* hb_oral.png */,
 				A1C384CC1CC21E940085C812 /* hb_percentiles.png */,
+				A1C384CA1CC21E940085C812 /* hb_immunisation.png */,
 				A1C384C71CC21D8E0085C812 /* centerImage.png */,
 				A1A46A0D1CBD8861009F65BB /* AwesomeMenu.h */,
 				A1A46A0E1CBD8861009F65BB /* AwesomeMenu.m */,
@@ -1633,6 +1642,7 @@
 				96DC84901CD92EA8003A1033 /* imgpsh_fullsize.png in Resources */,
 				D8B138091C90CF6F007B412D /* AvenirNextLTPro-DemiCn.otf in Resources */,
 				A10EB6421C797A46002EBC59 /* signin.png in Resources */,
+				6CEC2F6A1CDB61E200B39000 /* middle@2x.png in Resources */,
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
 				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
@@ -1660,6 +1670,7 @@
 				D8750D081CCDDF9300821BCF /* visualcheck.png in Resources */,
 				A1C384D81CC220AC0085C812 /* hb_medical_option.png in Resources */,
 				D8B138081C90CF6F007B412D /* AvenirNextLTPro-Demi.otf in Resources */,
+				6CEC2F5E1CDB139700B39000 /* middlecircle@2x.png in Resources */,
 				A10EB6501C7A264C002EBC59 /* pic.png in Resources */,
 				A10EB5EA1C784FBA002EBC59 /* blueBar.png in Resources */,
 				D8B1380E1C90CF6F007B412D /* AvenirNextLTPro-It.otf in Resources */,
@@ -1677,6 +1688,7 @@
 				A13FC8211C776F6800362A32 /* img_logo.png in Resources */,
 				A1C384DA1CC24B270085C812 /* hb_Item.png in Resources */,
 				A10EB6241C78B027002EBC59 /* enyc.png in Resources */,
+				6CEC2F621CDB180A00B39000 /* screening_icon2.png in Resources */,
 				A10EB63B1C78C5FE002EBC59 /* blue_line.png in Resources */,
 				A1EAD2E51CB57669008D2B37 /* home_kid.png in Resources */,
 				D87C07971C8788A100C118FC /* menu-button@2x.png in Resources */,

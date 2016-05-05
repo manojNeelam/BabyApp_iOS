@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1712" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="S6B-qe-PWf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1838,7 +1839,7 @@
                                     <constraint firstItem="hY9-hI-mMf" firstAttribute="top" secondItem="XHG-vF-M85" secondAttribute="top" constant="13" id="qoi-EN-kDf"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCq-RW-DGL">
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PCq-RW-DGL">
                                 <rect key="frame" x="0.0" y="160" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -2583,8 +2584,17 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adX-eE-Ccj">
                                 <rect key="frame" x="0.0" y="20" width="320" height="340"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="middle.png" translatesAutoresizingMaskIntoConstraints="NO" id="5qg-2j-ccP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="340"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5qg-2j-ccP" secondAttribute="trailing" id="TmM-ZI-Do2"/>
+                                    <constraint firstAttribute="bottom" secondItem="5qg-2j-ccP" secondAttribute="bottom" id="UIf-D5-1ho"/>
+                                    <constraint firstItem="5qg-2j-ccP" firstAttribute="leading" secondItem="adX-eE-Ccj" secondAttribute="leading" id="qi0-52-dSO"/>
+                                    <constraint firstItem="5qg-2j-ccP" firstAttribute="top" secondItem="adX-eE-Ccj" secondAttribute="top" id="sb6-PO-jdk"/>
                                     <constraint firstAttribute="width" constant="320" id="wyO-1g-RxW"/>
                                 </constraints>
                             </view>
@@ -9154,6 +9164,7 @@
         <image name="imgpsh_fullsize.png" width="42" height="47"/>
         <image name="lock.png" width="36" height="42"/>
         <image name="mail.png" width="42" height="32"/>
+        <image name="middle.png" width="260" height="260"/>
         <image name="needle_icon.png" width="131" height="131"/>
         <image name="rightArrow" width="32" height="32"/>
         <image name="right_arrow.png" width="128" height="128"/>

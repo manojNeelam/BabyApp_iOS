@@ -99,7 +99,7 @@
     UIImage *starImage2 = [UIImage imageNamed:@"hb_percentiles.png"];
     UIImage *starImage3= [UIImage imageNamed:@"hb_oral.png"];
     UIImage *starImage4 = [UIImage imageNamed:@"hb_allergy.png"];
-    UIImage *starImage5 = [UIImage imageNamed:@"screening_icon.png"];
+    UIImage *starImage5 = [UIImage imageNamed:@"screening_icon2.png"];
     
     
     // Default Menu
