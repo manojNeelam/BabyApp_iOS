@@ -60,7 +60,7 @@ UIActivityIndicatorView *act1;
     isForgotPassword = NO;
     self.navigationController.navigationBarHidden=YES;
     
-    for (NSString* family in [UIFont familyNames])
+    /*for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
         
@@ -69,18 +69,20 @@ UIActivityIndicatorView *act1;
             NSLog(@"  %@", name);
         }
     }
-    
+    */
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"viewWillAppear333");
     [super viewWillAppear:animated];
     [self getAllChildrans];
 }
 
 -(void)getAllChildrans
 {
-    
+    NSLog(@"getAllChildrans333");
+
     NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     if(s && s != nil)
     {
@@ -295,8 +297,11 @@ UIActivityIndicatorView *act1;
     [params setObject:self.passwordTextfield.text forKey:@"password"];
     [params setObject:@"ios" forKey:@"device"];
     
-    NSString *Post=[NSString stringWithFormat:@"email=%@&password=%@&@device=ios",self.usernameTextfield.text,self.passwordTextfield.text];
+
     
+    NSString *Post=[NSString stringWithFormat:@"email=%@&password=%@&@device=ios",self.usernameTextfield.text,self.passwordTextfield.text];
+    NSLog(@"signinActionPost=%@",Post);
+
     NSData *PostData = [Post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     NSString *PostLengh=[NSString stringWithFormat:@"%d",[Post length]];
     NSURL *Url=[NSURL URLWithString: @"http://babyappdev.azurewebsites.net/apiv1/service/login/"];
@@ -368,6 +373,8 @@ UIActivityIndicatorView *act1;
         //
         
         //            children
+        NSLog(@"connectionDidFinishLoading 333 userId=%@",userId);
+
         NSArray *childrenList = json[@"data"][@"children"];
         if(childrenList.count)
         {
@@ -384,6 +391,7 @@ UIActivityIndicatorView *act1;
             AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
             [appdelegate setListOfChildrens:childHolder];
             
+            NSLog(@"childHolder=%@",childHolder);
             [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
             
             
@@ -652,7 +660,6 @@ UIActivityIndicatorView *act1;
                 {
                     [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
                     [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
-                    
                     [self openHomeVC];
                 }
             }
@@ -668,6 +675,7 @@ UIActivityIndicatorView *act1;
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
+        
     }
     else if([statusStr isEqualToString:@"0"])
     {
@@ -676,6 +684,8 @@ UIActivityIndicatorView *act1;
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
+        [self openHomeVC];
+
     }
 }
 

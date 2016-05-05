@@ -66,6 +66,12 @@
 
 -(void)saveChild
 {
+    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+
+    if(childID==nil||[childID isEqualToString:@"-1"]||[childID isEqualToString:@"-2"])
+        [NSUserDefaults saveObject:nil forKey:CURRENT_CHILD_ID];
+
+    
     ProfilePicTableViewCell *cell = (ProfilePicTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     NSData *data;
@@ -93,7 +99,7 @@
     [params setObject:[NSUserDefaults retrieveObjectForKey:USERID] forKey:@"user_id"];
     [params setObject:SAFE_DEF([NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID], @"") forKey:@"child_id"];
     
-    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+     childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     int status = 1;
     if(childID && childID != nil)
     {
@@ -102,6 +108,8 @@
     [params setObject:[NSNumber numberWithInt:status] forKey:@"action"];
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"addChildResult"];
+    
+    NSLog(@"saveChild=%@",params);
 
     [[ConnectionsManager sharedManager] saveBioData:params andImage:cell.userProflePic withdelegate:self];
 }
@@ -111,20 +119,30 @@
     
     bioDataObj = [[BioDataObj alloc] init];
     
-    [self loadBioData];
+    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSArray *listChild = [appdelegate listOfChildrens];
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showChild"])
+    NSLog(@"calling of load child at home page list=%@",listChild);
+
+    
+
+    if(childID!=nil&&[childID isEqualToString:@"-1"])
     {
-        NSLog(@"at bio from signm in with yes child");
-        [_leftbarItem setTitle:@"<"];
+        NSLog(@"at bio from with no child");
+     //   [_leftbarItem setTitle:@" "];
+
+    }
+    else if(childID!=nil&&![childID isEqualToString:@"-2"])
+    {
+       // [_leftbarItem setTitle:@"<"];
+        [self loadBioData];
     }
     else
     {
-        NSLog(@"at bio from with no child");
-        [_leftbarItem setTitle:@" "];
-        
-        // [[self.navigationItem leftBarButtonItem] setTitle:@" "];
+        NSLog(@"at bio from signm in with yes child");
+      //  [_leftbarItem setTitle:@"<"];
     }
     
     
@@ -167,6 +185,8 @@
 -(void)loadBioData
 {
     NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    
+    NSLog(@"childID=%@",childID);
     if(childID && childID != nil)
     {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -206,6 +226,7 @@
     if (indexPath.row==0)
     {
         cell=(ProfilePicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ProfilePicCellIdentifier"];
+       // [cell.userProflePic setAlpha:0];
         [cell.btnDateOfBirth addTarget:self action:@selector(onClickDateOfBirth:) forControlEvents:UIControlEventTouchUpInside];
         [cell.userProflePic setUserInteractionEnabled:YES];
         
@@ -215,9 +236,18 @@
         [cell.btnDateOfBirth setTitle:dob forState:UIControlStateNormal];
         
         [cell.userProflePic addGestureRecognizer:profilePicGesture];
-        if(userProfilePic)
+       /* [[cell.userProflePic layer] setCornerRadius:cell.userProflePic.frame.size.height/2];
+        [cell.userProflePic setClipsToBounds:YES];
+        [[cell.userProflePic layer] setBorderWidth:10];
+        [[cell.userProflePic layer] setBorderColor:[UIColor colorWithRed:35.0/255.0 green:127.0/255.0 blue:118.0/255.0 alpha:1.0].CGColor];
+        
+        [cell.userProflePic setAlpha:1];
+        */
+
+        if(bioDataObj.userProfile)
         {
-            cell.userProflePic.image = userProfilePic;
+          //  cell.userProflePic.image = userProfilePic;
+            [cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
         }
         else
         {
@@ -225,6 +255,10 @@
             cell.userProflePic.image = [UIImage imageNamed:@"pic.png"];
             //[cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
         }
+        
+        
+       
+        
         return cell;
     }
     else
@@ -367,7 +401,7 @@
         [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
         [NSUserDefaults saveBool:NO forKey:IS_FROM_SIGNUP];
         
-        userProfilePic = nil;
+    //    userProfilePic = nil;
         
         [self.tableView reloadData];
         

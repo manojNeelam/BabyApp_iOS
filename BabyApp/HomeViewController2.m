@@ -36,6 +36,19 @@
 
 @implementation HomeViewController2
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat width = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / width;
+    
+    [pageHome setCurrentPage:page];
+    ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];
+    [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
+
+    NSLog(@"current page=%ld",(long)pageHome.currentPage);
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -56,6 +69,10 @@
     [self.view addSubview:_home2Scorll];
     
     
+    [_home2Scorll setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
+    
+    _home2Scorll.delegate=self;
+    
     _home2Table=[[UITableView alloc] initWithFrame:CGRectMake(0, _home2Scorll.frame.size.height+_home2Scorll.frame.origin.y, self.view.frame.size.width, (self.view.frame.size.height*68)/100)];
     
     [self.view addSubview:_home2Table];
@@ -64,26 +81,39 @@
     _home2Table.delegate=self;
     
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showChild"])
-    {
-        NSLog(@"at home from signm in with yes child");
-
-    }
-    else
-    {
-        NSLog(@"at home from with no child");
-        [self performSelector:@selector(showAddbio) withObject:nil afterDelay:0.2];
-    }
-   //     [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveUploadStateNotification:)
+                                                 name:@"UploadNotification"
+                                               object:nil];
+    
+   //  [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
    // [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
 
     
+}
+- (void) receiveUploadStateNotification:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"UploadNotification"])
+    {
+        NSDictionary* userInfo = notification.userInfo;
+        NSLog (@"Successfully received the UploadNotification! userInfo=%@",userInfo);
+        int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue]-1;
+        
+        [_home2Scorll setContentOffset:CGPointMake(_home2Scorll.frame.size.width*n, _home2Scorll.frame.origin.y) animated:NO];
+        [pageHome setCurrentPage:n];
+        
+        ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];
+        [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
+
+
+        
+    }
 }
 
 -(void)showAddbio
 {
     
-    
+
       UIViewController *vc ;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
@@ -105,10 +135,6 @@
     
     [self loadChild];
     
-    for(UIView * v in _home2Scorll.subviews)
-        [v removeFromSuperview];
-    
-    [self drawViewInScrollForChildAt];
     
 }
 
@@ -118,24 +144,30 @@
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     NSArray *listChild = [appdelegate listOfChildrens];
     
-    NSLog(@"calling of load child at home page list=%@",list);
+    NSLog(@"calling of load child at home page list=%@",listChild);
     
     if(listChild.count)
     {
-        ChildDetailsData *childUser = [listChild objectAtIndex:0];
+        list=listChild;
+        ChildDetailsData *childUser = [list objectAtIndex:0];
         [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
         
         NSLog(@"child photo url at home page=%@",childUser.baby_image);
         
-        //[self.childPic setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
-        //   [self.childPic setContentMode:UIViewContentModeScaleAspectFit];
-        //   [self.childPic setClipsToBounds:YES];
+        for(UIView * v in _home2Scorll.subviews)
+            [v removeFromSuperview];
+        
+        [self drawViewInScrollForChildAt];
+
         
     }
     else
     {
         [self getAllChildrans];
     }
+    
+    
+    
 }
 
 -(void)getAllChildrans
@@ -150,14 +182,25 @@
 }
 -(void)btnTap:(UIButton*)bt
 {
-    int tapedShild=bt.tag-200;
-    NSLog(@"btnTap tag=%ld tapedShild postion=%d",(long)bt.tag,tapedShild);
+    int tapedShild=(int)bt.tag-200;
+    
+    ChildDetailsData *childUser = [list objectAtIndex:tapedShild];
+    [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
+    
+    
+    NSLog(@"btnTap tag=%ld tapedShild postion=%d selected child id=%@",(long)bt.tag,tapedShild,childUser.child_id);
+    [self performSelector:@selector(showAddbio) withObject:nil afterDelay:0.5];
+
+   // [NSUserDefaults saveObject:@"-1" forKey:CURRENT_CHILD_ID];
+
 }
 -(void)drawViewInScrollForChildAt
 {
     int i=0;
-    for( ;i<3;i++)
+    for( ;i<list.count;i++)
     {
+        ChildDetailsData *childUser = [list objectAtIndex:i];
+
         UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
         [vv2 setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
         [_home2Scorll addSubview:vv2];
@@ -194,15 +237,14 @@
                                       size:24]];
         
         [lbl1 setTextColor:[UIColor whiteColor]];
-        lbl1.text=@"Margerie Tyrell";
-        // lbl1.text=child.name;
+        //lbl1.text=@"Margerie Tyrell";
+        lbl1.text=childUser.name;
         
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [lbl2 setTextColor:[UIColor whiteColor]];
-        // lbl2.text=@"5 months old";
-        
-        
-        [iv setImageWithURL:[NSURL URLWithString:child.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+         lbl2.text=@"5 months old";
+
+        [iv setImageWithURL:[NSURL URLWithString:childUser.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
         
         vv2.tag=2000+i;
         
@@ -214,7 +256,7 @@
     
     
     pageHome=[[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-15, _home2Scorll.frame.size.height-20, 30, 20)];
-    [pageHome setNumberOfPages:3];
+    [pageHome setNumberOfPages:list.count];
     [pageHome setCurrentPage:0];
     
     [self.view addSubview:pageHome];
@@ -282,7 +324,6 @@
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         
         [lbl2 setTextColor:[UIColor colorWithRed:143.0/255.0 green:143.0/255.0 blue:149.0/255.0 alpha:1.0]];
-        
         
     }
     
@@ -708,11 +749,11 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSDictionary *responseDict = (NSDictionary *)response
-            ;
-            if ([responseDict[@"status"] boolValue]) {
+        NSDictionary *responseDict = (NSDictionary *)response;
+            if ([responseDict[@"status"] boolValue])
+            {
                 
-                //            children
+                //    children
                 NSArray *childrenList = responseDict[@"data"][@"children"];
                 if(childrenList.count)
                 {
@@ -720,8 +761,8 @@
                     
                     for(NSDictionary *dict in childrenList)
                     {
-                        ChildDetailsData *child = [[ChildDetailsData alloc] initwithDictionary:dict];
-                        [temp addObject:child];
+                        ChildDetailsData *child1 = [[ChildDetailsData alloc] initwithDictionary:dict];
+                        [temp addObject:child1];
                     }
                     
                     NSArray *childHolder = temp;
@@ -730,15 +771,30 @@
                     [appdelegate setListOfChildrens:childHolder];
                     
                     [NSUserDefaults saveBool:NO forKey:IS_CHILD_NOT_AVAILABLE];
+                    list=[appdelegate listOfChildrens];
+
+                    NSLog(@"in chuld List api result at homepage2 =%@ ",list);
+
                     [self loadChild];
-                    
+
                 }
                 else
                 {
                     [NSUserDefaults saveBool:YES forKey:IS_FROM_SIGNUP];
                     [NSUserDefaults saveBool:YES forKey:IS_CHILD_NOT_AVAILABLE];
+                    if(list.count==0)
+                    {
+                        [NSUserDefaults saveObject:@"-1" forKey:CURRENT_CHILD_ID];
+
+                        NSLog(@"in else at home from with no child childrenList=%@",childrenList);
+                        [self performSelector:@selector(showAddbio) withObject:nil afterDelay:0.2];
+                        
+                    }
+
                     
                 }
+                
+
             }
             else{
                 
@@ -748,7 +804,19 @@
     else if([statusStr isEqualToString:@"0"])
     {
         
+        if(list.count==0)
+        {
+            
+            [NSUserDefaults saveObject:@"-1" forKey:CURRENT_CHILD_ID];
+
+            NSLog(@"at home from with no child status is 0");
+            [self performSelector:@selector(showAddbio) withObject:nil afterDelay:0.2];
+            
+        }
+
     }
+    
+  
 }
 
 -(void)failure:(id)response

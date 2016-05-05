@@ -197,7 +197,6 @@
                 NSDictionary *childrenDict = childransArray[indexPath.row-1];
                 //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 
-                
                 [cell1.babyPic setHidden:NO];
                 
                 cell1.babyNameLabel.text=childrenDict[@"name"];
@@ -364,6 +363,12 @@
                     //addbio
                     
                     
+                    [NSUserDefaults saveObject:@"-2" forKey:CURRENT_CHILD_ID];
+                    
+                    NSString *childID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+                    
+                    NSLog(@"Left Menu childID=%@",childID);
+                    
                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
                     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
                     
@@ -381,9 +386,15 @@
                     noofSections=4;
                     [self.tableView reloadData];
                     
-                    NSLog(@"open home page");
+                    NSDictionary *childrenDict = childransArray[indexPath.row-1];
+
                     
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+                    NSLog(@"open home page childrenDict=%@",childrenDict);
+                    
+                  //  vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+                    
+                    NSDictionary *d=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"leftMenuSelection", nil ];
+                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"HomeController2"];
                     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
                     
                     
@@ -392,6 +403,7 @@
                                                                                      andCompletion:nil];
                     
                     
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadNotification" object:self userInfo:d];
                 }
                 
             }
@@ -414,6 +426,11 @@
                 else
                 {
                     //addbio
+                    
+                    
+
+                    
+
                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
                     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
                     
