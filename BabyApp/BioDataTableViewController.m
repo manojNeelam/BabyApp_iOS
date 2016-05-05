@@ -40,6 +40,10 @@
     
     BOOL pushtoDischarge;
 }
+- (IBAction)toGoBack:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftbarItem;
+@property (weak, nonatomic) IBOutlet UINavigationItem *myNavigationItem;
+
 @end
 
 @implementation BioDataTableViewController
@@ -107,6 +111,21 @@
     bioDataObj = [[BioDataObj alloc] init];
     
     [self loadBioData];
+    
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showChild"])
+    {
+        NSLog(@"at bio from signm in with yes child");
+        [_leftbarItem setTitle:@"<"];
+    }
+    else
+    {
+        NSLog(@"at bio from with no child");
+        [_leftbarItem setTitle:@" "];
+        
+        // [[self.navigationItem leftBarButtonItem] setTitle:@" "];
+    }
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -434,5 +453,9 @@
 -(void)poptoDischargeScreen;
 {
     pushtoDischarge = YES;
+}
+- (IBAction)toGoBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -605,6 +605,7 @@
                                 <exclude reference="cIu-Ka-cGA"/>
                                 <exclude reference="nBC-We-nbs"/>
                                 <exclude reference="pn5-kM-htF"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <exclude reference="200-7a-VQC"/>
                                 <exclude reference="XMd-V5-qny"/>
                                 <exclude reference="dhi-4C-Y1I"/>
@@ -622,7 +623,6 @@
                                 <exclude reference="q4r-OG-X5V"/>
                                 <exclude reference="VBG-dv-45R"/>
                                 <exclude reference="tWo-hb-SLk"/>
-                                <exclude reference="k41-Qr-NG8"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -638,6 +638,7 @@
                                 <include reference="cIu-Ka-cGA"/>
                                 <include reference="nBC-We-nbs"/>
                                 <include reference="pn5-kM-htF"/>
+                                <exclude reference="k41-Qr-NG8"/>
                                 <include reference="200-7a-VQC"/>
                                 <include reference="XMd-V5-qny"/>
                                 <include reference="dhi-4C-Y1I"/>
@@ -655,7 +656,6 @@
                                 <include reference="q4r-OG-X5V"/>
                                 <include reference="VBG-dv-45R"/>
                                 <include reference="tWo-hb-SLk"/>
-                                <exclude reference="k41-Qr-NG8"/>
                             </mask>
                         </variation>
                     </view>
@@ -1714,7 +1714,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="X6D-pr-tNc">
-                        <barButtonItem key="backBarButtonItem" title="&lt;" id="BdY-VF-ebu"/>
+                        <barButtonItem key="leftBarButtonItem" id="BdY-VF-ebu">
+                            <connections>
+                                <action selector="toGoBack:" destination="Nsp-fl-K9c" id="KAa-45-Rdh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="2uH-Ir-YAO">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1725,6 +1729,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="leftbarItem" destination="BdY-VF-ebu" id="JiB-W5-3QW"/>
+                        <outlet property="myNavigationItem" destination="X6D-pr-tNc" id="Xf9-L8-zTR"/>
                         <segue destination="dii-wI-uRH" kind="show" identifier="NewbornScreeningVC_Segue" id="zhx-N8-l07"/>
                         <segue destination="kYt-F7-AVp" kind="show" identifier="DischargeInformationSegue" id="cik-kC-Saf"/>
                         <segue destination="dbO-qg-n1n" kind="show" identifier="investigationOptionsSegue" id="OEx-4v-dbP"/>
