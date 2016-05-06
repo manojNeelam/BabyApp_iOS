@@ -246,13 +246,27 @@
 
         if(bioDataObj.userProfile)
         {
-          //  cell.userProflePic.image = userProfilePic;
-            [cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
+           
+            
+            if (userProfilePic) {
+                 cell.userProflePic.image = userProfilePic;
+            }
+            else
+            {
+                [cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
+            }
+            //
         }
         else
         {
+            if (userProfilePic) {
+                cell.userProflePic.image = userProfilePic;
+            }
+            else
+            {
+                cell.userProflePic.image = [UIImage imageNamed:@"pic.png"];
+            }
             
-            cell.userProflePic.image = [UIImage imageNamed:@"pic.png"];
             //[cell.userProflePic setImageWithURL:[NSURL URLWithString:bioDataObj.userProfile] placeholder:[UIImage imageNamed:@"pic.png"]];
         }
         
@@ -394,6 +408,7 @@
         
         bioDataObj.name = userName;
         bioDataObj.dob = dob;
+        
         
         NSString *childID = [datDict objectForKey:@"child_id"];
         [NSUserDefaults saveObject:childID forKey:CURRENT_CHILD_ID];

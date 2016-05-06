@@ -683,7 +683,7 @@ UIActivityIndicatorView *act1;
         
         NSString *messageStr = [params objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"%@", messageStr] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        //[alert show];
         [self openHomeVC];
 
     }
