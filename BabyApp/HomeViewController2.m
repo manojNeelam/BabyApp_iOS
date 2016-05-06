@@ -369,7 +369,7 @@
     
     if(indexPath.row == 0)
     {
-        [self AllergyAndMedicalView];
+        [self immunisationView];
     }
     else if (indexPath.row == 1)
     {
@@ -452,7 +452,7 @@
  }
  */
 
--(void)AllergyAndMedicalView
+-(void)immunisationView
 {
     [[overlayView subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -475,36 +475,65 @@
     [drugButton addTarget:self action:@selector(newImmuAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+10, drugButton.frame.origin.y, 150, 50)];
-    drugLabel.text=@"New Immunisation";
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+10, drugButton.frame.origin.y, 200, 50)];
+    drugLabel.text=@"Enter New Immunisation";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel];
     
     
-    NSString *immuStr = @"Immunisation Summary";
+    NSString *immuStr = @"View My Immunisation";
     
     if(!child.immunisationList.count)
     {
-        immuStr = @"Immunisation Summary \n(no summary yet)";
+        immuStr = @"View My Immunisation \n(no summary yet)";
     }
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
     medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100+10, 50, 50);
-    [medicalButton addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton addTarget:self action:@selector(immuMy) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+10, medicalButton.frame.origin.y, 150, 50)];
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+10, medicalButton.frame.origin.y, 200, 50)];
     medicalLabel.text=immuStr;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
     medicalLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel];
     
+   //
+    NSString *immuStr2 = @"Immunisation Information";
+    
+    if(!child.immunisationList.count)
+    {
+        immuStr2 = @"Immunisation Information \n(no summary yet)";
+    }
+
+    
+    UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+100+10, 50, 50);
+    [medicalButton2 addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:medicalButton2];
+    
+    
+    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton2.frame.origin.y, 200, 50)];
+    medicalLabel2.text=immuStr2;
+    medicalLabel2.numberOfLines=2;
+    medicalLabel2.textAlignment=NSTextAlignmentLeft;
+    medicalLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:medicalLabel2];
+    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+
+    //
+    
+    
+    
     [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
     [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+
     
 }
 
@@ -545,6 +574,7 @@
     drugLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel];
     
+    //
     
     NSString *immuStr = @"Screening Summary";
     
@@ -552,6 +582,33 @@
     {
         immuStr = @"Screening Summary \n(no summary yet)";
     }
+
+    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(heightView-30), 50, 50);
+    [drugButton2 addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton2];
+    
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
+    drugLabel2.text=immuStr;
+    drugLabel2.textAlignment=NSTextAlignmentLeft;
+    drugLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel2];
+
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+
+    //
+    
+    NSString *immuSt = @"Percentile Information";
+    
+    if(!child.immunisationList.count)
+    {
+        immuSt = @"Percentile Information \n(no Percentile yet)";
+    }
+    
+    
+    
+  
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
@@ -566,6 +623,43 @@
     medicalLabel.textAlignment=NSTextAlignmentLeft;
     medicalLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel];
+    
+    
+    //
+    
+    NSString *immuStr2 = @"Visual & Dental Screening";
+    
+    if(!child.screeningList.count)
+    {
+        immuStr2 = @"Visual & Dental Screening \n(no Visual & Dental Screening yet)";
+    }
+
+    
+   
+    
+    UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+100, 50, 50);
+    [medicalButton2 addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:medicalButton2];
+    
+    
+    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton2.frame.origin.y, 200, 50)];
+    medicalLabel2.text=immuStr2;
+    medicalLabel2.numberOfLines=2;
+    medicalLabel2.textAlignment=NSTextAlignmentLeft;
+    medicalLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:medicalLabel2];
+    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    
+    
+    
+    
+    
+    
+    //
+    
+    
     
     [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
     [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
@@ -610,17 +704,63 @@
     [overlayView addSubview:drugLabel];
     
     
+    
+    //
+    
     NSString *immuStr = @"Immunisation";
+    
+   
+    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-110, 50, 50);
+    [drugButton2 addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton2];
+    
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
+    drugLabel2.text=immuStr;
+    drugLabel2.textAlignment=NSTextAlignmentLeft;
+    drugLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel2];
+    
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    
+    
+    
+    
+    immuStr = @"Child Safety Checklist";
+    
+    
+    UIButton *drugButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-100, 50, 50);
+    [drugButton3 addTarget:self action:@selector(encyclopediaChildSafety) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton3];
+    
+    UILabel *drugLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton3.frame.origin.x+50+20, drugButton3.frame.origin.y, 200, 50)];
+    drugLabel3.text=immuStr;
+    drugLabel3.textAlignment=NSTextAlignmentLeft;
+    drugLabel3.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel3];
+    [drugLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    
+    
+    //
+
+    
+    
+    
+    
+    NSString *immuSt = @"Developmental Assesment";
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
     medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100, 50, 50);
-    [medicalButton addTarget:self action:@selector(encyclopediaImmunisation) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton addTarget:self action:@selector(encyclopediaDevelopmental) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 150, 50)];
-    medicalLabel.text=immuStr;
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 200, 50)];
+    medicalLabel.text=immuSt;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
     medicalLabel.textColor=[UIColor whiteColor];
@@ -656,6 +796,35 @@
      [self.navigationController pushViewController:ImmunisationsVC animated:YES];
 
 }
+
+-(void)encyclopediaDevelopmental
+{
+    [overlayView setHidden:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"scrollAt"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    EncyclopediaTapScroller *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EncyclopediaStoryBoard"];
+    [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+    
+}
+
+-(void)encyclopediaChildSafety
+{
+    [overlayView setHidden:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"scrollAt"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    EncyclopediaTapScroller *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EncyclopediaStoryBoard"];
+    [self.navigationController pushViewController:ImmunisationsVC animated:YES];
+    
+}
+
+
+
 //
 
 -(void)backAction
@@ -678,10 +847,22 @@
     if(child.immunisationList.count)
     {
         
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+-(void)immuMy
+{
+    [overlayView setHidden:YES];
+    if(child.immunisationList.count)
+    {
+        
         UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
+
 
 -(void)backScreeningAction
 {
