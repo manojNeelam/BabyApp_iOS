@@ -97,7 +97,7 @@
     {
         NSDictionary* userInfo = notification.userInfo;
         NSLog (@"Successfully received the UploadNotification! userInfo=%@",userInfo);
-        int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue]-1;
+        int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue];
         
         [_home2Scorll setContentOffset:CGPointMake(_home2Scorll.frame.size.width*n, _home2Scorll.frame.origin.y) animated:NO];
         [pageHome setCurrentPage:n];

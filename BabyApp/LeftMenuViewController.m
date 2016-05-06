@@ -50,11 +50,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    noofSections=4;
+    noofSections = 4;
     dropdownSelected=NO;
     //@"Baby Booklet"
     section1Array=[NSArray arrayWithObjects:@"New Immunisation",@"New Screening", nil];
-    section2Array=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles",@"Health Book",@"Encyclopedia", nil];
+   // section2Array=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles",@"Health Book",@"Encyclopedia", nil];
+     section2Array=[NSArray arrayWithObjects:@"My Growth Percentiles",@"Health Book",@"Bio Data",@"Support (FAQ)",@"About (Disclaimer)", nil];
     section3Array=[NSArray arrayWithObjects:@"Settings",@"Sign Out", nil];
     
     
@@ -111,7 +112,7 @@
     {
         if(childransArray && childransArray.count)
         {
-            return [childransArray count] +2;
+            return [childransArray count] +1;
         }
         else
         {
@@ -128,7 +129,8 @@
                 break;
                 
             case 1:
-                return section1Array.count;
+                //return section1Array.count;
+                return 0;
                 break;
             case 2:
                 return section2Array.count;
@@ -171,37 +173,46 @@
         
         if(childransArray && childransArray.count)
         {
-            if (indexPath.row==0) {
-                
-                
-                
-                [cell1.babyPic setHidden:NO];
-                
-                //delegate.ch
-                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
-                return cell1;
-            }
-            
-            else if(indexPath.row == childransArray.count+1)
+//            if (indexPath.row==0) {
+//                
+//                
+//                
+//                [cell1.babyPic setHidden:NO];
+//                
+//                //delegate.ch
+//                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+//                return cell1;
+//            }
+//            
+//            else
+         
+            if(indexPath.row == childransArray.count)
             {
                 //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 
                 [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
-                cell1.babyNameLabel.text=@"ADD BIO";
+                cell1.babyNameLabel.text=@"Add New Baby";
                 [cell1.babyPic setHidden:YES];
                 cell1.dropdown.hidden=YES;
                 return cell1;
             }
             else
             {
-                NSDictionary *childrenDict = childransArray[indexPath.row-1];
+                NSDictionary *childrenDict = childransArray[indexPath.row];
                 //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 
                 [cell1.babyPic setHidden:NO];
                 
                 cell1.babyNameLabel.text=childrenDict[@"name"];
                 [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
-                cell1.dropdown.hidden=YES;
+                if (indexPath.row == 0) {
+                    cell1.dropdown.hidden = NO;
+                }
+                else
+                {
+                    cell1.dropdown.hidden = YES;
+                }
+                
                 return cell1;
             }
 
@@ -211,10 +222,20 @@
             if (indexPath.row==0) {
                 
                 
+                NSDictionary *childrenDict = childransArray[indexPath.row];
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 
                 [cell1.babyPic setHidden:NO];
-                //delegate.ch
-                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+                
+                cell1.babyNameLabel.text=childrenDict[@"name"];
+                [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
+               
+                cell1.dropdown.hidden = NO;
+                
+                
+//                [cell1.babyPic setHidden:NO];
+//                //delegate.ch
+//                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
                 return cell1;
             }
             else
@@ -222,7 +243,7 @@
                 //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
                 
                 [cell1.babyNameLabel setTextColor:[UIColor whiteColor]];
-                cell1.babyNameLabel.text=@"ADD BIO";
+                cell1.babyNameLabel.text=@"Add New Baby";
                 [cell1.babyPic setHidden:YES];
                 cell1.dropdown.hidden=YES;
                 return cell1;
@@ -230,17 +251,32 @@
         }
     }
     else{
-        
+        NSDictionary *childrenDict;
         switch (indexPath.section)
         {
             case 0:
                 
-                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
-                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
-                [cell1.babyPic setClipsToBounds:YES];
                 
-                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
-                cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
+                
+                childrenDict = childransArray[0];
+                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+                
+                [cell1.babyPic setHidden:NO];
+                
+                cell1.babyNameLabel.text=childrenDict[@"name"];
+                [cell1.babyPic setImageWithURL:[NSURL URLWithString:[childrenDict objectForKey:@"baby_image"]] placeholder:[UIImage imageNamed:@"e1.png"]];
+                cell1.dropdown.hidden=NO;
+
+                
+//                //cell1=[tableView dequeueReusableCellWithIdentifier:@"profileIdentifier"];
+//                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
+//                [cell1.babyPic setClipsToBounds:YES];
+//                
+//                cell1.babyNameLabel.text=[NSUserDefaults retrieveObjectForKey:USER_NAME];
+//                cell1.babyPic.image = [UIImage imageNamed:@"e1.png"];
+                
+                
+                
                 //                cell1.babyPic.layer.cornerRadius = cell1.babyPic.frame.size.width/2;
                 //                cell1.babyPic.layer.masksToBounds = YES;
                 //                cell1.babyPic.contentMode = UIViewContentModeScaleAspectFill;
@@ -265,23 +301,30 @@
                 cell2 = (HeartTypeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"heartTypeIdentifier"];
                 cell2.contentNameLabel.text = section2Array[indexPath.row];
                 if (indexPath.row== 0) {
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myImmunisattion.png"] forState:UIControlStateNormal];
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myGrowth.png"] forState:UIControlStateNormal];
+
+                   
                     
                 }
                 if (indexPath.row== 1) {
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myScreening.png"] forState:UIControlStateNormal];
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                  
                     
                 }
                 if (indexPath.row== 2) {
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myGrowth.png"] forState:UIControlStateNormal];
+                    
+                    // [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myImmunisattion.png"] forState:UIControlStateNormal];
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
                     
                 }
                 if (indexPath.row== 3) {
+                    // [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myScreening.png"] forState:UIControlStateNormal];
                     [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
                     
                 }
                 if (indexPath.row== 4) {
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Encyclopedianew.png"] forState:UIControlStateNormal];
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                   //[cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Encyclopedianew.png"] forState:UIControlStateNormal];
                     
                 }
                 
@@ -330,15 +373,7 @@
         
         
         
-        
-        
-        
-        
-        {
-            
-            
-            
-            
+    
             if(childransArray && childransArray.count)
             {
                 if (indexPath.row==0) {
@@ -358,7 +393,7 @@
                         [self.tableView reloadData];
                     }
                 }
-                else if(indexPath.row == childransArray.count+1)
+                else if(indexPath.row == childransArray.count)
                 {
                     //addbio
                     
@@ -386,7 +421,7 @@
                     noofSections=4;
                     [self.tableView reloadData];
                     
-                    NSDictionary *childrenDict = childransArray[indexPath.row-1];
+                    NSDictionary *childrenDict = childransArray[indexPath.row];
 
                     
                     NSLog(@"open home page childrenDict=%@",childrenDict);
@@ -442,7 +477,7 @@
                     
                 }
             }
-        }
+       
         
         
         
@@ -514,22 +549,25 @@
             switch (indexPath.row)
             {
                 case 0:
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Growth"];
+                    
                     break;
                     
                 case 1:
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
+                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
+                    
                     break;
                     
                 case 2:
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Growth"];
+                  //vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+                      vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
                     break;
                     
                 case 3:
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
+                   // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
                     break;
                 case 4:
-                    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
+                   // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
                     break;
             }
         }
