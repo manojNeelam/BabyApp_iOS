@@ -864,33 +864,35 @@
     [overlayView setHidden:YES];
 }
 
--(void)dentalScreeningAction
+-(void)dentalScreeningAction//correct*
+{
+    [overlayView setHidden:YES];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"visual"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)newScreeningAction  //correct*
 {
     [overlayView setHidden:YES];
     UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)newScreeningAction
-{
-    [overlayView setHidden:YES];
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
-
--(void)myScreeningAction
-{
-    [overlayView setHidden:YES];
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
-    [self.navigationController pushViewController:vc animated:YES];
-}
--(void)percentileScreening
+-(void)myScreeningAction  //correct*
 {
     [overlayView setHidden:YES];
     
     
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Growth"];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)percentileScreening//correct*
+{
+    [overlayView setHidden:YES];
+    
+    
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Growth"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

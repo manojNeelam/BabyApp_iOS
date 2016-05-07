@@ -4836,7 +4836,7 @@
         <!--Visiual Activity View Controller-->
         <scene sceneID="weE-wu-y7N">
             <objects>
-                <viewController storyboardIdentifier="visual" id="oQP-w9-OPY" customClass="VisiualActivityViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="visual" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oQP-w9-OPY" customClass="VisiualActivityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bEQ-3j-sFk"/>
                         <viewControllerLayoutGuide type="bottom" id="el9-QA-oO4"/>
