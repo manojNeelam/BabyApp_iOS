@@ -3857,6 +3857,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNextLTPro-Regular" family="Avenir Next LT Pro" pointSize="17"/>
                                         <state key="normal" title="PREVIOUS"/>
+                                        <connections>
+                                            <action selector="btnPreviousClicked:" destination="kYt-F7-AVp" eventType="touchUpInside" id="VK1-MY-Mee"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.40375324089999998" green="0.90681957449999995" blue="0.87316296360000001" alpha="1" colorSpace="calibratedRGB"/>

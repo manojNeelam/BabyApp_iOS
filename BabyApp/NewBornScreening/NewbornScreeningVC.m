@@ -12,7 +12,7 @@
 #import "DateTimeUtil.h"
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
-
+#import "InvestigationOptionsVC.h"
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
 
@@ -34,6 +34,8 @@
     
     
     BOOL isPoptoDischargeVC;
+    
+    BOOL isDone,isPrevious;
 }
 @end
 
@@ -371,9 +373,12 @@
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
 }
 - (IBAction)onClickPreviousButton:(id)sender {
+    isPrevious = YES;
+    [self onClickDoneButton:sender];
 }
 
 - (IBAction)onClickNextButton:(id)sender {
+     [self onClickDoneButton:sender];
 }
 
 -(void)openDatePicker
@@ -401,6 +406,7 @@
         [params setObject:self.txtFldNeedFurthur.text forKey:@"needs_further_evaluation"];
         [params setObject:[self numfromString:[NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID]] forKey:@"child_id"];
         
+        isDone = YES;
         if(isUpdate)
         {
             [[ConnectionsManager sharedManager] updatenewborn_screening:params withdelegate:self];
@@ -542,6 +548,23 @@
             [self.delegate poptoDischargeScreen];
             
             [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            if (isDone) {
+                
+                isDone = NO;
+                if (isPrevious)
+                {
+                    isPrevious = NO;
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    
+                    InvestigationOptionsVC *investigateVc = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestigationOptionsVC_SB_ID"];
+                    [self.navigationController pushViewController:investigateVc animated:YES];
+                }
+            }
         }
         
     }

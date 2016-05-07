@@ -17,7 +17,7 @@
 {
     NSArray *identifierNames;
     
-    BOOL isUpdate,isDone;
+    BOOL isUpdate,isDone,isPrevious;
 }
 @end
 
@@ -324,10 +324,19 @@
         [self.txtFldFatherTelOff setText:[dataDict objectForKey:@"father_tel_off"]];
         [self.txtFldFatherTelRes setText:[dataDict objectForKey:@"father_tel_res"]];
         
-        if (isDone) {
+        if (isDone)
+        {
             isDone = NO;
-            NewbornScreeningVC *NewbornScreening_VC = [self.storyboard instantiateViewControllerWithIdentifier:@"NewbornScreeningVC_SB_ID"];
-            [self.navigationController pushViewController:NewbornScreening_VC animated:YES];
+            if (isPrevious)
+            {
+                isPrevious = NO;
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                NewbornScreeningVC *NewbornScreening_VC = [self.storyboard instantiateViewControllerWithIdentifier:@"NewbornScreeningVC_SB_ID"];
+               [self.navigationController pushViewController:NewbornScreening_VC animated:YES];
+            }
         }
     }
     else
@@ -344,9 +353,14 @@
 }
 
 
-- (IBAction)onClickPreviousButton:(id)sender {
+- (IBAction)onClickPreviousButton:(id)sender
+{
+    isPrevious = YES;
+     [self onClickDoneButton:sender];
 }
 
-- (IBAction)onClickNextButton:(id)sender {
+- (IBAction)onClickNextButton:(id)sender
+{
+    [self onClickDoneButton:sender];
 }
 @end

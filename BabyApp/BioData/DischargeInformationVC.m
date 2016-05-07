@@ -12,6 +12,7 @@
 #import "DateTimeUtil.h"
 #import "ConnectionsManager.h"
 #import "NSString+CommonForApp.h"
+#import "BioDataTableViewController.h"
 
 @interface DischargeInformationVC () <CustomIOS7AlertViewDelegate, CommonSelectionListVCDelegate, ServerResponseDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
@@ -22,7 +23,7 @@
     UITapGestureRecognizer *dateTapGesture, *breastFeedTapGesture;
     
     BOOL isUpdate;
-    
+    BOOL isDone,isPrevious;
     NSArray *genderList;
     UITableView *commonTblView;
     
@@ -174,6 +175,7 @@
         [params setObject:self.txtFldSerum.text forKey:@"serum_billirubin_before_discharge"];
         [params setObject:[NSNumber numberWithInt:10] forKey:@"child_id"];
         
+        isDone = YES;
         if(isUpdate)
         {
             [[ConnectionsManager sharedManager] updatedischarge_information:params withdelegate:self];
@@ -256,6 +258,31 @@
         [self.txtFldSerum setText:[dataDict objectForKey:@"serum_billirubin_before_discharge"]];
         [self.txtFldWeight setText:[dataDict objectForKey:@"weight"]];
         [self.txtFldBreastFeed setText:[dataDict objectForKey:@"breast_feeding"]];
+        
+        if (isDone)
+        {
+            isDone = NO;
+            if (isPrevious)
+            {
+                isPrevious = NO;
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                for (UIViewController *controller in self.navigationController.viewControllers) {
+                    
+                    
+                    if ([controller isKindOfClass:[BioDataTableViewController class]]) {
+                        
+                        [self.navigationController popToViewController:controller
+                                                              animated:YES];
+                        break;
+                    }
+                }
+            }
+            
+        }
+        
         
     }
     else
@@ -346,4 +373,8 @@
 }
 
 
+- (IBAction)btnPreviousClicked:(id)sender {
+    isPrevious = YES;
+    [self onClickDoneButton:sender];
+}
 @end

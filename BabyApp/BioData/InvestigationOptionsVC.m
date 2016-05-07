@@ -14,9 +14,11 @@
 #import "CustomIOS7AlertView.h"
 #import "DateTimeUtil.h"
 #import "ConnectionsManager.h"
-
+#import "DischargeInformationVC.h"
 #import "WSConstant.h"
 #import "NSUserDefaults+Helpers.h"
+#import "DischargeInformationVC.h"
+
 
 @interface InvestigationOptionsVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, CustomIOS7AlertViewDelegate, ServerResponseDelegate>
 {
@@ -26,6 +28,8 @@
     
     UIButton *selectedButton;
     
+    
+    BOOL isDone,isPrevious;
     
     UITextField *currentTextField;
     CustomIOS7AlertView *dateAlertView;
@@ -56,6 +60,8 @@
 
 -(void)onclickDone:(id)sender
 {
+    
+    isDone = YES;
     
     InvestigationDefaultCell *cell = (InvestigationDefaultCell *)[self.investTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];;
     
@@ -269,10 +275,17 @@
     [selectedButton setTitle:dateFromData forState:UIControlStateNormal];
 }
 
-- (IBAction)onClickPreviousButton:(id)sender {
+- (IBAction)onClickPreviousButton:(id)sender
+{
+ 
+    isPrevious = YES;
+    [self onclickDone:sender];
+    
 }
 
-- (IBAction)onClickNextButton:(id)sender {
+- (IBAction)onClickNextButton:(id)sender
+{
+    [self onclickDone:sender];
 }
 
 -(void)success:(id)response
@@ -332,6 +345,27 @@
             investigationList = tempArray;
             
             [self.investTableView reloadData];
+            
+            if (isDone) {
+                
+                isDone = NO;
+                
+                
+                if (isPrevious)
+                {
+                    isPrevious = YES;
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    
+                    DischargeInformationVC *dischargeVc = [self.storyboard instantiateViewControllerWithIdentifier:@"DischargeInformationVC_SB_ID"];
+                    
+                    [self.navigationController pushViewController:dischargeVc animated:YES];
+                }
+            }
+           
+            
         }
         
     }

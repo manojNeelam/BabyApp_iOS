@@ -23,6 +23,7 @@
     NSArray *identifierNames;
     
     BOOL isDone;
+    BOOL isPrevious;
     UITapGestureRecognizer *genderGesture, *ethnicGesture, *modeDeliveryGesture, *apgarMinDurationGesture, *apgarMaxDurationGesture, *durationGesture;
     NSString *keyString;
     
@@ -391,11 +392,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onClickPreviousButton:(id)sender {
+- (IBAction)onClickPreviousButton:(id)sender
+{
+    isPrevious = YES;
+     [self onClickDone:sender];
 }
 
 - (IBAction)onClickNextButton:(id)sender
 {
+    [self onClickDone:sender];
     
 }
 - (IBAction)onClickDone:(id)sender
@@ -588,8 +593,17 @@
         
         if (isDone) {
             isDone = NO;
+            
+            if (isPrevious)
+            {
+                isPrevious = NO;
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
             ParticularsOfParentsVC *ParentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ParticularsOfParentsVC_SB_ID"];
             [self.navigationController pushViewController:ParentVC animated:YES];
+            }
         }
     }
 }

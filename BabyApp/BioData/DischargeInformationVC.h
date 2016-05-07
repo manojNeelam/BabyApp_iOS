@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIView *baseSerumView;
 @property (weak, nonatomic) IBOutlet UITextField *txtFldSerum;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+- (IBAction)btnPreviousClicked:(id)sender;
 
 @end
