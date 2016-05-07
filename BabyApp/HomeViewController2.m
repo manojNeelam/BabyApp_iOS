@@ -42,10 +42,14 @@
     NSInteger page = scrollView.contentOffset.x / width;
     
     [pageHome setCurrentPage:page];
-    ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];
-    [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
-
+    child =[list objectAtIndex:pageHome.currentPage];
+    [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+    
     NSLog(@"current page=%ld",(long)pageHome.currentPage);
+
+    [self.home2Table reloadData];
+
+    
 }
 
 
@@ -105,7 +109,6 @@
         ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];
         [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
 
-
         
     }
 }
@@ -149,17 +152,18 @@
     if(listChild.count)
     {
         list=listChild;
-        ChildDetailsData *childUser = [list objectAtIndex:0];
-        [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
         
-        NSLog(@"child photo url at home page=%@",childUser.baby_image);
+        child = [list objectAtIndex:0];
+
+        [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+        [self.home2Table reloadData];
+
+        NSLog(@"child photo url at home page=%@",child.baby_image);
         
         for(UIView * v in _home2Scorll.subviews)
             [v removeFromSuperview];
         
         [self drawViewInScrollForChildAt];
-
-        
     }
     else
     {
@@ -515,7 +519,7 @@
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
     medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+100+10, 50, 50);
-    [medicalButton2 addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton2 addTarget:self action:@selector(immuInfoAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
@@ -587,7 +591,7 @@
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton2 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
     drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(heightView-30), 50, 50);
-    [drugButton2 addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [drugButton2 addTarget:self action:@selector(myScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
     UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
@@ -641,7 +645,7 @@
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
     medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+100, 50, 50);
-    [medicalButton2 addTarget:self action:@selector(immuSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton2 addTarget:self action:@selector(dentalScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
@@ -836,25 +840,27 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)immuSummaryAction
+-(void)immuInfoAction //correct*
 {
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
     {
         
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
         [self.navigationController pushViewController:vc animated:YES];
-    }
+        }
 }
--(void)immuMy
+-(void)immuMy//correct*
 {
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
     {
         
-        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+        
+          UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
         [self.navigationController pushViewController:vc animated:YES];
-    }
+        
+        }
 }
 
 
@@ -867,7 +873,8 @@
 -(void)dentalScreeningAction//correct*
 {
     [overlayView setHidden:YES];
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"visual"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"forOral"];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"oralHealth"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -883,9 +890,10 @@
 {
     [overlayView setHidden:YES];
     
-    
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"screeningSummaryList"];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
     [self.navigationController pushViewController:vc animated:YES];
+
+   
 }
 -(void)percentileScreening//correct*
 {

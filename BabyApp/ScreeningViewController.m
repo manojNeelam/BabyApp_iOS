@@ -502,7 +502,9 @@
                 
                 if(screeningSummaryList.count>0)
                 {
-                    [self setHeaderLabelFor:0];
+                    currentScreening=0;
+
+                    [self setHeaderLabelFor:currentScreening];
                 }
 
             }

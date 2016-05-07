@@ -48,7 +48,7 @@
         else
             NSLog(@"table is nil");
 
-        [self.screeningSummaryTable reloadData];
+       // [self.screeningSummaryTable reloadData];
 
     }
     else
@@ -91,7 +91,7 @@
                                      DueStatus  : @"Set reminder"
        
                                      }];
-  /*  NSString *str=nil;
+    NSString *str=nil;
     str=(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CHILD_ID];
     
     if(str!=nil)
@@ -102,7 +102,7 @@
     {
         NSLog(@"No Child sorry");
     }
-    */
+    
        [self.screeningSummaryTable reloadData];
 }
 
