@@ -1754,7 +1754,7 @@
         <!--Growth Screening-->
         <scene sceneID="uWs-AK-qXY">
             <objects>
-                <viewController id="dIa-7J-XRO" customClass="GrowthScreening" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GrowthScreening" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dIa-7J-XRO" customClass="GrowthScreening" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jOB-3F-8eQ"/>
                         <viewControllerLayoutGuide type="bottom" id="ezB-O8-Lcn"/>
@@ -2447,7 +2447,7 @@
         <!--Growth Summary-->
         <scene sceneID="V48-5o-Be2">
             <objects>
-                <viewController storyboardIdentifier="Growth" id="Rqw-rf-a80" customClass="GrowthSummary" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Growth" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rqw-rf-a80" customClass="GrowthSummary" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oO4-xz-Z3T"/>
                         <viewControllerLayoutGuide type="bottom" id="rIN-Hg-WzB"/>

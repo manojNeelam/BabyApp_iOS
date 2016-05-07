@@ -540,6 +540,7 @@
 -(void)screeningView
 {
     
+    NSLog(@"in screeningView");
     [[overlayView subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -576,11 +577,11 @@
     
     //
     
-    NSString *immuStr = @"Screening Summary";
+    NSString *immuStr = @"View My Screening";
     
     if(!child.screeningList.count)
     {
-        immuStr = @"Screening Summary \n(no summary yet)";
+        immuStr = @"View My Screening \n(no summary yet)";
     }
 
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -613,12 +614,12 @@
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
     medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100+15, 50, 50);
-    [medicalButton addTarget:self action:@selector(screeningSummaryAction) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton addTarget:self action:@selector(percentileScreening) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
     UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 150, 50)];
-    medicalLabel.text=immuStr;
+    medicalLabel.text=immuSt;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
     medicalLabel.textColor=[UIColor whiteColor];
@@ -713,7 +714,7 @@
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton2 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
     drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-110, 50, 50);
-    [drugButton2 addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [drugButton2 addTarget:self action:@selector(encyclopediaImmunisation) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
     UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
@@ -801,12 +802,9 @@
 {
     [overlayView setHidden:YES];
     
-    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"scrollAt"];
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
+    UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DevelopmetalScreenViewController"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
     
-    EncyclopediaTapScroller *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EncyclopediaStoryBoard"];
-    [self.navigationController pushViewController:ImmunisationsVC animated:YES];
     
 }
 
@@ -814,12 +812,9 @@
 {
     [overlayView setHidden:YES];
     
-    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"scrollAt"];
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
+    UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"childSafety"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
     
-    EncyclopediaTapScroller *ImmunisationsVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EncyclopediaStoryBoard"];
-    [self.navigationController pushViewController:ImmunisationsVC animated:YES];
     
 }
 
@@ -869,10 +864,33 @@
     [overlayView setHidden:YES];
 }
 
+-(void)dentalScreeningAction
+{
+    [overlayView setHidden:YES];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)newScreeningAction
 {
     [overlayView setHidden:YES];
     UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+-(void)myScreeningAction
+{
+    [overlayView setHidden:YES];
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)percentileScreening
+{
+    [overlayView setHidden:YES];
+    
+    
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Growth"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
