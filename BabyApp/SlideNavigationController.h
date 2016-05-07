@@ -63,6 +63,9 @@ extern NSString  *const SlideNavigationControllerDidReveal;
 @property (nonatomic, strong) id <SlideNavigationContorllerAnimator> menuRevealAnimator;
 
 + (SlideNavigationController *)sharedInstance;
++(void)clearSlideNavController;
+
+
 - (void)switchToViewController:(UIViewController *)viewController withCompletion:(void (^)())completion __deprecated;
 - (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withSlideOutAnimation:(BOOL)slideOutAnimation andCompletion:(void (^)())completion;
 - (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withCompletion:(void (^)())completion;

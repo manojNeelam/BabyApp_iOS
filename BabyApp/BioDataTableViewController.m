@@ -180,12 +180,24 @@
     {
         [self.navigationItem setHidesBackButton:YES animated:NO];
         [self.navigationItem setHidesBackButton:YES];
+        
+        
+        [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+
     }
     else
     {
         [self.navigationItem setHidesBackButton:NO animated:NO];
         [self.navigationItem setHidesBackButton:NO];
+        
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        [self.navigationItem setLeftBarButtonItem:leftBtn animated:YES];
     }
+}
+
+-(void)onClickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
     
 -(BOOL)isSignup
@@ -195,7 +207,7 @@
     BOOL isChildNotAvailable = [NSUserDefaults retrieveBoolForKey:IS_CHILD_NOT_AVAILABLE];
     NSString *currentChildID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     
-    if(isSignUp && isChildNotAvailable && [currentChildID isEqualToString:@"-1"])
+    if([currentChildID isEqualToString:@"-1"])
     {
         return YES;
     }

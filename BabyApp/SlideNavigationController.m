@@ -72,6 +72,13 @@ static SlideNavigationController *singletonInstance;
     return singletonInstance;
 }
 
++(void)clearSlideNavController
+{
+    singletonInstance.enableSwipeGesture = YES;
+    singletonInstance.delegate = nil;
+    singletonInstance = nil;
+}
+
 - (id)init
 {
     if (self = [super init])

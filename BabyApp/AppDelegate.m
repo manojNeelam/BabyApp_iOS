@@ -204,6 +204,11 @@
     if(userID && userID != nil) //if(!userID && userID != nil)  //
     {
         NSLog(@"App Deligate checkValidUseruserID != nil listOfChildrens.count=%lu",(unsigned long)listOfChildrens.count);
+        
+        //[SlideNavigationController clearSlideNavController];
+
+        
+        
         SlideNavigationController *homeVC;
         if(listOfChildrens.count)
         {
@@ -237,10 +242,13 @@
         
         self.window.rootViewController = homeVC;
         
+        
         LeftMenuViewController *leftMenu = (LeftMenuViewController*)[mainStoryboard
                                                                      instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
-        [SlideNavigationController sharedInstance].leftMenu = leftMenu;
-        [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
+        
+        
+        homeVC.leftMenu = leftMenu;
+        homeVC.menuRevealAnimationDuration = .18;
         
         // Creating a custom bar button for right menu
         
@@ -292,11 +300,10 @@
     }*/
     else
     {
-        
         NSLog(@"App Deligate checkValidUseruserID = nil ");
- 
         UIViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController_SB_ID"];
-        self.window.rootViewController = loginVC;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController = nav;
     }
 }
 
