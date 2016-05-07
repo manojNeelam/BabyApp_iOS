@@ -173,7 +173,34 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     
+    
+    if([self isSignup])
+    {
+        [self.navigationItem setHidesBackButton:YES animated:NO];
+        [self.navigationItem setHidesBackButton:YES];
+    }
+    else
+    {
+        [self.navigationItem setHidesBackButton:NO animated:NO];
+        [self.navigationItem setHidesBackButton:NO];
+    }
+}
+    
+-(BOOL)isSignup
+{
+    BOOL isSignUp = [NSUserDefaults retrieveBoolForKey:IS_FROM_SIGNUP];
+    
+    BOOL isChildNotAvailable = [NSUserDefaults retrieveBoolForKey:IS_CHILD_NOT_AVAILABLE];
+    NSString *currentChildID = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    
+    if(isSignUp && isChildNotAvailable && [currentChildID isEqualToString:@"-1"])
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 -(void)onClickOpenImageVC:(UITapGestureRecognizer *)aGesture
