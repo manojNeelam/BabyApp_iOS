@@ -1178,7 +1178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wux-Dq-JC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="-130"/>
+            <point key="canvasLocation" x="1063" y="122"/>
         </scene>
         <!--Encyclopedia Tap Scroller-->
         <scene sceneID="cfW-ZL-ZUc">
@@ -5539,7 +5539,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Awy-qV-fdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="-3078"/>
+            <point key="canvasLocation" x="534" y="-3085"/>
+        </scene>
+        <!--About (Disclaimer)-->
+        <scene sceneID="9sV-6A-Pel">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController_SB_ID" id="wBZ-g9-AgS" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wD1-SF-C9o"/>
+                        <viewControllerLayoutGuide type="bottom" id="tr2-lY-RKU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wyD-c7-RNZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="About (Disclaimer)" id="6gG-M5-bOH">
+                        <barButtonItem key="backBarButtonItem" title="&lt;" id="AoX-re-KXR"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvh-Tb-jsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="-3048"/>
+        </scene>
+        <!--Support (FAQ)-->
+        <scene sceneID="pM1-e6-0fJ">
+            <objects>
+                <viewController storyboardIdentifier="SupportViewController_SB_ID" id="Nha-30-f7G" customClass="SupportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LL0-wz-4No"/>
+                        <viewControllerLayoutGuide type="bottom" id="xg9-E7-CAX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FBt-df-S47">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Support (FAQ)" id="Zsb-gK-VBa">
+                        <barButtonItem key="backBarButtonItem" title="&lt;" id="XcO-cO-k2v"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D3X-3P-qwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1263" y="-3048"/>
         </scene>
         <!--Percential View Controller-->
         <scene sceneID="jGA-5p-raf">

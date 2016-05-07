@@ -564,9 +564,12 @@
                     break;
                     
                 case 3:
+                     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SupportViewController_SB_ID"];
+                    
                    // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
                     break;
                 case 4:
+                  vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AboutViewController_SB_ID"];
                    // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
                     break;
             }

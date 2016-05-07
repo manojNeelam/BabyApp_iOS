@@ -37,6 +37,8 @@
 		6CEC2F951CDB63AC00B39000 /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEC2F861CDB63AC00B39000 /* IQToolbar.m */; };
 		6CEC2F961CDB63AC00B39000 /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEC2F881CDB63AC00B39000 /* IQUIView+IQKeyboardToolbar.m */; };
 		6CEC2F971CDB63AC00B39000 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F8B1CDB63AC00B39000 /* IQKeyboardManager.bundle */; };
+		6CEF75421CDE007000D8DFAC /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF75411CDE006F00D8DFAC /* AboutViewController.m */; };
+		6CEF75451CDE00D800D8DFAC /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF75441CDE00D800D8DFAC /* SupportViewController.m */; };
 		8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */; };
 		8C8ABC4D1CC50A71003B3CC8 /* ScreeningSummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8ABC4C1CC50A71003B3CC8 /* ScreeningSummaryData.m */; };
 		90000F501CB3521500BC9BFC /* AddAllergyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90000F4F1CB3521500BC9BFC /* AddAllergyVC.m */; };
@@ -323,6 +325,10 @@
 		6CEC2F881CDB63AC00B39000 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		6CEC2F891CDB63AC00B39000 /* KeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardManager.h; sourceTree = "<group>"; };
 		6CEC2F8B1CDB63AC00B39000 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		6CEF75401CDE006F00D8DFAC /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		6CEF75411CDE006F00D8DFAC /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		6CEF75431CDE00D800D8DFAC /* SupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportViewController.h; sourceTree = "<group>"; };
+		6CEF75441CDE00D800D8DFAC /* SupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
 		8C4957B81CC0FC1400C66B13 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8C4957B91CC0FC1400C66B13 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8C8ABC4B1CC50A71003B3CC8 /* ScreeningSummaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningSummaryData.h; sourceTree = "<group>"; };
@@ -1282,6 +1288,10 @@
 				6C9233691CCCF4EE00ECC9E6 /* DevelopmetalScreenViewController.m */,
 				6C92336B1CCCFB7900ECC9E6 /* DevelopmentalCell.h */,
 				6C92336C1CCCFB7900ECC9E6 /* DevelopmentalCell.m */,
+				6CEF75401CDE006F00D8DFAC /* AboutViewController.h */,
+				6CEF75411CDE006F00D8DFAC /* AboutViewController.m */,
+				6CEF75431CDE00D800D8DFAC /* SupportViewController.h */,
+				6CEF75441CDE00D800D8DFAC /* SupportViewController.m */,
 			);
 			path = BabyApp;
 			sourceTree = "<group>";
@@ -1854,6 +1864,7 @@
 				A10EB5ED1C786B91002EBC59 /* SlideNavigationController.m in Sources */,
 				96A37BC01CD7EE1100C99E1E /* EncyclopediaData.m in Sources */,
 				8C4957BA1CC0FC1400C66B13 /* SettingsViewController.m in Sources */,
+				6CEF75451CDE00D800D8DFAC /* SupportViewController.m in Sources */,
 				96D07AC11CD407E9009251D4 /* ScreeningChildData.m in Sources */,
 				90F165CF1CB5A4DA006B5DD6 /* ConnectionsManager.m in Sources */,
 				90000F561CB352A000BC9BFC /* MedicalConditionVC.m in Sources */,
@@ -1907,6 +1918,7 @@
 				D8FEE6AA1CD5460300407205 /* HomeViewController2.m in Sources */,
 				90F165BC1CB5A4A0006B5DD6 /* AFHTTPRequestOperationManager.m in Sources */,
 				A10EB60F1C786BBF002EBC59 /* HomeViewController.m in Sources */,
+				6CEF75421CDE007000D8DFAC /* AboutViewController.m in Sources */,
 				A10EB5FD1C786B9A002EBC59 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				96A9696C1CB8D8D700D1212B /* AllImmunisationCell.m in Sources */,
 				90FC54651CB1A83400ED0E34 /* InvestAddNewTestCell.m in Sources */,
