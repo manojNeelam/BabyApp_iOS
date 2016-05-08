@@ -5,6 +5,8 @@
 //  Created by Atul Awasthi on 01/05/16.
 //  Copyright © 2016 Infinity. All rights reserved.
 //
+#define SIZEFONT  15
+#define SIZE_ICON_HEIGHT 65
 
 #import "HomeViewController2.h"
 #import <QuartzCore/QuartzCore.h>
@@ -473,11 +475,11 @@
     
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-new.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-70, 50, 50);
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-70, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(newImmuAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+10, drugButton.frame.origin.y, 200, 50)];
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+10, drugButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     drugLabel.text=@"Enter New Immunisation";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
@@ -496,12 +498,12 @@
     }
     
    
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100+10, 50, 50);
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+10, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(immuMy) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+10, medicalButton.frame.origin.y, 200, 50)];
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+SIZE_ICON_HEIGHT+10, medicalButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel.text=immuStr;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
@@ -523,25 +525,25 @@
     }
 
     
-    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+100+10, 50, 50);
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+50+10, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton2 addTarget:self action:@selector(immuInfoAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
-    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton2.frame.origin.y, 200, 50)];
+    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel2.text=immuStr2;
     medicalLabel2.numberOfLines=2;
     medicalLabel2.textAlignment=NSTextAlignmentLeft;
     medicalLabel2.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel2];
-    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
 
     //
     
     
     
-    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
-    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
 
     
 }
@@ -574,11 +576,11 @@
     
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(heightView-30), 50, 50);
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+20, drugButton.frame.origin.y, 150, 50)];
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton.frame.origin.y, 150, SIZE_ICON_HEIGHT)];
     drugLabel.text=@"New Screening";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
@@ -595,17 +597,17 @@
 
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary.png"] forState:UIControlStateNormal];
-    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(heightView-30), 50, 50);
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton2 addTarget:self action:@selector(myScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
-    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     drugLabel2.text=immuStr;
     drugLabel2.textAlignment=NSTextAlignmentLeft;
     drugLabel2.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel2];
 
-    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
 
     //
     
@@ -622,12 +624,12 @@
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary.png"] forState:UIControlStateNormal];
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100, 50, 50);
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(percentileScreening) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 150, 50)];
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 180, SIZE_ICON_HEIGHT)];
     medicalLabel.text=immuSt;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
@@ -648,18 +650,18 @@
    
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_visual_option.png"] forState:UIControlStateNormal];
-    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+60, 50, 50);
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton2 addTarget:self action:@selector(dentalScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
-    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton2.frame.origin.y, 200, 50)];
+    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+SIZE_ICON_HEIGHT+10, medicalButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel2.text=immuStr2;
     medicalLabel2.numberOfLines=2;
     medicalLabel2.textAlignment=NSTextAlignmentLeft;
     medicalLabel2.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel2];
-    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [medicalLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
     
     
@@ -675,18 +677,18 @@
     
     UIButton *medicalButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton3 setBackgroundImage:[UIImage imageNamed:@"hb_teeth.png"] forState:UIControlStateNormal];
-    medicalButton3.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton2.frame.origin.y+60, 50, 50);
+    medicalButton3.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton2.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton3 addTarget:self action:@selector(dentalScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton3];
     
     
-    UILabel *medicalLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+10, medicalButton3.frame.origin.y, 200, 50)];
+    UILabel *medicalLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+SIZE_ICON_HEIGHT, medicalButton3.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel3.text=immuStr2;
     medicalLabel3.numberOfLines=2;
     medicalLabel3.textAlignment=NSTextAlignmentLeft;
     medicalLabel3.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel3];
-    [medicalLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [medicalLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
 
     
@@ -698,8 +700,8 @@
     
     
     
-    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
-    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
 }
 
@@ -730,11 +732,11 @@
     //
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-70, 50, 50);
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(encyclopediaMedication) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+50+20, drugButton.frame.origin.y, 150, 50)];
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton.frame.origin.y, 150, SIZE_ICON_HEIGHT)];
     drugLabel.text=@"Medication";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
@@ -749,17 +751,17 @@
    
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu.png"] forState:UIControlStateNormal];
-    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-110, 50, 50);
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton2 addTarget:self action:@selector(encyclopediaImmunisation) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
-    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+50+20, drugButton2.frame.origin.y, 200, 50)];
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     drugLabel2.text=immuStr;
     drugLabel2.textAlignment=NSTextAlignmentLeft;
     drugLabel2.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel2];
     
-    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
     
     
@@ -769,16 +771,16 @@
     
     UIButton *drugButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
-    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-100, 50, 50);
+    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton3 addTarget:self action:@selector(encyclopediaChildSafety) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton3];
     
-    UILabel *drugLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton3.frame.origin.x+50+20, drugButton3.frame.origin.y, 200, 50)];
+    UILabel *drugLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton3.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton3.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     drugLabel3.text=immuStr;
     drugLabel3.textAlignment=NSTextAlignmentLeft;
     drugLabel3.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel3];
-    [drugLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
     
     //
@@ -791,20 +793,20 @@
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+100, 50, 50);
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(encyclopediaDevelopmental) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
     
-    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+50+20, medicalButton.frame.origin.y, 200, 50)];
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+SIZE_ICON_HEIGHT+20, medicalButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel.text=immuSt;
     medicalLabel.numberOfLines=2;
     medicalLabel.textAlignment=NSTextAlignmentLeft;
     medicalLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:medicalLabel];
     
-    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
-    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:13]];
+    [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     
 }
 
