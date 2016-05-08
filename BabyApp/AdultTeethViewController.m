@@ -9,13 +9,18 @@
 #import "AdultTeethViewController.h"
 
 @interface AdultTeethViewController ()
-
+{
+    BOOL isShowInfo;
+}
 @end
 
 @implementation AdultTeethViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.baseInfoView setHidden:YES];
+    [self.btnAdult setBackgroundColor:[UIColor lightGrayColor]];
     // Do any additional setup after loading the view.
 }
 
@@ -34,4 +39,20 @@
 }
 */
 
+- (IBAction)onClickAdultButton:(id)sender
+{
+    
+}
+
+- (IBAction)onClickBabyButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.btnAdult setBackgroundColor:[UIColor clearColor]];
+}
+
+- (IBAction)onClickInfoButton:(id)sender
+{
+    [self.btnInfoButton setHidden:YES];
+    [self.baseInfoView setHidden:NO];
+}
 @end

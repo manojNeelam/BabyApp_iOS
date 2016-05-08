@@ -146,9 +146,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.btnBabyTeeth setBackgroundColor:[UIColor lightGrayColor]];
-    
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.btnBabyTeeth setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,6 +164,8 @@
     
     UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AdultTeethViewController_SB_ID"];
     [self.navigationController pushViewController:vc animated:NO];
+    
+    [self.btnBabyTeeth setBackgroundColor:[UIColor clearColor]];
 }
 
 - (IBAction)onClickBabyTeeth:(id)sender {

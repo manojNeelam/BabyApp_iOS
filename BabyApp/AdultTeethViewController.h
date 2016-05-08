@@ -9,5 +9,12 @@
 #import "BaseViewController.h"
 
 @interface AdultTeethViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnAdult;
+@property (weak, nonatomic) IBOutlet UIButton *btnBaby;
+- (IBAction)onClickAdultButton:(id)sender;
+- (IBAction)onClickBabyButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *baseInfoView;
+- (IBAction)onClickInfoButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnInfoButton;
 
 @end
