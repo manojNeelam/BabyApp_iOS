@@ -651,7 +651,7 @@
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_visual_option.png"] forState:UIControlStateNormal];
     medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
-    [medicalButton2 addTarget:self action:@selector(dentalScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [medicalButton2 addTarget:self action:@selector(visualScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
@@ -903,6 +903,19 @@
 {
     [overlayView setHidden:YES];
 }
+
+
+-(void)visualScreeningAction//correct*
+{
+    [overlayView setHidden:YES];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"forOral"];
+    
+    UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VisualViewController_SB_ID"];
+    [self.navigationController pushViewController:dummyVC animated:YES];
+    
+
+}
+
 
 -(void)dentalScreeningAction//correct*
 {

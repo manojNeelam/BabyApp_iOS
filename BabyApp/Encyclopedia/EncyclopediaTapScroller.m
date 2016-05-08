@@ -21,12 +21,12 @@
 }
 @property UIScrollView *scroll1;
 @property UIPageControl *page1;
-@property NSArray *medicationArr,*immunisationArr, *medicationArrHolder, *immunisationArrHolder;
+@property NSArray *medicationArr,*medicationDictArr,*immunisationArr, *medicationArrHolder, *immunisationArrHolder,*immunisationDictArr;
 
 @end
 
 @implementation EncyclopediaTapScroller
-@synthesize scrollerTable,scrollerTable2,scroll1,page1;
+@synthesize scrollerTable,scrollerTable2,scroll1,page1,immunisationDictArr,medicationDictArr;
 NSArray *labelArrayScroller,*labelArrayScroller2;
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -408,14 +408,16 @@ int n;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:( NSIndexPath *)indexPath
 {
-    
+    //immunisationDictArr,medicationDictArr
+
     NSDictionary *d;
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
     
     if(self.scrollerTable==tableView)
-    {   d=[_medicationArr objectAtIndex:indexPath.row];
-        
+    {
+        NSLog(@"_medicationArr selected=%@",[_medicationArr objectAtIndex:indexPath.row]);
+        d=[medicationDictArr objectAtIndex:indexPath.row];
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"title"] forKey:@"selectedMedicationLbl"];
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"items"] forKey:@"selectedMedicationArray"];
         [self performSegueWithIdentifier:@"medicationcategorysegu" sender:self];
@@ -424,7 +426,10 @@ int n;
     }
     else
     {
-        d=[_immunisationArr objectAtIndex:indexPath.row];
+        
+        NSLog(@"_immunisationArr selected=%@",[_immunisationArr objectAtIndex:indexPath.row]);
+
+        d=[immunisationDictArr objectAtIndex:indexPath.row];
         
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"title"] forKey:@"selectedMedicationLbl"];
         [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"selectedImmunisationTypeDetail"];
@@ -488,6 +493,8 @@ int n;
                 _medicationArrHolder = temp;
                 
                 _medicationArr = temp;
+                medicationDictArr=listTemp;
+
                 
             }
             NSLog(@"_medicationArr count=%lu",(unsigned long)_medicationArr.count);
@@ -497,6 +504,7 @@ int n;
             [scrollerTable reloadData];
             
         }
+        //immunisationDictArr,medicationDictArr
         if(n==2)
         {
             
@@ -504,6 +512,7 @@ int n;
             if(listTemp.count)
             {
                 NSMutableArray *temp = [NSMutableArray array];
+
                 for(NSDictionary *dict in listTemp)
                 {
                     EncycloMedicationData *encyclo = [[EncycloMedicationData alloc] initwithDictionary:dict];
@@ -512,9 +521,11 @@ int n;
                 
                 _immunisationArrHolder = temp;
                 _immunisationArr = temp;
+                immunisationDictArr=listTemp;
                 
             }
-            
+            NSLog(@"_immunisationArr count=%lu",(unsigned long)_immunisationArr.count);
+
             
             scrollerTable2.dataSource=self;
             scrollerTable2.delegate=self;
