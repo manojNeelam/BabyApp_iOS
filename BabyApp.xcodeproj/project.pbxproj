@@ -208,6 +208,25 @@
 		CDC84ABC1CBE084F00D9A3DC /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC84AB51CBE084F00D9A3DC /* SVProgressHUD.bundle */; };
 		CDC84ABD1CBE084F00D9A3DC /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC84AB71CBE084F00D9A3DC /* SVProgressHUD.m */; };
 		CDC84ABE1CBE084F00D9A3DC /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC84AB91CBE084F00D9A3DC /* SVRadialGradientLayer.m */; };
+		D8048B051CDF2F7C00B63B3E /* encyclopedia-floting-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF21CDF2F7C00B63B3E /* encyclopedia-floting-bottom.png */; };
+		D8048B061CDF2F7C00B63B3E /* encyclopedia-floting-immu.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF31CDF2F7C00B63B3E /* encyclopedia-floting-immu.png */; };
+		D8048B071CDF2F7C00B63B3E /* encyclopedia-floting-medication.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF41CDF2F7C00B63B3E /* encyclopedia-floting-medication.png */; };
+		D8048B081CDF2F7C00B63B3E /* encyclopedia-floting.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF51CDF2F7C00B63B3E /* encyclopedia-floting.png */; };
+		D8048B091CDF2F7C00B63B3E /* immunisation-floting-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF61CDF2F7C00B63B3E /* immunisation-floting-middle.png */; };
+		D8048B0A1CDF2F7C00B63B3E /* immunisation-floting-new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF71CDF2F7C00B63B3E /* immunisation-floting-new.png */; };
+		D8048B0B1CDF2F7C00B63B3E /* immunisation-floting-nosummar.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF81CDF2F7C00B63B3E /* immunisation-floting-nosummar.png */; };
+		D8048B0C1CDF2F7C00B63B3E /* immunisation-floting-summar.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AF91CDF2F7C00B63B3E /* immunisation-floting-summar.png */; };
+		D8048B0D1CDF2F7C00B63B3E /* immunisation-floting.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFA1CDF2F7C00B63B3E /* immunisation-floting.png */; };
+		D8048B0E1CDF2F7C00B63B3E /* middle-screening.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFB1CDF2F7C00B63B3E /* middle-screening.png */; };
+		D8048B0F1CDF2F7C00B63B3E /* profile-encylo.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFC1CDF2F7C00B63B3E /* profile-encylo.png */; };
+		D8048B101CDF2F7C00B63B3E /* profile-icons.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFD1CDF2F7C00B63B3E /* profile-icons.png */; };
+		D8048B111CDF2F7C00B63B3E /* profile-immu.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFE1CDF2F7C00B63B3E /* profile-immu.png */; };
+		D8048B121CDF2F7C00B63B3E /* profile-main.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048AFF1CDF2F7C00B63B3E /* profile-main.png */; };
+		D8048B131CDF2F7C00B63B3E /* profile-screening.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048B001CDF2F7C00B63B3E /* profile-screening.png */; };
+		D8048B141CDF2F7C00B63B3E /* screening-floting-new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048B011CDF2F7C00B63B3E /* screening-floting-new.png */; };
+		D8048B151CDF2F7C00B63B3E /* screening-floting-nosummary.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048B021CDF2F7C00B63B3E /* screening-floting-nosummary.png */; };
+		D8048B161CDF2F7C00B63B3E /* screening-floting-summary.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048B031CDF2F7C00B63B3E /* screening-floting-summary.png */; };
+		D8048B171CDF2F7C00B63B3E /* screening-floting.png in Resources */ = {isa = PBXBuildFile; fileRef = D8048B041CDF2F7C00B63B3E /* screening-floting.png */; };
 		D82C28EB1C8F6FDC005798EA /* ScreeningExamination.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28EA1C8F6FDC005798EA /* ScreeningExamination.m */; };
 		D82C28EE1C8F7012005798EA /* ScreeningOutcomeOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28ED1C8F7012005798EA /* ScreeningOutcomeOptions.m */; };
 		D82C28F11C8F7041005798EA /* ScreeningsOutcome.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C28F01C8F7041005798EA /* ScreeningsOutcome.m */; };
@@ -627,6 +646,25 @@
 		CDC84AB71CBE084F00D9A3DC /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		CDC84AB81CBE084F00D9A3DC /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		CDC84AB91CBE084F00D9A3DC /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		D8048AF21CDF2F7C00B63B3E /* encyclopedia-floting-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "encyclopedia-floting-bottom.png"; sourceTree = "<group>"; };
+		D8048AF31CDF2F7C00B63B3E /* encyclopedia-floting-immu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "encyclopedia-floting-immu.png"; sourceTree = "<group>"; };
+		D8048AF41CDF2F7C00B63B3E /* encyclopedia-floting-medication.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "encyclopedia-floting-medication.png"; sourceTree = "<group>"; };
+		D8048AF51CDF2F7C00B63B3E /* encyclopedia-floting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "encyclopedia-floting.png"; sourceTree = "<group>"; };
+		D8048AF61CDF2F7C00B63B3E /* immunisation-floting-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "immunisation-floting-middle.png"; sourceTree = "<group>"; };
+		D8048AF71CDF2F7C00B63B3E /* immunisation-floting-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "immunisation-floting-new.png"; sourceTree = "<group>"; };
+		D8048AF81CDF2F7C00B63B3E /* immunisation-floting-nosummar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "immunisation-floting-nosummar.png"; sourceTree = "<group>"; };
+		D8048AF91CDF2F7C00B63B3E /* immunisation-floting-summar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "immunisation-floting-summar.png"; sourceTree = "<group>"; };
+		D8048AFA1CDF2F7C00B63B3E /* immunisation-floting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "immunisation-floting.png"; sourceTree = "<group>"; };
+		D8048AFB1CDF2F7C00B63B3E /* middle-screening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle-screening.png"; sourceTree = "<group>"; };
+		D8048AFC1CDF2F7C00B63B3E /* profile-encylo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-encylo.png"; sourceTree = "<group>"; };
+		D8048AFD1CDF2F7C00B63B3E /* profile-icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-icons.png"; sourceTree = "<group>"; };
+		D8048AFE1CDF2F7C00B63B3E /* profile-immu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-immu.png"; sourceTree = "<group>"; };
+		D8048AFF1CDF2F7C00B63B3E /* profile-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-main.png"; sourceTree = "<group>"; };
+		D8048B001CDF2F7C00B63B3E /* profile-screening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-screening.png"; sourceTree = "<group>"; };
+		D8048B011CDF2F7C00B63B3E /* screening-floting-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screening-floting-new.png"; sourceTree = "<group>"; };
+		D8048B021CDF2F7C00B63B3E /* screening-floting-nosummary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screening-floting-nosummary.png"; sourceTree = "<group>"; };
+		D8048B031CDF2F7C00B63B3E /* screening-floting-summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screening-floting-summary.png"; sourceTree = "<group>"; };
+		D8048B041CDF2F7C00B63B3E /* screening-floting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screening-floting.png"; sourceTree = "<group>"; };
 		D82C28E91C8F6FDC005798EA /* ScreeningExamination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningExamination.h; sourceTree = "<group>"; };
 		D82C28EA1C8F6FDC005798EA /* ScreeningExamination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreeningExamination.m; sourceTree = "<group>"; };
 		D82C28EC1C8F7012005798EA /* ScreeningOutcomeOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreeningOutcomeOptions.h; sourceTree = "<group>"; };
@@ -1190,6 +1228,7 @@
 		A13FC7E51C7748AC00362A32 /* BabyApp */ = {
 			isa = PBXGroup;
 			children = (
+				D8048AF11CDF2F7C00B63B3E /* Icons */,
 				9695B4F21CC2D32100815220 /* ScreeningData */,
 				8C4957B71CC0FC1400C66B13 /* Settings */,
 				CD6754F31CC0B061002BA5CA /* Child Developement */,
@@ -1448,6 +1487,32 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		D8048AF11CDF2F7C00B63B3E /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D8048AF21CDF2F7C00B63B3E /* encyclopedia-floting-bottom.png */,
+				D8048AF31CDF2F7C00B63B3E /* encyclopedia-floting-immu.png */,
+				D8048AF41CDF2F7C00B63B3E /* encyclopedia-floting-medication.png */,
+				D8048AF51CDF2F7C00B63B3E /* encyclopedia-floting.png */,
+				D8048AF61CDF2F7C00B63B3E /* immunisation-floting-middle.png */,
+				D8048AF71CDF2F7C00B63B3E /* immunisation-floting-new.png */,
+				D8048AF81CDF2F7C00B63B3E /* immunisation-floting-nosummar.png */,
+				D8048AF91CDF2F7C00B63B3E /* immunisation-floting-summar.png */,
+				D8048AFA1CDF2F7C00B63B3E /* immunisation-floting.png */,
+				D8048AFB1CDF2F7C00B63B3E /* middle-screening.png */,
+				D8048AFC1CDF2F7C00B63B3E /* profile-encylo.png */,
+				D8048AFD1CDF2F7C00B63B3E /* profile-icons.png */,
+				D8048AFE1CDF2F7C00B63B3E /* profile-immu.png */,
+				D8048AFF1CDF2F7C00B63B3E /* profile-main.png */,
+				D8048B001CDF2F7C00B63B3E /* profile-screening.png */,
+				D8048B011CDF2F7C00B63B3E /* screening-floting-new.png */,
+				D8048B021CDF2F7C00B63B3E /* screening-floting-nosummary.png */,
+				D8048B031CDF2F7C00B63B3E /* screening-floting-summary.png */,
+				D8048B041CDF2F7C00B63B3E /* screening-floting.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		D809F8731F7AA629EDDB3FE3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,6 +1693,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8048B051CDF2F7C00B63B3E /* encyclopedia-floting-bottom.png in Resources */,
+				D8048B0E1CDF2F7C00B63B3E /* middle-screening.png in Resources */,
 				A10EB6401C797A46002EBC59 /* fbsignin.png in Resources */,
 				A13FC7F91C7748AC00362A32 /* LaunchScreen.storyboard in Resources */,
 				A1C384D61CC220AC0085C812 /* hb_Alergy_back.png in Resources */,
@@ -1642,8 +1709,10 @@
 				6C277C741CD9F0E100683D00 /* FB1.png in Resources */,
 				6C9A60071CCDD40700BF8E25 /* newScreening.png in Resources */,
 				A1C384D01CC21E940085C812 /* hb_percentiles.png in Resources */,
+				D8048B151CDF2F7C00B63B3E /* screening-floting-nosummary.png in Resources */,
 				A1C384CE1CC21E940085C812 /* hb_immunisation.png in Resources */,
 				A10EB6471C79D394002EBC59 /* mail.png in Resources */,
+				D8048B101CDF2F7C00B63B3E /* profile-icons.png in Resources */,
 				6C9A600D1CCDD56800BF8E25 /* e1.png in Resources */,
 				A10EB6411C797A46002EBC59 /* forgetPassword.png in Resources */,
 				A1C384C81CC21D8E0085C812 /* centerImage.png in Resources */,
@@ -1651,14 +1720,18 @@
 				D8B1380C1C90CF6F007B412D /* AvenirNextLTPro-HeavyCn.otf in Resources */,
 				A1C384E01CC35F980085C812 /* hb_visual_option.png in Resources */,
 				D8B138131C90CF6F007B412D /* AvenirNextLTPro-UltLtCnIt.otf in Resources */,
+				D8048B0D1CDF2F7C00B63B3E /* immunisation-floting.png in Resources */,
 				D8AB15C61C8E361A0062DAFE /* crv.png in Resources */,
 				D8B1380B1C90CF6F007B412D /* AvenirNextLTPro-DemiIt.otf in Resources */,
+				D8048B161CDF2F7C00B63B3E /* screening-floting-summary.png in Resources */,
+				D8048B141CDF2F7C00B63B3E /* screening-floting-new.png in Resources */,
 				A10EB6231C78B027002EBC59 /* healthBooklet.png in Resources */,
 				96DC84901CD92EA8003A1033 /* imgpsh_fullsize.png in Resources */,
 				D8B138091C90CF6F007B412D /* AvenirNextLTPro-DemiCn.otf in Resources */,
 				A10EB6421C797A46002EBC59 /* signin.png in Resources */,
 				6CEC2F6A1CDB61E200B39000 /* middle@2x.png in Resources */,
 				D8B138051C90CF6F007B412D /* AvenirNextLTPro-BoldCnIt.otf in Resources */,
+				D8048B0B1CDF2F7C00B63B3E /* immunisation-floting-nosummar.png in Resources */,
 				D8C60B201CBEDD3B00B74D77 /* background_image.png in Resources */,
 				D86275DA1CCC1D7900BFCF03 /* background_image_plane.png in Resources */,
 				96DC848F1CD92EA8003A1033 /* imgpsh_fullsize-2.png in Resources */,
@@ -1668,7 +1741,10 @@
 				6C9A60061CCDD40700BF8E25 /* myScreening.png in Resources */,
 				A10EB6541C7A35A1002EBC59 /* downarray.png in Resources */,
 				D8B138071C90CF6F007B412D /* AvenirNextLTPro-CnIt.otf in Resources */,
+				D8048B0A1CDF2F7C00B63B3E /* immunisation-floting-new.png in Resources */,
+				D8048B0F1CDF2F7C00B63B3E /* profile-encylo.png in Resources */,
 				A10EB64E1C7A21FE002EBC59 /* down_arrow.png in Resources */,
+				D8048B071CDF2F7C00B63B3E /* encyclopedia-floting-medication.png in Resources */,
 				D8B138031C90CF6F007B412D /* AvenirNextLTPro-Bold.otf in Resources */,
 				6C9A60081CCDD40700BF8E25 /* settings.png in Resources */,
 				D8B138121C90CF6F007B412D /* AvenirNextLTPro-UltLtCn.otf in Resources */,
@@ -1684,21 +1760,28 @@
 				A10EB6521C7A3599002EBC59 /* right_arrow.png in Resources */,
 				D8750D081CCDDF9300821BCF /* visualcheck.png in Resources */,
 				A1C384D81CC220AC0085C812 /* hb_medical_option.png in Resources */,
+				D8048B081CDF2F7C00B63B3E /* encyclopedia-floting.png in Resources */,
+				D8048B111CDF2F7C00B63B3E /* profile-immu.png in Resources */,
 				D8B138081C90CF6F007B412D /* AvenirNextLTPro-Demi.otf in Resources */,
 				6CEC2F5E1CDB139700B39000 /* middlecircle@2x.png in Resources */,
 				A10EB6501C7A264C002EBC59 /* pic.png in Resources */,
 				A10EB5EA1C784FBA002EBC59 /* blueBar.png in Resources */,
 				D8B1380E1C90CF6F007B412D /* AvenirNextLTPro-It.otf in Resources */,
 				A1C384DE1CC35F980085C812 /* hb_back_oralvisual.png in Resources */,
+				D8048B131CDF2F7C00B63B3E /* profile-screening.png in Resources */,
+				D8048B0C1CDF2F7C00B63B3E /* immunisation-floting-summar.png in Resources */,
 				D8B138101C90CF6F007B412D /* AvenirNextLTPro-MediumCnIt.otf in Resources */,
 				D8B1380D1C90CF6F007B412D /* AvenirNextLTPro-HeavyCnIt.otf in Resources */,
 				A10EB6581C7B7701002EBC59 /* healthBooklet_button.png in Resources */,
 				A10EB6291C78B455002EBC59 /* growth_icon.png in Resources */,
+				D8048B061CDF2F7C00B63B3E /* encyclopedia-floting-immu.png in Resources */,
 				A1C384DF1CC35F980085C812 /* hb_teeth.png in Resources */,
 				D8B1380F1C90CF6F007B412D /* AvenirNextLTPro-MediumCn.otf in Resources */,
+				D8048B171CDF2F7C00B63B3E /* screening-floting.png in Resources */,
 				A10EB62A1C78B455002EBC59 /* screening_icon.png in Resources */,
 				D8AB15C21C8E341F0062DAFE /* Screenings-checked_03.png in Resources */,
 				6C277C6E1CD9C38200683D00 /* facebook.png in Resources */,
+				D8048B091CDF2F7C00B63B3E /* immunisation-floting-middle.png in Resources */,
 				A1EAD2CD1CA98235008D2B37 /* teeth.png in Resources */,
 				A13FC8211C776F6800362A32 /* img_logo.png in Resources */,
 				A1C384DA1CC24B270085C812 /* hb_Item.png in Resources */,
@@ -1716,6 +1799,7 @@
 				6C9A60041CCDD40700BF8E25 /* myGrowth.png in Resources */,
 				A10EB6431C797A46002EBC59 /* signup.png in Resources */,
 				6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */,
+				D8048B121CDF2F7C00B63B3E /* profile-main.png in Resources */,
 				D8750D061CCDDC7100821BCF /* Oral health.png in Resources */,
 				A10EB6461C79D394002EBC59 /* lock.png in Resources */,
 				A10EB6571C7B7701002EBC59 /* Encyclopedia.png in Resources */,
