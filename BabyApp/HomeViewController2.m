@@ -906,7 +906,9 @@
 {
     [overlayView setHidden:YES];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"forOral"];
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"oralHealth"];
+
+    
+    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"BabyTeethViewController_SB_ID"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

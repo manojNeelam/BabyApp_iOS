@@ -458,7 +458,10 @@
     //[self performSegueWithIdentifier:@"activitySegue" sender:self];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"forOral"];
     
-    OralHealth *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"oralHealth"];
+    //
+    
+    
+    OralHealth *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BabyTeethViewController_SB_ID"];
     [self.navigationController pushViewController:dummyVC animated:YES];
 
     

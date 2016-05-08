@@ -490,10 +490,10 @@
             {
                 ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
                 
-                //if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
-                //{
+            if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+            {
                 [tempAll addObject:immunisationData];
-                //}
+            }
                 
             }
             immunisationList = [tempAll mutableCopy];
