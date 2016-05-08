@@ -99,4 +99,8 @@ typedef void (^CompletionBlock)(NSDictionary *result, NSError *error);
 
 //immunisation_status_update
 -(void)updateImmunisation:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
+
+
+//getGraph
+-(void)getHeightGraphForChild:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 @end

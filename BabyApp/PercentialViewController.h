@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *graphView;
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property(nonatomic,strong) NSString *titleString;
 @property(nonatomic,strong) NSString *suffix;

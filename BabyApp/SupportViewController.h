@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SupportViewController : UIViewController
+@interface SupportViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

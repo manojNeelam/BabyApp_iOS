@@ -10,6 +10,7 @@
 
 #import "SHLineGraphView.h"
 #import "SHPlot.h"
+#import "ConnectionsManager.h"
 
 @interface PercentialViewController ()
 
@@ -26,7 +27,47 @@
     self.title=_titleString;
     [self graphCreation];
 
+    
+   // [[ConnectionsManager sharedManager] getHeightGraphForChild:nil withdelegate:self];
+    
+    NSURL *url;
+    if ([_titleString isEqualToString:@"ORAL HEALTH"]) {
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/visual_acuity/1"];
+    }
+    else if ([_titleString isEqualToString:@"Height"])
+    {
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/height/1"];
+    }
+    else if ([_titleString isEqualToString:@"Head"])
+    {
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/head/1"];
+    }
+    else if ([_titleString isEqualToString:@"Weight"])
+    {
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/weight/1"];
+    }
+    else
+    {
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/bmi/1"];
+    }
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.webView setScalesPageToFit:YES];
+    [self.webView loadRequest:request];
+     self.webView.delegate = self;
+    
+    [SVProgressHUD show];
+
 }
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+      [SVProgressHUD dismiss];
+}
+
+
+
 
 
 #pragma mark - Table view data source

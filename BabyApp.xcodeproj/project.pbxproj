@@ -22,6 +22,7 @@
 		6C9A60091CCDD40700BF8E25 /* Signout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A60011CCDD40700BF8E25 /* Signout.png */; };
 		6C9A600B1CCDD43F00BF8E25 /* healthBookletnew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */; };
 		6C9A600D1CCDD56800BF8E25 /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9A600C1CCDD56800BF8E25 /* e1.png */; };
+		6CB5FCE61CDF1CD500BD2AB9 /* VisualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB5FCE51CDF1CD500BD2AB9 /* VisualViewController.m */; };
 		6CEC2F5E1CDB139700B39000 /* middlecircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F5D1CDB139700B39000 /* middlecircle@2x.png */; };
 		6CEC2F621CDB180A00B39000 /* screening_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F611CDB180A00B39000 /* screening_icon2.png */; };
 		6CEC2F6A1CDB61E200B39000 /* middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEC2F691CDB61E200B39000 /* middle@2x.png */; };
@@ -296,6 +297,8 @@
 		6C9A60011CCDD40700BF8E25 /* Signout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Signout.png; sourceTree = "<group>"; };
 		6C9A600A1CCDD43F00BF8E25 /* healthBookletnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthBookletnew.png; sourceTree = "<group>"; };
 		6C9A600C1CCDD56800BF8E25 /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
+		6CB5FCE41CDF1CD400BD2AB9 /* VisualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisualViewController.h; sourceTree = "<group>"; };
+		6CB5FCE51CDF1CD500BD2AB9 /* VisualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisualViewController.m; sourceTree = "<group>"; };
 		6CEC2F5D1CDB139700B39000 /* middlecircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middlecircle@2x.png"; sourceTree = "<group>"; };
 		6CEC2F611CDB180A00B39000 /* screening_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screening_icon2.png; sourceTree = "<group>"; };
 		6CEC2F691CDB61E200B39000 /* middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle@2x.png"; sourceTree = "<group>"; };
@@ -1292,6 +1295,8 @@
 				6CEF75411CDE006F00D8DFAC /* AboutViewController.m */,
 				6CEF75431CDE00D800D8DFAC /* SupportViewController.h */,
 				6CEF75441CDE00D800D8DFAC /* SupportViewController.m */,
+				6CB5FCE41CDF1CD400BD2AB9 /* VisualViewController.h */,
+				6CB5FCE51CDF1CD500BD2AB9 /* VisualViewController.m */,
 			);
 			path = BabyApp;
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				CDC84ABA1CBE084F00D9A3DC /* SVIndefiniteAnimatedView.m in Sources */,
 				A1EAD2D01CA9836D008D2B37 /* ImmunisationsTableViewController.m in Sources */,
 				D8AB15C01C8E1AD80062DAFE /* ScreeningParentalViewController.m in Sources */,
+				6CB5FCE61CDF1CD500BD2AB9 /* VisualViewController.m in Sources */,
 				90F165D31CB5A9B5006B5DD6 /* NSString+CommonForApp.m in Sources */,
 				6CEC2F931CDB63AC00B39000 /* IQBarButtonItem.m in Sources */,
 				A10EB6341C78BD6E002EBC59 /* BioDataTableViewCell.m in Sources */,

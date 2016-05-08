@@ -13,6 +13,7 @@
 #import "PercentialViewController.h"
 #import "DevelopmetalScreenViewController.h"
 #import "OralHealth.h"
+#import "VisualViewController.h"
 @interface HealthBookletViewController ()
 {
     float width;
@@ -471,7 +472,8 @@
   //  [self performSegueWithIdentifier:@"activitySegue" sender:self];
   
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"forOral"];
-    OralHealth *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"oralHealth"];
+    
+    VisualViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VisualViewController_SB_ID"];
     [self.navigationController pushViewController:dummyVC animated:YES];
 
 

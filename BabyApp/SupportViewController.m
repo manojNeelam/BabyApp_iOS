@@ -7,6 +7,7 @@
 //
 
 #import "SupportViewController.h"
+#import "ConnectionsManager.h"
 
 @interface SupportViewController ()
 
@@ -17,7 +18,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSURL *url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/content/support"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  //  [self.webView setScalesPageToFit:YES];
+    [self.webView loadRequest:request];
+     self.webView.delegate = self;
+    
+    [SVProgressHUD show];
+    
 }
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [SVProgressHUD dismiss];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

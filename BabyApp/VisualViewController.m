@@ -1,24 +1,27 @@
 //
-//  AboutViewController.m
+//  VisualViewController.m
 //  BabyApp
 //
-//  Created by Sandeep Dave on 07/05/16.
+//  Created by Sandeep Dave on 08/05/16.
 //  Copyright © 2016 Infinity. All rights reserved.
 //
 
-#import "AboutViewController.h"
+#import "VisualViewController.h"
 #import "ConnectionsManager.h"
 
-@interface AboutViewController ()
+@interface VisualViewController ()
 
 @end
 
-@implementation AboutViewController
+@implementation VisualViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSURL *url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/content/about"];
+    NSURL *url;
+    
+        url = [NSURL URLWithString:@"http://babyappdev.azurewebsites.net/graph/visual_acuity/1"];
+   
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView setScalesPageToFit:YES];
     [self.webView loadRequest:request];
@@ -33,7 +36,6 @@
 {
     [SVProgressHUD dismiss];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

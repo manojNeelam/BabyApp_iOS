@@ -336,6 +336,13 @@ static NSString * const BaseURLString = BaseUrl;
     [self getToURL:@"immunisation_status_update" withParameters:params delegate:delegate];
 }
 
+
+//Arbaz
+
+-(void)getHeightGraphForChild:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
+{
+     [self getToURL:@"height/1" withParameters:params delegate:delegate];
+}
 #pragma mark - immunisation
 
 -(void)addImmunisation:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
