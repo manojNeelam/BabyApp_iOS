@@ -165,9 +165,12 @@
     {
         UIStoryboard *storyboard = self.navigationController.storyboard;
         
+        
         ScreeningViewController *detailPage = [storyboard
                                                instantiateViewControllerWithIdentifier:@"Screening"];
         
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NewScreening"];
+
         [self.navigationController pushViewController:detailPage animated:YES];
         
     }

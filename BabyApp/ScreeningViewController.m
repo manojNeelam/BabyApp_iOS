@@ -33,24 +33,56 @@
     NSArray *screeningSummaryList;
     int currentScreening;
 }
+- (IBAction)doneBtnClicked:(id)sender;
 @end
 
 @implementation ScreeningViewController
 @synthesize screeningTable;
+
+- (IBAction)doneBtnClicked:(id)sender
+{
+    NSLog(@"doneBtnClicked");
+    
+    [self toStopEditing];
+    NSString *dt=[txtDate titleForState:UIControlStateNormal];
+    NSString *careGiver=[txtCare text];
+    NSString *age=[txtAge text];
+    
+    if(![dt isEqualToString:@"Date of Screening"]&&![careGiver isEqualToString:@"  Main Caregiver"]&&![careGiver isEqualToString:@"Age"])
+    {
+    ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:currentScreening];
+   [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"screening_id"];
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+        
+    }
+    [dict setObject:screen.screening_id forKey:@"screening_id"];
+    [dict setObject:dt forKey:@"screening_date"];
+    [dict setObject:careGiver forKey:@"screening_caregiver"];
+    [dict setObject:age forKey:@"screening_age"];
+    
+    NSLog(@"Final information to send=%@",dict);
+
+   [[ConnectionsManager sharedManager] updateScreening:dict withdelegate:self];
+    }
+else
+{
+    UIAlertView *alt1 =[[UIAlertView alloc] initWithTitle:@"Sorry"  message:@"Sorry input all fields" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alt1 show];
+    
+}
+  }
+-(void)toStopEditing
+{
+    [self.view endEditing:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentScreening=0;
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-    
-    // Do any additional setup after loading the view.
     
     allChildDevList = [NSMutableArray array];
     
@@ -74,30 +106,23 @@
     [lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
     
     
-    //  [lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:18]];
-   //  [lblName2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:14]];
-    
+   
     
     
     
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
-    //btnPrevious
-    //UIImageView *imgNext = [[UIImageView alloc] init];
-    UIButton *imgNext = [[UIButton alloc] init];
+     UIButton *imgNext = [[UIButton alloc] init];
 
     [imgNext setFrame:CGRectMake(10, 15, 10, 10)];
-    //[imgNext setImage:[UIImage imageNamed:@"previousAppBg"]];
     [imgNext setBackgroundImage:[UIImage imageNamed:@"previousAppBg"] forState:UIControlStateNormal];
     [v addSubview:imgNext];
     
-   // UIImageView *imgPrevious = [[UIImageView alloc] init];
     UIButton *imgPrevious = [[UIButton alloc] init];
 
     [imgPrevious setFrame:CGRectMake(v.frame.size.width-25, 15, 10, 10)];
     [imgPrevious setBackgroundImage:[UIImage imageNamed:@"nextAppColor"] forState:UIControlStateNormal];
 
-    //[imgPrevious setImage:[UIImage imageNamed:@"nextAppColor"]];
     [v addSubview:imgPrevious];
     
     [imgNext addTarget:self action:@selector(btnPrevious) forControlEvents:UIControlEventTouchUpInside];
@@ -126,10 +151,8 @@
     txtDate=[UIButton buttonWithType:UIButtonTypeCustom];
     txtDate.frame = CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2);
     [txtDate addTarget:self action:@selector(onClickDateOfBirth:) forControlEvents:UIControlEventTouchUpInside];
-    //[txtDate.titleLabel setTextAlignment:NSTextAlignmentLeft];
     txtDate.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     
-    //initWithFrame:CGRectMake(8,0, (v2.frame.size.width*70)/100-15, v2.frame.size.height/2)];
     
     txtAge=[[UITextField alloc] initWithFrame:CGRectMake((v2.frame.size.width*70)/100+8,0,(v2.frame.size.width*30)/100-15,v2.frame.size.height/2)];
     
@@ -145,20 +168,9 @@
     [txtCare setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
     
     [txtDate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-   // [txtAge setTextColor:[UIColor blackColor]];
     
     [txtDate setTitle:@"Date of Screening" forState:UIControlStateNormal];
-   // txtAge.placeholder=@"Age";
-   // txtCare.placeholder=@"  Main Caregiver";
-    
-  /*  txtCare.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@"  Main Caregiver"
-                                    attributes:@{
-                                                 NSForegroundColorAttributeName: [UIColor blackColor],
-                                                 NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
-                                                 }
-     ];*/
-    NSAttributedString *str=[[NSAttributedString alloc] initWithString:@"  Main Caregiver" attributes:@{
+      NSAttributedString *str=[[NSAttributedString alloc] initWithString:@"  Main Caregiver" attributes:@{
                                                                                                       NSForegroundColorAttributeName: [UIColor blackColor],
                                                                                                       NSFontAttributeName : [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]
                                                                                                       }];
@@ -195,7 +207,8 @@
     screeningTable.delegate=self;
     
     
-    [self loadScreeningData];
+     [self loadScreeningData];
+    
 }
 
 -(void)loadScreeningData
@@ -205,13 +218,9 @@
     if(childStr && childStr != nil)
     {
         [dict setObject:childStr forKey:@"child_id"];
-    }
-    else
-    {
-        [dict setObject:@"52" forKey:@"child_id"];
-    }
     
-  [[ConnectionsManager sharedManager] getScreeningSummary:dict withdelegate:self];
+    [[ConnectionsManager sharedManager] getScreeningSummary:dict withdelegate:self];
+    }
     
 }
 
@@ -593,25 +602,32 @@
 -(void)setHeaderLabelFor:(int)pos
 {
     NSLog(@"setheader pos=%d",pos);
-    ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:pos];
-    [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
-    [lblHeading setText:screen.title];
     
+    ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:pos];
+    [lblHeading setText:screen.title];
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NewScreening"])
+    {
+    [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
     [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"screening_id"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:screen.screening_id forKey:@"screening_id"];
     [[ConnectionsManager sharedManager] readScreening:dict withdelegate:self];
+    }
 
   }
 -(void)getDevelopmentalDataOfParticularScreeningId:(NSDictionary*)screenigDt
 {
+    if([[screenigDt objectForKey:@"caregiver"] length]>0&&![[screenigDt objectForKey:@"caregiver"] isEqualToString:@""])
+    {
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:[screenigDt objectForKey:@"id"] forKey:@"screening_id"];
-    [dict setObject:@"52" forKey:@"child_id"];
+    [dict setObject:childStr forKey:@"child_id"];
     txtAge.text=[screenigDt objectForKey:@"age"];
     txtCare.text=[NSString stringWithFormat:@"  %@",[screenigDt objectForKey:@"caregiver"]];
-
+    
     [self loadData:dict];
+    }
 }
 
 -(void)failure:(id)response
@@ -654,5 +670,6 @@
     NSString * dateFromData = [DateTimeUtil stringFromDateTime:datePicker.date withFormat:@"dd-MM-yyyy"];
     [txtDate setTitle:dateFromData forState:UIControlStateNormal];
 }
+
 
 @end

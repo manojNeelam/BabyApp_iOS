@@ -930,6 +930,7 @@
 -(void)newScreeningAction  //correct*
 {
     [overlayView setHidden:YES];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NewScreening"];
     UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Screening"];
     [self.navigationController pushViewController:vc animated:YES];
 }
