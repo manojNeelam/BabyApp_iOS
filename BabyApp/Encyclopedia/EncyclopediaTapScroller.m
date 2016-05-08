@@ -176,7 +176,6 @@ int n;
     [lblOr2 setTextColor:[UIColor whiteColor]];
     
     
-    
     UILabel *lbl22=[[UILabel alloc] initWithFrame:CGRectMake(10,170, self.view.frame.size.width-20, 40)];
     [vv2 addSubview:lbl22];
     
@@ -226,116 +225,26 @@ int n;
 
     }
 
-    
+  
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegan");
+    if([search isFirstResponder])
+    {
+        [search resignFirstResponder];
+    }
+    else  if([search2 isFirstResponder])
+    {
+        [search2 resignFirstResponder];
+    }
+
 }
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return NO;
 }
 
-/*-(void)viewWillAppear:(BOOL)animated
- {
- 
- labelArrayScroller=[NSArray arrayWithObjects:@"ANTIHISTAMINES",@"FEVER MEDICATIONS",@"COUGH EXPETORANTS",@"MUCOLYTICS",@"MIXED COUGH PREPARATIONS",@"NASAL",@"LOZENGES",@"ANTINIOTICS",@"ANTIEMETICS",@"ANTISPAMODIC",@"TOPICAL", nil];
- 
- labelArrayScroller2=[NSArray arrayWithObjects:@"BCG",@"HEPATITIS B",@"DTAP",@"MMR", nil];
- 
- CGRect scrollFrame = CGRectMake(0, 60, [self.view bounds].size.width, [self.view bounds].size.height-60);
- scroll1 = [[UIScrollView alloc]initWithFrame: scrollFrame];
- 
- [self.view addSubview:scroll1];
- [scroll1 setBackgroundColor:[UIColor blueColor]];
- 
- scroll1.delegate=self;
- 
- UIView *v1=[[UIView alloc] initWithFrame:CGRectMake(0, 0, scroll1.frame.size.width, scroll1.frame.size.height)];
- [scroll1 addSubview:v1];
- [v1 setBackgroundColor:[UIColor redColor]];
- 
- UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(scroll1.frame.size.width, 0, scroll1.frame.size.width, scroll1.frame.size.height)];
- 
- NSLog(@"self.view height=%f scrollbar height=%f v1 hight=%f",self.view.frame.size.height,scroll1.frame.size.height,v1.frame.size.height);
- [scroll1 addSubview:v2];
- [scroll1 setContentSize:CGSizeMake(scroll1.frame.size.width*2, scroll1.frame.size.height)];
- [v1 setBackgroundColor:[UIColor redColor]];
- [v2 setBackgroundColor:[UIColor greenColor]];
- 
- [scroll1 setBounces:NO];
- 
- [scroll1 setPagingEnabled:YES];
- UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0,scroll1.frame.size.width, 150)];
- [v setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
- [v1 addSubview:v];
- 
- UILabel *lbl1=[[UILabel alloc] initWithFrame:CGRectMake(10,5, self.view.frame.size.width-20, 40)];
- [v addSubview:lbl1];
- 
- UISearchBar *search=[[UISearchBar alloc] initWithFrame:CGRectMake(10,55, self.view.frame.size.width-20, 40)];
- [v addSubview:search];
- 
- UIView *vLine=[[UIView alloc] initWithFrame:CGRectMake(0, 105, self.view.frame.size.width,2)];
- [vLine setBackgroundColor:[UIColor whiteColor]];
- [v addSubview:vLine];
- 
- UILabel *lbl2=[[UILabel alloc] initWithFrame:CGRectMake(10,117, self.view.frame.size.width-20, 40)];
- [v addSubview:lbl2];
- 
- [lbl1 setText:@"Type in for a quick search in the database"];
- [lbl2 setText:@"SEARCH BY CATEGORIES BELOW"];
- 
- [lbl1 setTextAlignment:NSTextAlignmentCenter];
- [lbl2 setTextAlignment:NSTextAlignmentCenter];
- 
- [lbl1 setTextColor:[UIColor whiteColor]];
- [lbl2 setTextColor:[UIColor whiteColor]];
- 
- UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
- [vv2 setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
- [v2 addSubview:vv2];
- 
- UILabel *lbl12=[[UILabel alloc] initWithFrame:CGRectMake(10,5, self.view.frame.size.width-20, 40)];
- [vv2 addSubview:lbl12];
- 
- UISearchBar *search2=[[UISearchBar alloc] initWithFrame:CGRectMake(10,55, self.view.frame.size.width-20, 40)];
- [vv2 addSubview:search2];
- 
- UIView *vLine2=[[UIView alloc] initWithFrame:CGRectMake(0, 105, self.view.frame.size.width,2)];
- [vLine2 setBackgroundColor:[UIColor whiteColor]];
- [vv2 addSubview:vLine2];
- 
- UILabel *lbl22=[[UILabel alloc] initWithFrame:CGRectMake(10,117, self.view.frame.size.width-20, 40)];
- [vv2 addSubview:lbl22];
- 
- [lbl12 setText:@"Type in for a quick search in the database"];
- [lbl22 setText:@"SEARCH BY CATEGORIES BELOW"];
- 
- [lbl12 setTextAlignment:NSTextAlignmentCenter];
- [lbl22 setTextAlignment:NSTextAlignmentCenter];
- 
- [lbl12 setTextColor:[UIColor whiteColor]];
- [lbl22 setTextColor:[UIColor whiteColor]];
- 
- 
- scrollerTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v.frame.origin.y+v.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-(v.frame.origin.y+v.frame.size.height))];
- [v1 addSubview:scrollerTable];
- scrollerTable.dataSource=self;
- scrollerTable.delegate=self;
- 
- scrollerTable2=[[UITableView alloc] initWithFrame:CGRectMake(0, vv2.frame.origin.y+vv2.frame.size.height, self.view.frame.size.width, scroll1.frame.size.height-(vv2.frame.origin.y+vv2.frame.size.height))];
- [v2 addSubview:scrollerTable2];
- scrollerTable2.dataSource=self;
- scrollerTable2.delegate=self;
- 
- self.automaticallyAdjustsScrollViewInsets = NO;
- 
- page1=[[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-15, 60, 30, 20)];
- [page1 setNumberOfPages:2];
- [page1 setCurrentPage:0];
- 
- [self.view addSubview:page1];
- [self.view bringSubviewToFront:page1];
- }
- */
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -397,7 +306,6 @@ int n;
     
     NSLog(@"lblName.text=%@",lblName.text);
     
-    // [lblName2 setText:@"Examples:Proingravida,nibh vel velit,aliquet"];
     [lblName setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblName2 setTextColor:[UIColor colorWithRed:108.0/255.0 green:107.0/255.0 blue:108.0/255.0 alpha:1.0]];
     
@@ -408,18 +316,23 @@ int n;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:( NSIndexPath *)indexPath
 {
-    //immunisationDictArr,medicationDictArr
 
-    NSDictionary *d;
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
-    
+     NSDictionary *d;
     if(self.scrollerTable==tableView)
     {
-        NSLog(@"_medicationArr selected=%@",[_medicationArr objectAtIndex:indexPath.row]);
-        d=[medicationDictArr objectAtIndex:indexPath.row];
+        EncyclopediaData *enc = [_medicationArr objectAtIndex:indexPath.row];
+        
+        NSLog(@"Position of enc in main array=%lu",(unsigned long)[_medicationArrHolder indexOfObject:enc]);
+
+        NSLog(@"_medicationArr selected=%@ enc.title=%@",[_medicationArr objectAtIndex:indexPath.row],enc.title);
+        
+         d=[medicationDictArr objectAtIndex:[_medicationArrHolder indexOfObject:enc]];
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"title"] forKey:@"selectedMedicationLbl"];
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"items"] forKey:@"selectedMedicationArray"];
+        
+        
         [self performSegueWithIdentifier:@"medicationcategorysegu" sender:self];
         
         
@@ -427,16 +340,20 @@ int n;
     else
     {
         
+        EncycloMedicationData *enc = [_immunisationArr objectAtIndex:indexPath.row];
+       
+
         NSLog(@"_immunisationArr selected=%@",[_immunisationArr objectAtIndex:indexPath.row]);
 
-        d=[immunisationDictArr objectAtIndex:indexPath.row];
-        
+        d=[immunisationDictArr objectAtIndex:[_immunisationArrHolder indexOfObject:enc]];
+
+        //d=[immunisationDictArr objectAtIndex:indexPath.row];
         [[NSUserDefaults standardUserDefaults] setObject:[d objectForKey:@"title"] forKey:@"selectedMedicationLbl"];
         [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"selectedImmunisationTypeDetail"];
+        
         [self performSegueWithIdentifier:@"immunisationtypesegu" sender:self];
         
     }
-    
     
     
     
@@ -458,6 +375,7 @@ int n;
 {
     return 70;
 }
+
 
 
 -(void)success:(id)response
@@ -574,25 +492,22 @@ int n;
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
-/*
- [lblName setText:[d objectForKey:@"title"]];
- [lblName2 setText:[d objectForKey:@"description"]];
- */
-
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    //
+    NSLog(@"User searched textDidChange %@", searchBar.text);
+    [self handleSearch:searchBar];
+    if ([searchText length] == 0)
+    {
+        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
+    }
+}
+- (void)handleSearch:(UISearchBar *)searchBar
+{
+    
+    //check what was passed as the query String and get rid of the keyboard
+    NSLog(@"handleSearchUser searched for %@", searchBar.text);
+    
     if([searchBar isEqual:search2])
     {
         
@@ -608,7 +523,7 @@ int n;
         
         [self.scrollerTable2 reloadData];
         
-        [search2 resignFirstResponder];
+       // [search2 resignFirstResponder];
         
     }
     else
@@ -625,8 +540,37 @@ int n;
         
         [self.scrollerTable reloadData];
         
-        [search resignFirstResponder];
+       // [search resignFirstResponder];
     }
+
+    
+  
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"searchBarCancelButtonClicked");
+}
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    //
+    [searchBar resignFirstResponder];
+  /*  if([searchBar isEqual:search2])
+    {
+         _immunisationArr = _immunisationArrHolder;
+        [self.scrollerTable2 reloadData];
+
+    }
+    else
+    {
+         _medicationArr = _medicationArrHolder;
+        [self.scrollerTable reloadData];
+
+    }*/
+    
 }
 
 @end
