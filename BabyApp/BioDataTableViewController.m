@@ -190,7 +190,10 @@
         [self.navigationItem setHidesBackButton:NO animated:NO];
         [self.navigationItem setHidesBackButton:NO];
         
-        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        
+        //initWithTitle:@"<" style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        
         [self.navigationItem setLeftBarButtonItem:leftBtn animated:YES];
     }
 }
