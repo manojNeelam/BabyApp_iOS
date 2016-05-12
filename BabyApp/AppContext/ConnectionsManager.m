@@ -250,7 +250,11 @@ static NSString * const BaseURLString = BaseUrl;
 }
 
 
+-(void)getSliderListHome:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
+{
+    [self getToURL:@"get_profile_slider" withParameters:params delegate:delegate];
 
+}
 
 
 -(void)loginUser:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate

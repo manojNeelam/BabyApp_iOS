@@ -6,7 +6,7 @@
 //  Copyright © 2016 Infinity. All rights reserved.
 //
 #define SIZEFONT  15
-#define SIZE_ICON_HEIGHT 65
+#define SIZE_ICON_HEIGHT 55 // 65
 
 #import "HomeViewController2.h"
 #import <QuartzCore/QuartzCore.h>
@@ -23,7 +23,7 @@
 {
     UIPageControl *pageHome;
     NSArray *titlesArray,*imagesNames,*colorArray;
-    NSArray *list;
+    NSArray *list,*sliderList;
     int selectedChildIndex;
     ChildDetailsData *child;
     
@@ -44,12 +44,12 @@
     NSInteger page = scrollView.contentOffset.x / width;
     
     [pageHome setCurrentPage:page];
-    child =[list objectAtIndex:pageHome.currentPage];
+  /*  child =[list objectAtIndex:pageHome.currentPage];
     [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
     
     NSLog(@"current page=%ld",(long)pageHome.currentPage);
 
-    [self.home2Table reloadData];
+    [self.home2Table reloadData];*/
 
     
 }
@@ -105,21 +105,24 @@
         NSLog (@"Successfully received the UploadNotification! userInfo=%@",userInfo);
         int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue];
         
-        [_home2Scorll setContentOffset:CGPointMake(_home2Scorll.frame.size.width*n, _home2Scorll.frame.origin.y) animated:NO];
+        /*[_home2Scorll setContentOffset:CGPointMake(_home2Scorll.frame.size.width*n, _home2Scorll.frame.origin.y) animated:NO];
         [pageHome setCurrentPage:n];
+        ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];*/
         
-        ChildDetailsData *childUser = [list objectAtIndex:pageHome.currentPage];
-        [NSUserDefaults saveObject:childUser.child_id forKey:CURRENT_CHILD_ID];
+        child = [list objectAtIndex:n];
+        selectedChildIndex=n;
 
-        
+        [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
+
+           [self loadChild];
     }
 }
 
 -(void)showAddbio
 {
-    
+    sliderList=nil;
 
-      UIViewController *vc ;
+    UIViewController *vc;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
@@ -155,7 +158,7 @@
     {
         list=listChild;
         
-        child = [list objectAtIndex:0];
+        child = [list objectAtIndex:selectedChildIndex];
 
         [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
         [self.home2Table reloadData];
@@ -182,6 +185,7 @@
     NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     NSDictionary *params = @{@"user_id" : s};
     
+    list=nil;
     NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
     
     [[ConnectionsManager sharedManager] childrenDetails:params  withdelegate:self];
@@ -205,7 +209,9 @@
     int i=0;
     for( ;i<list.count;i++)
     {
-        ChildDetailsData *childUser = [list objectAtIndex:i];
+        //ChildDetailsData *childUser = [list objectAtIndex:i];
+        ChildDetailsData *childUser = child;
+
 
         UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
         [vv2 setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
@@ -253,7 +259,7 @@
         [iv setImageWithURL:[NSURL URLWithString:childUser.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
         
         vv2.tag=2000+i;
-        
+        break;
     }
     
     [_home2Scorll setContentSize:CGSizeMake(self.view.frame.size.width*i, _home2Scorll.frame.size.height)];
@@ -268,7 +274,92 @@
     [self.view addSubview:pageHome];
     [self.view bringSubviewToFront:pageHome];
     
+    if(list.count>0&&sliderList.count==0)
+    {
+        NSLog(@"calling of getAllSlider at home page");
+        [[ConnectionsManager sharedManager] getSliderListHome:nil withdelegate:self];
+    }
+    else if(sliderList.count>0)
+        [self drawViewInScrollForChildAt2];
 }
+
+
+-(void)drawViewInScrollForChildAt2
+{
+    int i=1,k=0,p;
+    
+    for( ;i<(sliderList.count+1);i++)
+    {
+        NSLog(@"in drawViewInScrollForChildAt2");
+
+        NSDictionary *sliderDict = [sliderList objectAtIndex:k++];
+        
+        UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
+        [vv2 setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
+        [_home2Scorll addSubview:vv2];
+        
+        
+        UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(0,0, vv2.frame.size.width, vv2.frame.size.height)];
+        
+        [vv2 addSubview:iv];
+
+        /* [[iv layer] setCornerRadius:iv.frame.size.height/2];
+        [iv setClipsToBounds:YES];
+        
+        [[iv layer] setBorderWidth:15];
+        [[iv layer] setBorderColor:[UIColor colorWithRed:35.0/255.0 green:127.0/255.0 blue:118.0/255.0 alpha:1.0].CGColor];
+        */
+        iv.tag=100+i;
+
+        
+        UIButton *bt=[[UIButton alloc] initWithFrame:iv.frame];
+      //  [bt addTarget:self action:@selector(btnTap:) forControlEvents:UIControlEventTouchUpInside];
+        [vv2 addSubview:bt];
+        
+        bt.tag=200+i;
+        
+        UILabel *lbl1=nil,*lbl2=nil;
+        
+        lbl1=[[UILabel alloc] initWithFrame:CGRectMake(20,iv.frame.origin.y+iv.frame.size.height, vv2.frame.size.width-40, 30)];
+        lbl1.tag=10;
+        [vv2 addSubview:lbl1];
+        
+        lbl2=[[UILabel alloc] initWithFrame:CGRectMake(20,lbl1.frame.origin.y+lbl1.frame.size.height, vv2.frame.size.width-40, 20)];
+        lbl2.tag=20;
+        [vv2 addSubview:lbl2];
+        
+        [lbl1 setTextAlignment:NSTextAlignmentCenter];
+        [lbl2 setTextAlignment:NSTextAlignmentCenter];
+        [lbl1 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                      size:24]];
+        
+        [lbl1 setTextColor:[UIColor whiteColor]];
+        //lbl1.text=@"Margerie Tyrell";
+        lbl1.text=[sliderDict objectForKey:@"title"];
+        
+        
+        [iv setImageWithURL:[NSURL URLWithString:[sliderDict objectForKey:@"url"]] placeholder:[UIImage imageNamed:@"home_kid.png"]];
+       [iv setContentMode:UIViewContentModeScaleAspectFill];
+       [iv setClipsToBounds:YES];
+        
+        vv2.tag=2000+i;
+        
+    }
+    
+    [_home2Scorll setContentSize:CGSizeMake(self.view.frame.size.width*i, _home2Scorll.frame.size.height)];
+    [_home2Scorll setBounces:NO];
+    [_home2Scorll setPagingEnabled:YES];
+    
+    
+    pageHome=[[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-15, _home2Scorll.frame.size.height-20, 30, 20)];
+    [pageHome setNumberOfPages:i];
+    [pageHome setCurrentPage:0];
+    
+    [self.view addSubview:pageHome];
+    [self.view bringSubviewToFront:pageHome];
+    
+}
+
 
 
 
@@ -474,8 +565,11 @@
     [overlayView addSubview:backButton];
     
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-new.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-70, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    //[drugButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-new.png"] forState:UIControlStateNormal];
+    
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-new_home.png"] forState:UIControlStateNormal];
+
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-60, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(newImmuAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
@@ -490,15 +584,17 @@
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     NSString *immuStr = @"View My Immunisation";
-     [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar.png"] forState:UIControlStateNormal];
+   //  [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar.png"] forState:UIControlStateNormal];
+      [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar_home.png"] forState:UIControlStateNormal];
     if(!child.immunisationList.count)
     {
         immuStr = @"View My Immunisation \n(no summary yet)";
-        [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar.png"] forState:UIControlStateNormal];
+       // [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar.png"] forState:UIControlStateNormal];
+         [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar_home.png"] forState:UIControlStateNormal];
+        
     }
-    
    
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+10, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(immuMy) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
@@ -514,18 +610,21 @@
    
     
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar.png"] forState:UIControlStateNormal];
+   // [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar.png"] forState:UIControlStateNormal];
+    
+     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar_home.png"] forState:UIControlStateNormal];
     
     NSString *immuStr2 = @"Immunisation Information";
     
     if(!child.immunisationList.count)
     {
         immuStr2 = @"Immunisation Information \n(no summary yet)";
-        [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar.png"] forState:UIControlStateNormal];
+      //  [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar.png"] forState:UIControlStateNormal];
+         [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar_home.png"] forState:UIControlStateNormal];
     }
 
     
-    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+50+10, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+50+15, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton2 addTarget:self action:@selector(immuInfoAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
@@ -569,14 +668,16 @@
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"middle-screening.png"] forState:UIControlStateNormal];
-    backButton.frame=CGRectMake(10, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + heightView +15, 80, 80);
+    backButton.frame=CGRectMake(10, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + heightView +18, 80, 80);
     
     [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
     
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+   // [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new.png"] forState:UIControlStateNormal];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new_home.png"] forState:UIControlStateNormal];
+    
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
@@ -589,15 +690,17 @@
     //
     
     NSString *immuStr = @"View My Screening";
-    
+    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    // [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary.png"] forState:UIControlStateNormal];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary_home.png"] forState:UIControlStateNormal];
+
     if(!child.screeningList.count)
     {
-        immuStr = @"View My Screening \n(no summary yet)";
+        immuStr = @"NO Screening \n(no summary yet)";
+         [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary_home.png"] forState:UIControlStateNormal];
     }
 
-    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary.png"] forState:UIControlStateNormal];
-    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+       drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton2 addTarget:self action:@selector(myScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
@@ -612,19 +715,21 @@
     //
     
     NSString *immuSt = @"Percentile Information";
-    
+    UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //  [medicalButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary.png"] forState:UIControlStateNormal];
+    [medicalButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary_home.png"] forState:UIControlStateNormal];
+
     if(!child.immunisationList.count)
     {
         immuSt = @"Percentile Information \n(no Percentile yet)";
+         [medicalButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary_home.png"] forState:UIControlStateNormal];
     }
     
     
     
   
     
-    UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [medicalButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary.png"] forState:UIControlStateNormal];
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+     medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+30, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(percentileScreening) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
@@ -649,13 +754,14 @@
     
    
     UIButton *medicalButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_visual_option.png"] forState:UIControlStateNormal];
-    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    //[medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_visual_option.png"] forState:UIControlStateNormal];
+     [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"hb_visual_option_home.png"] forState:UIControlStateNormal];
+    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+(SIZE_ICON_HEIGHT+10), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton2 addTarget:self action:@selector(visualScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
     
-    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+SIZE_ICON_HEIGHT+10, medicalButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    UILabel *medicalLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+20, medicalButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel2.text=immuStr2;
     medicalLabel2.numberOfLines=2;
     medicalLabel2.textAlignment=NSTextAlignmentLeft;
@@ -676,13 +782,16 @@
     
     
     UIButton *medicalButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [medicalButton3 setBackgroundImage:[UIImage imageNamed:@"hb_teeth.png"] forState:UIControlStateNormal];
-    medicalButton3.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton2.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+  //  [medicalButton3 setBackgroundImage:[UIImage imageNamed:@"hb_teeth.png"] forState:UIControlStateNormal];
+    
+     [medicalButton3 setBackgroundImage:[UIImage imageNamed:@"hb_teeth_home.png"] forState:UIControlStateNormal];
+    
+    medicalButton3.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton2.frame.origin.y+SIZE_ICON_HEIGHT+10, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton3 addTarget:self action:@selector(dentalScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton3];
     
     
-    UILabel *medicalLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+SIZE_ICON_HEIGHT, medicalButton3.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    UILabel *medicalLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton2.frame.origin.x+50+20, medicalButton3.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     medicalLabel3.text=immuStr2;
     medicalLabel3.numberOfLines=2;
     medicalLabel3.textAlignment=NSTextAlignmentLeft;
@@ -725,14 +834,16 @@
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-bottom.png"] forState:UIControlStateNormal];
-    backButton.frame=CGRectMake(10, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + heightView +15, 80, 80);
+    backButton.frame=CGRectMake(8, _home2Scorll.frame.origin.y + _home2Scorll.frame.size.height + heightView +18, 80, 80);
     
     [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
-    //
+    //encyclopedia-floting-medication_home.png
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication.png"] forState:UIControlStateNormal];
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+   // [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication.png"] forState:UIControlStateNormal];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication_home.png"] forState:UIControlStateNormal];
+
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(encyclopediaMedication) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
@@ -750,8 +861,10 @@
     
    
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu.png"] forState:UIControlStateNormal];
-    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+   // [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu.png"] forState:UIControlStateNormal];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu_home.png"] forState:UIControlStateNormal];
+
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton2 addTarget:self action:@selector(encyclopediaImmunisation) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton2];
     
@@ -770,8 +883,9 @@
     
     
     UIButton *drugButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
-    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    //[drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
+     [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option_home.png"] forState:UIControlStateNormal];
+    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton3 addTarget:self action:@selector(encyclopediaChildSafety) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton3];
     
@@ -792,8 +906,9 @@
     NSString *immuSt = @"Developmental Assesment";
     
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+20, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+   // [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option.png"] forState:UIControlStateNormal];
+     [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option_home.png"] forState:UIControlStateNormal];
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [medicalButton addTarget:self action:@selector(encyclopediaDevelopmental) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
@@ -1009,6 +1124,19 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
         NSDictionary *responseDict = (NSDictionary *)response;
+            
+           if(list.count>0&&sliderList.count==0)
+            {
+                sliderList= responseDict[@"data"][@"image_list"];
+                NSLog(@"At homepage Slider Api Result responseDict=%@ sliderList.count=%d",responseDict,sliderList.count);
+                
+                [self drawViewInScrollForChildAt2];
+
+            }
+           else
+           {
+               NSLog(@"At homepage getchild list Api Result");
+
             if ([responseDict[@"status"] boolValue])
             {
                 
@@ -1055,9 +1183,10 @@
                 
 
             }
+        
             else{
                 
-            }
+            }}
         });
     }
     else if([statusStr isEqualToString:@"0"])

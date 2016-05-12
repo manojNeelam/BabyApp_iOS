@@ -55,7 +55,12 @@
     //@"Baby Booklet"
     section1Array=[NSArray arrayWithObjects:@"New Immunisation",@"New Screening", nil];
    // section2Array=[NSArray arrayWithObjects:@"My Immunisation",@"My Screening",@"My Growth Percentiles",@"Health Book",@"Encyclopedia", nil];
-     section2Array=[NSArray arrayWithObjects:@"My Growth Percentiles",@"Health Book",@"Bio Data",@"Support (FAQ)",@"About (Disclaimer)", nil];
+    
+   //  section2Array=[NSArray arrayWithObjects:@"My Growth Percentiles",@"Health Book",@"Bio Data",@"Support (FAQ)",@"About (Disclaimer)", nil];
+   
+    section2Array=[NSArray arrayWithObjects:@"My Growth Percentiles",@"Bio Data",@"Support (FAQ)",@"About (Disclaimer)", nil];
+
+    
     section3Array=[NSArray arrayWithObjects:@"Settings",@"Sign Out", nil];
     
     
@@ -311,19 +316,22 @@
                   
                     
                 }
-                if (indexPath.row== 2) {
+               /* if (indexPath.row== 2)
+                {
                     
                     // [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myImmunisattion.png"] forState:UIControlStateNormal];
                     [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
                     
-                }
-                if (indexPath.row== 3) {
+                }*/
+                if (indexPath.row== 2)//3
+                {
                     // [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"myScreening.png"] forState:UIControlStateNormal];
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Support Icon1.png"] forState:UIControlStateNormal];
                     
                 }
-                if (indexPath.row== 4) {
-                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"healthBookletnew.png"] forState:UIControlStateNormal];
+                if (indexPath.row== 3)//4
+                {
+                    [cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"About Disclaimer.png"] forState:UIControlStateNormal];
                    //[cell2.imageButton setBackgroundImage:[UIImage imageNamed:@"Encyclopedianew.png"] forState:UIControlStateNormal];
                     
                 }
@@ -553,22 +561,22 @@
                     
                     break;
                     
-                case 1:
+              /*  case 1:
                      vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Health"];
                     
-                    break;
+                    break;*/
                     
-                case 2:
+                case 1:  //1
                   //vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Immunisation"];
                       vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AddBio"];
                     break;
                     
-                case 3:
+                case 2:     //3
                      vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SupportViewController_SB_ID"];
                     
                    // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Screening"];
                     break;
-                case 4:
+                case 3:       //4
                   vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"AboutViewController_SB_ID"];
                    // vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
                     break;
