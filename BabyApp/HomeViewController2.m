@@ -26,7 +26,7 @@
     NSArray *list,*sliderList;
     int selectedChildIndex;
     ChildDetailsData *child;
-    
+    CGRect scrollRect;
     UIView *overlayView;
     
     
@@ -44,6 +44,20 @@
     NSInteger page = scrollView.contentOffset.x / width;
     
     [pageHome setCurrentPage:page];
+    
+    
+    
+    if(page>0)
+    {
+        [_home2Table setHidden:YES];
+        _home2Scorll.frame=CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    else
+    {
+         _home2Scorll.frame=scrollRect;
+        [_home2Table setHidden:NO];
+
+    }
   /*  child =[list objectAtIndex:pageHome.currentPage];
     [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
     
@@ -74,7 +88,7 @@
     
     [self.view addSubview:_home2Scorll];
     
-    
+    scrollRect=_home2Scorll.frame;
     [_home2Scorll setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
     
     _home2Scorll.delegate=self;
@@ -101,6 +115,12 @@
 {
     if ([[notification name] isEqualToString:@"UploadNotification"])
     {
+        if([_home2Table isHidden])
+        {
+            _home2Scorll.frame=scrollRect;
+            [_home2Table setHidden:NO];
+
+        }
         NSDictionary* userInfo = notification.userInfo;
         NSLog (@"Successfully received the UploadNotification! userInfo=%@",userInfo);
         int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue];
@@ -294,12 +314,14 @@
 
         NSDictionary *sliderDict = [sliderList objectAtIndex:k++];
         
-        UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
+        //UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
+          UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, self.view.frame.size.height)];
         [vv2 setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
         [_home2Scorll addSubview:vv2];
         
         
         UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(0,0, vv2.frame.size.width, vv2.frame.size.height)];
+        [self.view bringSubviewToFront:iv];
         
         [vv2 addSubview:iv];
 
@@ -351,11 +373,14 @@
     [_home2Scorll setPagingEnabled:YES];
     
     
-    pageHome=[[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-15, _home2Scorll.frame.size.height-20, 30, 20)];
+ /*   pageHome=[[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-15, _home2Scorll.frame.size.height-20, 30, 20)];
     [pageHome setNumberOfPages:i];
     [pageHome setCurrentPage:0];
     
-    [self.view addSubview:pageHome];
+    [self.view addSubview:pageHome];*/
+    [pageHome setNumberOfPages:i];
+    [pageHome setCurrentPage:0];
+
     [self.view bringSubviewToFront:pageHome];
     
 }
