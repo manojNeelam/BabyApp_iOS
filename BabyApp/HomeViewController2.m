@@ -47,7 +47,7 @@
     
     
     
-    if(page>0)
+   /* if(page>0)
     {
         [_home2Table setHidden:YES];
         _home2Scorll.frame=CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
@@ -57,7 +57,9 @@
          _home2Scorll.frame=scrollRect;
         [_home2Table setHidden:NO];
 
-    }
+    }*/
+    
+    
   /*  child =[list objectAtIndex:pageHome.currentPage];
     [NSUserDefaults saveObject:child.child_id forKey:CURRENT_CHILD_ID];
     
@@ -115,12 +117,12 @@
 {
     if ([[notification name] isEqualToString:@"UploadNotification"])
     {
-        if([_home2Table isHidden])
+        /*if([_home2Table isHidden])
         {
             _home2Scorll.frame=scrollRect;
             [_home2Table setHidden:NO];
 
-        }
+        }*/
         NSDictionary* userInfo = notification.userInfo;
         NSLog (@"Successfully received the UploadNotification! userInfo=%@",userInfo);
         int n=[[userInfo objectForKey:@"leftMenuSelection"] intValue];
@@ -314,8 +316,8 @@
 
         NSDictionary *sliderDict = [sliderList objectAtIndex:k++];
         
-        //UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
-          UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, self.view.frame.size.height)];
+        UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, _home2Scorll.frame.size.height)];
+        //  UIView *vv2=[[UIView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width, 0,self.view.frame.size.width, self.view.frame.size.height)];
         [vv2 setBackgroundColor:[UIColor colorWithRed:60.0/255.0 green:125.0/255.0 blue:116.0/255.0 alpha:1.0]];
         [_home2Scorll addSubview:vv2];
         
@@ -378,6 +380,7 @@
     [pageHome setCurrentPage:0];
     
     [self.view addSubview:pageHome];*/
+    
     [pageHome setNumberOfPages:i];
     [pageHome setCurrentPage:0];
 
