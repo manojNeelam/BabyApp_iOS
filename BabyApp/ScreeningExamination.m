@@ -79,22 +79,27 @@ NSArray *labelArrayExamination;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
     
     
-    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if(childStr && childStr != nil)
+    NSString *screenID = [[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"];
+    if(screenID && screenID != nil)
     {
-        [dict setObject:childStr forKey:@"child_id"];
+        NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        if(childStr && childStr != nil)
+        {
+            [dict setObject:childStr forKey:@"child_id"];
+        }
+        else
+        {
+            [dict setObject:@"52" forKey:@"child_id"];
+        }
+        [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+        
+        [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+        
+        NSLog(@"dict=%@",dict);
+        [[ConnectionsManager sharedManager] readPhysicalExamination:dict withdelegate:self];
     }
-    else
-    {
-        [dict setObject:@"52" forKey:@"child_id"];
-    }
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    
-    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
-    
-    NSLog(@"dict=%@",dict);
-    [[ConnectionsManager sharedManager] readPhysicalExamination:dict withdelegate:self];
+   
     
     
     

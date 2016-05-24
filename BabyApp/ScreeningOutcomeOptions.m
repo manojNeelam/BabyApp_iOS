@@ -24,9 +24,11 @@
     CustomIOS7AlertView *dateAlertView;
     UIDatePicker *datePicker;
     NSString *selectedDate;
-    UITextField *lblName2;
+    UIButton *lblName2;
     UIButton *lblName1;
     NSMutableArray *txtfieldAr;
+    
+    UITextField *selectedDateTxtFld;
 }
 @end
 
@@ -103,7 +105,8 @@ UIButton *refBtn;
              */
             
         [lblName1 setTitle:[dataList_ objectForKey:@"outcome_type"] forState:UIControlStateNormal];
-        lblName2.text=[dataList_ objectForKey:@"outcome_next_routine"];
+            [lblName2 setTitle:[dataList_ objectForKey:@"outcome_next_routine"] forState:UIControlStateNormal];
+            //text=;
         [(UITextField*)[txtfieldAr objectAtIndex:0] setText:[dataList_ objectForKey:@"outcome_doctore"]];
         [(UITextField*)[txtfieldAr objectAtIndex:1] setText:[dataList_ objectForKey:@"outcome_idnumber"]];
         [(UITextField*)[txtfieldAr objectAtIndex:2] setText:[dataList_ objectForKey:@"outcome_clinic"]];
@@ -152,7 +155,7 @@ UIButton *refBtn;
 }
 
 
--(void)textFieldDidEndEditing:(UITextField *)sender
+/*-(void)textFieldDidEndEditing:(UITextField *)sender
 {
     if  (self.view.frame.origin.y >= 0)
     {
@@ -170,17 +173,10 @@ UIButton *refBtn;
     }
     
     
-}
+}*/
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 3)
-    {
-        [textField resignFirstResponder];
-        [self openDate];
-        
-        return NO;
-    }
     return YES;
 }
 
@@ -215,14 +211,21 @@ UIButton *refBtn;
     NSString * dateFromData = [DateTimeUtil stringFromDateTime:datePicker.date withFormat:@"dd-MM-yyyy"];
     selectedDate = dateFromData;
     
-    StoresTableViewCell *cell = (StoresTableViewCell *)[screeningOutcomeOptionTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    [cell.lblName setText:dateFromData];
+    if(selectedDateTxtFld && selectedDateTxtFld != nil)
+    {
+        StoresTableViewCell *cell = (StoresTableViewCell *)[screeningOutcomeOptionTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+        [cell.lblName setText:dateFromData];
+    }
+    else
+    {
+        [lblName2 setTitle:selectedDate forState:UIControlStateNormal];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.view endEditing:YES];
-    [self setViewMovedUp:NO];
+    //[self setViewMovedUp:NO];
     
     return YES;
 }
@@ -285,7 +288,11 @@ UIButton *refBtn;
     [v2 addSubview:lblHeading2];
     
    lblName2=nil;
-    lblName2=[[UITextField alloc] initWithFrame:CGRectMake(190,10, v2.frame.size.width-195, 30)];
+    lblName2=[UIButton buttonWithType:UIButtonTypeCustom];
+    [lblName2 setFrame:CGRectMake(190,10, v2.frame.size.width-195, 30)];
+    [lblName2 setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [lblName2 addTarget:self action:@selector(onClickOpenMainDate:) forControlEvents:UIControlEventTouchUpInside];
+    //alloc] initWithFrame:CGRectMake(190,10, v2.frame.size.width-195, 30)];
     lblName2.tag=201;
     [v2 addSubview:lblName2];
     
@@ -296,7 +303,7 @@ UIButton *refBtn;
     lblHeading2.text=@"Next routine check at";
     
     [lblHeading1 setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:15]];
-    lblName2.placeholder=@"Date";
+    [lblName2 setTitle:@"Date" forState:UIControlStateNormal]; //.placeholder=@"Date";
     
     screeningOutcomeOptionTable=[[UITableView alloc] initWithFrame:CGRectMake(0, v2.frame.origin.y+v2.frame.size.height+25, self.view.frame.size.width, 240)];
     [self.view addSubview:screeningOutcomeOptionTable];
@@ -308,27 +315,36 @@ UIButton *refBtn;
     
     
     NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if(childStr && childStr != nil)
+    
+    NSString *screenID = [[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"];
+    if(screenID && screenID != nil)
     {
-        [dict setObject:childStr forKey:@"child_id"];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        if(childStr && childStr != nil)
+        {
+            [dict setObject:childStr forKey:@"child_id"];
+        }
+        else
+        {
+            [dict setObject:@"52" forKey:@"child_id"];
+        }
+        [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+        
+        [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+        
+        NSLog(@"dict=%@",dict);
+        [[ConnectionsManager sharedManager] readOutCome:dict withdelegate:self];
     }
-    else
-    {
-        [dict setObject:@"52" forKey:@"child_id"];
-    }
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    
-    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
-    
-    NSLog(@"dict=%@",dict);
-    [[ConnectionsManager sharedManager] readOutCome:dict withdelegate:self];
-    
 }
 
 -(void)onClickSave:(id)sender
 {
     
+    NSString *screeid = [[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"];
+    if(!screeid || screeid == nil)
+    {
+        return;
+    }
     
     NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -342,10 +358,10 @@ UIButton *refBtn;
     }
     [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
     
-    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    [dict setObject:screeid forKey:@"screening_id"];
     
     [dict setObject:[lblName1 titleForState:UIControlStateNormal] forKey:@"outcome_type"];
-    [dict setObject:lblName2.text forKey:@"outcome_next_routine"];
+    [dict setObject:lblName2.titleLabel.text forKey:@"outcome_next_routine"];
     [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:0] text] forKey:@"outcome_doctore"];
     [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:1] text] forKey:@"outcome_idnumber"];
     [dict setObject:[(UITextField*)[txtfieldAr objectAtIndex:2] text] forKey:@"outcome_clinic"];
@@ -373,6 +389,24 @@ UIButton *refBtn;
         [cell.lblName setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [cell.contentView addSubview:cell.lblName];
         [txtfieldAr addObject:cell.lblName];
+        
+       
+        cell.btnDate=[UIButton buttonWithType:UIButtonTypeCustom];
+        [cell.btnDate setFrame:CGRectMake(140,15, tableView.frame.size.width-145, 30)];
+        [cell.btnDate addTarget:self action:@selector(onClickOpenDate:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnDate.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
+        [cell.contentView addSubview:cell.btnDate];
+    }
+    
+    if(indexPath.row == 3)
+    {
+        [cell.lblName setEnabled:NO];
+        [cell.btnDate setHidden:NO];
+    }
+    else
+    {
+        [cell.lblName setEnabled:YES];
+        [cell.btnDate setHidden:YES];
     }
     
     [cell setBackgroundColor:[UIColor whiteColor]];
@@ -400,12 +434,25 @@ UIButton *refBtn;
 {
     return 50;
 }
+
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"accessoryButtonTappedForRowWithIndexPath at row=%ld",(long)indexPath.row);
 }
 
+-(void)onClickOpenDate:(id)sender
+{
+    StoresTableViewCell *cell = (StoresTableViewCell *)[screeningOutcomeOptionTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    selectedDateTxtFld = cell.lblName;
+    [self openDate];
+}
 
+//onClickOpenMainDate
+-(void)onClickOpenMainDate:(id)sender
+{
+    selectedDateTxtFld = nil;
+    [self openDate];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

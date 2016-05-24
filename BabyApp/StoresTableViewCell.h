@@ -11,5 +11,5 @@
 @interface StoresTableViewCell : UITableViewCell
 @property (nonatomic, strong) UILabel *lblHeading;
 @property (nonatomic, strong) UITextField *lblName;
-
+@property (nonatomic, strong) UIButton *btnDate;
 @end
