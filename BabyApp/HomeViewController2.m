@@ -276,7 +276,40 @@
         
         [lbl2 setFont:[UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15]];
         [lbl2 setTextColor:[UIColor whiteColor]];
-         lbl2.text=@"5 months old";
+        //
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+       // [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+
+        NSDate *date = [dateFormatter dateFromString:childUser.dob];
+        
+        
+        NSDate *dateTemp = [[NSDate alloc] init];
+        NSDateFormatter *dateFormat1 = [[NSDateFormatter alloc] init];
+        
+        [dateFormat1 setDateFormat:@"dd-MM-yyyy"];
+        
+        NSString *d2 = [dateFormat1 stringFromDate:dateTemp];
+        NSLog(@"date=%@ dateTemp=%@ d2=%@",date,dateTemp,d2);
+        
+        NSDate *date2 = [dateFormatter dateFromString:d2];
+        NSLog(@"date2=%@ ",date2);
+        
+        NSTimeInterval secondsBetween = [date2 timeIntervalSinceDate:date];
+        
+        int numberOfDays = secondsBetween / 86400;
+        
+        NSLog(@"There are %d days in between the two dates.", numberOfDays);
+        if(numberOfDays>=30)
+        lbl2.text=[NSString stringWithFormat:@"%d months old",numberOfDays/30];
+        else
+        lbl2.text=[NSString stringWithFormat:@"%d days old",numberOfDays/30];
+
+
+        //
+        
+        
+        // lbl2.text=@"5 months old";
 
         [iv setImageWithURL:[NSURL URLWithString:childUser.baby_image] placeholder:[UIImage imageNamed:@"home_kid.png"]];
         
