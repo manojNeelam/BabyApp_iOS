@@ -4,18 +4,22 @@
 //
 //  Created by Atul Awasthi on 08/03/16.
 //  Copyright © 2016 Infinity. All rights reserved.
-//
+//updateDevelopmentCheckList
 
 #import "ScreeningParentalViewController.h"
 #import "ConnectionsManager.h"
 #import "ScreeningDevCheckListObj.h"
+
+#import "NSUserDefaults+Helpers.h"
+#import "WSConstant.h"
+#import "CustomIOS7AlertView.h"
 
 @interface ScreeningParentalViewController ()<ServerResponseDelegate>
 
 @end
 
 @implementation ScreeningParentalViewController
-@synthesize screeningConcernTable, listOfObjects;
+@synthesize screeningConcernTable, listOfObjects,listOfObjects2;
 
 
 NSArray *labelArray2;
@@ -47,7 +51,10 @@ NSArray *labelArray2;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    if(listOfObjects2==nil)
+    {
+        listOfObjects2=[listOfObjects mutableCopy];
+    }
     
 }
 
@@ -147,20 +154,84 @@ NSArray *labelArray2;
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     UIButton *btIcon=[cell.contentView viewWithTag:20];
     
+    
+    ScreeningDevCheckListObj *screenDevCheckList = [listOfObjects2 objectAtIndex:indexPath.row];
+
     if([[btIcon backgroundImageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"unCheck"]])
     {
         [btIcon setBackgroundImage:[UIImage imageNamed:@"Screenings-checked_03.png"] forState:UIControlStateNormal];
+        screenDevCheckList.status=@"1";
     }
     else
     {
         [btIcon setBackgroundImage:[UIImage imageNamed:@"unCheck"] forState:UIControlStateNormal];
-    }
+        screenDevCheckList.status=@"0";
 
+    }
+    [listOfObjects2 replaceObjectAtIndex:indexPath.row withObject:screenDevCheckList];
     
     
     //    [self performSegueWithIdentifier:@"parentalconcernsegu" sender:self];
+    [self toUpdateStatus:screenDevCheckList];
+}
+
+-(void)toUpdateStatus:(ScreeningDevCheckListObj*)sc
+{
+   // [dict setObject:screen.screening_id forKey:@"screening_id"];
+  //  [[NSUserDefaults standardUserDefaults] objectForKey:@"selectedScreenId"];
+
+    
+    NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:childStr forKey:@"child_id"];
+    [dict setObject:sc.screenID forKey:@"id"];
+    [dict setObject:sc.status forKey:@"status"];
+
+    
+    NSLog(@"dict=%@",dict);
+    
+    [[ConnectionsManager sharedManager] updateDevelopmentCheckList:dict withdelegate:self];
     
 }
+
+-(void)success:(id)response
+{
+    
+    
+    NSDictionary *dict = response;
+    id statusStr_ = [dict objectForKey:@"status"];
+    NSString *statusStr;
+    
+    if([statusStr_ isKindOfClass:[NSNumber class]])
+    {
+        statusStr = [statusStr_ stringValue];
+    }
+    else
+    {
+        statusStr = statusStr_;
+    }
+    if([statusStr isEqualToString:@"1"])
+    {
+        
+        if ([[dict allKeys] containsObject:@"data"])
+        {
+            NSDictionary *dataList_ = [dict objectForKey:@"data"];
+            NSLog(@"api result   recived");
+            
+            
+            
+        }
+       
+    }
+    
+}
+
+-(void)failure:(id)response
+{
+    NSLog(@"failure");
+}
+
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

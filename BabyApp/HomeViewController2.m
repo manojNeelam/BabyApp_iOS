@@ -18,7 +18,7 @@
 #import "AppConstent.h"
 #import "EncyclopediaTapScroller.h"
 #import "ConnectionsManager.h"
-
+#import "ScreeningChildData.h"
 @interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, ServerResponseDelegate>
 {
     UIPageControl *pageHome;
@@ -462,7 +462,20 @@
     
     lbl1.text=titlesArray[indexPath.row];
     lbl1.textColor=[ self colorWithHexString:colorArray[indexPath.row]];
-    if(indexPath.row!=2)
+    if(indexPath.row==1)
+    {
+        
+        if(child&&child.screeningList)
+        {
+            ScreeningChildData *childData = [child.screeningList objectAtIndex:0];
+            lbl2.text=[NSString stringWithFormat:@"Next:%@ , due %@",childData.title,childData.due_date];
+
+        }
+        else
+            lbl2.text=@"Click Here to Show Detail";
+    }
+        
+   else if(indexPath.row!=2)
         lbl2.text=@"Click Here to Show Detail";
     else
         lbl2.text=@"Information on medicine and immunisations";

@@ -464,7 +464,6 @@ static NSString * const BaseURLString = BaseUrl;
 
 
 -(void)updateDevelopmentCheckList:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>)delegate
-//update_development_checklist
 {
     [self getToURL:@"update_development_checklist" withParameters:params delegate:delegate];
 }

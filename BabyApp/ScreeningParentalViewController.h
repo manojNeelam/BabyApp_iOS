@@ -11,4 +11,6 @@
 @interface ScreeningParentalViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic) UITableView *screeningConcernTable;
 @property (nonatomic, strong) NSArray *listOfObjects;
+@property (nonatomic, strong) NSMutableArray *listOfObjects2;
+
 @end

@@ -22,15 +22,7 @@ NSArray *labelArrayGrowthSummary;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
+    
 
     
     self.navigationItem.title =@"Growth Summary";

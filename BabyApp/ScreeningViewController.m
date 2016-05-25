@@ -290,6 +290,7 @@ else
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:( NSIndexPath *)indexPath
 {
     [[NSUserDefaults standardUserDefaults] setObject:[labelArray objectAtIndex:indexPath.row] forKey:@"selectedScreenLbl"];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"didDeselectRowAtIndexPath");
     if(indexPath.row==7)
@@ -514,6 +515,8 @@ else
                     currentScreening=0;
 
                     [self setHeaderLabelFor:currentScreening];
+                    
+                    
                 }
 
             }
@@ -605,20 +608,22 @@ else
     
     ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:pos];
     [lblHeading setText:screen.title];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NewScreening"])
-    {
+   // if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NewScreening"])
+  //  {
     [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
     [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"screening_id"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:screen.screening_id forKey:@"screening_id"];
+    [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"selectedScreenId"];
     [[ConnectionsManager sharedManager] readScreening:dict withdelegate:self];
-    }
+ //   }
 
   }
 -(void)getDevelopmentalDataOfParticularScreeningId:(NSDictionary*)screenigDt
 {
-    if([[screenigDt objectForKey:@"caregiver"] length]>0&&![[screenigDt objectForKey:@"caregiver"] isEqualToString:@""])
-    {
+   // if([[screenigDt objectForKey:@"caregiver"] length]>0&&![[screenigDt objectForKey:@"caregiver"] isEqualToString:@""])
+   // {
+        
     NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:[screenigDt objectForKey:@"id"] forKey:@"screening_id"];
@@ -627,12 +632,14 @@ else
     txtCare.text=[NSString stringWithFormat:@"  %@",[screenigDt objectForKey:@"caregiver"]];
     
     [self loadData:dict];
-    }
+  //  }
 }
+
+
 
 -(void)failure:(id)response
 {
-    
+    NSLog(@"failure");
 }
 
 
