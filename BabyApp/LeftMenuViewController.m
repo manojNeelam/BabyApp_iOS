@@ -632,6 +632,7 @@
             [NSUserDefaults deleteObjectForKey:IS_CHILD_NOT_AVAILABLE];
             
             AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+            [delegate setListOfChildrens:nil];
             [delegate checkValidUser];
         }
         else
