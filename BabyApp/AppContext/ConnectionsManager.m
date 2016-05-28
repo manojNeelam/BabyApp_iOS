@@ -440,6 +440,17 @@ static NSString * const BaseURLString = BaseUrl;
 }
 
 #pragma mark - children_details
+
+-(void)getSettingsData:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
+{
+    [self getToURL:@"settings_read" withParameters:params delegate:delegate];
+}
+
+-(void)updateSettingsData:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
+{
+    [self getToURL:@"settings_update" withParameters:params delegate:delegate];
+}
+
 -(void)childrenDetails:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate
 {
     [self getToURL:@"children_details" withParameters:params delegate:delegate];

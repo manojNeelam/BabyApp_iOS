@@ -104,5 +104,8 @@ typedef void (^CompletionBlock)(NSDictionary *result, NSError *error);
 //getGraph
 -(void)getHeightGraphForChild:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
 -(void)getSliderListHome:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
+-(void)getSettingsData:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
+-(void)updateSettingsData:(NSDictionary *)params withdelegate:(id<ServerResponseDelegate>) delegate;
+
 
 @end
