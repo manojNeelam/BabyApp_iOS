@@ -342,6 +342,8 @@
 		D86EC0531C99EF0E00E3B176 /* MedicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0521C99EF0E00E3B176 /* MedicationCategory.m */; };
 		D86EC0561C99EF4B00E3B176 /* ImmunisationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0551C99EF4B00E3B176 /* ImmunisationType.m */; };
 		D86EC0591C99FD7C00E3B176 /* GrowthSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */; };
+		D8722C8F1CF8E9E3008BE4C9 /* profile-encylo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8722C8D1CF8E9E3008BE4C9 /* profile-encylo_2.png */; };
+		D8722C901CF8E9E3008BE4C9 /* profile-screening_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8722C8E1CF8E9E3008BE4C9 /* profile-screening_2.png */; };
 		D8750D041CCDD94100821BCF /* OralHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750D031CCDD94100821BCF /* OralHealth.m */; };
 		D8750D061CCDDC7100821BCF /* Oral health.png in Resources */ = {isa = PBXBuildFile; fileRef = D8750D051CCDDC7100821BCF /* Oral health.png */; };
 		D8750D081CCDDF9300821BCF /* visualcheck.png in Resources */ = {isa = PBXBuildFile; fileRef = D8750D071CCDDF9300821BCF /* visualcheck.png */; };
@@ -909,6 +911,8 @@
 		D86EC0551C99EF4B00E3B176 /* ImmunisationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmunisationType.m; sourceTree = "<group>"; };
 		D86EC0571C99FD7C00E3B176 /* GrowthSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowthSummary.h; sourceTree = "<group>"; };
 		D86EC0581C99FD7C00E3B176 /* GrowthSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowthSummary.m; sourceTree = "<group>"; };
+		D8722C8D1CF8E9E3008BE4C9 /* profile-encylo_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-encylo_2.png"; sourceTree = "<group>"; };
+		D8722C8E1CF8E9E3008BE4C9 /* profile-screening_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-screening_2.png"; sourceTree = "<group>"; };
 		D8750D021CCDD94100821BCF /* OralHealth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OralHealth.h; sourceTree = "<group>"; };
 		D8750D031CCDD94100821BCF /* OralHealth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OralHealth.m; sourceTree = "<group>"; };
 		D8750D051CCDDC7100821BCF /* Oral health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oral health.png"; sourceTree = "<group>"; };
@@ -1962,6 +1966,8 @@
 		D8D7673D1CE525C700AEC42B /* HomeTapIcon */ = {
 			isa = PBXGroup;
 			children = (
+				D8722C8D1CF8E9E3008BE4C9 /* profile-encylo_2.png */,
+				D8722C8E1CF8E9E3008BE4C9 /* profile-screening_2.png */,
 				D8D7673E1CE525C700AEC42B /* encyclopedia-floting-immu_home.png */,
 				D8D7673F1CE525C700AEC42B /* encyclopedia-floting-medication_home.png */,
 				D8D767401CE525C700AEC42B /* hb_Alergy_option_home.png */,
@@ -2188,6 +2194,7 @@
 				D8D7674D1CE525C700AEC42B /* hb_medical_option_home.png in Resources */,
 				2C5192291CDF8B6B00B99FC9 /* ATF25.png in Resources */,
 				2C5192381CDF8B6B00B99FC9 /* TC1.png in Resources */,
+				D8722C8F1CF8E9E3008BE4C9 /* profile-encylo_2.png in Resources */,
 				2C5192341CDF8B6B00B99FC9 /* ATF6.png in Resources */,
 				D8D767551CE525C700AEC42B /* screening-floting-summary_home.png in Resources */,
 				D8048B0F1CDF2F7C00B63B3E /* profile-encylo.png in Resources */,
@@ -2296,6 +2303,7 @@
 				2C5191FF1CDF8B6B00B99FC9 /* AT16.png in Resources */,
 				2C51922E1CDF8B6B00B99FC9 /* ATF3.png in Resources */,
 				2C5192471CDF8B6B00B99FC9 /* TC5.png in Resources */,
+				D8722C901CF8E9E3008BE4C9 /* profile-screening_2.png in Resources */,
 				A10EB6431C797A46002EBC59 /* signup.png in Resources */,
 				2C5192161CDF8B6B00B99FC9 /* AT8.png in Resources */,
 				2C5192181CDF8B6B00B99FC9 /* ATF1.png in Resources */,
