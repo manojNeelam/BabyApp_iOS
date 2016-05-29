@@ -14,13 +14,19 @@
 #import "NSString+CommonForApp.h"
 
 @interface SettingsViewController ()<ServerResponseDelegate>
-
+{
+    NSDictionary *userDataDict;
+}
 @end
 
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onClickSave:)];
+    
+
     // Do any additional setup after loading the view.
     [self getUserData];
 }
@@ -74,10 +80,29 @@
         {
             NSDictionary *dataList_ = [dict objectForKey:@"data"];
             NSLog(@"dataList=%@",dataList_);
+            userDataDict=dataList_;
+            self.txtFldFullName.text=[dataList_ objectForKey:@"fullname"];
+            self.txtFldUserName.text=[dataList_ objectForKey:@"fullname"];
+            self.txtFldEmail.text=[dataList_ objectForKey:@"email"];
+            self.txtFldPassword.text=[dataList_ objectForKey:@"fullname"];
+            
+            if([[dataList_ objectForKey:@"notification"] isEqualToString:@"0"])
+                [self.notiSwitch setOn:NO];
+              else
+                  [self.notiSwitch setOn:NO];
 
         }
     }
 }
+
+/*
+ @property (weak, nonatomic) IBOutlet UITextField *txtFldFullName;
+ @property (weak, nonatomic) IBOutlet UITextField *txtFldUserName;
+ @property (weak, nonatomic) IBOutlet UITextField *txtFldEmail;
+ @property (weak, nonatomic) IBOutlet UITextField *txtFldPassword;
+ @property (weak, nonatomic) IBOutlet UISwitch *notiSwitch;
+ */
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -119,6 +144,40 @@
 }
 
 
+
+-(void)onClickSave:(id)sender
+{
+    
+    
+   /* NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if(childStr && childStr != nil)
+    {
+        [dict setObject:childStr forKey:@"child_id"];
+    }
+    else
+    {
+        [dict setObject:@"52" forKey:@"child_id"];
+    }
+    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
+    
+    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
+    
+    
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:0] text] forKey:@"weight"];
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:1] text] forKey:@"length"];
+    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:2] text] forKey:@"occitofrontal_circ"];
+    
+    NSLog(@"dict=%@",dict);
+    isDone =YES;
+    [[ConnectionsManager sharedManager] updateGrowth:dict withdelegate:self];
+    */
+    
+}
+
+
+
+
 /*
 #pragma mark - Navigation
 
@@ -132,13 +191,7 @@
 {
     return NO;
 }
-/*
-@property (weak, nonatomic) IBOutlet UITextField *txtFldFullName;
-@property (weak, nonatomic) IBOutlet UITextField *txtFldUserName;
-@property (weak, nonatomic) IBOutlet UITextField *txtFldEmail;
-@property (weak, nonatomic) IBOutlet UITextField *txtFldPassword;
-@property (weak, nonatomic) IBOutlet UISwitch *notiSwitch;
-*/
+
 
 - (IBAction)onClickSwitch:(id)sender {
 }
