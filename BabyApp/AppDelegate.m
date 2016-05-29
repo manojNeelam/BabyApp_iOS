@@ -65,8 +65,9 @@
     
 //    [UINavigationBar appearance].backIndicatorImage = customBackButton;
 //    [UINavigationBar appearance].backIndicatorTransitionMaskImage = customBackButton;
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-                                                         forBarMetrics:UIBarMetricsDefault];
+   // [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+     //                                                    forBarMetrics:UIBarMetricsDefault];
+    
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
