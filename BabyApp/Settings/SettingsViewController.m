@@ -37,7 +37,7 @@
     NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     NSDictionary *params = @{@"user_id" : s};
     
-    NSLog(@"calling of getAllChildrans at home page user id=%@ s=%@",[params objectForKey:@"user_id"],s);
+    NSLog(@"calling of getSettingsData  user id=%@ s=%@",[params objectForKey:@"user_id"],s);
     
     [[ConnectionsManager sharedManager] getSettingsData:params  withdelegate:self];
     NSLog(@"dict=%@",dict);
@@ -95,13 +95,7 @@
     }
 }
 
-/*
- @property (weak, nonatomic) IBOutlet UITextField *txtFldFullName;
- @property (weak, nonatomic) IBOutlet UITextField *txtFldUserName;
- @property (weak, nonatomic) IBOutlet UITextField *txtFldEmail;
- @property (weak, nonatomic) IBOutlet UITextField *txtFldPassword;
- @property (weak, nonatomic) IBOutlet UISwitch *notiSwitch;
- */
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -148,30 +142,27 @@
 -(void)onClickSave:(id)sender
 {
     
+    NSString *s=[[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+
     
-   /* NSString *childStr = [NSUserDefaults retrieveObjectForKey:CURRENT_CHILD_ID];
+   
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if(childStr && childStr != nil)
-    {
-        [dict setObject:childStr forKey:@"child_id"];
-    }
-    else
-    {
-        [dict setObject:@"52" forKey:@"child_id"];
-    }
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"child_id"];
-    
-    [dict setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"screening_id"] forKey:@"screening_id"];
     
     
-    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:0] text] forKey:@"weight"];
-    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:1] text] forKey:@"length"];
-    [dict setObject:[(UITextField*)[txtfieldAr2 objectAtIndex:2] text] forKey:@"occitofrontal_circ"];
+    [dict setObject:s forKey:@"user_id"];
+    [dict setObject:self.txtFldFullName.text forKey:@"fullname"];
+    [dict setObject:self.txtFldEmail.text forKey:@"email"];
     
-    NSLog(@"dict=%@",dict);
-    isDone =YES;
-    [[ConnectionsManager sharedManager] updateGrowth:dict withdelegate:self];
-    */
+    if(self.notiSwitch.on)
+        [dict setObject:@"1" forKey:@"notification"];
+else
+       [dict setObject:@"0" forKey:@"notification"];
+
+    
+    [[ConnectionsManager sharedManager] updateSettingsData:dict withdelegate:self];
+    
+
+    
     
 }
 

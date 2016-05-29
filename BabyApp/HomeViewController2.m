@@ -1012,6 +1012,130 @@
     [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
     
+    
+    //1 Developmental Assesment
+    
+    NSString *immuSt = @"Developmental Assesment";
+    
+    UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [medicalButton setBackgroundImage:[UIImage imageNamed:@"hb_medical_option_home.png"] forState:UIControlStateNormal];
+    
+    
+    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10,backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    [medicalButton addTarget:self action:@selector(encyclopediaDevelopmental) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:medicalButton];
+    
+    
+    UILabel *medicalLabel =[[UILabel alloc]initWithFrame:CGRectMake(medicalButton.frame.origin.x+SIZE_ICON_HEIGHT+20, medicalButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    medicalLabel.text=immuSt;
+    medicalLabel.numberOfLines=2;
+    medicalLabel.textAlignment=NSTextAlignmentLeft;
+    medicalLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:medicalLabel];
+    
+    
+    UITapGestureRecognizer *tapRecognizer4 = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(encyclopediaDevelopmental)];
+    [tapRecognizer4 setNumberOfTouchesRequired:1];
+    [medicalLabel addGestureRecognizer:tapRecognizer4];
+    [medicalLabel setUserInteractionEnabled:YES];
+    tapRecognizer4=nil;
+    //
+    
+    
+     //2 Immunisation
+    
+    
+    
+    NSString *immuStr = @"Immunisation";
+    
+    
+    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu_home.png"] forState:UIControlStateNormal];
+    
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    [drugButton2 addTarget:self action:@selector(encyclopediaImmunisation) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton2];
+    
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    drugLabel2.text=immuStr;
+    drugLabel2.textAlignment=NSTextAlignmentLeft;
+    drugLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel2];
+    
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    
+    
+    
+    UITapGestureRecognizer *tapRecognizer2 = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(encyclopediaImmunisation)];
+    [tapRecognizer2 setNumberOfTouchesRequired:1];
+    [drugLabel2 addGestureRecognizer:tapRecognizer2];
+    [drugLabel2 setUserInteractionEnabled:YES];
+    tapRecognizer2=nil;
+    
+
+    
+    
+    //3 Medication
+    
+    UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication_home.png"] forState:UIControlStateNormal];
+    
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
+    [drugButton addTarget:self action:@selector(encyclopediaMedication) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton];
+    
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton.frame.origin.y, 150, SIZE_ICON_HEIGHT)];
+    drugLabel.text=@"Medication";
+    drugLabel.textAlignment=NSTextAlignmentLeft;
+    drugLabel.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel];
+    
+    
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(encyclopediaMedication)];
+    [tapRecognizer setNumberOfTouchesRequired:1];
+    [drugLabel addGestureRecognizer:tapRecognizer];
+    [drugLabel setUserInteractionEnabled:YES];
+    tapRecognizer=nil;
+
+    
+    //4@"Child Safety Checklist"
+    
+    immuStr = @"Child Safety Checklist";
+    
+    
+    UIButton *drugButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option_home.png"] forState:UIControlStateNormal];
+    drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    [drugButton3 addTarget:self action:@selector(encyclopediaChildSafety) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton3];
+    
+    UILabel *drugLabel3 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton3.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton3.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    drugLabel3.text=immuStr;
+    drugLabel3.textAlignment=NSTextAlignmentLeft;
+    drugLabel3.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel3];
+    [drugLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    
+    
+    
+    UITapGestureRecognizer *tapRecognizer3 = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(encyclopediaChildSafety)];
+    [tapRecognizer3 setNumberOfTouchesRequired:1];
+    [drugLabel3 addGestureRecognizer:tapRecognizer3];
+    [drugLabel3 setUserInteractionEnabled:YES];
+    tapRecognizer3=nil;
+
+    
+    
+    
+    /*
+  
+    
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
      [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication_home.png"] forState:UIControlStateNormal];
 
@@ -1042,7 +1166,6 @@
     
    
     UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu.png"] forState:UIControlStateNormal];
     [drugButton2 setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-immu_home.png"] forState:UIControlStateNormal];
 
     drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
@@ -1074,8 +1197,7 @@
     
     
     UIButton *drugButton3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //[drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option.png"] forState:UIControlStateNormal];
-     [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option_home.png"] forState:UIControlStateNormal];
+       [drugButton3 setBackgroundImage:[UIImage imageNamed:@"hb_Alergy_option_home.png"] forState:UIControlStateNormal];
     drugButton3.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton3 addTarget:self action:@selector(encyclopediaChildSafety) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton3];
@@ -1129,7 +1251,7 @@
     [medicalLabel setUserInteractionEnabled:YES];
     tapRecognizer4=nil;
 
-    
+    */
     
     [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
