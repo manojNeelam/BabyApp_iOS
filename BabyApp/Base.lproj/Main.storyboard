@@ -705,7 +705,7 @@
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image_plane.png" translatesAutoresizingMaskIntoConstraints="NO" id="LpH-OL-MqU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q02-lE-8Wc">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q02-lE-8Wc">
                                 <rect key="frame" x="40" y="224" width="240" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="OwB-nB-Kct">
@@ -739,7 +739,7 @@
                                     <constraint firstItem="49r-D2-HCy" firstAttribute="top" secondItem="Q02-lE-8Wc" secondAttribute="top" constant="10" id="jAH-U1-3g2"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7q-Bs-PFB">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7q-Bs-PFB">
                                 <rect key="frame" x="40" y="304" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="SVr-Re-wtm"/>
@@ -753,7 +753,7 @@
                                     <action selector="createAccount:" destination="jey-Ku-PKZ" eventType="touchUpInside" id="WbJ-YH-56n"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOu-ZX-9sF">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOu-ZX-9sF">
                                 <rect key="frame" x="40" y="354" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VrD-SM-Pz9"/>
@@ -767,7 +767,7 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="UcO-SX-uLt"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qym-Qn-Inb">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qym-Qn-Inb">
                                 <rect key="frame" x="40" y="120" width="240" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xe4-Wx-gtW">
@@ -801,7 +801,7 @@
                                     <constraint firstAttribute="trailing" secondItem="uNB-hO-MIp" secondAttribute="trailing" constant="10" id="x7Y-V6-WJa"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fX2-by-rNr">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fX2-by-rNr">
                                 <rect key="frame" x="40" y="172" width="240" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vb1-0B-0IV">
@@ -1733,11 +1733,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="X6D-pr-tNc">
                         <barButtonItem key="backBarButtonItem" title="&lt;" id="X44-Xt-8SP"/>
-                        <barButtonItem key="leftBarButtonItem" id="BdY-VF-ebu">
-                            <connections>
-                                <action selector="toGoBack:" destination="Nsp-fl-K9c" id="KAa-45-Rdh"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="2uH-Ir-YAO">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1748,7 +1743,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="leftbarItem" destination="BdY-VF-ebu" id="JiB-W5-3QW"/>
                         <outlet property="myNavigationItem" destination="X6D-pr-tNc" id="Xf9-L8-zTR"/>
                         <segue destination="dii-wI-uRH" kind="show" identifier="NewbornScreeningVC_Segue" id="zhx-N8-l07"/>
                         <segue destination="kYt-F7-AVp" kind="show" identifier="DischargeInformationSegue" id="cik-kC-Saf"/>
@@ -2607,10 +2601,10 @@
                                     <constraint firstItem="GAj-gF-Eqe" firstAttribute="leading" secondItem="vga-vC-HD1" secondAttribute="trailing" constant="10" id="w58-ht-mac"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adX-eE-Ccj">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adX-eE-Ccj">
                                 <rect key="frame" x="0.0" y="20" width="320" height="340"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="middle.png" translatesAutoresizingMaskIntoConstraints="NO" id="5qg-2j-ccP">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="middle.png" translatesAutoresizingMaskIntoConstraints="NO" id="5qg-2j-ccP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="340"/>
                                     </imageView>
                                 </subviews>
@@ -4855,7 +4849,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zla-5Z-MXM">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zla-5Z-MXM">
                                 <rect key="frame" x="0.0" y="64" width="320" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-EU-dRN">
@@ -5677,7 +5671,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PdZ-4U-GOs">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdZ-4U-GOs">
                                 <rect key="frame" x="0.0" y="64" width="320" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBw-wN-xkX">
@@ -5763,7 +5757,7 @@
                                     <outlet property="delegate" destination="dli-kP-ujQ" id="Ade-pi-RvD"/>
                                 </connections>
                             </tableView>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8p4-hF-XAS">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8p4-hF-XAS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>

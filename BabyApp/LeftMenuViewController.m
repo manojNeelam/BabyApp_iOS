@@ -478,6 +478,8 @@
                     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
                     
                   
+                    
+                    
                     [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
                                                                              withSlideOutAnimation:self.slideOutAnimationEnabled
                                                                                      andCompletion:nil];
