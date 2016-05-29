@@ -467,6 +467,9 @@
         [[iv layer] setCornerRadius:cell.frame.size.height-30/2];
         [cell.contentView addSubview:iv];
         
+        [iv setContentMode:UIViewContentModeScaleAspectFill];
+        [iv setClipsToBounds:YES];
+        
         UILabel *lbl1=nil,*lbl2=nil;
         
         lbl1=[[UILabel alloc] initWithFrame:CGRectMake(iv.frame.origin.x+iv.frame.size.width+20,iv.frame.origin.y+5, _home2Table.frame.size.width-90, 25)];
@@ -493,7 +496,8 @@
     UIImageView *iv=[cell.contentView viewWithTag:5];
     UILabel *lbl1=[cell.contentView viewWithTag:10];
     UILabel *lbl2=[cell.contentView viewWithTag:20];
-    
+    //iv.backgroundColor=[UIColor redColor];
+
     cell.backgroundColor=[UIColor whiteColor];
     iv.image=[UIImage imageNamed:imagesNames[indexPath.row]];
     
@@ -780,16 +784,65 @@
     [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
     
+    
+    
+    //
+    NSString *immuStr = @"View My Screening";
+    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary_home.png"] forState:UIControlStateNormal];
+    
+ //   drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
+    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+
+    
+    [drugButton2 addTarget:self action:@selector(myScreeningAction) forControlEvents:UIControlEventTouchUpInside];
+    [overlayView addSubview:drugButton2];
+    
+    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    [drugLabel2 setUserInteractionEnabled:YES];
+    
+    if(!child.screeningList.count)
+    {
+        immuStr = @"NO Screening \n(no summary yet)";
+        [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary_home.png"] forState:UIControlStateNormal];
+        [drugLabel2 setUserInteractionEnabled:NO];
+        
+    }
+    
+    drugLabel2.text=immuStr;
+    drugLabel2.textAlignment=NSTextAlignmentLeft;
+    drugLabel2.textColor=[UIColor whiteColor];
+    [overlayView addSubview:drugLabel2];
+    
+    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(myScreeningAction)];
+    [tapRecognizer setNumberOfTouchesRequired:1];
+    [drugLabel2 addGestureRecognizer:tapRecognizer];
+    tapRecognizer=nil;
+    
+    
+    
+    //
+
+    
+    
+    
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new.png"] forState:UIControlStateNormal];
     [drugButton setBackgroundImage:[UIImage imageNamed:@"screening-floting-new_home.png"] forState:UIControlStateNormal];
     
-    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
+   // drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
+    drugButton.frame=CGRectMake(backButton.frame.origin.x+10, drugButton2.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
     [drugButton addTarget:self action:@selector(newScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:drugButton];
     
-    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton.frame.origin.y, 150, SIZE_ICON_HEIGHT)];
-    drugLabel.text=@"New Screening";
+    UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
+    drugLabel.text=@"Enter New Screening";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
     [overlayView addSubview:drugLabel];
@@ -804,44 +857,9 @@
     tapRecognizer3=nil;
 
     
-    //
     
-    NSString *immuStr = @"View My Screening";
-    UIButton *drugButton2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    // [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary.png"] forState:UIControlStateNormal];
-    [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-summary_home.png"] forState:UIControlStateNormal];
     
-    drugButton2.frame=CGRectMake(backButton.frame.origin.x+10, drugButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
-    [drugButton2 addTarget:self action:@selector(myScreeningAction) forControlEvents:UIControlEventTouchUpInside];
-    [overlayView addSubview:drugButton2];
     
-    UILabel *drugLabel2 =[[UILabel alloc]initWithFrame:CGRectMake(drugButton2.frame.origin.x+SIZE_ICON_HEIGHT+20, drugButton2.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
-    [drugLabel2 setUserInteractionEnabled:YES];
-
-    if(!child.screeningList.count)
-    {
-        immuStr = @"NO Screening \n(no summary yet)";
-         [drugButton2 setBackgroundImage:[UIImage imageNamed:@"screening-floting-nosummary_home.png"] forState:UIControlStateNormal];
-        [drugLabel2 setUserInteractionEnabled:NO];
-
-    }
-
-     drugLabel2.text=immuStr;
-    drugLabel2.textAlignment=NSTextAlignmentLeft;
-    drugLabel2.textColor=[UIColor whiteColor];
-    [overlayView addSubview:drugLabel2];
-
-    [drugLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
-
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(myScreeningAction)];
-    [tapRecognizer setNumberOfTouchesRequired:1];
-    [drugLabel2 addGestureRecognizer:tapRecognizer];
-    tapRecognizer=nil;
-    
-
-    
-    //
     
     NSString *immuSt = @"Percentile Information";
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -993,10 +1011,9 @@
     
     [backButton addTarget:self action:@selector(backScreeningAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:backButton];
-    //encyclopedia-floting-medication_home.png
+    
     UIButton *drugButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication.png"] forState:UIControlStateNormal];
-    [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication_home.png"] forState:UIControlStateNormal];
+     [drugButton setBackgroundImage:[UIImage imageNamed:@"encyclopedia-floting-medication_home.png"] forState:UIControlStateNormal];
 
     drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-(SIZE_ICON_HEIGHT+15), SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(encyclopediaMedication) forControlEvents:UIControlEventTouchUpInside];

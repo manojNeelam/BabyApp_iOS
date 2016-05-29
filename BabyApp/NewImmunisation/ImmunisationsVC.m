@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"ImmunisationsVC PAge");
+    
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     UIFont *font = [UIFont fontWithName:@"AvenirNextLTPro-Regular" size:15.0f];
@@ -38,7 +40,11 @@
     [self.segmentImu setTitleTextAttributes:attributes
                                    forState:UIControlStateNormal];
     
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
+   UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
+
+    
+ //   UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"imununisation_new2.jpg"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
+
     self.imuNavigationItem.rightBarButtonItem = rightButton;
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
