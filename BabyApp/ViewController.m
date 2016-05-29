@@ -15,9 +15,16 @@
 #import "WSConstant.h"
 #import "ChildDetailsData.h"
 
-#define kOFFSET_FOR_KEYBOARD 100.0
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface ViewController ()<ServerResponseDelegate, UIAlertViewDelegate>
+#define kOFFSET_FOR_KEYBOARD 100.0
+#define FB_ALERT    123
+
+@interface ViewController ()<ServerResponseDelegate, UIAlertViewDelegate, FBSDKLoginButtonDelegate>
+{
+    NSMutableDictionary *userDict;
+}
 @property (retain, nonatomic) NSMutableData *receivedData;
 @property (retain, nonatomic) NSURLConnection *connection;
 @end
@@ -418,25 +425,79 @@ UIActivityIndicatorView *act1;
 
 - (IBAction)facebookSigninAction:(id)sender {
     
-    
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             [self saveFBAccessToken];
+             
+             [self getUserInfoFromFacebook];
+             
+             NSLog(@"Logged in");
+         }
+     }];
 }
+
+-(NSString *)getFBAccessToken
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:APP_FACEBOOK_USER_TOKEN];
+    
+    return token;
+}
+
+-(void)saveFBAccessToken
+{
+    NSString *fbToken = [FBSDKAccessToken currentAccessToken].tokenString;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:fbToken forKey:APP_FACEBOOK_USER_TOKEN];
+    [defaults synchronize];
+}
+
+
 
 -(void)getUserInfoFromFacebook
 {
-    
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id,name,email"}]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             if (!error) {
+                 NSLog(@"fetched user:%@", result);
+                 
+                 userDict = [[NSMutableDictionary alloc] initWithDictionary:result];
+                 NSDictionary *dict = result;
+                 [self callFacebookLoginAPI:dict];
+                 
+             }
+         }];
+    }
 }
 
 -(void)callFacebookLoginAPI:(NSDictionary *)params
 {
     
-    NSError *error;
-    
+    NSString *emailStr = [params objectForKey:@"email"];
+    if(!emailStr || emailStr == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"email address missing??" message:@"Please enter email address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:@"Cancel", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.tag = FB_ALERT;
+        
+        [alert show];
+        return;
+    }
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
     NSString *Post=[NSString stringWithFormat:@"email=%@&username=%@&facebook_id=%@&@device=ios",params[@"email"],params[@"username"],params[@"facebook_id"]];
     
     NSData *PostData = [Post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    NSString *PostLengh=[NSString stringWithFormat:@"%d",[Post length]];
+    NSString *PostLengh=[NSString stringWithFormat:@"%lu",(unsigned long)[Post length]];
     NSURL *Url=[NSURL URLWithString: @"http://babyappdev.azurewebsites.net/apiv1/service/facebook_login/"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:Url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
@@ -558,8 +619,24 @@ UIActivityIndicatorView *act1;
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString *name = [alertView textFieldAtIndex:0].text;
-    [self getForgotPassword:name];
+    if(alertView.tag == FB_ALERT)
+    {
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        if([name isValidEmail])
+        {
+            [userDict setObject:name forKey:@"email"];
+            [self callFacebookLoginAPI:userDict];
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        [self getForgotPassword:name];
+    }
 }
 
 -(void)getForgotPassword:(NSString *)emailAddress
