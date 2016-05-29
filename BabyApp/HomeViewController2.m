@@ -19,6 +19,8 @@
 #import "EncyclopediaTapScroller.h"
 #import "ConnectionsManager.h"
 #import "ScreeningChildData.h"
+#import "ImmunisationChildData.h"
+
 @interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, ServerResponseDelegate>
 {
     UIPageControl *pageHome;
@@ -516,8 +518,18 @@
             lbl2.text=@"Click Here to Show Detail";
     }
         
-   else if(indexPath.row!=2)
-        lbl2.text=@"Click Here to Show Detail";
+   else if(indexPath.row==0)
+   {
+       if(child&&child.immunisationList)
+       {
+            ImmunisationChildData *childData = [child.immunisationList objectAtIndex:0];
+           lbl2.text=[NSString stringWithFormat:@"%@(%@) %@",childData.vaccine_type_name,childData.sequence,childData.brand_of_vaccine];
+           
+       }
+       else
+           lbl2.text=@"Click Here to Show Detail";
+   }
+    
     else
         lbl2.text=@"Information on medicine and immunisations";
     

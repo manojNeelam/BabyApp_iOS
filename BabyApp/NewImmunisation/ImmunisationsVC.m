@@ -18,6 +18,7 @@
 
 #import "ImmunisationData.h"
 #import "ImmunisationBaseDate.h"
+#import "AppDelegate.h"
 
 @interface ImmunisationsVC () <UITableViewDataSource,UITableViewDelegate, ServerResponseDelegate>
 {
@@ -66,6 +67,10 @@
 
 -(void)onClickAddNew:(id)sender
 {
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate setListOfChildrens:nil];
+
     UIViewController *newImmunisation = [self.storyboard instantiateViewControllerWithIdentifier:@"NewImmunisationVC_SB_ID"];
     [self.navigationController pushViewController:newImmunisation animated:YES];
 }

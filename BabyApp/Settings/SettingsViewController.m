@@ -82,9 +82,7 @@
             NSLog(@"dataList=%@",dataList_);
             userDataDict=dataList_;
             self.txtFldFullName.text=[dataList_ objectForKey:@"fullname"];
-            self.txtFldUserName.text=[dataList_ objectForKey:@"fullname"];
             self.txtFldEmail.text=[dataList_ objectForKey:@"email"];
-            self.txtFldPassword.text=[dataList_ objectForKey:@"fullname"];
             
             if([[dataList_ objectForKey:@"notification"] isEqualToString:@"0"])
                 [self.notiSwitch setOn:NO];
@@ -110,23 +108,11 @@
         
         return NO;
     }
-    if([self.txtFldUserName.text isEmpty])
-    {
-        [Constants showOKAlertWithTitle:@"Info" message:@"Please enter User Name" presentingVC:self];
-        
-        return NO;
-    }
+   
     
     if([self.txtFldEmail.text isEmpty])
     {
         [Constants showOKAlertWithTitle:@"Info" message:@"Please enter e-mail" presentingVC:self];
-        
-        return NO;
-    }
-
-    if([self.txtFldPassword.text isEmpty])
-    {
-        [Constants showOKAlertWithTitle:@"Info" message:@"Please enter Password" presentingVC:self];
         
         return NO;
     }
