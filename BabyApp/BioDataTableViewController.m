@@ -169,6 +169,16 @@
         
         pushtoDischarge = NO;
     }
+    
+    
+    
+   // [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+     //                                                    forBarMetrics:UIBarMetricsDefault];
+    //[[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    
+    //initWithTitle:@"<" style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -190,11 +200,29 @@
         [self.navigationItem setHidesBackButton:NO animated:NO];
         [self.navigationItem setHidesBackButton:NO];
         
-        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        /*UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnBack setFrame:CGRectMake(0, 5, 25, 25)];
+        [btnBack setBackgroundImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
+        [btnBack addTarget:self action:@selector(onClickBackButton) forControlEvents:UIControlEventTouchUpInside];
         
-        //initWithTitle:@"<" style:UIBarButtonItemStyleDone target:self action:@selector(onClickBackButton)];
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
         
-        [self.navigationItem setLeftBarButtonItem:leftBtn animated:YES];
+        //[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"leftArrow"] style:UIBarButtonItemStylePlain target:self action:@selector(onClickBackButton)];
+        [self.navigationItem setLeftBarButtonItem:leftBtn];//setLeftBarButtonItem:leftBtn animated:YES];*/
+        
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *backBtnImage = [UIImage imageNamed:@"leftArrow"];
+        UIImage *backBtnImagePressed = [UIImage imageNamed:@"leftArrow"];
+        [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:backBtnImagePressed forState:UIControlStateHighlighted];
+        [backBtn addTarget:self action:@selector(onClickBackButton) forControlEvents:UIControlEventTouchUpInside];
+        backBtn.frame = CGRectMake(0, 0, 25, 25);
+        UIView *backButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 63, 33)];
+        backButtonView.bounds = CGRectOffset(backButtonView.bounds, +13, -5);
+        [backButtonView addSubview:backBtn];
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backButtonView];
+        self.navigationItem.leftBarButtonItem = backButton;
+        
     }
 }
 
