@@ -30,6 +30,13 @@ UIActivityIndicatorView *act2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"SignUpViewController");
+    
+    for(UITextField *txtFld in [self.view subviews])
+    {
+        [txtFld.layer setCornerRadius:4.0f];
+        txtFld.layer.masksToBounds = YES;
+    }
+    
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
