@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01D1537E14D44BCCF3DDC034 /* libPods-BabyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07094B7CE3DBB90AED91954B /* libPods-BabyApp.a */; };
+		2C4D19971D018BEE0074EFCB /* SelectScheduleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D19961D018BEE0074EFCB /* SelectScheduleVC.m */; };
 		2C5190B81CDF5A8E00B99FC9 /* BabyTeethViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5190B71CDF5A8E00B99FC9 /* BabyTeethViewController.m */; };
 		2C5190BB1CDF5AA000B99FC9 /* AdultTeethViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5190BA1CDF5AA000B99FC9 /* AdultTeethViewController.m */; };
 		2C5191F71CDF8B6B00B99FC9 /* 11_Oral health.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C51918E1CDF8B6B00B99FC9 /* 11_Oral health.jpg */; };
@@ -421,6 +422,8 @@
 
 /* Begin PBXFileReference section */
 		07094B7CE3DBB90AED91954B /* libPods-BabyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BabyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4D19951D018BEE0074EFCB /* SelectScheduleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScheduleVC.h; sourceTree = "<group>"; };
+		2C4D19961D018BEE0074EFCB /* SelectScheduleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScheduleVC.m; sourceTree = "<group>"; };
 		2C5190B61CDF5A8E00B99FC9 /* BabyTeethViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyTeethViewController.h; sourceTree = "<group>"; };
 		2C5190B71CDF5A8E00B99FC9 /* BabyTeethViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyTeethViewController.m; sourceTree = "<group>"; };
 		2C5190B91CDF5AA000B99FC9 /* AdultTeethViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdultTeethViewController.h; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 				96A969691CB8D8D700D1212B /* ImmunisationData.m */,
 				96A9696A1CB8D8D700D1212B /* ImmunisationsVC.h */,
 				96A9696B1CB8D8D700D1212B /* ImmunisationsVC.m */,
+				2C4D19951D018BEE0074EFCB /* SelectScheduleVC.h */,
+				2C4D19961D018BEE0074EFCB /* SelectScheduleVC.m */,
 			);
 			path = NewImmunisation;
 			sourceTree = "<group>";
@@ -2418,6 +2423,7 @@
 				A10EB6311C78BC3B002EBC59 /* BioDataTableViewController.m in Sources */,
 				A1A46A111CBD8861009F65BB /* AwesomeMenu.m in Sources */,
 				90F165C61CB5A4A0006B5DD6 /* UIAlertView+AFNetworking.m in Sources */,
+				2C4D19971D018BEE0074EFCB /* SelectScheduleVC.m in Sources */,
 				90F165C11CB5A4A0006B5DD6 /* AFURLRequestSerialization.m in Sources */,
 				D82C28F11C8F7041005798EA /* ScreeningsOutcome.m in Sources */,
 				90F165C71CB5A4A0006B5DD6 /* UIButton+AFNetworking.m in Sources */,

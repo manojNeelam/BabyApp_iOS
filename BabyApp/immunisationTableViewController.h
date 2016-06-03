@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
-@interface immunisationTableViewController : UITableViewController<SlideNavigationControllerDelegate>
+@interface immunisationTableViewController : UIViewController <SlideNavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *baseSegmentView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentDateType;
+- (IBAction)onSwitchDateType:(id)sender;
 
 @end

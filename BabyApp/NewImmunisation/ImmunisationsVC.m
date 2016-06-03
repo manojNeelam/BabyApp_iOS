@@ -529,4 +529,6 @@
     [[ConnectionsManager sharedManager] updateImmunisation:dict withdelegate:self];
     
 }
+- (IBAction)onSwitchDateType:(id)sender {
+}
 @end

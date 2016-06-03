@@ -13,12 +13,15 @@
 
 @interface immunisationTableViewController ()<ServerResponseDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation immunisationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationItem setTitle:@"Immunisations"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -27,6 +30,9 @@
     
     self.navigationItem.rightBarButtonItem = [self addLeftButton];
     [self callreadAllImmunisation];
+    
+    [self.tableView reloadData];
+    
 }
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
@@ -239,4 +245,6 @@
 }
 
 
+- (IBAction)onSwitchDateType:(id)sender {
+}
 @end

@@ -15,4 +15,6 @@
 - (IBAction)onClickSwitch:(id)sender;
 @property (strong, nonatomic) IBOutlet UINavigationItem *imuNavigationItem;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentDateType;
+- (IBAction)onSwitchDateType:(id)sender;
 @end

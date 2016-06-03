@@ -21,6 +21,8 @@
 #import "ScreeningChildData.h"
 #import "ImmunisationChildData.h"
 
+#import "SelectScheduleVC.h"
+
 @interface HomeViewController2 ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, ServerResponseDelegate>
 {
     UIPageControl *pageHome;
@@ -665,13 +667,26 @@
 
     drugButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-60, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
     [drugButton addTarget:self action:@selector(newImmuAction) forControlEvents:UIControlEventTouchUpInside];
-    [overlayView addSubview:drugButton];
+    if(!child.immunisationList.count)
+    {
+        [overlayView addSubview:drugButton];
+    }
+    else
+    {
+        CGRect fram = drugButton.frame;
+        fram.size.height = 0.0f;
+        drugButton.frame = fram;
+    }
     
     UILabel *drugLabel =[[UILabel alloc]initWithFrame:CGRectMake(drugButton.frame.origin.x+SIZE_ICON_HEIGHT+10, drugButton.frame.origin.y, 200, SIZE_ICON_HEIGHT)];
     drugLabel.text=@"Enter New Immunisation";
     drugLabel.textAlignment=NSTextAlignmentLeft;
     drugLabel.textColor=[UIColor whiteColor];
-    [overlayView addSubview:drugLabel];
+    
+    if(!child.immunisationList.count)
+    {
+        [overlayView addSubview:drugLabel];
+    }
     
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
@@ -690,7 +705,16 @@
    //  [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar.png"] forState:UIControlStateNormal];
       [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar_home.png"] forState:UIControlStateNormal];
     
-    medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    //CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-60, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    if(!child.immunisationList.count)
+    {
+        medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    }
+    else
+    {
+        medicalButton.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y-60, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    }
+    
     [medicalButton addTarget:self action:@selector(immuMy) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton];
     
@@ -703,7 +727,6 @@
        // [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar.png"] forState:UIControlStateNormal];
          [medicalButton setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-nosummar_home.png"] forState:UIControlStateNormal];
         [medicalLabel setUserInteractionEnabled:NO];
-
     }
    
       medicalLabel.text=immuStr;
@@ -728,7 +751,16 @@
      [medicalButton2 setBackgroundImage:[UIImage imageNamed:@"immunisation-floting-summar_home.png"] forState:UIControlStateNormal];
     
     NSString *immuStr2 = @"Immunisation Information";
-    medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+50+15, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    
+    if(!child.immunisationList.count)
+    {
+        medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, medicalButton.frame.origin.y+50+15, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    }
+    else
+    {
+        medicalButton2.frame=CGRectMake(backButton.frame.origin.x+10, backButton.frame.origin.y+SIZE_ICON_HEIGHT+35, SIZE_ICON_HEIGHT, SIZE_ICON_HEIGHT);
+    }
+    
     [medicalButton2 addTarget:self action:@selector(immuInfoAction) forControlEvents:UIControlEventTouchUpInside];
     [overlayView addSubview:medicalButton2];
     
@@ -1329,8 +1361,9 @@
 -(void)newImmuAction
 {
     [overlayView setHidden:YES];
+    //NewImmunisationVC_SB_ID
     
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"NewImmunisationVC_SB_ID"];
+    SelectScheduleVC * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"SelectScheduleVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -1339,19 +1372,25 @@
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
     {
+        //SelectScheduleVC
+        //Immunisation
         
         UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+        //vc.isFromImmunisation = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
 }
+
 -(void)immuMy//correct*
 {
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
     {
+        //ImmunisationsVC_SB_ID
         
         
-          UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+        //vc.isFromImmunisation = NO;
         [self.navigationController pushViewController:vc animated:YES];
         
         }
