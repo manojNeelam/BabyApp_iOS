@@ -27,7 +27,16 @@
     if(listItems.count)
     {
         
-        self.sectionName = [params objectForKey:@"title"];
+        if([params objectForKey:@"title"] != nil)
+        {
+            self.sectionName = [params objectForKey:@"title"];
+
+        }
+        else if([params objectForKey:@"date"] != nil)
+        {
+            self.sectionName = [params objectForKey:@"date"];
+
+        }
         self.immuID = [params objectForKey:@"id"];
         
         NSMutableArray *temp = [NSMutableArray array];
@@ -44,7 +53,6 @@
     }
 }
 
-
 -(id)initwithDueDictionary:(NSDictionary *)dict
 {
     [self parseDictionary:dict];
@@ -54,7 +62,16 @@
 -(void)parseDictionary:(NSDictionary *)params
 {
     
-    self.sectionName = [params objectForKey:@"title"];
+    if([params objectForKey:@"title"] != nil)
+    {
+        self.sectionName = [params objectForKey:@"title"];
+        
+    }
+    else if([params objectForKey:@"date"] != nil)
+    {
+        self.sectionName = [params objectForKey:@"date"];
+        
+    }
     self.immuID = [params objectForKey:@"id"];
     
     NSArray *listItems = [params objectForKey:@"items"];

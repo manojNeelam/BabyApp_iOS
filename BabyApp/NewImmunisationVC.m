@@ -109,6 +109,11 @@
                                                   object:self.view.window];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];// this will do the trick
 }
@@ -202,17 +207,16 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if([[json objectForKey:@"status"] boolValue])
         {
-             [Constants showOKAlertWithTitle:@"Success!" message:@"Immunisation Created" presentingVC:self];
+            [self.navigationController popViewControllerAnimated:YES];
+             //[Constants showOKAlertWithTitle:@"Success!" message:@"Immunisation Created" presentingVC:self];
         }
         else
         {
-            
             [Constants showOKAlertWithTitle:@"Error" message:@"Unable to create immunisation, Please try again after some time." presentingVC:self];
-            
         }
     });
-    
 }
+
 -(void)failure:(id)response
 {
     NSLog(@"Failure Response of the add immunisation : %@ ",response);

@@ -22,7 +22,10 @@
 
 @interface ImmunisationsVC () <UITableViewDataSource,UITableViewDelegate, ServerResponseDelegate>
 {
-    NSArray *immunisationList, *immunisationDueList, *immunisationDoneList;
+    NSArray *immunisationTypeList, *immunisationDueTypeList, *immunisationDoneTypeList, *immunisationDateList, *immunisationDueDateList, *immunisationDoneDateList, *immunisationList, *immunisationDueList, *immunisationDoneList;
+    
+    BOOL isDate;
+    
 }
 @end
 
@@ -32,6 +35,8 @@
     [super viewDidLoad];
     
     NSLog(@"ImmunisationsVC PAge");
+    
+    isDate = YES;
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -468,9 +473,157 @@
     {
         NSDictionary *dataDict = [dict objectForKey:@"data"];
         
-        NSArray *listImmuniHolder = [dataDict objectForKey:@"immunisation"];
-        if(listImmuniHolder.count)
+        NSDictionary *listImmuniHolder = [dataDict objectForKey:@"immunisation"];
+        if([listImmuniHolder isKindOfClass:[NSArray class]])
         {
+            if(listImmuniHolder.count)
+            {
+                
+                //type
+                
+                
+                NSMutableArray *temp = [NSMutableArray array];
+                for(NSDictionary *dict in listImmuniHolder)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:NO];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [temp addObject:immunisationData];
+                    }
+                }
+                immunisationDueList = [temp mutableCopy];
+                
+                
+                NSMutableArray *tempDone = [NSMutableArray array];
+                for(NSDictionary *dict in listImmuniHolder)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:YES];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempDone addObject:immunisationData];
+                    }
+                    
+                    
+                }
+                immunisationDoneList = [tempDone mutableCopy];
+                
+                NSMutableArray *tempAll = [NSMutableArray array];
+                for(NSDictionary *dict in listImmuniHolder)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
+                    
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempAll addObject:immunisationData];
+                    }
+                    
+                }
+                immunisationList = [tempAll mutableCopy];
+                
+                [self.tableView reloadData];
+            }
+        }
+        else
+        {
+            NSArray *typeArray = [listImmuniHolder objectForKey:@"type"];
+            
+            NSArray *dateArray = [listImmuniHolder objectForKey:@"date"];
+            
+            
+            if(typeArray.count)
+            {
+                NSMutableArray *temp = [NSMutableArray array];
+                for(NSDictionary *dict in typeArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:NO];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [temp addObject:immunisationData];
+                    }
+                }
+                immunisationDueTypeList = [temp mutableCopy];
+                
+                
+                NSMutableArray *tempDone = [NSMutableArray array];
+                for(NSDictionary *dict in typeArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:YES];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempDone addObject:immunisationData];
+                    }
+                    
+                    
+                }
+                immunisationDoneTypeList = [tempDone mutableCopy];
+                
+                NSMutableArray *tempAll = [NSMutableArray array];
+                for(NSDictionary *dict in typeArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
+                    
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempAll addObject:immunisationData];
+                    }
+                }
+                immunisationTypeList = [tempAll mutableCopy];
+            }
+            if(dateArray.count)
+            {
+                NSMutableArray *temp = [NSMutableArray array];
+                for(NSDictionary *dict in dateArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:NO];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [temp addObject:immunisationData];
+                    }
+                }
+                immunisationDueDateList = [temp mutableCopy];
+                
+                
+                NSMutableArray *tempDone = [NSMutableArray array];
+                for(NSDictionary *dict in dateArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict dueStatus:YES];
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempDone addObject:immunisationData];
+                    }
+                    
+                    
+                }
+                immunisationDoneDateList = [tempDone mutableCopy];
+                
+                NSMutableArray *tempAll = [NSMutableArray array];
+                for(NSDictionary *dict in dateArray)
+                {
+                    ImmunisationBaseDate *immunisationData = [[ImmunisationBaseDate alloc] initwithDueDictionary:dict];
+                    
+                    if(immunisationData && immunisationData != nil && immunisationData.listOfData.count)
+                    {
+                        [tempAll addObject:immunisationData];
+                    }
+                    
+                }
+                immunisationDateList = [tempAll mutableCopy];
+            }
+            
+            [self onSwitchDateType:nil];
+            
+            [self.tableView reloadData];
+        }
+        
+       
+        
+        
+        /*if(listImmuniHolder.count)
+        {
+            
+            //type
+            
+            
             NSMutableArray *temp = [NSMutableArray array];
             for(NSDictionary *dict in listImmuniHolder)
             {
@@ -510,7 +663,7 @@
             immunisationList = [tempAll mutableCopy];
             
             [self.tableView reloadData];
-        }
+        }*/
     }
 }
 
@@ -527,8 +680,23 @@
     [dict setObject:[NSNumber numberWithBool:isStatus] forKey:@"status"];
     
     [[ConnectionsManager sharedManager] updateImmunisation:dict withdelegate:self];
-    
 }
-- (IBAction)onSwitchDateType:(id)sender {
+
+- (IBAction)onSwitchDateType:(id)sender
+{
+    if (self.segmentDateType.selectedSegmentIndex == 0)
+    {
+        immunisationDueList = immunisationDueDateList;
+        immunisationDoneList = immunisationDoneDateList;
+        immunisationList = immunisationDateList;
+    }
+    else
+    {
+        immunisationDueList = immunisationDueTypeList;
+        immunisationDoneList = immunisationDoneTypeList;
+        immunisationList = immunisationTypeList;
+    }
+   [self.tableView reloadData];
+    
 }
 @end
