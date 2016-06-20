@@ -45,6 +45,9 @@
 @end
 
 @implementation NewImmunisationVC
+@synthesize immunisationData;
+
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +60,21 @@
     
     _dateGiveTextField.tintColor = [UIColor clearColor];
     //    [_vaccineTextField addTarget:self action:@selector(textDidChanged:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    
+    
+    if(self.immunisationData)
+    {
+        //sequence, immuId, date_given, nextDoseDate, dosage;
+        
+        [self.sequenceTextField setText:self.immunisationData.sequence];
+        [self.dateGiveTextField setText:self.immunisationData.date_given];
+        //[self.sequenceTextField setText:self.immunisationData.sequence];
+        //[self.sequenceTextField setText:self.immunisationData.sequence];
+        //[self.sequenceTextField setText:self.immunisationData.sequence];
+    }
+    
+    
     [self getVaccineType];
     //    [self configureDatePicker];
     

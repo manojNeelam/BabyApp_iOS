@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "ImmunisationData.h"
 
 @interface NewImmunisationVC : BaseViewController
+
+@property (nonatomic, strong) ImmunisationData *immunisationData;
 
 @end

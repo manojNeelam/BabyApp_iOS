@@ -6,6 +6,8 @@
 //  Copyright (c) 2016 Infinity. All rights reserved.
 //
 
+#define kMAX_SECTION_SIZE 100
+
 #define UnCheck @"unCheck"
 #define Check   @"checkBox"
 
@@ -19,6 +21,8 @@
 #import "ImmunisationData.h"
 #import "ImmunisationBaseDate.h"
 #import "AppDelegate.h"
+
+#import "NewImmunisationVC.h"
 
 @interface ImmunisationsVC () <UITableViewDataSource,UITableViewDelegate, ServerResponseDelegate>
 {
@@ -176,6 +180,14 @@
         
         [cell setBackgroundColor:[UIColor whiteColor]];
         
+        [cell.imgNotePad setUserInteractionEnabled:YES];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickEditImmunisation:)];
+        [cell.imgNotePad addGestureRecognizer:tap];
+        [cell.imgNotePad setTag:indexPath.section * kMAX_SECTION_SIZE + indexPath.item];
+
+        
+        
         ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
         if(base.listOfData)
         {
@@ -254,6 +266,13 @@
         [cell.lblNext setClipsToBounds:YES];
         
         [cell setBackgroundColor:[UIColor whiteColor]];
+        
+        [cell.imgNotePad setUserInteractionEnabled:YES];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickEditImmunisation:)];
+        [cell.imgNotePad addGestureRecognizer:tap];
+        [cell.imgNotePad setTag:indexPath.section * kMAX_SECTION_SIZE + indexPath.item];
+
         
         ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
         if(base.listOfData)
@@ -430,6 +449,40 @@
 {
     return 60;
 }
+
+-(void)onClickEditImmunisation:(UITapGestureRecognizer *)sender
+{
+    ImmunisationData *immunisationData;
+    
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
+    
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:gesture.view.tag % kMAX_SECTION_SIZE
+                                                inSection:(gesture.view.tag / kMAX_SECTION_SIZE)];
+    
+    if (self.segmentImu.selectedSegmentIndex == 0)
+    {
+        ImmunisationBaseDate *base = [immunisationList objectAtIndex:indexPath.section];
+        if(base.listOfData)
+        {
+             immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        }
+    }
+    if (self.segmentImu.selectedSegmentIndex == 1)
+    {
+        ImmunisationBaseDate *base = [immunisationDoneList objectAtIndex:indexPath.section];
+        if(base.listOfData)
+        {
+             immunisationData = [[base listOfData] objectAtIndex:indexPath.row];
+        }
+    }
+    
+    NewImmunisationVC * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"NewImmunisationVC_SB_ID"];
+    vc.immunisationData = immunisationData;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 - (IBAction)onClickSwitch:(id)sender
 {
