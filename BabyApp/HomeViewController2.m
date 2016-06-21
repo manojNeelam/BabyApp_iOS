@@ -1350,7 +1350,7 @@
 
 
 
-//
+//EncyclopediaTapScroller
 
 -(void)backAction
 {
@@ -1384,7 +1384,7 @@
         //SelectScheduleVC
         //Immunisation
         
-        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"Immunisation"];
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
         //vc.isFromImmunisation = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
