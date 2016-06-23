@@ -1405,8 +1405,6 @@
         }
 }
 
-
-
 -(void)backScreeningAction
 {
     [overlayView setHidden:YES];

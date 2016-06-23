@@ -20,6 +20,8 @@
 {
      NSArray *immunisationTypeList, *immunisationDueTypeList, *immunisationDoneTypeList, *immunisationDateList, *immunisationDueDateList, *immunisationDoneDateList, *immunisationList, *immunisationDueList, *immunisationDoneList;
 }
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segAllDueDone;
+- (IBAction)onClickSegAllDueDone:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -511,7 +513,6 @@
     
 }
 
-
 - (IBAction)onSwitchDateType:(id)sender {
     if (self.segmentDateType.selectedSegmentIndex == 0)
     {
@@ -521,11 +522,39 @@
     }
     else
     {
-        immunisationDueList = immunisationDueTypeList;
-        immunisationDoneList = immunisationDoneTypeList;
-        immunisationList = immunisationTypeList;
+        UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
+        //vc.isFromImmunisation = NO;
+        [self.navigationController pushViewController:vc animated:NO];
+
+        
+        //immunisationDueList = immunisationDueTypeList;
+        //immunisationDoneList = immunisationDoneTypeList;
+        //immunisationList = immunisationTypeList;
     }
     [self.tableView reloadData];
+
+}
+- (IBAction)onClickSegAllDueDone:(id)sender {
+    
+    if (self.segAllDueDone.selectedSegmentIndex == 0)
+    {
+        [self.tableView reloadData];
+        
+        //UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tool"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickAddNew:)];
+        //self.imuNavigationItem.rightBarButtonItem = rightButton;
+    }
+    else if(self.segAllDueDone.selectedSegmentIndex == 1)
+    {
+        [self.tableView reloadData];
+        
+        //[self.imuNavigationItem setRightBarButtonItem:nil];
+        
+    }
+    else if(self.segAllDueDone.selectedSegmentIndex == 2)
+    {
+        [self.tableView reloadData];
+        //[self.imuNavigationItem setRightBarButtonItem:nil];
+    }
 
 }
 @end

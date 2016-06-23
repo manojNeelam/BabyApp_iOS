@@ -5023,10 +5023,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CII-0W-axc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KOI-g1-OWE">
+                                        <rect key="frame" x="20" y="15" width="280" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="vMv-io-fJq"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="All"/>
+                                            <segment title="Done"/>
+                                            <segment title="Due"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="onClickSegAllDueDone:" destination="XxL-d1-nAa" eventType="valueChanged" id="4Lk-PM-0oS"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C0H-lj-3Nu">
-                                        <rect key="frame" x="20" y="16" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="58" width="280" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="Phm-sY-wrD"/>
                                         </constraints>
@@ -5043,14 +5058,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.2274509804" green="0.56862745100000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="C0H-lj-3Nu" firstAttribute="top" secondItem="CII-0W-axc" secondAttribute="top" constant="16" id="0ZB-XU-BaH"/>
+                                    <constraint firstAttribute="trailing" secondItem="KOI-g1-OWE" secondAttribute="trailing" constant="20" id="Avj-Ti-f3e"/>
                                     <constraint firstItem="C0H-lj-3Nu" firstAttribute="leading" secondItem="CII-0W-axc" secondAttribute="leading" constant="20" id="DQV-Dp-30o"/>
-                                    <constraint firstAttribute="height" constant="60" id="Na5-jO-Y1e"/>
+                                    <constraint firstAttribute="height" constant="100" id="Na5-jO-Y1e"/>
+                                    <constraint firstItem="KOI-g1-OWE" firstAttribute="top" secondItem="CII-0W-axc" secondAttribute="top" constant="15" id="Onr-bI-D09"/>
+                                    <constraint firstItem="KOI-g1-OWE" firstAttribute="leading" secondItem="CII-0W-axc" secondAttribute="leading" constant="20" id="bXZ-l7-MA7"/>
                                     <constraint firstAttribute="trailing" secondItem="C0H-lj-3Nu" secondAttribute="trailing" constant="20" id="hn9-Zq-xFr"/>
+                                    <constraint firstItem="C0H-lj-3Nu" firstAttribute="top" secondItem="KOI-g1-OWE" secondAttribute="bottom" constant="15" id="nGt-fR-9VF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-Sn-eMN">
-                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="90" id="Rld-11-z28" customClass="immunisationMainTableViewCell">
@@ -5236,6 +5254,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="baseSegmentView" destination="CII-0W-axc" id="fBC-7t-M1J"/>
+                        <outlet property="segAllDueDone" destination="KOI-g1-OWE" id="10Q-Lu-4qL"/>
                         <outlet property="segmentDateType" destination="C0H-lj-3Nu" id="cLd-9n-MNd"/>
                         <outlet property="tableView" destination="SJG-Sn-eMN" id="uQI-nc-GB9"/>
                         <segue destination="swM-IP-neD" kind="show" identifier="calenderSegue" id="yf7-FD-x31"/>

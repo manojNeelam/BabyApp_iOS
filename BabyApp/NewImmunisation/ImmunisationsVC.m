@@ -38,6 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.segmentDateType setSelectedSegmentIndex:1];
+    
+    
     NSLog(@"ImmunisationsVC PAge");
     
     isDate = YES;
@@ -739,12 +742,19 @@
 {
     if (self.segmentDateType.selectedSegmentIndex == 0)
     {
-        immunisationDueList = immunisationDueDateList;
-        immunisationDoneList = immunisationDoneDateList;
-        immunisationList = immunisationDateList;
+        
+        //Date
+        
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Immunisation"];
+        [self.navigationController pushViewController:vc animated:NO];
+        
+        //immunisationDueList = immunisationDueDateList;
+        //immunisationDoneList = immunisationDoneDateList;
+        //immunisationList = immunisationDateList;
     }
     else
     {
+        
         immunisationDueList = immunisationDueTypeList;
         immunisationDoneList = immunisationDoneTypeList;
         immunisationList = immunisationTypeList;
