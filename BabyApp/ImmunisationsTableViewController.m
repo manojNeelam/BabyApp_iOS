@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //[self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"leftArrow"] style:UIBarButtonItemStyleDone target:self action:@selector(onClickDismiss)]];
+    
+    [self.navigationItem setRightBarButtonItem:nil];
+    
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -25,6 +29,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)onClickDismiss
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

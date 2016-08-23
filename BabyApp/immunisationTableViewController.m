@@ -248,7 +248,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"ImmunisationsSegue" sender:self];
+    
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ImmunisationsTableViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    //[self performSegueWithIdentifier:@"ImmunisationsSegue" sender:self];
 }
 
 //

@@ -60,10 +60,6 @@ UIActivityIndicatorView *act1;
     [super viewDidLoad];
     
     
-    
-    
-    
-    
     isForgotPassword = NO;
     self.navigationController.navigationBarHidden=YES;
     
@@ -231,19 +227,19 @@ UIActivityIndicatorView *act1;
 
 -(void)textFieldDidEndEditing:(UITextField *)sender
 {
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+//    if  (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
     //move the main view, so that the keyboard does not hide it.
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
+//    if  (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -74,19 +74,19 @@ UIActivityIndicatorView *act2;
 
 -(void)textFieldDidEndEditing:(UITextField *)sender
 {
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+//    if  (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-    //move the main view, so that the keyboard does not hide it.
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
+//    //move the main view, so that the keyboard does not hide it.
+//    if  (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
