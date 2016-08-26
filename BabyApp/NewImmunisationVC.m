@@ -397,8 +397,9 @@
     selectedVacineType =vaccineTypeArray[indexPath.row];
     
     NSLog(@"%d: %@", (int)indexPath.row, selectedVacineType);
-    _vaccineTextField.text = selectedVacineType[@"code"];
-    
+    _vaccineTextField.text = selectedVacineType[@"code"]; //atul
+    _brandOfVaccineTextField.text=_vaccineTextField.text;
+    [_brandOfVaccineTextField setUserInteractionEnabled:NO];
 }
 - (UITableViewCell *)itemCell:(NSIndexPath *)indexPath
 {
