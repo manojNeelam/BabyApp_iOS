@@ -225,7 +225,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if([[json objectForKey:@"status"] boolValue])
         {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
              //[Constants showOKAlertWithTitle:@"Success!" message:@"Immunisation Created" presentingVC:self];
         }
         else

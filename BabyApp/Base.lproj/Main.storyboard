@@ -239,9 +239,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="fdQ-YC-MDM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-dK-ABe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bXf-RS-OnO">
                                 <rect key="frame" x="60" y="20" width="200" height="200"/>
                                 <constraints>
@@ -390,6 +387,9 @@
                                     <action selector="forgotPasswordAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCN-MS-Px1"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-dK-ABe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -907,7 +907,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baT-cW-47f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="-92"/>
+            <point key="canvasLocation" x="402" y="-145"/>
         </scene>
         <!--Screening-->
         <scene sceneID="UmU-ta-SRX">
@@ -1090,6 +1090,9 @@
                                                     <include reference="jM1-RI-cCq"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <outlet property="delegate" destination="Nsp-fl-K9c" id="zds-B1-Pzq"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tab-YS-9ah">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -6874,7 +6877,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="batchNoTextField" destination="FAg-EQ-BgS" id="1KL-yS-hWQ"/>
-                        <outlet property="brandOfVaccineTextField" destination="iG4-YJ-Kv7" id="hpL-mZ-sNX"/>
+                        <outlet property="brandOfVaccineTextField" destination="eRt-dz-Ksd" id="hGi-bj-Wff"/>
                         <outlet property="clinicTextField" destination="vIT-H8-hFL" id="8SB-Vb-HIP"/>
                         <outlet property="contraindicationsTextField" destination="tkX-hX-XKV" id="5ks-D8-fwd"/>
                         <outlet property="dateGiveTextField" destination="ToG-ym-G7h" id="0ia-Ys-ZOG"/>
@@ -6882,7 +6885,7 @@
                         <outlet property="scrollView" destination="84b-0V-EFK" id="YlC-C4-XF8"/>
                         <outlet property="sequenceTextField" destination="P3i-0o-JBy" id="O03-l2-0LE"/>
                         <outlet property="siteOfvaccinationTextField" destination="cQB-si-ZfX" id="q2f-JT-Km3"/>
-                        <outlet property="vaccineTextField" destination="eRt-dz-Ksd" id="T4y-4A-vp3"/>
+                        <outlet property="vaccineTextField" destination="iG4-YJ-Kv7" id="lSv-If-aPI"/>
                     </connections>
                 </viewController>
                 <navigationItem title="New Immunisation" id="qux-zY-JFX">
@@ -10794,6 +10797,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4bi-xS-MzQ"/>
-        <segue reference="UcO-SX-uLt"/>
+        <segue reference="t3e-3v-ibD"/>
     </inferredMetricsTieBreakers>
 </document>

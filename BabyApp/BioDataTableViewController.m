@@ -157,7 +157,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    titleArray=[NSArray arrayWithObjects:@"",@"BIRTH RECORD",@"PARTICULAR OF PARENTS",@"NEWBORN SCREENING",@"INVESTIGATION(S) DONE (if any)",@"INFORMATION ON DISCHARGE", nil];
+    titleArray=[NSArray arrayWithObjects:@"",@"BIRTH RECORD",@"PARTICULAR OF PARENTS",@"NEWBORN SCREENING",@"INFORMATION ON DISCHARGE", nil];
+    //@"INVESTIGATION(S) DONE (if any)",,
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -301,6 +302,8 @@
     {
         cell=(ProfilePicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ProfilePicCellIdentifier"];
        // [cell.userProflePic setAlpha:0];
+        
+        [cell.txtFldName setReturnKeyType:UIReturnKeyNext];
         [cell.btnDateOfBirth addTarget:self action:@selector(onClickDateOfBirth:) forControlEvents:UIControlEventTouchUpInside];
         [cell.userProflePic setUserInteractionEnabled:YES];
         
@@ -385,14 +388,17 @@
     }
     else if (indexPath.row == 4)
     {
+        [self performSegueWithIdentifier:Segue_DischargeInformation sender:self];
+        
+        
         //NewbornScreeningVC_Segue
-        [self performSegueWithIdentifier:Segue_investigationOptions sender:self];
+        //[self performSegueWithIdentifier:Segue_investigationOptions sender:self];
         
     }
     else if (indexPath.row == 5)
     {
         //DischargeInformationSegue
-        [self performSegueWithIdentifier:Segue_DischargeInformation sender:self];
+        
     }
 }
 
@@ -439,6 +445,7 @@
     datePicker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
     datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     datePicker.frame = CGRectMake(10, 10, 280, 216);
+    datePicker.maximumDate = [NSDate date];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [demoView addSubview:datePicker];
     return demoView;
@@ -568,7 +575,8 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [self onClickDateOfBirth:nil];
+   // [textField resignFirstResponder];
     return YES;
 }
 
