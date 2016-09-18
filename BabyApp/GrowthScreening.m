@@ -168,7 +168,7 @@ NSArray *labelArrayGrowth;
         
         lblName=[[UILabel alloc] initWithFrame:CGRectMake(20,10, 250, 30)];
         lblName.tag=10;
-        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue" size:17.0f]];
+        [lblName setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0f]];
         [cell.contentView addSubview:lblName];
         
         UITextField *lblMesure=nil;
@@ -176,6 +176,7 @@ NSArray *labelArrayGrowth;
         lblMesure.tag=20;
         [lblMesure setTextAlignment:NSTextAlignmentRight];
         [lblMesure setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi" size:16.0f]];
+        [lblMesure setKeyboardType:UIKeyboardTypeNumberPad];
         [cell.contentView addSubview:lblMesure];
         [txtfieldAr2 addObject:lblMesure];
 

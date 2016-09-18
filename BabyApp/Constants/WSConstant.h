@@ -21,3 +21,5 @@
 #define IS_CHILD_NOT_AVAILABLE  @"application_is_CHILD_Not_AVALIBALE"
 
 #define APP_FACEBOOK_USER_TOKEN @"APP_FACEBOOK_USER_TOKEN"
+
+#define SCHDULE_OPTION  @"application_schdule_option"

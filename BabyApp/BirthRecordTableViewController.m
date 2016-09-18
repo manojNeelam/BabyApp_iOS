@@ -366,6 +366,17 @@
     datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     datePicker.frame = CGRectMake(10, 10, 280, 216);
     datePicker.datePickerMode = UIDatePickerModeDate;
+    
+    
+    NSDateComponents *comp = [NSDateComponents new];
+    int numberOfDaysInAWeek = 7;
+    int weeks = 40; // <-- this example adds 3 weeks
+    comp.day = weeks * numberOfDaysInAWeek;
+    
+    NSDate *maxDate = [[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:[NSDate date] options:0];
+    
+    datePicker.maximumDate = maxDate;
+    
     [demoView addSubview:datePicker];
     return demoView;
 }
@@ -641,8 +652,8 @@
 {
     NSMutableArray *tempData = [NSMutableArray array];
     
-    [tempData addObject:@"Normal delivery"];
-    [tempData addObject:@"Cesarean delivery"];
+    [tempData addObject:@"Normal Vaginal Delivery"];
+    [tempData addObject:@"Caesarian Section"];
     
     genderList = tempData;
 }
@@ -660,6 +671,7 @@
     [tempData addObject:@"7"];
     [tempData addObject:@"8"];
     [tempData addObject:@"9"];
+    [tempData addObject:@"10"];
     
     genderList = tempData;
 }

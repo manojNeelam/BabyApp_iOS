@@ -2062,7 +2062,6 @@
 				TargetAttributes = {
 					A13FC7E21C7748AC00362A32 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 9FYNXUWTB7;
 					};
 					A13FC7FE1C7748AC00362A32 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2713,9 +2712,9 @@
 				INFOPLIST_FILE = BabyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.babyapp.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.syntel.pusherapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "833050af-f1e5-41c9-9393-fd3a0f06cf18";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

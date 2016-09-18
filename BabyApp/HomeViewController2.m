@@ -453,7 +453,7 @@
             
         }
     }
-    return 75;
+    return 95;
 }
 
 
@@ -699,6 +699,9 @@
     
     
    
+    
+    
+   
     UIButton *medicalButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     NSString *immuStr = @"View My Immunisation";
@@ -799,7 +802,10 @@
     [drugLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
     [medicalLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:SIZEFONT]];
 
-    
+    UITapGestureRecognizer *backRecognizer = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(backAction)];
+    [backRecognizer setNumberOfTouchesRequired:1];
+    [overlayView addGestureRecognizer:backRecognizer];
 }
 
 -(void)screeningView
@@ -1334,21 +1340,14 @@
     
     UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DevelopmetalScreenViewController"];
     [self.navigationController pushViewController:dummyVC animated:YES];
-    
-    
 }
 
 -(void)encyclopediaChildSafety
 {
     [overlayView setHidden:YES];
-    
     UIViewController *dummyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"childSafety"];
     [self.navigationController pushViewController:dummyVC animated:YES];
-    
-    
 }
-
-
 
 //EncyclopediaTapScroller
 
@@ -1357,12 +1356,10 @@
     [overlayView setHidden:YES];
 }
 
-
 -(void)newImmuAction
 {
     [overlayView setHidden:YES];
     //NewImmunisationVC_SB_ID
-    
     if(!child.immunisationList.count)
     {
         SelectScheduleVC * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"SelectScheduleVC"];
@@ -1373,7 +1370,6 @@
         UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"NewImmunisationVC_SB_ID"];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
 }
 
 -(void)immuInfoAction //correct*
@@ -1383,26 +1379,22 @@
     {
         //SelectScheduleVC
         //Immunisation
-        
         UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"EncyclopediaStoryBoard"];
         //vc.isFromImmunisation = YES;
         [self.navigationController pushViewController:vc animated:YES];
-        }
+    }
 }
-
+//
 -(void)immuMy//correct*
 {
     [overlayView setHidden:YES];
     if(child.immunisationList.count)
     {
         //ImmunisationsVC_SB_ID
-        
-        
         UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier: @"ImmunisationsVC_SB_ID"];
         //vc.isFromImmunisation = NO;
         [self.navigationController pushViewController:vc animated:YES];
-        
-        }
+    }
 }
 
 -(void)backScreeningAction

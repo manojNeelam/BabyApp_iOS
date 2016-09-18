@@ -9,6 +9,7 @@
 #define CHECK @"checkBox"
 
 #import "SelectScheduleVC.h"
+#import "WSConstant.h"
 
 @interface SelectScheduleVC ()
 {
@@ -67,9 +68,32 @@
     
     [self addTapgestures];
     
-    option1 = NO;
-    option2 = NO;
-    option3 = NO;
+    NSString *option = [NSUserDefaults retrieveObjectForKey:SCHDULE_OPTION];
+    if(option && option.length > 0)
+    {
+        if([option isEqualToString:@"1"])
+        {
+            option1 = NO;
+            [self onClickOption1:nil];
+        }
+        else if ([option isEqualToString:@"2"])
+        {
+            option2 = NO;
+            [self onClickOption2:nil];
+        }
+        else if([option isEqualToString:@"3"])
+        {
+            option3 = NO;
+            [self onClickOption3:nil];
+        }
+    }
+    else
+    {
+        option1 = NO;
+        option2 = NO;
+        option3 = NO;
+    }
+    
     
     self.btnProceed.layer.cornerRadius = 8.0f;
     self.btnProceed.layer.masksToBounds = YES;
@@ -103,6 +127,8 @@
     
     if(option1)
     {
+        [NSUserDefaults saveObject:@"1" forKey:SCHDULE_OPTION];
+        
         [self.imgOption1 setImage:[UIImage imageNamed:CHECK]];
         [self.imgOption2 setImage:[UIImage imageNamed:UNCHECK]];
         [self.imgOption3 setImage:[UIImage imageNamed:UNCHECK]];
@@ -119,8 +145,8 @@
     
     if(option2)
     {
+        [NSUserDefaults saveObject:@"2" forKey:SCHDULE_OPTION];
         [self.imgOption2 setImage:[UIImage imageNamed:CHECK]];
-        
         [self.imgOption3 setImage:[UIImage imageNamed:UNCHECK]];
         [self.imgOption1 setImage:[UIImage imageNamed:UNCHECK]];
     }
@@ -136,6 +162,7 @@
     
     if(option3)
     {
+        [NSUserDefaults saveObject:@"3" forKey:SCHDULE_OPTION];
         [self.imgOption3 setImage:[UIImage imageNamed:CHECK]];
         [self.imgOption1 setImage:[UIImage imageNamed:UNCHECK]];
         [self.imgOption2 setImage:[UIImage imageNamed:UNCHECK]];

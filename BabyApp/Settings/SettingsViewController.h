@@ -12,9 +12,9 @@
 
 @interface SettingsViewController : BaseViewController<SlideNavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtFldFullName;
-@property (weak, nonatomic) IBOutlet UITextField *txtFldUserName;
+//@property (weak, nonatomic) IBOutlet UITextField *txtFldUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtFldEmail;
-@property (weak, nonatomic) IBOutlet UITextField *txtFldPassword;
+//@property (weak, nonatomic) IBOutlet UITextField *txtFldPassword;
 @property (weak, nonatomic) IBOutlet UISwitch *notiSwitch;
 - (IBAction)onClickSwitch:(id)sender;
 

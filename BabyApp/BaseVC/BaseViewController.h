@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KeyConstants.h"
+#import "NSUserDefaults+Helpers.h"
 
 @interface BaseViewController : UIViewController
 

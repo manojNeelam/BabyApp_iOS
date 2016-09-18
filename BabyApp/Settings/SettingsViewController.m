@@ -13,7 +13,7 @@
 #import "Constants.h"
 #import "NSString+CommonForApp.h"
 
-@interface SettingsViewController ()<ServerResponseDelegate>
+@interface SettingsViewController ()<ServerResponseDelegate, UITextFieldDelegate>
 {
     NSDictionary *userDataDict;
 }
@@ -56,11 +56,13 @@
 
  */
 
--(void)success:(id)response
+-(void)failure:(id)response
 {
     
-    
-    
+}
+
+-(void)success:(id)response
+{
     NSDictionary *dict = response;
     id statusStr_ = [dict objectForKey:@"status"];
     NSString *statusStr;
@@ -87,8 +89,7 @@
             if([[dataList_ objectForKey:@"notification"] isEqualToString:@"0"])
                 [self.notiSwitch setOn:NO];
               else
-                  [self.notiSwitch setOn:NO];
-
+                  [self.notiSwitch setOn:YES];
         }
     }
 }
@@ -151,8 +152,18 @@ else
     
 }
 
-
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if([textField isEqual:self.txtFldFullName])
+    {
+        [self.txtFldEmail becomeFirstResponder];
+    }
+    else if([textField isEqual:self.txtFldEmail])
+    {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
 
 /*
 #pragma mark - Navigation
