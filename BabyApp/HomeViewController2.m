@@ -1,7 +1,7 @@
 //
 //  HomeViewController2.m
 //  BabyApp
-//
+//com.Infinity.BabyApp.BabyApp
 //  Created by Atul Awasthi on 01/05/16.
 //  Copyright © 2016 Infinity. All rights reserved.
 //
@@ -33,7 +33,7 @@
     CGRect scrollRect;
     UIView *overlayView;
     
-    
+    NSTimer *repeatTimer;
 }
 @property (nonatomic)  UITableView *home2Table;
 @property (nonatomic)  UIScrollView *home2Scorll;
@@ -42,6 +42,22 @@
 
 @implementation HomeViewController2
 
+-(void)targetMethod
+{
+    if(sliderList!=nil)
+    {
+    if(pageHome.currentPage==sliderList.count)
+    {
+        [self.home2Scorll setContentOffset:CGPointMake(0,0)];
+           [pageHome setCurrentPage:0];
+    }
+    else
+    {
+        [self.home2Scorll setContentOffset:CGPointMake(self.home2Scorll.contentOffset.x+self.home2Scorll.frame.size.width,0)];
+    [pageHome setCurrentPage:self.home2Scorll.contentOffset.x/ self.home2Scorll.frame.size.width];
+    }
+    }
+}
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGFloat width = scrollView.frame.size.width;
@@ -77,7 +93,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    repeatTimer=nil;
     overlayView=[UIView new];
     overlayView.frame=self.view.frame;
     overlayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
@@ -1514,6 +1530,14 @@
                 NSLog(@"At homepage Slider Api Result responseDict=%@ sliderList.count=%d",responseDict,sliderList.count);
                 
                 [self drawViewInScrollForChildAt2];
+                if(repeatTimer==nil)
+                {
+                    repeatTimer=[NSTimer scheduledTimerWithTimeInterval:2.0
+                                                                 target:self
+                                                               selector:@selector(targetMethod)
+                                                               userInfo:nil
+                                                                repeats:YES];
+                }
 
             }
            else
