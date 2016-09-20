@@ -16,8 +16,9 @@
 #import "ScreeningSummaryData.h"
 #import "CustomIOS7AlertView.h"
 #import "DateTimeUtil.h"
+#import "NIDropDown.h"
 
-@interface ScreeningViewController () <ServerResponseDelegate , CustomIOS7AlertViewDelegate>
+@interface ScreeningViewController () <ServerResponseDelegate , CustomIOS7AlertViewDelegate,NIDropDownDelegate>
 {
     NSArray *personalSocialList, *fineMotorList, *languageList, *grossMotorList;
     NSMutableArray *allChildDevList;
@@ -32,12 +33,15 @@
     
     NSArray *screeningSummaryList;
     int currentScreening;
+    NIDropDown *dropDown;
+
 }
+@property  UIButton *drpDownBtn;
 - (IBAction)doneBtnClicked:(id)sender;
 @end
 
 @implementation ScreeningViewController
-@synthesize screeningTable;
+@synthesize screeningTable,drpDownBtn;
 
 - (IBAction)doneBtnClicked:(id)sender
 {
@@ -80,6 +84,59 @@ else
 {
     [self.view endEditing:YES];
 }
+//
+-(void)dropDownBtnClicked:(UIButton*)sender
+{
+    if(screeningSummaryList.count>0)
+    [self openDropdown:screeningSummaryList withSender:sender withDir:@"down"];
+}
+
+-(void)openDropdown:(NSArray*)array withSender:(id)sender withDir:(NSString *)dir
+{
+    if(dropDown == nil) {
+        CGFloat f = 150;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :array :nil :dir];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
+}
+
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender withData:(id)Data_ {
+    [self rel];
+    
+    if([Data_ isKindOfClass:[NSString class]])
+    {
+        NSString *cat = Data_;
+        currentScreening=(int)[screeningSummaryList indexOfObject:cat];
+        [drpDownBtn setTitle:cat forState:UIControlStateNormal];
+        
+        ScreeningSummaryData *screen =[screeningSummaryList objectAtIndex:currentScreening];
+       
+        [txtDate setTitle:screen.due_date forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"screening_id"];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:screen.screening_id forKey:@"screening_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:screen.screening_id forKey:@"selectedScreenId"];
+        [[ConnectionsManager sharedManager] readScreening:dict withdelegate:self];
+        
+
+        
+        
+    }
+   
+}
+
+-(void)rel{
+    dropDown = nil;
+}
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentScreening=0;
@@ -112,7 +169,16 @@ else
     
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
-     UIButton *imgNext = [[UIButton alloc] init];
+    
+    UIButton *drpDownBtn = [[UIButton alloc] init];
+    
+    [drpDownBtn setFrame:CGRectMake(0,0,v.frame.size.width, v.frame.size.height)];
+
+     [v addSubview:drpDownBtn];
+    [drpDownBtn addTarget:self action:@selector(dropDownBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [drpDownBtn setTitle:@"6 MONTHS TO 12 MONTHS" forState:UIControlStateNormal];
+    
+   /*  UIButton *imgNext = [[UIButton alloc] init];
 
     [imgNext setFrame:CGRectMake(10, 15, 10, 10)];
     [imgNext setBackgroundImage:[UIImage imageNamed:@"previousAppBg"] forState:UIControlStateNormal];
@@ -126,9 +192,10 @@ else
     [v addSubview:imgPrevious];
     
     [imgNext addTarget:self action:@selector(btnPrevious) forControlEvents:UIControlEventTouchUpInside];
+    
     [imgPrevious addTarget:self action:@selector(btnNext) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    */
     
     
     UIView *v2=[[UIView alloc] initWithFrame:CGRectMake(25, v.frame.origin.y+v.frame.size.height+20, self.view.frame.size.width-50, 90)];
@@ -210,6 +277,9 @@ else
      [self loadScreeningData];
     
 }
+
+
+
 
 -(void)loadScreeningData
 {
