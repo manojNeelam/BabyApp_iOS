@@ -160,7 +160,7 @@ else
     
     [lblHeading setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
                                         size:15]];
-    [lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
+    //[lblHeading setText:@"6 MONTHS TO 12 MONTHS"];
     
     
    
@@ -170,13 +170,17 @@ else
     [lblHeading setTextColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0]];
     [lblHeading setTextAlignment:NSTextAlignmentCenter];
     
-    UIButton *drpDownBtn = [[UIButton alloc] init];
+    UIButton *drpDownBtn1 = [[UIButton alloc] init];
     
-    [drpDownBtn setFrame:CGRectMake(0,0,v.frame.size.width, v.frame.size.height)];
-
-     [v addSubview:drpDownBtn];
-    [drpDownBtn addTarget:self action:@selector(dropDownBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [drpDownBtn setTitle:@"6 MONTHS TO 12 MONTHS" forState:UIControlStateNormal];
+    [drpDownBtn1 setFrame:CGRectMake(0,75,v.frame.size.width, v.frame.size.height)];
+    [drpDownBtn1 setBackgroundColor:[UIColor whiteColor]];
+    
+     [self.view addSubview:drpDownBtn1];
+    [drpDownBtn1 setTitleColor:[UIColor colorWithRed:49.0/255.0 green:191.0/255.0 blue:180.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [drpDownBtn1.titleLabel setFont:[UIFont fontWithName:@"AvenirNextLTPro-Demi"
+                                                    size:15]];
+    [drpDownBtn1 addTarget:self action:@selector(dropDownBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [drpDownBtn1 setTitle:@"6-8 Months" forState:UIControlStateNormal];
     
    /*  UIButton *imgNext = [[UIButton alloc] init];
 
